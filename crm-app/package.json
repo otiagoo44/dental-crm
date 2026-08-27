@@ -1,0 +1,38 @@
+{
+  "name": "crm-app",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:staging": "vite build --mode staging",
+    "build:production": "vite build --mode production",
+    "preview": "vite preview",
+    "test": "npm run test:intake && npm run test:messages && npm run test:insights && npm run test:workflow && npm run test:owner && npm run test:pricing && npm run test:clarity && npm run test:standalone",
+    "test:intake": "node ../tests/edge-intake-contract-test.mjs",
+    "test:messages": "node ../tests/whatsapp-message-test.mjs",
+    "test:insights": "node ../tests/retention-insights-test.mjs",
+    "test:workflow": "node ../tests/operational-workflow-test.mjs",
+    "test:owner": "node ../tests/owner-metrics-test.mjs",
+    "test:pricing": "node ../tests/quote-pricing-test.mjs",
+    "test:clarity": "node ../tests/clarity-domain-contract-test.mjs",
+    "test:standalone": "node ../tests/standalone-deployment-test.mjs",
+    "test:staging": "node ../tests/staging-smoke.mjs",
+    "test:staging:http": "node ../tests/staging-http-linked-smoke.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.106.1",
+    "@vitejs/plugin-react": "5.2.0",
+    "lucide-react": "^0.468.0",
+    "motion": "^13.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "7.3.6"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10"
+  }
+}
