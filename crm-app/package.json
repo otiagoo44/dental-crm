@@ -18,6 +18,7 @@
     "test:pricing": "node ../tests/quote-pricing-test.mjs",
     "test:clarity": "node ../tests/clarity-domain-contract-test.mjs",
     "test:standalone": "node ../tests/standalone-deployment-test.mjs",
+    "test:production:public": "node ../tests/production-public-smoke.mjs",
     "test:staging": "node ../tests/staging-smoke.mjs",
     "test:staging:http": "node ../tests/staging-http-linked-smoke.mjs"
   },

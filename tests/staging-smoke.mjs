@@ -118,7 +118,7 @@ await check('RLS Clinic B users cannot read Clinic A', async () => {
 let qaManualLead;
 await check('RLS/RPC assignment stays inside Clinic A', async () => {
   const suffix = Date.now();
-  const { data, error } = await sessions.receptionA.supabase.rpc('create_manual_lead', {
+  const { data, error } = await sessions.receptionA.supabase.rpc('create_manual_lead_v2', {
     p_name: `QA RC assignment ${suffix}`,
     p_phone: `0981${String(suffix).slice(-6)}`,
     p_phone_plus: `+595981${String(suffix).slice(-6)}`,
@@ -131,8 +131,6 @@ await check('RLS/RPC assignment stays inside Clinic A', async () => {
     p_next_action: 'Responder nueva consulta',
     p_next_followup_at: new Date(Date.now() + 3_600_000).toISOString(),
     p_assigned_to: sessions.receptionA.user.id,
-    p_classification: 'Lead Caliente',
-    p_score: 90,
     p_situation: 'Quiere agendar una consulta',
     p_evaluation_previous: 'No',
     p_estimated_value: null,

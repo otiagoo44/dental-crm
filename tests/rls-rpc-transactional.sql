@@ -47,11 +47,11 @@ begin
   end if;
 
   select * into manual_lead
-  from public.create_manual_lead(
+  from public.create_manual_lead_v2(
     'Lead Presencial Transactional', '0981000999', null,
     'Consulta general', 'Esta semana', 'Prueba de fuente presencial',
     'Presencial', true, null, 'Enviar WhatsApp', now() + interval '1 hour',
-    null, 'Lead Medio', 50, 'Quiere agendar una consulta', 'No sabe', null
+    null, 'Quiere agendar una consulta', 'No sabe', null
   );
 
   if manual_lead.clinic_id <> '00000000-0000-0000-0000-000000000101'
@@ -60,7 +60,7 @@ begin
        select 1 from public.tasks
        where lead_id = manual_lead.id and type = 'contact' and status = 'pendiente'
      ) then
-    raise exception 'create_manual_lead no guardo fuente presencial y tarea atomica';
+    raise exception 'create_manual_lead_v2 no guardo fuente presencial y tarea atomica';
   end if;
 
   perform public.save_lead_followup(
@@ -93,11 +93,11 @@ begin
   end if;
 
   select * into attempt_lead
-  from public.create_manual_lead(
+  from public.create_manual_lead_v2(
     'QA Contact Outcome Transactional', '0981000998', null,
     'Consulta general', 'Esta semana', 'Prueba outcome de contacto',
     'WhatsApp directo', true, null, 'Contactar lead', now() + interval '1 hour',
-    null, 'Lead Medio', 50, 'Quiere agendar una consulta', 'No', null
+    null, 'Quiere agendar una consulta', 'No', null
   );
 
   select * into attempted_task

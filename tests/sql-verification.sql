@@ -40,7 +40,7 @@ begin
   select array_agg(name order by name)
   into missing_rpcs
   from unnest(array[
-    'create_manual_lead','schedule_lead_appointment','update_appointment_outcome',
+    'create_manual_lead','create_manual_lead_v2','schedule_lead_appointment','update_appointment_outcome',
     'complete_task','mark_lead_contacted','complete_contact_task',
     'record_contact_attempt','record_whatsapp_opened','record_message_copied',
     'mark_lead_lost','create_public_lead_intake','reassign_lead_owner',
@@ -186,6 +186,30 @@ begin
     'EXECUTE'
   ) then
     raise exception 'anon puede ejecutar create_manual_lead';
+  end if;
+
+  if has_function_privilege(
+    'authenticated',
+    'public.create_manual_lead(text,text,text,text,text,text,text,boolean,text,text,timestamp with time zone,uuid,text,integer,text,text,numeric)',
+    'EXECUTE'
+  ) then
+    raise exception 'authenticated conserva acceso al RPC legacy con score manual';
+  end if;
+
+  if not has_function_privilege(
+    'authenticated',
+    'public.create_manual_lead_v2(text,text,text,text,text,text,text,boolean,text,text,timestamp with time zone,uuid,text,text,numeric)',
+    'EXECUTE'
+  ) then
+    raise exception 'authenticated no puede ejecutar create_manual_lead_v2';
+  end if;
+
+  if has_function_privilege(
+    'anon',
+    'public.create_manual_lead_v2(text,text,text,text,text,text,text,boolean,text,text,timestamp with time zone,uuid,text,text,numeric)',
+    'EXECUTE'
+  ) then
+    raise exception 'anon puede ejecutar create_manual_lead_v2';
   end if;
 
   if to_regprocedure('public.rls_auto_enable()') is not null

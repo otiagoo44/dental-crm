@@ -74,3 +74,5 @@ Para agregar otra landing, registrar una fila activa en `clinic_public_forms` co
 - Variables: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
 
 `crm-app/vercel.json` incluye el fallback SPA y mantiene `build.sourcemap: false`.
+
+Para incorporar una clínica real, usar [docs/FIRST_CLINIC_ONBOARDING.md](docs/FIRST_CLINIC_ONBOARDING.md).
