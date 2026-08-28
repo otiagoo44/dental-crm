@@ -43,7 +43,8 @@ begin
     'create_manual_lead','create_manual_lead_v2','schedule_lead_appointment','update_appointment_outcome',
     'complete_task','mark_lead_contacted','complete_contact_task',
     'record_contact_attempt','record_whatsapp_opened','record_message_copied',
-    'mark_lead_lost','create_public_lead_intake','reassign_lead_owner',
+    'mark_lead_lost','create_public_lead_intake','create_public_lead_intake_v2',
+    'reserve_public_form_submission','reassign_lead_owner',
     'register_lead_outcome','create_treatment_quote','update_treatment_quote',
     'set_treatment_quote_status'
   ]) as name
@@ -78,6 +79,22 @@ begin
 
   if to_regclass('public.message_templates_clinic_key_unique_idx') is null then
     raise exception 'Falta el indice unico multi-clinica de plantillas';
+  end if;
+
+  if to_regclass('public.form_submission_logs_form_rate_created_idx') is null
+     or to_regclass('public.form_submission_logs_form_rate_ip_created_idx') is null
+     or to_regclass('public.form_submission_logs_form_rate_phone_created_idx') is null then
+    raise exception 'Faltan indices atomicos de rate limit';
+  end if;
+
+  if not exists (
+    select 1 from information_schema.columns
+    where table_schema = 'public'
+      and table_name = 'form_submission_logs'
+      and column_name = 'counts_toward_rate_limit'
+      and data_type = 'boolean'
+  ) then
+    raise exception 'Falta form_submission_logs.counts_toward_rate_limit';
   end if;
 
   if not exists (
@@ -210,6 +227,22 @@ begin
     'EXECUTE'
   ) then
     raise exception 'anon puede ejecutar create_manual_lead_v2';
+  end if;
+
+  if has_function_privilege(
+    'anon',
+    'public.reserve_public_form_submission(uuid,text,text,integer,integer,integer,integer)',
+    'EXECUTE'
+  ) then
+    raise exception 'anon puede ejecutar reserve_public_form_submission';
+  end if;
+
+  if not has_function_privilege(
+    'service_role',
+    'public.reserve_public_form_submission(uuid,text,text,integer,integer,integer,integer)',
+    'EXECUTE'
+  ) then
+    raise exception 'service_role no puede ejecutar reserve_public_form_submission';
   end if;
 
   if to_regprocedure('public.rls_auto_enable()') is not null

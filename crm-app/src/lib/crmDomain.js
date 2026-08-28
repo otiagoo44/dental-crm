@@ -73,7 +73,6 @@ export const LEAD_ADMIN_EDIT_FIELDS = [
 ];
 export const LEAD_RECEPTIONIST_EDIT_FIELDS = ['status', 'next_action', 'next_followup_at', 'contact_attempts', 'notes'];
 export const PUBLIC_LEAD_WEBHOOK_URL = publicConfig.publicLeadWebhookUrl;
-export const DEFAULT_EMBED_BASE_URL = typeof window === 'undefined' ? 'https://TU-CRM-REAL.vercel.app' : window.location.origin;
 
 export function cleanOptionalText(value) {
   const text = String(value || '').trim();
@@ -257,14 +256,17 @@ export function publicFormPayloadExample(config) {
     pagina: 'implantes',
     fecha_envio: 'auto',
     consentimiento_contacto: true,
+    website: '',
   };
 }
 
 export function publicFormFetchSnippet(config) {
   const payload = publicFormPayloadExample(config);
   return `const WEBHOOK_URL = "${PUBLIC_LEAD_WEBHOOK_URL}";
+const FORM_STARTED_AT = new Date().toISOString();
 
 const payload = ${JSON.stringify(payload, null, 2)};
+payload.form_started_at = FORM_STARTED_AT;
 
 const response = await fetch(WEBHOOK_URL, {
   method: "POST",
@@ -273,17 +275,6 @@ const response = await fetch(WEBHOOK_URL, {
 });
 
 const data = await response.json();`;
-}
-
-export function publicFormIframeSnippet(config) {
-  const slug = config?.clinic_slug || 'CLINIC_SLUG';
-  const token = config?.public_token || 'lf_xxxxx';
-  return `<iframe
-  src="${DEFAULT_EMBED_BASE_URL}/form/${slug}?landing_token=${encodeURIComponent(token)}"
-  width="100%"
-  height="720"
-  style="border:0; border-radius:16px;"
-></iframe>`;
 }
 
 export function priorityForClassification(classification) {

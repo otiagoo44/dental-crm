@@ -2,12 +2,51 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
 
 const MAX_BODY_BYTES = 16_384;
 const RATE_WINDOW_MINUTES = 10;
-const MAX_IP_SUBMISSIONS = 60;
+const MAX_FORM_SUBMISSIONS = 120;
+const MAX_IP_SUBMISSIONS = 20;
 const MAX_PHONE_SUBMISSIONS = 3;
 const EDGE_HEADERS = "authorization, x-client-info, apikey, content-type";
 const EDGE_METHODS = "POST, OPTIONS";
 
 type IntakeBody = Record<string, unknown>;
+
+const TEXT_FIELD_LIMITS = Object.freeze({
+  clinic_slug: 120,
+  landing_token: 160,
+  nombre: 120,
+  telefono: 32,
+  tratamiento: 120,
+  urgencia: 80,
+  evaluacion_previa: 120,
+  situacion: 160,
+  consultation_reason: 300,
+  motivo_consulta: 300,
+  origen: 120,
+  source: 120,
+  pagina: 120,
+  page: 120,
+  notes: 1000,
+  utm_source: 200,
+  utm_medium: 200,
+  utm_campaign: 240,
+  utm_content: 240,
+  utm_term: 240,
+  landing_page: 500,
+  referrer: 500,
+  website: 120,
+  company: 120,
+  form_started_at: 64,
+});
+
+const FORBIDDEN_ROUTING_FIELDS = Object.freeze([
+  "clinic_id",
+  "lead_id",
+  "appointment_id",
+  "appointment",
+  "quote_id",
+  "quote",
+  "assigned_to",
+]);
 
 type PhoneResult =
   | { ok: true; phone: string; phonePlus: string }
@@ -34,7 +73,7 @@ function jsonResponse(origin: string | null, status: number, payload: Record<str
 }
 
 function sanitizeText(value: unknown, maxLength: number, fallback = "") {
-  const raw = typeof value === "string" || typeof value === "number" ? String(value) : "";
+  const raw = typeof value === "string" ? value : "";
   const clean = raw
     .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
     .replace(/<\/?[^>]+>/g, "")
@@ -44,6 +83,32 @@ function sanitizeText(value: unknown, maxLength: number, fallback = "") {
     .slice(0, maxLength);
 
   return clean || fallback;
+}
+
+function isPlainIntakeBody(value: unknown): value is IntakeBody {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function hasValidFieldShapes(body: IntakeBody) {
+  for (const [field, maxLength] of Object.entries(TEXT_FIELD_LIMITS)) {
+    const value = body[field];
+    if (value === undefined || value === null) continue;
+    if (typeof value !== "string" || value.length > maxLength) return false;
+  }
+
+  for (const field of FORBIDDEN_ROUTING_FIELDS) {
+    if (Object.prototype.hasOwnProperty.call(body, field)) return false;
+  }
+
+  return true;
+}
+
+function isImplausiblyFastSubmission(body: IntakeBody) {
+  if (body.form_started_at === undefined || body.form_started_at === null) return false;
+  const startedAt = Date.parse(String(body.form_started_at));
+  if (!Number.isFinite(startedAt)) return true;
+  const elapsed = Date.now() - startedAt;
+  return elapsed < 800;
 }
 
 function normalizeClinicSlug(value: unknown) {
@@ -88,19 +153,21 @@ async function hashWithSalt(salt: string, value: string | null) {
 }
 
 function getClientIp(req: Request) {
+  const platformIp = req.headers.get("cf-connecting-ip") || req.headers.get("x-real-ip");
+  if (platformIp) return platformIp.trim() || null;
   const forwarded = req.headers.get("x-forwarded-for");
   if (forwarded) return forwarded.split(",")[0]?.trim() || null;
-  return req.headers.get("cf-connecting-ip") || req.headers.get("x-real-ip") || null;
+  return null;
 }
 
 function isHoneypotFilled(body: IntakeBody) {
   return Boolean(sanitizeText(body.website, 120) || sanitizeText(body.company, 120));
 }
 
-function dbErrorMessage(error: unknown) {
+function dbErrorCode(error: unknown) {
   if (!error) return "unknown";
-  if (typeof error === "object" && "message" in error) {
-    return String((error as { message?: unknown }).message || "unknown");
+  if (typeof error === "object" && "code" in error) {
+    return sanitizeText((error as { code?: unknown }).code, 40, "unknown");
   }
   return "unknown";
 }
@@ -136,7 +203,7 @@ Deno.serve(async (req) => {
       .maybeSingle();
 
     if (originError) {
-      console.error("lead-intake origin lookup failed", dbErrorMessage(originError));
+      console.error("lead-intake origin lookup failed", dbErrorCode(originError));
       return jsonResponse(null, 500, {
         success: false,
         message: "Error interno",
@@ -187,23 +254,40 @@ Deno.serve(async (req) => {
       });
     }
 
+    const contentType = req.headers.get("content-type") || "";
+    if (!contentType.toLowerCase().startsWith("application/json")) {
+      return jsonResponse(responseOrigin, 415, {
+        success: false,
+        message: "Payload invalido",
+      });
+    }
+
     const rawBody = await req.text();
-    if (rawBody.length > MAX_BODY_BYTES) {
+    if (new TextEncoder().encode(rawBody).byteLength > MAX_BODY_BYTES) {
       return jsonResponse(responseOrigin, 400, {
         success: false,
         message: "Payload invalido",
       });
     }
 
-    let body: IntakeBody;
+    let parsedBody: unknown;
     try {
-      body = JSON.parse(rawBody || "{}");
+      parsedBody = JSON.parse(rawBody || "{}");
     } catch {
       return jsonResponse(responseOrigin, 400, {
         success: false,
         message: "JSON invalido",
       });
     }
+
+    if (!isPlainIntakeBody(parsedBody) || !hasValidFieldShapes(parsedBody)) {
+      return jsonResponse(responseOrigin, 400, {
+        success: false,
+        message: "Payload invalido",
+      });
+    }
+
+    const body = parsedBody;
 
     const clinicSlug = normalizeClinicSlug(body.clinic_slug);
     const landingToken = sanitizeText(body.landing_token, 160);
@@ -238,26 +322,11 @@ Deno.serve(async (req) => {
       ? formConfig.allowed_origins.filter(Boolean)
       : [];
 
-    const clientIp = getClientIp(req);
+    const clientIp = getClientIp(req) || "missing-client-ip";
     const ipHash = await hashWithSalt(hashSalt, clientIp);
     let phoneHash: string | null = null;
 
-    async function insertSubmissionLog(status: "accepted" | "rate_limited" | "invalid_token" | "spam" | "error") {
-      const { error: logError } = await supabase.from("form_submission_logs").insert({
-        clinic_public_form_id: formConfig.id,
-        clinic_id: formConfig.clinic_id,
-        ip_hash: ipHash,
-        phone_hash: phoneHash,
-        status,
-      });
-
-      if (logError) {
-        console.error("lead-intake submission log failed", dbErrorMessage(logError));
-      }
-    }
-
     if (origin && !allowedOrigins.includes(origin)) {
-      await insertSubmissionLog("error");
       return jsonResponse(null, 403, {
         success: false,
         message: "Origin no permitido",
@@ -265,7 +334,13 @@ Deno.serve(async (req) => {
     }
 
     if (isHoneypotFilled(body)) {
-      await insertSubmissionLog("spam");
+      return jsonResponse(responseOrigin, 403, {
+        success: false,
+        message: "Formulario no autorizado",
+      });
+    }
+
+    if (isImplausiblyFastSubmission(body)) {
       return jsonResponse(responseOrigin, 403, {
         success: false,
         message: "Formulario no autorizado",
@@ -274,7 +349,6 @@ Deno.serve(async (req) => {
 
     const consentContact = body.consentimiento_contacto === true || body.consent_contact === true;
     if (!consentContact) {
-      await insertSubmissionLog("error");
       return jsonResponse(responseOrigin, 400, {
         success: false,
         message: "Debés aceptar el consentimiento de contacto",
@@ -283,7 +357,6 @@ Deno.serve(async (req) => {
 
     const phoneResult = normalizeParaguayPhone(body.telefono);
     if (!phoneResult.ok) {
-      await insertSubmissionLog("error");
       return jsonResponse(responseOrigin, 400, {
         success: false,
         message: "Tel\u00e9fono inv\u00e1lido",
@@ -294,35 +367,27 @@ Deno.serve(async (req) => {
 
     const name = sanitizeText(body.nombre, 120);
     if (name.length < 2) {
-      await insertSubmissionLog("error");
       return jsonResponse(responseOrigin, 400, {
         success: false,
         message: "Datos incompletos",
       });
     }
 
-    const windowStart = new Date(Date.now() - RATE_WINDOW_MINUTES * 60 * 1000).toISOString();
+    const { data: rateLimitResult, error: rateLimitError } = await supabase.rpc(
+      "reserve_public_form_submission",
+      {
+        p_form_id: formConfig.id,
+        p_ip_hash: ipHash,
+        p_phone_hash: phoneHash,
+        p_window_minutes: RATE_WINDOW_MINUTES,
+        p_max_form: MAX_FORM_SUBMISSIONS,
+        p_max_ip: MAX_IP_SUBMISSIONS,
+        p_max_phone: MAX_PHONE_SUBMISSIONS,
+      },
+    );
 
-    async function countRecentByHash(column: "ip_hash" | "phone_hash", hash: string | null) {
-      if (!hash) return 0;
-      const { count, error } = await supabase
-        .from("form_submission_logs")
-        .select("id", { count: "exact", head: true })
-        .eq("clinic_public_form_id", formConfig.id)
-        .eq(column, hash)
-        .gte("created_at", windowStart);
-
-      if (error) throw error;
-      return count || 0;
-    }
-
-    const [recentIpCount, recentPhoneCount] = await Promise.all([
-      countRecentByHash("ip_hash", ipHash),
-      countRecentByHash("phone_hash", phoneHash),
-    ]);
-
-    if (recentIpCount >= MAX_IP_SUBMISSIONS || recentPhoneCount >= MAX_PHONE_SUBMISSIONS) {
-      await insertSubmissionLog("rate_limited");
+    if (rateLimitError) throw rateLimitError;
+    if (rateLimitResult?.allowed !== true) {
       return jsonResponse(responseOrigin, 429, {
         success: false,
         message: "Demasiados intentos. Prob\u00e1 de nuevo m\u00e1s tarde.",
@@ -409,7 +474,7 @@ Deno.serve(async (req) => {
       clinic_slug: clinicSlug,
     });
   } catch (error) {
-    console.error("lead-intake internal error", error instanceof Error ? error.message : "unknown");
+    console.error("lead-intake internal error", dbErrorCode(error));
     return jsonResponse(responseOrigin, 500, {
       success: false,
       message: "Error interno",

@@ -11,7 +11,7 @@ CRM React/Vite
   <- Landings externas por lead-intake público
 ```
 
-Supabase es el único backend. Cada landing usa `clinic_slug`, `landing_token` y un origin registrado; nunca envía un `clinic_id` confiable ni contiene secretos.
+Supabase es el único backend. Cada landing usa `clinic_slug`, `landing_token` y un origin registrado; los identificadores de tenant o entidades enviados por el navegador se rechazan y la clínica se resuelve server-side.
 
 ## Estructura
 
@@ -60,7 +60,7 @@ npx.cmd supabase db push --linked
 npx.cmd supabase functions deploy lead-intake --no-verify-jwt --project-ref PROJECT_REF
 ```
 
-Configurar `FORM_HASH_SALT` sólo como secret de Edge Functions. `lead-intake` valida formulario, token, origin, consentimiento, honeypot y rate limit antes de ejecutar la RPC transaccional.
+Configurar `FORM_HASH_SALT` sólo como secret de Edge Functions. `lead-intake` valida formulario, token, origin, consentimiento, honeypot, estructura/tamaño y un rate limit atómico antes de ejecutar la RPC transaccional.
 
 Para agregar otra landing, registrar una fila activa en `clinic_public_forms` con la clínica, slug, token y origins permitidos. No se modifica la Edge Function.
 
@@ -76,3 +76,5 @@ Para agregar otra landing, registrar una fila activa en `clinic_public_forms` co
 `crm-app/vercel.json` incluye el fallback SPA y mantiene `build.sourcemap: false`.
 
 Para incorporar una clínica real, usar [docs/FIRST_CLINIC_ONBOARDING.md](docs/FIRST_CLINIC_ONBOARDING.md).
+
+La auditoría final y sus procedimientos están en `docs/SECURITY_ARCHITECTURE_AUDIT.md`, `docs/CAPACITY_AND_SCALING.md`, `docs/BACKUP_AND_RECOVERY.md` y `docs/FIRST_CLIENT_MONITORING.md`.

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Clipboard, Eye, Loader2, Plus, RotateCcw, Save } from 'lucide-react';
-import { slugify, generatePublicToken, formatAllowedOrigins, publicFormPayloadExample, publicFormFetchSnippet, publicFormIframeSnippet } from '../lib/crmDomain';
+import { slugify, generatePublicToken, formatAllowedOrigins, publicFormPayloadExample, publicFormFetchSnippet } from '../lib/crmDomain';
 import { buildMessageFromTemplate, WHATSAPP_TEMPLATE_DEFINITIONS, WHATSAPP_VARIABLES } from '../lib/messages';
 import { humanizeCrmError } from '../lib/errors';
 import { Info, Field, TextArea } from '../components/crm/CrmPrimitives';
@@ -295,7 +295,6 @@ function PublicFormSettings({ clinic, config, saving, onSave, setNotice }) {
     public_token: form.public_token,
   };
   const payload = JSON.stringify(publicFormPayloadExample(currentConfig), null, 2);
-  const iframe = publicFormIframeSnippet(currentConfig);
   const fetchSnippet = publicFormFetchSnippet(currentConfig);
 
   return (
@@ -332,13 +331,11 @@ function PublicFormSettings({ clinic, config, saving, onSave, setNotice }) {
           Guardar configuracion
         </button>
         <SnippetCopyButton label="Copiar payload ejemplo" onClick={() => copyText('Payload ejemplo', payload)} />
-        <SnippetCopyButton label="Copiar embed iframe" onClick={() => copyText('Embed iframe', iframe)} />
         <SnippetCopyButton label="Copiar fetch ejemplo" onClick={() => copyText('Fetch ejemplo', fetchSnippet)} />
       </div>
 
-      <div className="mt-5 grid gap-4 xl:grid-cols-3">
+      <div className="mt-5 grid gap-4 xl:grid-cols-2">
         <SnippetBlock title="Payload ejemplo" value={payload} />
-        <SnippetBlock title="Embed iframe" value={iframe} />
         <SnippetBlock title="Fetch ejemplo" value={fetchSnippet} />
       </div>
     </section>

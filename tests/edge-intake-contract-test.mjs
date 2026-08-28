@@ -15,6 +15,10 @@ for (const marker of [
   'normalizeParaguayPhone(body.telefono)',
   'MAX_IP_SUBMISSIONS',
   'MAX_PHONE_SUBMISSIONS',
+  'MAX_FORM_SUBMISSIONS',
+  'reserve_public_form_submission',
+  'hasValidFieldShapes(parsedBody)',
+  'FORBIDDEN_ROUTING_FIELDS',
   'allowedOrigins.includes(origin)',
   '.eq("clinic_slug", clinicSlug)',
   '.eq("public_token", landingToken)',
@@ -26,6 +30,9 @@ for (const marker of [
 assert.equal(/\.from\(["']leads["']\)\s*\.(insert|update|upsert)/s.test(source), false, 'Edge Function must not write leads outside the transaction RPC');
 assert.equal(/\.from\(["']tasks["']\)\s*\.(insert|update|upsert)/s.test(source), false, 'Edge Function must not write tasks outside the transaction RPC');
 assert.equal(/body\.clinic_id|body\[\s*["']clinic_id["']\s*\]/.test(source), false, 'Edge Function must never trust clinic_id from a landing');
+assert.equal(/countRecentByHash|recentIpCount|recentPhoneCount/.test(source), false, 'rate limiting must not use a race-prone count-then-insert flow');
+assert.match(source, /new TextEncoder\(\)\.encode\(rawBody\)\.byteLength/, 'payload limit must count UTF-8 bytes');
+assert.equal(/dangerouslySetInnerHTML|\.innerHTML\s*=/.test(source), false, 'intake must not render or construct unsafe HTML');
 assert.equal(/serviceRoleKey[^\n]*(message|payload|response)/i.test(source), false, 'service role must not be exposed in a response');
 assert.match(config, /\[functions\.lead-intake\][\s\S]*verify_jwt\s*=\s*false/, 'public intake auth mode must remain explicit in Supabase config');
 

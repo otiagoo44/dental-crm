@@ -11,7 +11,7 @@ supabase migration list --linked
 supabase db push --linked --dry-run
 ```
 
-Confirmar que el plan incluye `20260824162341_enforce_operational_integrity_and_quotes.sql` y no contiene operaciones inesperadas. Nunca usar `supabase db reset --linked`.
+Confirmar que el plan incluye `20260824162341_enforce_operational_integrity_and_quotes.sql`, `20260827162541_clarity_priority_upgrade.sql` y `20260828120000_harden_public_intake_rate_limit.sql`, sin operaciones inesperadas. Nunca usar `supabase db reset --linked`.
 
 ## 2. Aplicar solamente las migraciones pendientes
 
@@ -29,6 +29,8 @@ Usar una conexión directa a la base de staging con permisos de administración.
 ```bash
 psql "$STAGING_DATABASE_URL" -v ON_ERROR_STOP=1 -f tests/operational-integrity.sql
 psql "$STAGING_DATABASE_URL" -v ON_ERROR_STOP=1 -f tests/operational-workflows-e2e.sql
+psql "$STAGING_DATABASE_URL" -v ON_ERROR_STOP=1 -f tests/security/cross-tenant-final.sql
+psql "$STAGING_DATABASE_URL" -v ON_ERROR_STOP=1 -f tests/security/integrity-health-check.sql
 ```
 
 Verificación de objetos y Realtime:
@@ -64,7 +66,7 @@ Enviar un formulario real desde un origen permitido y comprobar, en este orden:
 6. log de formulario aceptado;
 7. aparición en Inicio sin recargar la página.
 
-Repetir con teléfono abierto, terminal, token inválido, honeypot, dos recepcionistas, sin recepcionista y otra clínica.
+Repetir con teléfono abierto, terminal, token inválido, honeypot, dos recepcionistas, sin recepcionista y otra clínica. Ejecutar además `tests/security/intake-abuse-load.mjs` y `tests/load/multitenant-load.mjs` con las protecciones no-productivas descritas en `tests/load/README.md`.
 
 ## 6. Desplegar el frontend al final
 
@@ -73,6 +75,8 @@ cd crm-app
 npm test
 npm run build:staging
 ```
+
+Antes de promover, ejecutar `tests/security/realtime-capacity.mjs` y los escenarios 10/20/50/100. No completar la tabla de readiness con PASS si falta service role/usuarios QA para verificar las filas y RLS.
 
 Publicar `crm-app/dist` usando el procedimiento habitual del hosting de staging, con las variables públicas de Supabase de staging. No desplegar el frontend antes de que las verificaciones anteriores pasen.
 

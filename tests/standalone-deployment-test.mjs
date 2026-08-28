@@ -32,4 +32,20 @@ assert.equal(vercelConfig.buildCommand, 'npm run build');
 assert.equal(vercelConfig.outputDirectory, 'dist');
 assert.deepEqual(vercelConfig.rewrites, [{ source: '/(.*)', destination: '/index.html' }]);
 
+const securityHeaders = new Map(
+  vercelConfig.headers
+    .flatMap((route) => route.headers || [])
+    .map((header) => [header.key.toLowerCase(), header.value]),
+);
+for (const requiredHeader of [
+  'content-security-policy',
+  'x-content-type-options',
+  'x-frame-options',
+  'referrer-policy',
+  'permissions-policy',
+  'strict-transport-security',
+]) assert.ok(securityHeaders.has(requiredHeader), `Missing ${requiredHeader} in Vercel headers`);
+assert.match(securityHeaders.get('content-security-policy'), /frame-ancestors 'none'/);
+assert.match(securityHeaders.get('content-security-policy'), /connect-src 'self' https:\/\/\*\.supabase\.co wss:\/\/\*\.supabase\.co/);
+
 console.log('PASS standalone Vite/Vercel deployment contract');

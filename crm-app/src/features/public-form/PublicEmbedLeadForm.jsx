@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ExternalLink, Loader2 } from 'lucide-react';
 import { PUBLIC_LEAD_WEBHOOK_URL, cleanOptionalText } from '../../lib/crmDomain';
-import { humanizeCrmError } from '../../lib/errors';
 import { captureUrlAttribution } from '../../lib/attribution';
 import { Field, TextArea } from '../../components/crm/CrmPrimitives';
 
 export default function PublicEmbedLeadForm({ clinicSlug, landingToken }) {
+  const formStartedAtRef = useRef(new Date().toISOString());
   const [form, setForm] = useState({
     nombre: '',
     telefono: '',
@@ -15,6 +15,7 @@ export default function PublicEmbedLeadForm({ clinicSlug, landingToken }) {
     situacion: '',
     consultation_reason: '',
     consentimiento_contacto: false,
+    website: '',
   });
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
@@ -64,7 +65,8 @@ export default function PublicEmbedLeadForm({ clinicSlug, landingToken }) {
       pagina: `form/${clinicSlug}`,
       fecha_envio: new Date().toISOString(),
       consentimiento_contacto: true,
-      website: '',
+      website: form.website,
+      form_started_at: formStartedAtRef.current,
       ...captureUrlAttribution(window.location, document.referrer),
     };
 
@@ -85,6 +87,7 @@ export default function PublicEmbedLeadForm({ clinicSlug, landingToken }) {
       }
 
       setSuccess(data?.message || 'Datos enviados correctamente.');
+      formStartedAtRef.current = new Date().toISOString();
       setForm({
         nombre: '',
         telefono: '',
@@ -94,9 +97,10 @@ export default function PublicEmbedLeadForm({ clinicSlug, landingToken }) {
         situacion: '',
         consultation_reason: '',
         consentimiento_contacto: false,
+        website: '',
       });
-    } catch (submitError) {
-      setError(humanizeCrmError(submitError, 'No se pudo enviar el formulario. Intentá de nuevo.'));
+    } catch {
+      setError('No pudimos enviar tus datos. Intentá nuevamente.');
     } finally {
       setSending(false);
     }
@@ -105,6 +109,10 @@ export default function PublicEmbedLeadForm({ clinicSlug, landingToken }) {
   return (
     <main className="min-h-screen bg-app px-4 py-6 text-cream">
       <form className="mx-auto max-w-2xl rounded-3xl border border-slate-200 bg-card p-5 shadow-glow" onSubmit={handleSubmit}>
+        <label className="pointer-events-none absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+          Sitio web
+          <input name="website" value={form.website} onChange={(event) => updateField('website', event.target.value)} tabIndex={-1} autoComplete="off" />
+        </label>
         <div className="mb-5 border-b border-white/10 pb-4">
           <p className="text-xs uppercase tracking-[0.2em] text-mint">{clinicSlug}</p>
           <h1 className="mt-1 text-2xl font-semibold">Solicitar consulta</h1>
@@ -114,13 +122,13 @@ export default function PublicEmbedLeadForm({ clinicSlug, landingToken }) {
         {success ? <div className="mb-4 rounded-lg border border-mint/40 bg-mint/10 p-3 text-sm text-mint">{success}</div> : null}
 
         <div className="grid gap-4 md:grid-cols-2">
-          <Field label="Nombre" value={form.nombre} onChange={(value) => updateField('nombre', value)} disabled={sending} />
-          <Field label="WhatsApp" value={form.telefono} onChange={(value) => updateField('telefono', value)} disabled={sending} />
-          <Field label="Tratamiento" value={form.tratamiento} onChange={(value) => updateField('tratamiento', value)} disabled={sending} />
-          <Field label="Urgencia" value={form.urgencia} onChange={(value) => updateField('urgencia', value)} disabled={sending} />
-          <Field label="Evaluacion previa" value={form.evaluacion_previa} onChange={(value) => updateField('evaluacion_previa', value)} disabled={sending} />
-          <Field label="Situacion" value={form.situacion} onChange={(value) => updateField('situacion', value)} disabled={sending} />
-          <TextArea label="Motivo de consulta" value={form.consultation_reason} onChange={(value) => updateField('consultation_reason', value)} disabled={sending} className="md:col-span-2" />
+          <Field label="Nombre" value={form.nombre} onChange={(value) => updateField('nombre', value)} disabled={sending} maxLength={120} />
+          <Field label="WhatsApp" value={form.telefono} onChange={(value) => updateField('telefono', value)} disabled={sending} maxLength={32} inputMode="tel" />
+          <Field label="Tratamiento" value={form.tratamiento} onChange={(value) => updateField('tratamiento', value)} disabled={sending} maxLength={120} />
+          <Field label="Urgencia" value={form.urgencia} onChange={(value) => updateField('urgencia', value)} disabled={sending} maxLength={80} />
+          <Field label="Evaluacion previa" value={form.evaluacion_previa} onChange={(value) => updateField('evaluacion_previa', value)} disabled={sending} maxLength={120} />
+          <Field label="Situacion" value={form.situacion} onChange={(value) => updateField('situacion', value)} disabled={sending} maxLength={160} />
+          <TextArea label="Motivo de consulta" value={form.consultation_reason} onChange={(value) => updateField('consultation_reason', value)} disabled={sending} className="md:col-span-2" maxLength={300} />
           <label className="md:col-span-2 flex items-start gap-3 rounded-lg border border-white/10 bg-ink/50 p-4 text-sm text-cream/80">
             <input
               className="mt-1 h-4 w-4 accent-mint"

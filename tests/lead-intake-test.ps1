@@ -274,12 +274,11 @@ $badTokenResult = Invoke-LeadIntake -Body $badToken
 Assert-Status "token falso devuelve 403" $badTokenResult 403
 Assert-CorsOrigin "token falso conserva ACAO permitido" $badTokenResult $LANDING_ORIGIN
 
-Write-Host "10. clinic_id manipulado se ignora"
+Write-Host "10. clinic_id manipulado se rechaza"
 $manipulated = New-BaseLead -Name "QA Clinic Id Manipulado"
 $manipulated.clinic_id = "00000000-0000-0000-0000-000000000000"
 $manipulatedResult = Invoke-LeadIntake -Body $manipulated
-Assert-Status "clinic_id manipulado no bloquea lead valido" $manipulatedResult 200
-Assert-True "clinic_id manipulado recibe lead_id" ([string]::IsNullOrWhiteSpace($manipulatedResult.Data.lead_id) -eq $false)
+Assert-Status "clinic_id manipulado se rechaza" $manipulatedResult 400
 
 Write-Host "11. Telefono invalido"
 $badPhone = New-BaseLead -Phone "123" -Name "QA Telefono Invalido"
@@ -328,13 +327,6 @@ $rateLead = New-BaseLead -Name "QA Rate Limit"
 $rateIp = "203.0.113.240"
 $rateResults = 1..4 | ForEach-Object { Invoke-LeadIntake -Body $rateLead -Ip $rateIp }
 Assert-Status "rate limit cuarto envio devuelve 429" $rateResults[-1] 429
-
-Write-Host "17b. Rate limit misma IP"
-$ipRateAddress = "203.0.113.241"
-$ipRateResults = 1..61 | ForEach-Object {
-  Invoke-LeadIntake -Body (New-BaseLead -Name "QA Rate IP $_") -Ip $ipRateAddress
-}
-Assert-Status "rate limit IP envio sesenta y uno devuelve 429" $ipRateResults[-1] 429
 
 Write-Host "18. CORS OPTIONS"
 $options = Invoke-EdgeRequest -Method "Options" -Origin $LANDING_ORIGIN

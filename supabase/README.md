@@ -24,7 +24,7 @@ npx.cmd supabase secrets set FORM_HASH_SALT=REEMPLAZAR_SALT_LARGO --project-ref 
 npx.cmd supabase functions deploy lead-intake --no-verify-jwt --project-ref PROJECT_REF
 ```
 
-`verify_jwt=false` es intencional para formularios públicos. La función valida token, origin, consentimiento, honeypot, inputs y rate limits antes de ejecutar una RPC transaccional.
+`verify_jwt=false` es intencional para formularios públicos. La función valida token, origin, consentimiento, honeypot, tipos, longitudes y rate limits atómicos antes de ejecutar una RPC transaccional. La migración `20260828120000_harden_public_intake_rate_limit.sql` debe aplicarse antes de desplegar esta versión de la función.
 
 ## Formularios multi-landing
 
@@ -43,7 +43,7 @@ insert into public.clinic_public_forms (
 );
 ```
 
-La landing envía `clinic_slug`, `landing_token`, datos comerciales y consentimiento. La función resuelve el `clinic_id` real; cualquier `clinic_id` del navegador se ignora.
+La landing envía `clinic_slug`, `landing_token`, datos comerciales y consentimiento. La función resuelve el `clinic_id` real; cualquier `clinic_id`, `lead_id`, appointment, quote o assignee enviado por el navegador se rechaza.
 
 ## Seguridad
 

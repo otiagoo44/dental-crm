@@ -180,12 +180,13 @@ export default function useClinicWorkspace({ session, onError }) {
     const clinicId = profile?.clinic_id;
     if (!clinicId) return undefined;
     let realtimeHealthy = false;
+    const canRefresh = () => document.visibilityState === 'visible' && navigator.onLine !== false;
 
     const scheduleRefresh = () => {
       if (refreshTimerRef.current) window.clearTimeout(refreshTimerRef.current);
       refreshTimerRef.current = window.setTimeout(() => {
         refreshTimerRef.current = null;
-        if (document.visibilityState === 'visible') refreshClinicData(clinicId);
+        if (canRefresh()) refreshClinicData(clinicId);
       }, 800);
     };
 
@@ -201,14 +202,19 @@ export default function useClinicWorkspace({ session, onError }) {
       });
 
     const pollId = window.setInterval(() => {
-      if (!realtimeHealthy && document.visibilityState === 'visible') scheduleRefresh();
+      if (!realtimeHealthy && canRefresh()) scheduleRefresh();
     }, 25_000);
     const refreshVisible = () => {
-      if (document.visibilityState === 'visible') scheduleRefresh();
+      if (canRefresh()) scheduleRefresh();
+    };
+    const stopPendingOfflineRefresh = () => {
+      if (refreshTimerRef.current) window.clearTimeout(refreshTimerRef.current);
+      refreshTimerRef.current = null;
     };
 
     window.addEventListener('focus', refreshVisible);
     window.addEventListener('online', refreshVisible);
+    window.addEventListener('offline', stopPendingOfflineRefresh);
     document.addEventListener('visibilitychange', refreshVisible);
 
     return () => {
@@ -217,6 +223,7 @@ export default function useClinicWorkspace({ session, onError }) {
       window.clearInterval(pollId);
       window.removeEventListener('focus', refreshVisible);
       window.removeEventListener('online', refreshVisible);
+      window.removeEventListener('offline', stopPendingOfflineRefresh);
       document.removeEventListener('visibilitychange', refreshVisible);
       supabase.removeChannel(channel);
     };

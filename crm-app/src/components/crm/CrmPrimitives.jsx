@@ -53,11 +53,11 @@ export function Field({ label, value, onChange, type = 'text', disabled = false,
   );
 }
 
-export function TextArea({ label, value, onChange, disabled = false, className = '', placeholder = '' }) {
+export function TextArea({ label, value, onChange, disabled = false, className = '', placeholder = '', ...textareaProps }) {
   return (
     <label className={`block ${className}`}>
       <span className="mb-2 block text-sm font-semibold text-textMuted">{label}</span>
-      <textarea className="input-premium min-h-24" value={value} onChange={(event) => onChange(event.target.value)} disabled={disabled} placeholder={placeholder} />
+      <textarea className="input-premium min-h-24" value={value} onChange={(event) => onChange(event.target.value)} disabled={disabled} placeholder={placeholder} {...textareaProps} />
     </label>
   );
 }
