@@ -88,6 +88,7 @@ async function submit(item, scenario, submissionIndex, runId) {
       phone: `+595${phoneFor(runId, item.index, submissionIndex).slice(1)}`,
       status: response.status,
       success: response.ok && data?.success === true,
+      publicError: response.ok ? null : String(data?.error || 'request_failed').slice(0, 160),
       latencyMs: Math.round((performance.now() - started) * 100) / 100,
     };
   } catch (error) {
@@ -168,6 +169,17 @@ for (const clinicCount of scenarios) {
     duplicates,
   };
   rows.push(row);
+
+  if (errors) {
+    console.error(JSON.stringify({
+      scenario: clinicCount,
+      failures: results.filter((item) => !item.success).map((item) => ({
+        clinicIndex: item.clinicIndex,
+        status: item.status,
+        error: item.error || item.publicError || 'request_error',
+      })),
+    }));
+  }
 
   assert.equal(errors, 0, `Scenario ${clinicCount} had request errors`);
   assert.equal(created.length, results.length, `Scenario ${clinicCount} did not create exactly one lead per request`);

@@ -21,6 +21,10 @@ const allowedHost = String(process.env.REALTIME_ALLOWED_HOST || '').trim();
 const target = String(process.env.REALTIME_TARGET || '').trim().toLowerCase();
 const confirmation = String(process.env.REALTIME_CONFIRM_NON_PRODUCTION || '').trim();
 const scenarioText = String(process.env.REALTIME_SCENARIOS || '10,25,50,100');
+const authMode = String(process.env.REALTIME_AUTH_MODE || 'shared-session').trim();
+const realtimeTables = String(process.env.REALTIME_TABLES || 'leads,appointments,tasks,quotes')
+  .split(',').map((value) => value.trim()).filter(Boolean);
+const realtimeEvent = String(process.env.REALTIME_EVENT || '*').trim().toUpperCase();
 
 for (const [name, value] of Object.entries({
   REALTIME_SUPABASE_URL: supabaseUrl,
@@ -39,6 +43,9 @@ for (const [name, value] of Object.entries({
 })) assert.ok(value, `${name} is required`);
 
 assert.ok(['local', 'staging'].includes(target), 'REALTIME_TARGET must be local or staging');
+assert.ok(['shared-session', 'sign-in'].includes(authMode), 'REALTIME_AUTH_MODE must be shared-session or sign-in');
+assert.ok(realtimeTables.length > 0 && realtimeTables.every((table) => ['leads', 'appointments', 'tasks', 'quotes'].includes(table)), 'REALTIME_TABLES contains an unsupported table');
+assert.ok(['*', 'INSERT', 'UPDATE'].includes(realtimeEvent), 'REALTIME_EVENT must be *, INSERT or UPDATE');
 const apiUrl = new URL(supabaseUrl);
 const intakeUrl = new URL(edgeUrl);
 assert.equal(apiUrl.origin, intakeUrl.origin);
@@ -49,7 +56,7 @@ if (!['localhost', '127.0.0.1'].includes(apiUrl.hostname)) {
 }
 
 const scenarios = scenarioText.split(',').map((value) => Number(value.trim()));
-assert.ok(scenarios.every((value) => [10, 25, 50, 100].includes(value)));
+assert.ok(scenarios.every((value) => [1, 10, 25, 50, 100].includes(value)));
 
 const authClient = createClient(supabaseUrl, anonKey, { auth: { persistSession: false, autoRefreshToken: false } });
 const { data: signIn, error: signInError } = await authClient.auth.signInWithPassword({ email, password });
@@ -108,6 +115,9 @@ async function waitFor(check, timeoutMs, message) {
 const rows = [];
 for (const sessionCount of scenarios) {
   const runId = `${sessionCount}-${randomUUID().slice(0, 8)}`;
+  const updateLeadId = realtimeEvent === 'UPDATE'
+    ? await submitLead(clinicSlug, formToken, origin, `update-${runId}`)
+    : null;
   const clients = [];
   const channels = [];
   const subscribedAt = [];
@@ -121,24 +131,24 @@ for (const sessionCount of scenarios) {
       auth: { persistSession: false, autoRefreshToken: false },
       realtime: { params: { eventsPerSecond: 10 } },
     });
-    const { error: sessionError } = await client.auth.setSession({
-      access_token: signIn.session.access_token,
-      refresh_token: signIn.session.refresh_token,
-    });
+    const { error: sessionError } = authMode === 'sign-in'
+      ? await client.auth.signInWithPassword({ email, password })
+      : await client.auth.setSession({
+          access_token: signIn.session.access_token,
+          refresh_token: signIn.session.refresh_token,
+        });
     assert.ifError(sessionError);
 
-    const channel = client
-      .channel(`capacity:${runId}:${index}`)
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'leads', filter: `clinic_id=eq.${clinicId}` }, (payload) => {
-        if (payload.new?.id) {
+    let channel = client.channel(`capacity:${runId}:${index}`);
+    for (const table of realtimeTables) {
+      channel = channel.on('postgres_changes', { event: realtimeEvent, schema: 'public', table, filter: `clinic_id=eq.${clinicId}` }, (payload) => {
+        if (table === 'leads' && payload.new?.id) {
           matchingEvents += 1;
           eventAt.push(performance.now());
         }
-      })
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'appointments', filter: `clinic_id=eq.${clinicId}` }, () => {})
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'tasks', filter: `clinic_id=eq.${clinicId}` }, () => {})
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'quotes', filter: `clinic_id=eq.${clinicId}` }, () => {})
-      .subscribe((status) => {
+      });
+    }
+    channel = channel.subscribe((status) => {
         if (status === 'SUBSCRIBED') {
           subscribed += 1;
           subscribedAt.push(performance.now());
@@ -149,8 +159,19 @@ for (const sessionCount of scenarios) {
   }
 
   await waitFor(() => subscribed === sessionCount, 30_000, `Only ${subscribed}/${sessionCount} sessions subscribed`);
+  await new Promise((resolve) => setTimeout(resolve, 1_000));
   const eventStarted = performance.now();
-  await submitLead(clinicSlug, formToken, origin, `capacity-${runId}`);
+  if (realtimeEvent === 'UPDATE') {
+    const { error: updateError } = await authClient.rpc('register_lead_outcome', {
+      p_lead_id: updateLeadId,
+      p_outcome: 'responded',
+      p_note: 'Realtime UPDATE capacity QA',
+      p_followup_at: new Date(Date.now() + 86_400_000).toISOString(),
+    });
+    assert.ifError(updateError);
+  } else {
+    await submitLead(clinicSlug, formToken, origin, `capacity-${runId}`);
+  }
   await waitFor(() => matchingEvents === sessionCount, 20_000, `Only ${matchingEvents}/${sessionCount} sessions received the event`);
 
   const connectionLatencies = subscribedAt.map((timestamp) => timestamp - connectStarted);
@@ -165,6 +186,8 @@ for (const sessionCount of scenarios) {
   });
 
   await Promise.all(channels.map((channel, index) => clients[index].removeChannel(channel)));
+  if (authMode === 'sign-in') await Promise.all(clients.map((client) => client.auth.signOut({ scope: 'local' })));
+  clients.forEach((client) => client.realtime.disconnect());
 }
 
 // A user from Clinic A may request a filter for Clinic B, but RLS must prevent
@@ -175,7 +198,7 @@ let foreignEvents = 0;
 let isolationSubscribed = false;
 const isolationChannel = isolationClient
   .channel(`cross-tenant:${randomUUID()}`)
-  .on('postgres_changes', { event: '*', schema: 'public', table: 'leads', filter: `clinic_id=eq.${otherClinicId}` }, () => {
+  .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'leads', filter: `clinic_id=eq.${otherClinicId}` }, () => {
     foreignEvents += 1;
   })
   .subscribe((status) => { if (status === 'SUBSCRIBED') isolationSubscribed = true; });
@@ -184,7 +207,9 @@ await submitLead(otherClinicSlug, otherFormToken, otherOrigin, `foreign-${random
 await new Promise((resolve) => setTimeout(resolve, 3_000));
 assert.equal(foreignEvents, 0, 'Clinic A received a Realtime event from another clinic');
 await isolationClient.removeChannel(isolationChannel);
+isolationClient.realtime.disconnect();
 
 await authClient.auth.signOut();
+authClient.realtime.disconnect();
 console.table(rows);
-console.log(JSON.stringify({ target, scenarios: rows, crossTenantRealtimeEvents: foreignEvents }, null, 2));
+console.log(JSON.stringify({ target, authMode, realtimeTables, realtimeEvent, scenarios: rows, crossTenantRealtimeEvents: foreignEvents }, null, 2));

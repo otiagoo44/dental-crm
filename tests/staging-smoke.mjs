@@ -12,6 +12,10 @@ const requiredNames = [
   'QA_STAGING_ALLOWED_ORIGIN',
   'QA_STAGING_CLINIC_SLUG',
   'QA_STAGING_FORM_TOKEN',
+  'QA_OTHER_ALLOWED_ORIGIN',
+  'QA_OTHER_CLINIC_ID',
+  'QA_OTHER_CLINIC_SLUG',
+  'QA_OTHER_FORM_TOKEN',
   'QA_OWNER_A_EMAIL',
   'QA_OWNER_A_PASSWORD',
   'QA_RECEPTION_A_EMAIL',
@@ -89,6 +93,7 @@ if (!sessions.ownerA) {
 
 const clinicA = sessions.ownerA.profile.clinic_id;
 const clinicB = sessions.ownerB.profile.clinic_id;
+assert.equal(clinicB, config.QA_OTHER_CLINIC_ID, 'Clinic B fixture does not match the authenticated profile');
 
 await check('RLS Reception A cannot read Clinic B', async () => {
   for (const table of ['leads', 'appointments', 'tasks', 'quotes']) {
@@ -113,6 +118,86 @@ await check('RLS Clinic B users cannot read Clinic A', async () => {
     if (error) throw error;
     assert.equal(data.length, 0);
   }
+});
+
+await check('RLS both clinics can work only with their own operational data', async () => {
+  for (const [label, session, ownClinic, foreignClinic] of [
+    ['Reception A', sessions.receptionA, clinicA, clinicB],
+    ['Owner A', sessions.ownerA, clinicA, clinicB],
+    ['Reception B', sessions.receptionB, clinicB, clinicA],
+    ['Owner B', sessions.ownerB, clinicB, clinicA],
+  ]) {
+    for (const table of ['leads', 'appointments', 'tasks', 'quotes']) {
+      const { data: own, error: ownError } = await session.supabase.from(table).select('id').eq('clinic_id', ownClinic).limit(1);
+      if (ownError) throw ownError;
+      assert.ok(own.length >= 1, `${label} cannot read own ${table}`);
+
+      const { data: foreign, error: foreignError } = await session.supabase.from(table).select('id').eq('clinic_id', foreignClinic);
+      if (foreignError) throw foreignError;
+      assert.equal(foreign.length, 0, `${label} can read foreign ${table}`);
+    }
+  }
+
+  for (const [owner, ownClinic] of [[sessions.ownerA, clinicA], [sessions.ownerB, clinicB]]) {
+    const { data: forms, error } = await owner.supabase.from('clinic_public_forms').select('id,clinic_id');
+    if (error) throw error;
+    assert.ok(forms.length >= 1);
+    assert.ok(forms.every((form) => form.clinic_id === ownClinic));
+  }
+});
+
+async function firstId(session, table, clinicId) {
+  const { data, error } = await session.supabase.from(table).select('id').eq('clinic_id', clinicId).limit(1).single();
+  if (error) throw error;
+  return data.id;
+}
+
+async function assertCrossTenantWritesBlocked(attacker, verifier, targetClinic) {
+  const targets = {
+    leads: await firstId(verifier, 'leads', targetClinic),
+    appointments: await firstId(verifier, 'appointments', targetClinic),
+    tasks: await firstId(verifier, 'tasks', targetClinic),
+    quotes: await firstId(verifier, 'quotes', targetClinic),
+    profiles: await firstId(verifier, 'profiles', targetClinic),
+    clinic_public_forms: await firstId(verifier, 'clinic_public_forms', targetClinic),
+  };
+  const probes = [
+    ['leads', { notes: 'CROSS TENANT WRITE MUST NOT PERSIST' }],
+    ['appointments', { notes: 'CROSS TENANT WRITE MUST NOT PERSIST' }],
+    ['tasks', { description: 'CROSS TENANT WRITE MUST NOT PERSIST' }],
+    ['quotes', { notes: 'CROSS TENANT WRITE MUST NOT PERSIST' }],
+    ['profiles', { active: false }],
+    ['clinic_public_forms', { is_active: false }],
+  ];
+  for (const [table, values] of probes) {
+    const { data, error } = await attacker.supabase.from(table).update(values).eq('id', targets[table]).select('id');
+    if (!error) assert.equal(data.length, 0, `${table} cross-tenant update returned a row`);
+  }
+
+  const [{ data: lead }, { data: appointment }, { data: task }, { data: quote }, { data: profile }, { data: form }] = await Promise.all([
+    verifier.supabase.from('leads').select('notes').eq('id', targets.leads).single(),
+    verifier.supabase.from('appointments').select('notes').eq('id', targets.appointments).single(),
+    verifier.supabase.from('tasks').select('description').eq('id', targets.tasks).single(),
+    verifier.supabase.from('quotes').select('notes').eq('id', targets.quotes).single(),
+    verifier.supabase.from('profiles').select('active').eq('id', targets.profiles).single(),
+    verifier.supabase.from('clinic_public_forms').select('is_active').eq('id', targets.clinic_public_forms).single(),
+  ]);
+  assert.notEqual(lead.notes, 'CROSS TENANT WRITE MUST NOT PERSIST');
+  assert.notEqual(appointment.notes, 'CROSS TENANT WRITE MUST NOT PERSIST');
+  assert.notEqual(task.description, 'CROSS TENANT WRITE MUST NOT PERSIST');
+  assert.notEqual(quote.notes, 'CROSS TENANT WRITE MUST NOT PERSIST');
+  assert.equal(profile.active, true);
+  assert.equal(form.is_active, true);
+}
+
+await check('RLS blocks A writes to B lead, appointment, task, quote, responsible and form', async () => {
+  await assertCrossTenantWritesBlocked(sessions.receptionA, sessions.ownerB, clinicB);
+  await assertCrossTenantWritesBlocked(sessions.ownerA, sessions.ownerB, clinicB);
+});
+
+await check('RLS blocks B writes to A lead, appointment, task, quote, responsible and form', async () => {
+  await assertCrossTenantWritesBlocked(sessions.receptionB, sessions.ownerA, clinicA);
+  await assertCrossTenantWritesBlocked(sessions.ownerB, sessions.ownerA, clinicA);
 });
 
 let qaManualLead;
@@ -157,6 +242,18 @@ await check('RLS/RPC assignment stays inside Clinic A', async () => {
   if (visibleFromBError) throw visibleFromBError;
   assert.equal(visibleFromB.length, 0);
 });
+
+if (process.env.QA_RLS_ONLY === '1') {
+  await Promise.all(Object.values(sessions).map(async ({ supabase }) => {
+    await supabase.removeAllChannels();
+    supabase.realtime.disconnect();
+    await supabase.auth.signOut();
+  }));
+  if (!failed) process.stdout.write('INFO cross_tenant_leaks=0\n');
+  process.stdout.write(`RESULT ${passed} passed, ${failed} failed\n`);
+  if (failed) process.exit(1);
+  process.exit(0);
+}
 
 let phoneCounter = Number(String(Date.now()).slice(-6));
 function nextPhone() {
@@ -217,6 +314,43 @@ await check('HTTP valid intake creates one complete opportunity', async () => {
   assert.ok(jobs.length >= 1);
 });
 
+await check('HTTP Form B resolves only Clinic B and browser tenant injection is rejected', async () => {
+  const bodyB = payload({
+    clinic_slug: config.QA_OTHER_CLINIC_SLUG,
+    landing_token: config.QA_OTHER_FORM_TOKEN,
+    nombre: `QA RC Clinic B ${Date.now()}`,
+  });
+  const createdB = await intake(bodyB, config.QA_OTHER_ALLOWED_ORIGIN);
+  assert.equal(createdB.response.status, 200);
+  assert.ok(createdB.data?.lead_id);
+
+  const [{ data: visibleFromB, error: errorB }, { data: visibleFromA, error: errorA }] = await Promise.all([
+    sessions.ownerB.supabase.from('leads').select('id,clinic_id').eq('id', createdB.data.lead_id),
+    sessions.ownerA.supabase.from('leads').select('id,clinic_id').eq('id', createdB.data.lead_id),
+  ]);
+  if (errorA || errorB) throw errorA || errorB;
+  assert.equal(visibleFromB.length, 1);
+  assert.equal(visibleFromB[0].clinic_id, clinicB);
+  assert.equal(visibleFromA.length, 0);
+
+  const injectedTenant = await intake(payload({ clinic_id: clinicB }));
+  assert.equal(injectedTenant.response.status, 400);
+
+  const missingTokenBody = payload();
+  delete missingTokenBody.landing_token;
+  const missingToken = await intake(missingTokenBody);
+  assert.equal(missingToken.response.status, 400);
+});
+
+await check('HTTP duplicate open phone reuses one opportunity', async () => {
+  const body = payload();
+  const first = await intake(body);
+  assert.equal(first.response.status, 200);
+  const duplicatePhone = await intake({ ...body, nombre: `${body.nombre} updated`, consultation_reason: 'Same open phone, changed payload' });
+  assert.equal(duplicatePhone.response.status, 200);
+  assert.equal(duplicatePhone.data?.lead_id, first.data?.lead_id);
+});
+
 await check('HTTP rejects token, origin, consent, payload and spam', async () => {
   const badToken = await intake(payload({ landing_token: 'lf_invalid_release_candidate_token' }));
   assert.equal(badToken.response.status, 403);
@@ -272,6 +406,11 @@ await check('Realtime delivers a new consultation without F5', async () => {
   process.stdout.write(`INFO realtime_latency_ms=${Date.now() - startedAt}\n`);
 });
 
-await Promise.all(Object.values(sessions).map(({ supabase }) => supabase.auth.signOut()));
+await Promise.all(Object.values(sessions).map(async ({ supabase }) => {
+  await supabase.removeAllChannels();
+  supabase.realtime.disconnect();
+  await supabase.auth.signOut();
+}));
+if (!failed) process.stdout.write('INFO cross_tenant_leaks=0\n');
 process.stdout.write(`RESULT ${passed} passed, ${failed} failed\n`);
 if (failed) process.exit(1);

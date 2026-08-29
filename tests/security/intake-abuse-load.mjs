@@ -8,6 +8,7 @@ const origin = String(process.env.ABUSE_ORIGIN || '').trim();
 const allowedHost = String(process.env.ABUSE_ALLOWED_HOST || '').trim();
 const target = String(process.env.ABUSE_TARGET || '').trim().toLowerCase();
 const confirmation = String(process.env.ABUSE_CONFIRM_NON_PRODUCTION || '').trim();
+const burstText = String(process.env.ABUSE_BURSTS || '10,50,100,500').trim();
 
 assert.ok(endpoint && supabaseUrl && serviceRoleKey && origin && allowedHost, 'Missing ABUSE_* staging/local configuration');
 assert.ok(['local', 'staging'].includes(target), 'ABUSE_TARGET must be local or staging');
@@ -25,6 +26,8 @@ if (!['localhost', '127.0.0.1'].includes(endpointUrl.hostname)) {
 const runId = `${new Date().toISOString().replace(/[-:.TZ]/g, '')}-${randomUUID().slice(0, 8)}`;
 const internalErrorPattern = /postgres|sqlstate|stack|relation|service[_-]?role|jwt|database password/i;
 const results = [];
+const burstSizes = burstText.split(',').map((value) => Number(value.trim()));
+assert.ok(burstSizes.length > 0 && burstSizes.every((value) => [10, 50, 100, 500].includes(value)), 'ABUSE_BURSTS supports 10,50,100,500');
 
 function fixture(index) {
   return {
@@ -109,7 +112,7 @@ for (const forbidden of ['clinic_id', 'lead_id', 'appointment_id', 'appointment'
 await expectStatus('extra-field', { ...baseBody(3, 'extra-field'), unexpected_field: 'ignored' }, 200);
 await expectStatus('unicode', { ...baseBody(4, 'unicode'), nombre: 'Zoë Ñandutí 🦷' }, 200);
 await expectStatus('html-text', { ...baseBody(5, 'html-text'), nombre: '<b>Ana Segura</b>' }, 200);
-await expectStatus('sql-like-text', { ...baseBody(6, 'sql-like'), nombre: "Robert'); DROP TABLE leads;--" }, 200);
+await expectStatus('sql-like-text', { ...baseBody(6, 'sql-like'), nombre: "Robert'); DROP TABLE leads;--" }, 403);
 await expectStatus('malicious-url-as-text', { ...baseBody(7, 'malicious-url'), notes: 'javascript:alert(1)' }, 200);
 await expectStatus('quoted-text', { ...baseBody(8, 'quotes'), nombre: 'Ana "O\'Connor"' }, 200);
 
@@ -123,7 +126,9 @@ assert.equal(replayAccepted, 3, 'Phone limiter must atomically accept only the f
 assert.equal(replayRejected, 7, 'Phone limiter must reject the remaining concurrent attempts');
 
 const burstRows = [];
-for (const [size, formIndex] of [[10, 20], [50, 30], [100, 40], [500, 50]]) {
+const defaultBurstForms = new Map([[10, 20], [50, 30], [100, 40], [500, 50]]);
+for (const size of burstSizes) {
+  const formIndex = burstSizes.length === 1 && size === 10 ? 9 : defaultBurstForms.get(size);
   const burst = await Promise.all(
     Array.from({ length: size }, (_, index) => request(
       `burst-${size}-${index + 1}`,
@@ -155,7 +160,7 @@ assert.equal(leads.some((lead) => /<script/i.test(`${lead.name || ''}${lead.note
 
 const invalidLabels = [
   'missing-token', 'other-token', 'wrong-origin', 'missing-origin', 'long-name',
-  'invalid-phone', 'array-name', 'null-name', 'script-name',
+  'invalid-phone', 'array-name', 'null-name', 'script-name', 'sql-like',
 ];
 for (const label of invalidLabels) {
   assert.equal(leads.some((lead) => lead.source === `abuse:${runId}:${label}`), false, `${label} created DB garbage`);

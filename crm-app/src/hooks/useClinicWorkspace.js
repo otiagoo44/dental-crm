@@ -192,10 +192,14 @@ export default function useClinicWorkspace({ session, onError }) {
 
     const channel = supabase
       .channel(`clinic-workspace:${clinicId}`)
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'leads', filter: `clinic_id=eq.${clinicId}` }, scheduleRefresh)
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'appointments', filter: `clinic_id=eq.${clinicId}` }, scheduleRefresh)
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'tasks', filter: `clinic_id=eq.${clinicId}` }, scheduleRefresh)
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'quotes', filter: `clinic_id=eq.${clinicId}` }, scheduleRefresh)
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'leads', filter: `clinic_id=eq.${clinicId}` }, scheduleRefresh)
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'leads', filter: `clinic_id=eq.${clinicId}` }, scheduleRefresh)
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'appointments', filter: `clinic_id=eq.${clinicId}` }, scheduleRefresh)
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'appointments', filter: `clinic_id=eq.${clinicId}` }, scheduleRefresh)
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'tasks', filter: `clinic_id=eq.${clinicId}` }, scheduleRefresh)
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'tasks', filter: `clinic_id=eq.${clinicId}` }, scheduleRefresh)
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'quotes', filter: `clinic_id=eq.${clinicId}` }, scheduleRefresh)
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'quotes', filter: `clinic_id=eq.${clinicId}` }, scheduleRefresh)
       .subscribe((status) => {
         realtimeHealthy = status === 'SUBSCRIBED';
         if (realtimeHealthy) scheduleRefresh();

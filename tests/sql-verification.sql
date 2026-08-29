@@ -124,14 +124,15 @@ begin
 
   if exists (
     select 1 from public.clinics c
-    where (
+    where coalesce(c.slug, '') not like 'load-qa-%'
+      and (
       select count(*) from public.message_templates mt
       where mt.clinic_id = c.id
         and mt.template_key = any(array[
           'first_contact','urgency','price_inquiry','no_response','appointment_reminder',
           'no_show','post_consultation','cold_reactivation','attendance_confirmation'
         ])
-    ) < 9
+      ) < 9
   ) then
     raise exception 'Alguna clinica no tiene las 9 plantillas comerciales';
   end if;

@@ -3,6 +3,11 @@
 
 begin;
 
+insert into public.clinics (id, name, slug)
+values
+  ('00000000-0000-0000-0000-000000000101', 'Transactional Clinic A', 'transactional-clinic-a'),
+  ('00000000-0000-0000-0000-000000000102', 'Transactional Clinic B', 'transactional-clinic-b');
+
 insert into auth.users (id, email, role, aud)
 values
   ('10000000-0000-0000-0000-000000000001', 'transaction-admin-dentalpro@example.test', 'authenticated', 'authenticated'),
@@ -14,6 +19,43 @@ values
   ('10000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000101', 'Transactional Admin DentalPro', 'transaction-admin-dentalpro@example.test', 'owner', true),
   ('10000000-0000-0000-0000-000000000002', '00000000-0000-0000-0000-000000000101', 'Transactional Reception DentalPro', 'transaction-reception-dentalpro@example.test', 'receptionist', true),
   ('10000000-0000-0000-0000-000000000003', '00000000-0000-0000-0000-000000000102', 'Transactional Admin QA B', 'transaction-admin-qab@example.test', 'owner', true);
+
+insert into public.clinic_public_forms (
+  id, clinic_id, clinic_slug, public_token, landing_url, allowed_origins, is_active
+)
+values
+  (
+    '11000000-0000-0000-0000-000000000001',
+    '00000000-0000-0000-0000-000000000101',
+    'transactional-clinic-a',
+    'lf_transactional_clinic_a_0123456789abcdef',
+    'https://transactional-a.example.test',
+    array['https://transactional-a.example.test'],
+    true
+  ),
+  (
+    '11000000-0000-0000-0000-000000000002',
+    '00000000-0000-0000-0000-000000000102',
+    'transactional-clinic-b',
+    'lf_transactional_clinic_b_0123456789abcdef',
+    'https://transactional-b.example.test',
+    array['https://transactional-b.example.test'],
+    true
+  );
+
+insert into public.message_templates (id, clinic_id, template_key, name, message)
+values
+  ('12000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000101', 'first_contact', 'First contact A', 'Hola {{nombre}}'),
+  ('12000000-0000-0000-0000-000000000002', '00000000-0000-0000-0000-000000000102', 'first_contact', 'First contact B', 'Hola {{nombre}}');
+
+insert into public.leads (
+  id, clinic_id, name, phone, phone_plus, status, assigned_to,
+  next_action, next_followup_at, consent_contact, consent_at, source
+)
+values
+  ('00000000-0000-0000-0000-000000000201', '00000000-0000-0000-0000-000000000101', 'Transactional Lead A1', '0981000201', '+595981000201', 'Nuevo', '10000000-0000-0000-0000-000000000002', 'Contactar', now() + interval '1 hour', true, now(), 'QA'),
+  ('00000000-0000-0000-0000-000000000202', '00000000-0000-0000-0000-000000000101', 'Transactional Lead A2', '0981000202', '+595981000202', 'Nuevo', '10000000-0000-0000-0000-000000000002', 'Contactar', now() + interval '1 hour', true, now(), 'QA'),
+  ('00000000-0000-0000-0000-000000000203', '00000000-0000-0000-0000-000000000101', 'Transactional Lead A3', '0981000203', '+595981000203', 'Nuevo', '10000000-0000-0000-0000-000000000002', 'Contactar', now() + interval '1 hour', true, now(), 'QA');
 
 select set_config('request.jwt.claim.sub', '10000000-0000-0000-0000-000000000001', true);
 select set_config('request.jwt.claim.role', 'authenticated', true);

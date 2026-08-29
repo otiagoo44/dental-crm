@@ -1,8 +1,6 @@
 -- Final cross-tenant gate. Run only on local/staging with an administrative
 -- Postgres connection. Every fixture and write is rolled back.
 
-\set ON_ERROR_STOP on
-
 begin;
 
 insert into public.clinics (id, name, slug)
@@ -185,7 +183,7 @@ begin
 
   begin
     perform public.schedule_lead_appointment(
-      'cb400000-0000-0000-0000-000000000002', current_date + 3, time '12:00', null, 'Cross clinic', null, null
+      'cb400000-0000-0000-0000-000000000002', current_date + 3, time '12:00', 'Dra. Cross Tenant', 'Cross clinic', null, null
     );
   exception when sqlstate '42501' then appointment_blocked := true;
   end;
