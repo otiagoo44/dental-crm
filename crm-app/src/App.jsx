@@ -891,13 +891,14 @@ export default function App() {
         throw new Error(message || 'No se pudo guardar la consulta.');
       }
 
+      setAppointmentModal(null);
+      setAppointmentSaving(false);
+      setNotice(isReschedule ? 'Consulta reprogramada.' : 'Consulta agendada.');
+
       await refreshClinicData();
       if (selectedLeadId === lead.id) {
         await loadLeadEvents(lead.id);
       }
-
-      setAppointmentModal(null);
-      setNotice(isReschedule ? 'Consulta reprogramada.' : 'Consulta agendada.');
     } catch (scheduleError) {
       setError(humanizeCrmError(scheduleError, 'No se pudo guardar la consulta. Intentá de nuevo.'));
       throw scheduleError;
