@@ -895,10 +895,9 @@ export default function App() {
       setAppointmentSaving(false);
       setNotice(isReschedule ? 'Consulta reprogramada.' : 'Consulta agendada.');
 
-      await refreshClinicData();
-      if (selectedLeadId === lead.id) {
-        await loadLeadEvents(lead.id);
-      }
+      void refreshClinicData().then(() => (
+        selectedLeadId === lead.id ? loadLeadEvents(lead.id) : null
+      ));
     } catch (scheduleError) {
       setError(humanizeCrmError(scheduleError, 'No se pudo guardar la consulta. Intentá de nuevo.'));
       throw scheduleError;

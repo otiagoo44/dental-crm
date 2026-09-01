@@ -7,9 +7,10 @@ const saveFlow = appSource.match(/async function saveAppointmentSchedule[\s\S]*?
 assert.ok(saveFlow, 'Appointment save flow is missing');
 const closeModalAt = saveFlow.indexOf('setAppointmentModal(null)');
 const unlockModalAt = saveFlow.indexOf('setAppointmentSaving(false)');
-const refreshAt = saveFlow.indexOf('await refreshClinicData()');
+const refreshAt = saveFlow.indexOf('void refreshClinicData().then');
 
 assert.ok(closeModalAt >= 0 && closeModalAt < refreshAt, 'Appointment modal must close before workspace refresh');
 assert.ok(unlockModalAt >= 0 && unlockModalAt < refreshAt, 'Appointment modal must unlock before workspace refresh');
+assert.equal(saveFlow.includes('await refreshClinicData()'), false, 'Appointment submit must not wait for workspace refresh');
 
 console.log('PASS appointment modal closes before workspace refresh');
