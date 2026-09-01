@@ -1,0 +1,48 @@
+import assert from 'node:assert/strict';
+import { createRequire } from 'node:module';
+const require = createRequire(new URL('../crm-app/package.json', import.meta.url));
+const { createClient } = require('@supabase/supabase-js');
+
+const env = process.env;
+const needed = ['QA_STAGING_SUPABASE_URL','QA_STAGING_SUPABASE_ANON_KEY','QA_STAGING_EDGE_URL','QA_STAGING_ALLOWED_ORIGIN','QA_STAGING_CLINIC_SLUG','QA_STAGING_FORM_TOKEN','QA_RECEPTION_A_EMAIL','QA_RECEPTION_A_PASSWORD'];
+for (const key of needed) assert.ok(String(env[key] || '').trim(), `Missing ${key}`);
+const anon = createClient(env.QA_STAGING_SUPABASE_URL, env.QA_STAGING_SUPABASE_ANON_KEY, { auth: { persistSession: false } });
+const { data: auth, error: authError } = await anon.auth.signInWithPassword({ email: env.QA_RECEPTION_A_EMAIL, password: env.QA_RECEPTION_A_PASSWORD });
+if (authError) throw authError;
+const db = anon;
+const phone = `0981${String(Date.now()).slice(-6)}`;
+const closedPhone = `0981${String(Number(phone.slice(-6)) + 1).slice(-6)}`;
+const base = (treatment, extra = {}) => ({ clinic_slug: env.QA_STAGING_CLINIC_SLUG, landing_token: env.QA_STAGING_FORM_TOKEN, nombre: 'QA dedupe Carlos', telefono: phone, tratamiento: treatment, urgencia: 'Hoy', evaluacion_previa: `respuesta-${treatment}`, situacion: `situacion-${treatment}`, consultation_reason: `motivo-${treatment}`, origen: 'tests/dedupe-fix-smoke.mjs', pagina: 'qa', consentimiento_contacto: true, website: '', company: '', ...extra });
+async function intake(body) {
+  const response = await fetch(env.QA_STAGING_EDGE_URL, { method: 'POST', headers: { 'content-type': 'application/json', origin: env.QA_STAGING_ALLOWED_ORIGIN }, body: JSON.stringify(body) });
+  const data = await response.json();
+  assert.equal(response.status, 200, JSON.stringify(data));
+  return data;
+}
+const a = await intake(base('Implantes'));
+const aRepeat = await intake(base('Implantes', { nombre: 'QA dedupe Carlos actualizado', consultation_reason: 'nuevo evento' }));
+assert.equal(aRepeat.lead_id, a.lead_id, 'A: same treatment duplicated');
+const b = await intake(base('Estética dental'));
+assert.notEqual(b.lead_id, a.lead_id, 'B: different treatment reused opportunity');
+const { data: rows, error: rowsError } = await db.from('leads').select('id,treatment,situation,evaluation_previous').in('id', [a.lead_id, b.lead_id]);
+if (rowsError) throw rowsError;
+assert.equal(rows.length, 2);
+assert.ok(rows.some((row) => row.id === a.lead_id && row.treatment === 'Implantes'), 'D: treatment A changed');
+assert.ok(rows.some((row) => row.id === b.lead_id && row.treatment === 'Estética dental'));
+const { data: events, error: eventsError } = await db.from('lead_events').select('id,event_type').eq('lead_id', a.lead_id);
+if (eventsError) throw eventsError;
+assert.ok(events.filter((event) => event.event_type === 'lead_duplicate_submission').length >= 1, 'E: repeat event missing');
+const closed = await intake(base('Implantes', { telefono: closedPhone }));
+const { error: closeError } = await db.rpc('register_lead_outcome', { p_lead_id: closed.lead_id, p_outcome: 'treatment_started', p_note: 'QA dedupe close', p_followup_at: null });
+if (closeError) throw closeError;
+const c = await intake(base('Implantes', { telefono: closedPhone }));
+assert.notEqual(c.lead_id, closed.lead_id, 'C: closed opportunity reused');
+const { data: all, error: allError } = await db.from('leads').select('id,treatment,status').in('phone_plus', [`+595${phone.slice(1)}`, `+595${closedPhone.slice(1)}`]);
+if (allError) throw allError;
+assert.equal(all.length, 4, 'F: accidental duplicate count');
+console.log('PASS same phone + same treatment');
+console.log('PASS same phone + different treatment');
+console.log('PASS previous opportunity preserved');
+console.log('PASS same phone after closed');
+console.log('PASS historical events preserved');
+console.log('PASS accidental duplicates: 0');

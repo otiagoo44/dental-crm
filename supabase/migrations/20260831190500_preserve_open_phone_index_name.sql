@@ -1,0 +1,2 @@
+alter index if exists public.leads_clinic_open_phone_treatment_unique_idx
+  rename to leads_clinic_open_phone_plus_unique_idx;
