@@ -5,6 +5,7 @@ import { formatDate, formatDateTime, formatMoney, formatTime, normalizeText, tod
 import { buildCommercialTimeline } from '../lib/commercialInsights';
 import { displayConsultationReason, isArchivedLead, uniqueStrings } from '../lib/crmDomain';
 import { getEffectiveNextAction, PRIORITY_GROUP, PRIORITY_GROUP_LABEL } from '../lib/nextActions';
+import { groupPatientOpportunities } from '../lib/patients';
 import { Info, Select } from '../components/crm/CrmPrimitives';
 import WhatsAppButton from '../components/crm/WhatsAppButton';
 import Button from '../components/ui/Button';
@@ -30,7 +31,7 @@ export default function LeadsView({ leads, tasks, appointments, quotes = [], can
     const normalizedQuery = normalizeText(query);
     const today = todayIsoDate();
     const now = new Date();
-    return leads.filter((lead) => {
+    return groupPatientOpportunities(leads).filter((patient) => patient.opportunities.some((lead) => {
       const action = getEffectiveNextAction(lead, { tasks, appointments, quotes, now });
       if ((!canAdmin || !filters.showArchived) && isArchivedLead(lead)) return false;
       if (filters.status && lead.status !== filters.status) return false;
@@ -42,12 +43,12 @@ export default function LeadsView({ leads, tasks, appointments, quotes = [], can
       if (filters.date === 'today' && toLocalIsoDate(lead.created_at) !== today) return false;
       if (filters.date === '7d' && new Date(lead.created_at).getTime() < now.getTime() - 7 * 86_400_000) return false;
       if (filters.date === '30d' && new Date(lead.created_at).getTime() < now.getTime() - 30 * 86_400_000) return false;
-      return !normalizedQuery || normalizeText(`${lead.name} ${lead.phone} ${lead.phone_plus} ${lead.treatment} ${lead.consultation_reason}`).includes(normalizedQuery);
-    }).sort((left, right) => {
+      return !normalizedQuery || normalizeText(`${patient.name} ${patient.phone} ${lead.treatment} ${lead.consultation_reason}`).includes(normalizedQuery);
+    })).sort((left, right) => {
       if (filters.sort === 'name') return left.name.localeCompare(right.name);
-      if (filters.sort === 'score') return Number(right.score || 0) - Number(left.score || 0);
-      if (filters.sort === 'oldest') return new Date(left.created_at) - new Date(right.created_at);
-      return new Date(right.created_at) - new Date(left.created_at);
+      if (filters.sort === 'score') return Math.max(...right.opportunities.map((lead) => Number(lead.score || 0))) - Math.max(...left.opportunities.map((lead) => Number(lead.score || 0)));
+      if (filters.sort === 'oldest') return new Date(left.latest.created_at) - new Date(right.latest.created_at);
+      return new Date(right.latest.created_at) - new Date(left.latest.created_at);
     });
   }, [leads, tasks, appointments, quotes, canAdmin, filters, query]);
 
@@ -91,22 +92,18 @@ export default function LeadsView({ leads, tasks, appointments, quotes = [], can
 
       {rows.length ? (
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {rows.map((lead) => {
-            const action = getEffectiveNextAction(lead, { tasks, appointments, quotes });
+          {rows.map((patient) => {
+            const lead = patient.latest;
+            const treatments = uniqueStrings(patient.opportunities.map((item) => item.treatment));
             return (
-              <Card key={lead.id} as="article" className="overflow-hidden">
+              <Card key={patient.id} as="article" className="overflow-hidden">
                 <button className="h-full w-full p-5 text-left transition hover:bg-elevated" type="button" onClick={() => onOpenLead(lead.id)}>
                   <div className="flex items-start justify-between gap-3">
-                    <h2 className="min-w-0 truncate text-lg font-bold text-cream">{lead.name}</h2>
-                    <TemperatureBadge value={lead.classification} />
+                    <h2 className="min-w-0 truncate text-lg font-bold text-cream">{patient.name}</h2>
+                    <span className="rounded-full border border-mint/20 bg-mint/[0.06] px-2.5 py-1 text-xs font-bold text-mint">{patient.opportunities.length} {patient.opportunities.length === 1 ? 'oportunidad' : 'oportunidades'}</span>
                   </div>
-                  <p className="mt-4 text-base font-semibold text-textSoft">{lead.treatment || 'Tratamiento por definir'}</p>
-                  <div className="mt-3 flex flex-wrap items-center gap-2">
-                    <StatusBadge value={lead.status} />
-                    {action?.priorityGroup === PRIORITY_GROUP.now || action?.priorityGroup === PRIORITY_GROUP.today ? (
-                      <span className={`rounded-full border px-2.5 py-1 text-xs font-bold ${action.priorityGroup === PRIORITY_GROUP.now ? 'border-rose-400/30 bg-rose-400/10 text-rose-200' : 'border-amber-400/30 bg-amber-400/10 text-amber-200'}`}>{action.priorityGroup === PRIORITY_GROUP.now ? 'Atender ahora' : 'Atender hoy'}</span>
-                    ) : null}
-                  </div>
+                  <p className="mt-2 text-sm text-textMuted">{patient.phone || 'Sin teléfono'}</p>
+                  <p className="mt-4 text-base font-semibold text-textSoft">{treatments.length ? treatments.join(' · ') : 'Tratamiento por definir'}</p>
                 </button>
               </Card>
             );
@@ -135,7 +132,7 @@ function buildFilterChips(filters, setFilters, profileNames) {
   }));
 }
 
-export function LeadDetail({ lead, events, tasks, appointments, quotes = [], profiles, canAdmin, onBack, onEditLead, onArchiveLead, onMarkLost, onScheduleAppointment, onCreateTask, onRegisterOutcome, onRegisterQuote, onWhatsAppOpened, messageTemplates, clinicContext }) {
+export function LeadDetail({ lead, opportunities = [], onSelectOpportunity, events, tasks, appointments, quotes = [], profiles, canAdmin, onBack, onEditLead, onArchiveLead, onMarkLost, onScheduleAppointment, onCreateTask, onRegisterOutcome, onRegisterQuote, onWhatsAppOpened, messageTemplates, clinicContext }) {
   if (!lead) return <EmptyState title="Paciente no encontrado" text="Volvé a Pacientes y seleccioná un registro." />;
 
   const timeline = buildCommercialTimeline({ lead, events, tasks, appointments, profiles });
@@ -174,6 +171,29 @@ export function LeadDetail({ lead, events, tasks, appointments, quotes = [], pro
           </div>
         </div>
       </Card>
+
+      <DetailSection title={`Oportunidades (${opportunities.length || 1})`} open>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {(opportunities.length ? opportunities : [lead]).map((opportunity) => {
+            const opportunityAction = getEffectiveNextAction(opportunity, { tasks, appointments, quotes });
+            const selected = opportunity.id === lead.id;
+            return (
+              <button
+                key={opportunity.id}
+                className={`rounded-lg border p-4 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mint ${selected ? 'border-mint/50 bg-mint/[0.08]' : 'border-slate-200 bg-soft hover:bg-elevated'}`}
+                type="button"
+                onClick={() => onSelectOpportunity?.(opportunity.id)}
+                aria-pressed={selected}
+              >
+                <span className="block font-bold text-cream">{opportunity.treatment || 'Tratamiento por definir'}</span>
+                <span className="mt-2 flex flex-wrap items-center gap-2"><StatusBadge value={opportunity.status} /><TemperatureBadge value={opportunity.classification} /></span>
+                <span className="mt-3 block text-sm text-textMuted">Score: {opportunity.score ?? 0}</span>
+                <span className="mt-1 block text-sm text-textSoft">{opportunityAction?.title || opportunity.next_action || 'Sin próxima acción'}</span>
+              </button>
+            );
+          })}
+        </div>
+      </DetailSection>
 
       <DetailSection title="Resumen" open>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

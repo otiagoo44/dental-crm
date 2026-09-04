@@ -43,6 +43,8 @@ import {
   getPublicFormRoute,
 } from './lib/crmDomain';
 
+const APPOINTMENT_SAVE_TIMEOUT_MS = 15_000;
+
 const PublicEmbedLeadForm = lazy(() => import('./features/public-form/PublicEmbedLeadForm'));
 const AppointmentModal = lazy(() => import('./components/modals/AppointmentModal'));
 const ArchiveLeadModal = lazy(() => import('./components/modals/ArchiveLeadModal'));
@@ -62,7 +64,13 @@ const TasksView = lazy(() => import('./pages/TasksPage'));
 
 
 export default function App() {
-  const { session, loading: authLoading, error: authError } = useSupabaseSession();
+  const {
+    session,
+    loading: authLoading,
+    error: authError,
+    passwordRecovery,
+    completePasswordRecovery,
+  } = useSupabaseSession();
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const {
@@ -128,6 +136,11 @@ export default function App() {
   }, [session]);
 
   const selectedLead = useMemo(() => leads.find((lead) => lead.id === selectedLeadId) || null, [leads, selectedLeadId]);
+  const selectedContactOpportunities = useMemo(() => {
+    if (!selectedLead) return [];
+    const contactId = selectedLead.contact_id || selectedLead.id;
+    return leads.filter((lead) => (lead.contact_id || lead.id) === contactId);
+  }, [leads, selectedLead]);
   const normalizedRole = normalizeRole(profile?.role);
   const canAdmin = normalizedRole === ROLE.admin;
   const activeLeads = useMemo(() => leads.filter((lead) => !isArchivedLead(lead)), [leads]);
@@ -868,23 +881,33 @@ export default function App() {
     }
 
     const isReschedule = modal.mode === 'reschedule';
+    const requestController = new AbortController();
+    const requestTimeout = window.setTimeout(
+      () => requestController.abort(),
+      APPOINTMENT_SAVE_TIMEOUT_MS,
+    );
 
     setAppointmentSaving(true);
     setError('');
     setNotice('');
 
     try {
-      const { error: scheduleError } = await supabase.rpc('schedule_lead_appointment', {
-        p_lead_id: lead.id,
-        p_appointment_date: form.appointment_date,
-        p_appointment_time: form.appointment_time,
-        p_doctor_assigned: form.doctor_assigned.trim(),
-        p_treatment_scheduled: cleanOptionalText(form.treatment_scheduled),
-        p_notes: cleanOptionalText(form.notes),
-        p_appointment_id: modal.appointment?.id || null,
-      });
+      const { error: scheduleError } = await supabase
+        .rpc('schedule_lead_appointment', {
+          p_lead_id: lead.id,
+          p_appointment_date: form.appointment_date,
+          p_appointment_time: form.appointment_time,
+          p_doctor_assigned: form.doctor_assigned.trim(),
+          p_treatment_scheduled: cleanOptionalText(form.treatment_scheduled),
+          p_notes: cleanOptionalText(form.notes),
+          p_appointment_id: modal.appointment?.id || null,
+        })
+        .abortSignal(requestController.signal);
 
       if (scheduleError) {
+        if (requestController.signal.aborted) {
+          throw new Error('La solicitud tardó demasiado. Verificá si la cita quedó guardada antes de volver a intentar.');
+        }
         const message = /ocupado|unique|appointments_active_slot/i.test(scheduleError.message || '')
           ? 'Ese horario ya está ocupado para este doctor.'
           : humanizeCrmError(scheduleError, 'No se pudo guardar la consulta. Intentá de nuevo.');
@@ -899,9 +922,13 @@ export default function App() {
         selectedLeadId === lead.id ? loadLeadEvents(lead.id) : null
       ));
     } catch (scheduleError) {
-      setError(humanizeCrmError(scheduleError, 'No se pudo guardar la consulta. Intentá de nuevo.'));
-      throw scheduleError;
+      const handledError = requestController.signal.aborted
+        ? new Error('La solicitud tardó demasiado. Verificá si la cita quedó guardada antes de volver a intentar.')
+        : scheduleError;
+      setError(humanizeCrmError(handledError, 'No se pudo guardar la consulta. Intentá de nuevo.'));
+      throw handledError;
     } finally {
+      window.clearTimeout(requestTimeout);
       setAppointmentSaving(false);
     }
   }
@@ -1238,6 +1265,10 @@ export default function App() {
     return <FullScreenLoader label="Cargando sesion..." />;
   }
 
+  if (session && passwordRecovery) {
+    return <Login recoveryMode onRecoveryComplete={completePasswordRecovery} />;
+  }
+
   if (!session) {
     return <Login />;
   }
@@ -1339,6 +1370,8 @@ export default function App() {
       {activeView === 'lead-detail' ? (
         <LeadDetail
           lead={selectedLead}
+          opportunities={selectedContactOpportunities}
+          onSelectOpportunity={handleLeadSelect}
           events={leadEvents}
           tasks={tasks}
           appointments={appointments}

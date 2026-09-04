@@ -6,6 +6,7 @@ export default function useSupabaseSession() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [passwordRecovery, setPasswordRecovery] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -27,7 +28,8 @@ export default function useSupabaseSession() {
       }
     });
 
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+    const { data: listener } = supabase.auth.onAuthStateChange((event, nextSession) => {
+      if (event === 'PASSWORD_RECOVERY') setPasswordRecovery(true);
       setSession(nextSession);
       setLoading(false);
     });
@@ -38,5 +40,11 @@ export default function useSupabaseSession() {
     };
   }, []);
 
-  return { session, loading, error };
+  return {
+    session,
+    loading,
+    error,
+    passwordRecovery,
+    completePasswordRecovery: () => setPasswordRecovery(false),
+  };
 }
