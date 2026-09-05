@@ -5,11 +5,11 @@ import { publicConfigError } from '../lib/publicConfig';
 import { humanizeCrmError } from '../lib/errors';
 import PasswordInput from './auth/PasswordInput';
 
-export default function Login({ recoveryMode = false, onRecoveryComplete }) {
+export default function Login({ recoveryMode = false, recoveryError = '', onRecoveryComplete }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [forgotMode, setForgotMode] = useState(false);
+  const [forgotMode, setForgotMode] = useState(Boolean(recoveryError));
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const [loading, setLoading] = useState(false);
@@ -140,6 +140,7 @@ export default function Login({ recoveryMode = false, onRecoveryComplete }) {
             />
           ) : null}
 
+          {recoveryError ? <p role="alert" className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">{recoveryError}</p> : null}
           {error ? <p className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</p> : null}
           {notice ? <p className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-800">{notice}</p> : null}
 
@@ -151,7 +152,7 @@ export default function Login({ recoveryMode = false, onRecoveryComplete }) {
             {loading ? 'Procesando...' : recoveryMode ? 'Guardar nueva contraseña' : forgotMode ? 'Recuperar contraseña' : 'Ingresar'}
           </button>
 
-          {!recoveryMode ? (
+          {!recoveryMode && !recoveryError ? (
             <button
               className="w-full rounded-lg px-3 py-2 text-sm font-semibold text-mint hover:text-goldHover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mint"
               type="button"

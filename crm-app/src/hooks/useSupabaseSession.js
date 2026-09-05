@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
+import { readPasswordRecoveryRedirect } from '../lib/authRecovery';
 import { humanizeCrmError } from '../lib/errors';
 import { supabase } from '../lib/supabase';
 
 export default function useSupabaseSession() {
+  const [initialRecovery] = useState(() => readPasswordRecoveryRedirect());
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [passwordRecovery, setPasswordRecovery] = useState(false);
+  const [passwordRecovery, setPasswordRecovery] = useState(initialRecovery.isRecoveryRoute);
+  const [passwordRecoveryError, setPasswordRecoveryError] = useState(initialRecovery.recoveryError);
 
   useEffect(() => {
     let active = true;
@@ -29,7 +32,10 @@ export default function useSupabaseSession() {
     });
 
     const { data: listener } = supabase.auth.onAuthStateChange((event, nextSession) => {
-      if (event === 'PASSWORD_RECOVERY') setPasswordRecovery(true);
+      if (event === 'PASSWORD_RECOVERY') {
+        setPasswordRecovery(true);
+        setPasswordRecoveryError('');
+      }
       setSession(nextSession);
       setLoading(false);
     });
@@ -45,6 +51,10 @@ export default function useSupabaseSession() {
     loading,
     error,
     passwordRecovery,
-    completePasswordRecovery: () => setPasswordRecovery(false),
+    passwordRecoveryError,
+    completePasswordRecovery: () => {
+      setPasswordRecovery(false);
+      setPasswordRecoveryError('');
+    },
   };
 }

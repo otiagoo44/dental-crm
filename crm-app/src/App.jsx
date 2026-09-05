@@ -14,6 +14,7 @@ import { supabase } from './lib/supabase';
 import { humanizeCrmError } from './lib/errors';
 import { buildNextActionQueue, PRIORITY_GROUP } from './lib/nextActions';
 import useSupabaseSession from './hooks/useSupabaseSession';
+import { INVALID_PASSWORD_RECOVERY_MESSAGE } from './lib/authRecovery';
 import useClinicWorkspace from './hooks/useClinicWorkspace';
 
 import {
@@ -69,6 +70,7 @@ export default function App() {
     loading: authLoading,
     error: authError,
     passwordRecovery,
+    passwordRecoveryError,
     completePasswordRecovery,
   } = useSupabaseSession();
   const [error, setError] = useState('');
@@ -1265,8 +1267,16 @@ export default function App() {
     return <FullScreenLoader label="Cargando sesion..." />;
   }
 
+  if (passwordRecoveryError) {
+    return <Login recoveryError={passwordRecoveryError} />;
+  }
+
   if (session && passwordRecovery) {
     return <Login recoveryMode onRecoveryComplete={completePasswordRecovery} />;
+  }
+
+  if (!session && passwordRecovery) {
+    return <Login recoveryError={INVALID_PASSWORD_RECOVERY_MESSAGE} />;
   }
 
   if (!session) {

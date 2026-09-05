@@ -3,6 +3,10 @@ import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { groupPatientOpportunities } from '../crm-app/src/lib/patients.js';
+import {
+  EXPIRED_PASSWORD_RECOVERY_MESSAGE,
+  readPasswordRecoveryRedirect,
+} from '../crm-app/src/lib/authRecovery.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (relativePath) => readFile(path.join(root, relativePath), 'utf8');
@@ -44,9 +48,30 @@ assert.match(login, /updateUser\(\{ password \}\)/);
 assert.match(login, /Confirmar nueva contraseña/);
 assert.match(sessionHook, /event === 'PASSWORD_RECOVERY'/);
 assert.match(app, /passwordRecovery/);
+assert.match(app, /passwordRecoveryError/);
+assert.match(login, /recoveryError/);
 assert.match(passwordInput, /type=\{visible \? 'text' : 'password'\}/);
 assert.match(passwordInput, /aria-label=/);
 assert.match(passwordInput, /type="button"/);
 assert.doesNotMatch(migration, /password\s+(text|varchar)/i);
+
+assert.deepEqual(readPasswordRecoveryRedirect({ pathname: '/login' }), {
+  isRecoveryRoute: false,
+  recoveryError: '',
+});
+assert.deepEqual(readPasswordRecoveryRedirect({
+  pathname: '/reset-password',
+  hash: '#type=recovery&access_token=test-token',
+}), {
+  isRecoveryRoute: true,
+  recoveryError: '',
+});
+assert.deepEqual(readPasswordRecoveryRedirect({
+  pathname: '/reset-password',
+  hash: '#error=access_denied&error_code=otp_expired&error_description=Email+link+is+invalid+or+has+expired',
+}), {
+  isRecoveryRoute: true,
+  recoveryError: EXPIRED_PASSWORD_RECOVERY_MESSAGE,
+});
 
 console.log('contact/auth contract: PASS');
