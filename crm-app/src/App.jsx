@@ -1425,7 +1425,7 @@ export default function App() {
       ) : null}
       </Suspense>
       <Suspense fallback={null}>
-      <AnimatePresence>
+      {/* Unmount closed dialogs immediately so an exiting portal cannot block the next action. */}
       {appointmentModal ? (
         <AppointmentModal
           key="appointment-modal"
@@ -1488,7 +1488,6 @@ export default function App() {
           onSubmit={saveQuote}
         />
       ) : null}
-      </AnimatePresence>
       </Suspense>
     </AppLayout>
   );
