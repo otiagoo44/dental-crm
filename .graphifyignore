@@ -1,0 +1,13 @@
+node_modules/
+dist/
+build/
+coverage/
+.git/
+graphify-out/
+crm-app/node_modules/
+crm-app/dist/
+crm-app/package-lock.json
+crm-app/test-results/
+crm-app/playwright-report/
+.vercel/
+*.log
