@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router';
 import '../src/index.css';
 import AppLayout from '../src/components/AppLayout.jsx';
 import Dashboard from '../src/pages/DashboardPage.jsx';
@@ -70,7 +71,7 @@ if (page === 'modal') {
 }
 
 createRoot(document.getElementById('root')).render(
-  <AppLayout
+  <BrowserRouter><AppLayout
     activeView={activeView}
     setActiveView={noop}
     clinic={{ id: 'clinic-1', name: 'Clínica Dental QA' }}
@@ -79,7 +80,7 @@ createRoot(document.getElementById('root')).render(
     onLogout={noop}
   >
     {content}
-  </AppLayout>,
+  </AppLayout></BrowserRouter>,
 );
 
 function ModalScenario({ kind, saving }) {

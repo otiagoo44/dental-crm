@@ -9,7 +9,9 @@
     "build:staging": "vite build --mode staging",
     "build:production": "vite build --mode production",
     "preview": "vite preview",
-    "test": "npm run test:contacts-auth && npm run test:intake && npm run test:security && npm run test:realtime && npm run test:messages && npm run test:insights && npm run test:workflow && npm run test:appointment && npm run test:owner && npm run test:pricing && npm run test:clarity && npm run test:standalone",
+    "test": "npm run test:contracts && npm run test:routing",
+    "test:contracts": "npm run test:contacts-auth && npm run test:intake && npm run test:security && npm run test:realtime && npm run test:messages && npm run test:insights && npm run test:workflow && npm run test:appointment && npm run test:owner && npm run test:pricing && npm run test:clarity && npm run test:standalone",
+    "test:routing": "playwright test",
     "test:contacts-auth": "node ../tests/contact-auth-contract-test.mjs",
     "test:intake": "node ../tests/edge-intake-contract-test.mjs",
     "test:security": "node ../tests/stored-xss-contract-test.mjs",
@@ -33,9 +35,11 @@
     "motion": "^13.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router": "7.18.3",
     "vite": "7.3.6"
   },
   "devDependencies": {
+    "@playwright/test": "1.63.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.10"

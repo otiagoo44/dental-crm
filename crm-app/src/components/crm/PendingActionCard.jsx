@@ -1,3 +1,5 @@
+import { Link } from 'react-router';
+import { opportunityPath } from '../../routing/paths';
 import { Check, ClipboardCheck } from 'lucide-react';
 import { formatDateTime } from '../../lib/formatters';
 import Button from '../ui/Button';
@@ -21,7 +23,7 @@ export default function PendingActionCard({
   return (
     <Card as="article" className={compact ? 'p-4' : 'p-5'}>
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
-        <button className="min-w-0 flex-1 text-left" type="button" onClick={() => onOpenLead(lead.id)}>
+        <Link className="min-w-0 flex-1 text-left" to={opportunityPath(lead.contact_id, lead.id)}>
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="min-w-0">
               <h3 className="truncate text-lg font-bold text-cream hover:text-mint">{lead.name}</h3>
@@ -32,13 +34,13 @@ export default function PendingActionCard({
           <p className="mt-4 text-base font-semibold text-cream">{action.title}</p>
           <p className="mt-1 text-sm leading-6 text-textMuted">{action.reason}</p>
           {action.dueAt ? <p className="mt-2 text-sm font-semibold text-textSoft">{formatActionMoment(action.dueAt)}</p> : null}
-        </button>
+        </Link>
         <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
           <WhatsAppButton lead={lead} task={task} action={action} templates={messageTemplates} clinicContext={clinicContext} onOpened={onWhatsAppOpened} />
           {action.actionType === 'confirm_appointment' ? (
             <Button type="button" onClick={() => onConfirmAppointment(action.appointmentId)}><Check className="h-4 w-4" />Confirmar</Button>
           ) : action.actionType === 'assign_owner' ? (
-            <Button type="button" variant="secondary" onClick={() => onOpenLead(lead.id)}>Ver paciente</Button>
+            <Link className="inline-flex min-h-11 items-center text-sm font-semibold text-mint" to={opportunityPath(lead.contact_id, lead.id)}>Ver paciente</Link>
           ) : action.actionType === 'manual_reminder' && task && onCompleteTask ? (
             <Button type="button" variant="secondary" onClick={() => onCompleteTask(task.id)}><Check className="h-4 w-4" />Completar</Button>
           ) : (

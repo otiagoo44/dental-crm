@@ -75,7 +75,6 @@ export default function Login({ recoveryMode = false, recoveryError = '', onReco
     }
 
     await supabase.auth.signOut();
-    window.history.replaceState({}, '', '/');
     onRecoveryComplete?.();
     setLoading(false);
   }

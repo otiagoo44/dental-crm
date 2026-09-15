@@ -233,10 +233,13 @@ export default function useClinicWorkspace({ session, onError }) {
     };
   }, [profile?.clinic_id, refreshClinicData]);
 
-  async function loadLeadEvents(leadId) {
+  const loadLeadEvents = useCallback(async (leadId) => {
     if (!profile?.clinic_id || !leadId) return false;
 
+    const generation = sessionGenerationRef.current;
+    setLeadEvents([]);
     const { data, error } = await getLeadEvents(profile.clinic_id, leadId);
+    if (generation !== sessionGenerationRef.current) return false;
     if (error) {
       console.error('Error loading lead events', error);
       onError(humanizeCrmError(error, 'No pudimos cargar el historial. Intentá de nuevo.'));
@@ -245,7 +248,7 @@ export default function useClinicWorkspace({ session, onError }) {
 
     setLeadEvents(data || []);
     return true;
-  }
+  }, [profile?.clinic_id, onError]);
 
   return {
     bootLoading,

@@ -10,3 +10,5 @@ dist/
 supabase/.temp/
 *.log
 *.map
+**/test-results/
+**/playwright-report/

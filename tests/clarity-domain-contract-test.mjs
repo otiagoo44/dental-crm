@@ -5,7 +5,7 @@ import { captureUrlAttribution } from '../crm-app/src/lib/attribution.js';
 const [migration, edge, app, leadForm, workspaceHook] = await Promise.all([
   readFile(new URL('../supabase/migrations/20260827162541_clarity_priority_upgrade.sql', import.meta.url), 'utf8'),
   readFile(new URL('../supabase/functions/lead-intake/index.ts', import.meta.url), 'utf8'),
-  readFile(new URL('../crm-app/src/App.jsx', import.meta.url), 'utf8'),
+  readFile(new URL('../crm-app/src/hooks/useCrmController.js', import.meta.url), 'utf8'),
   readFile(new URL('../crm-app/src/components/modals/LeadFormModal.jsx', import.meta.url), 'utf8'),
   readFile(new URL('../crm-app/src/hooks/useClinicWorkspace.js', import.meta.url), 'utf8'),
 ]);

@@ -1,0 +1,227 @@
+import { lazy, Suspense, useEffect } from 'react';
+import { Navigate, Route, Routes, useParams } from 'react-router';
+import { PageSkeleton } from '../components/feedback/AppFeedback';
+import PatientPage from '../pages/PatientPage';
+import NotFoundPage from '../pages/NotFoundPage';
+const AgendaView = lazy(() => import('../pages/AgendaPage'));
+const Dashboard = lazy(() => import('../pages/DashboardPage'));
+const FollowupsView = lazy(() => import('../pages/FollowupsPage'));
+const PendingView = lazy(() => import('../pages/PendingPage'));
+const LeadsView = lazy(() => import('../pages/LeadsPage'));
+const LeadDetail = lazy(() => import('../pages/LeadsPage').then((module) => ({ default: module.LeadDetail })));
+const MetricsView = lazy(() => import('../pages/MetricsPage'));
+const SettingsView = lazy(() => import('../pages/SettingsPage'));
+const TasksView = lazy(() => import('../pages/TasksPage'));
+
+export function AdminOnly({ canAdmin, children }) {
+  return canAdmin ? children : <Navigate to="/resumen" replace />;
+}
+
+function OpportunityBoundary({ controller, children }) {
+  const { contactId, leadId } = useParams();
+  const { selectedLead, profile, loadLeadEvents } = controller;
+  useEffect(() => {
+    if (selectedLead) void loadLeadEvents(leadId);
+  }, [contactId, leadId, profile?.clinic_id, Boolean(selectedLead), loadLeadEvents]);
+  if (!selectedLead || selectedLead.contact_id !== contactId) return <NotFoundPage entity="Oportunidad" />;
+  return children;
+}
+
+export default function CrmRoutes({ controller }) {
+  const {
+    profile,
+    clinic,
+    leads,
+    appointments,
+    tasks,
+    quotes,
+    workspaceEvents,
+    clinicSettings,
+    treatmentPrices,
+    leadEvents,
+    publicFormConfig,
+    clinicProfiles,
+    messageTemplates,
+    refreshClinicData,
+    setNotice,
+    canAdmin,
+    activeLeads,
+    clinicContext,
+    selectedLead,
+    selectedContactOpportunities,
+    appointmentActionId,
+    publicFormSaving,
+    templateSaving,
+    priceSaving,
+    openCreateLeadModal,
+    handleLeadSelect,
+    openAppointmentModal,
+    completeTask,
+    markLeadContacted,
+    postponeLeadFollowup,
+    handleWhatsAppOpened,
+    openRegisterOutcome,
+    confirmAppointmentById,
+    openEditLeadModal,
+    openArchiveLeadModal,
+    openLostLeadModal,
+    updateLead,
+    openCreateTaskModal,
+    handleMessageCopied,
+    openQuoteModal,
+    updateAppointmentOutcome,
+    openRescheduleModal,
+    openEditTaskModal,
+    savePublicFormConfig,
+    saveMessageTemplates,
+    saveTreatmentPrice,
+    navigateView
+  } = controller;
+  return <Suspense fallback={<PageSkeleton />}>
+    <Routes>
+      <Route path="/" element={<Navigate to="/resumen" replace />} />
+      <Route path="/login" element={<Navigate to="/resumen" replace />} />
+      <Route path="/pacientes/:contactId" element={<PatientPage leads={leads} tasks={tasks} appointments={appointments} quotes={quotes} />} />
+      <Route path="/resumen" element={
+        <Dashboard
+          leads={activeLeads}
+          appointments={appointments}
+          tasks={tasks}
+          quotes={quotes}
+          workspaceEvents={workspaceEvents}
+          profiles={clinicProfiles}
+          canAdmin={canAdmin}
+          onCreateLead={openCreateLeadModal}
+          onOpenLead={handleLeadSelect}
+          onScheduleAppointment={openAppointmentModal}
+          onCompleteTask={completeTask}
+          onMarkContacted={markLeadContacted}
+          onPostpone={postponeLeadFollowup}
+          onWhatsAppOpened={handleWhatsAppOpened}
+          onRegisterOutcome={openRegisterOutcome}
+          onConfirmAppointment={confirmAppointmentById}
+          onRefresh={() => refreshClinicData()}
+          messageTemplates={messageTemplates}
+          clinicContext={clinicContext}
+          onNavigate={navigateView}
+        />
+} />
+      <Route path="/seguimientos" element={
+        <FollowupsView
+          leads={activeLeads}
+          tasks={tasks}
+          appointments={appointments}
+          profiles={clinicProfiles}
+          onOpenLead={handleLeadSelect}
+          onEditLead={openEditLeadModal}
+          onMarkContacted={markLeadContacted}
+          onScheduleAppointment={openAppointmentModal}
+          onCompleteTask={completeTask}
+          onPostpone={postponeLeadFollowup}
+          onWhatsAppOpened={handleWhatsAppOpened}
+          messageTemplates={messageTemplates}
+          clinicContext={clinicContext}
+        />
+} />
+      <Route path="/pendientes" element={
+        <PendingView
+          leads={activeLeads}
+          tasks={tasks}
+          appointments={appointments}
+          quotes={quotes}
+          profiles={clinicProfiles}
+          onOpenLead={handleLeadSelect}
+          onRegisterOutcome={openRegisterOutcome}
+          onConfirmAppointment={confirmAppointmentById}
+          onCompleteTask={completeTask}
+          onWhatsAppOpened={handleWhatsAppOpened}
+          messageTemplates={messageTemplates}
+          clinicContext={clinicContext}
+        />
+} />
+      <Route path="/pacientes" element={
+        <LeadsView
+          leads={leads}
+          appointments={appointments}
+          tasks={tasks}
+          quotes={quotes}
+          canAdmin={canAdmin}
+          onCreateLead={openCreateLeadModal}
+          onEditLead={openEditLeadModal}
+          onArchiveLead={openArchiveLeadModal}
+          onMarkLost={openLostLeadModal}
+          onOpenLead={handleLeadSelect}
+          onUpdateLead={updateLead}
+          onScheduleAppointment={openAppointmentModal}
+          onCreateTask={openCreateTaskModal}
+          onMarkContacted={markLeadContacted}
+          onRegisterOutcome={openRegisterOutcome}
+          profiles={clinicProfiles}
+          onWhatsAppOpened={handleWhatsAppOpened}
+          onMessageCopied={handleMessageCopied}
+          messageTemplates={messageTemplates}
+          clinicContext={clinicContext}
+          setNotice={setNotice}
+        />
+} />
+      <Route path="/pacientes/:contactId/oportunidades/:leadId" element={<OpportunityBoundary controller={controller}>
+        <LeadDetail
+          lead={selectedLead}
+          opportunities={selectedContactOpportunities}
+          onSelectOpportunity={handleLeadSelect}
+          events={leadEvents.filter((event) => event.lead_id === selectedLead?.id)}
+          tasks={tasks}
+          appointments={appointments}
+          quotes={quotes}
+          profiles={clinicProfiles}
+          canAdmin={canAdmin}
+          onBack={() => navigateView('leads')}
+          onEditLead={openEditLeadModal}
+          onArchiveLead={openArchiveLeadModal}
+          onScheduleAppointment={openAppointmentModal}
+          onCreateTask={openCreateTaskModal}
+          onRegisterOutcome={openRegisterOutcome}
+          onRegisterQuote={openQuoteModal}
+          onWhatsAppOpened={handleWhatsAppOpened}
+          messageTemplates={messageTemplates}
+          clinicContext={clinicContext}
+        />
+</OpportunityBoundary>} />
+      <Route path="/agenda" element={
+        <AgendaView
+          appointments={appointments}
+          quotes={quotes}
+          actionId={appointmentActionId}
+          onOutcome={updateAppointmentOutcome}
+          onReschedule={openRescheduleModal}
+          onOpenLead={handleLeadSelect}
+          onNavigate={navigateView}
+          onRegisterQuote={openQuoteModal}
+          onRegisterOutcome={openRegisterOutcome}
+          onWhatsAppOpened={handleWhatsAppOpened}
+          messageTemplates={messageTemplates}
+          clinicContext={clinicContext}
+        />
+} />
+      <Route path="/tareas" element={
+        <TasksView tasks={tasks} leads={activeLeads} appointments={appointments} canAdmin={canAdmin} onCreateTask={openCreateTaskModal} onEditTask={openEditTaskModal} onComplete={completeTask} onOpenLead={handleLeadSelect} onWhatsAppOpened={handleWhatsAppOpened} messageTemplates={messageTemplates} clinicContext={clinicContext} />
+} />
+      <Route path="/analisis" element={<AdminOnly canAdmin={canAdmin}>
+        <MetricsView
+          leads={leads}
+          appointments={appointments}
+          tasks={tasks}
+          quotes={quotes}
+          workspaceEvents={workspaceEvents}
+          profiles={clinicProfiles}
+          onNavigate={navigateView}
+        />
+</AdminOnly>} />
+      <Route path="/configuracion" element={<AdminOnly canAdmin={canAdmin}>
+        <SettingsView clinic={clinic} profile={profile} publicFormConfig={publicFormConfig} savingPublicForm={publicFormSaving} onSavePublicForm={savePublicFormConfig} messageTemplates={messageTemplates} savingTemplates={templateSaving} onSaveMessageTemplates={saveMessageTemplates} treatmentPrices={treatmentPrices} savingPrices={priceSaving} onSaveTreatmentPrice={saveTreatmentPrice} clinicSettings={clinicSettings} profiles={clinicProfiles} setNotice={setNotice} />
+</AdminOnly>} />
+
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  </Suspense>;
+}

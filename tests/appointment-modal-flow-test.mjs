@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-const appSource = readFileSync(new URL('../crm-app/src/App.jsx', import.meta.url), 'utf8');
+const appSource = readFileSync(new URL('../crm-app/src/hooks/useCrmController.js', import.meta.url), 'utf8');
 const saveFlow = appSource.match(/async function saveAppointmentSchedule[\s\S]*?async function updateAppointmentOutcome/)?.[0] || '';
 
 assert.ok(saveFlow, 'Appointment save flow is missing');

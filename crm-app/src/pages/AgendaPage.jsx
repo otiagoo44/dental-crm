@@ -1,3 +1,5 @@
+import { Link } from 'react-router';
+import { opportunityPath } from '../routing/paths';
 import { useMemo, useState } from 'react';
 import { Ban, CalendarDays, CalendarPlus, Check, CheckCircle2, ChevronLeft, ChevronRight, Clock3, FileText, Loader2, RefreshCw, UserCheck } from 'lucide-react';
 import { formatDate, formatTime, fromDatetimeLocalAsuncion, todayIsoDate, toLocalIsoDate } from '../lib/formatters';
@@ -142,7 +144,7 @@ function AppointmentCard({ appointment, quotes, actionId, onOutcome, onReschedul
       <div className="flex flex-col gap-4 xl:flex-row xl:items-center">
         <div className="flex items-center gap-4 xl:w-28"><div className="rounded-2xl border border-mint/20 bg-mint/10 px-4 py-3 text-center text-mint"><Clock3 className="mx-auto h-4 w-4" /><span className="mt-1 block text-xl font-bold">{formatTime(appointment.appointment_time)}</span></div></div>
         <div className="min-w-0 flex-1">
-          <button className="text-left text-lg font-bold text-cream hover:text-mint" type="button" onClick={() => appointment.lead_id && onOpenLead(appointment.lead_id)}>{lead.name || 'Paciente asociado'}</button>
+          <Link className="text-left text-lg font-bold text-cream hover:text-mint" to={opportunityPath(lead.contact_id, appointment.lead_id)}>{lead.name || 'Paciente asociado'}</Link>
           <p className="mt-1 text-base text-textMuted">{appointment.treatment_scheduled || lead.treatment || 'Tratamiento sin definir'} · {appointment.doctor_assigned || 'Sin profesional asignado'}</p>
           <div className="mt-2 flex flex-wrap items-center gap-2"><StatusBadge value={status} />{quote ? <span className="text-sm font-semibold text-mint">Presupuesto registrado</span> : null}</div>
         </div>

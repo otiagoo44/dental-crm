@@ -1,6 +1,8 @@
 import { BarChart3, CalendarDays, CheckSquare2, Gauge, ListTodo, LogOut, Settings, Users } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { NAV_ITEMS } from '../lib/constants';
+import { Link } from 'react-router';
+import { viewPath } from '../routing/paths';
 
 const icons = {
   dashboard: Gauge,
@@ -18,12 +20,11 @@ function NavButton({ item, activeView, count, onSelect, compact = false }) {
   const selected = activeView === item.id || (activeView === 'lead-detail' && item.id === 'leads');
 
   return (
-    <button
+    <Link
       className={`group flex shrink-0 items-center gap-3 rounded-xl text-left font-semibold transition duration-200 ${
         compact ? 'min-h-11 snap-start px-3 py-2 text-sm' : 'min-h-11 w-full px-3 py-3 text-[15px] leading-5'
       } ${selected ? 'border border-mint/45 bg-mint/10 text-cream shadow-[inset_3px_0_0_#C8A96A]' : item.id === 'metrics' ? 'border border-mint/15 bg-mint/[0.04] text-textMuted hover:border-mint/30 hover:bg-elevated hover:text-cream' : 'border border-transparent text-textMuted hover:bg-elevated hover:text-cream'}`}
-      type="button"
-      onClick={() => onSelect(item.id)}
+      to={viewPath(item.id)}
       aria-current={selected ? 'page' : undefined}
     >
       <Icon className={`h-4 w-4 ${selected || item.id === 'metrics' ? 'text-mint' : 'text-textFaint group-hover:text-cream'}`} />
@@ -31,7 +32,7 @@ function NavButton({ item, activeView, count, onSelect, compact = false }) {
       {Number(count) > 0 ? (
         <span className="ml-auto rounded-full bg-mint px-2 py-0.5 text-xs text-inverse">{count}</span>
       ) : null}
-    </button>
+    </Link>
   );
 }
 

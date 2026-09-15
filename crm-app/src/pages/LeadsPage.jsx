@@ -1,3 +1,5 @@
+import { Link } from 'react-router';
+import { patientPath, opportunityPath } from '../routing/paths';
 import { useMemo, useState } from 'react';
 import { Archive, BellPlus, CalendarPlus, ChevronLeft, CircleX, Copy, Edit3, Ellipsis, FilePlus, History, Search } from 'lucide-react';
 import { CLASSIFICATIONS, LEAD_STATUSES } from '../lib/constants';
@@ -97,14 +99,14 @@ export default function LeadsView({ leads, tasks, appointments, quotes = [], can
             const treatments = uniqueStrings(patient.opportunities.map((item) => item.treatment));
             return (
               <Card key={patient.id} as="article" className="overflow-hidden">
-                <button className="h-full w-full p-5 text-left transition hover:bg-elevated" type="button" onClick={() => onOpenLead(lead.id)}>
+                <Link className="block h-full w-full p-5 text-left transition hover:bg-elevated" to={patientPath(patient.id)}>
                   <div className="flex items-start justify-between gap-3">
                     <h2 className="min-w-0 truncate text-lg font-bold text-cream">{patient.name}</h2>
                     <span className="rounded-full border border-mint/20 bg-mint/[0.06] px-2.5 py-1 text-xs font-bold text-mint">{patient.opportunities.length} {patient.opportunities.length === 1 ? 'oportunidad' : 'oportunidades'}</span>
                   </div>
                   <p className="mt-2 text-sm text-textMuted">{patient.phone || 'Sin teléfono'}</p>
                   <p className="mt-4 text-base font-semibold text-textSoft">{treatments.length ? treatments.join(' · ') : 'Tratamiento por definir'}</p>
-                </button>
+                </Link>
               </Card>
             );
           })}
@@ -145,12 +147,12 @@ export function LeadDetail({ lead, opportunities = [], onSelectOpportunity, even
 
   return (
     <section className="mx-auto max-w-5xl space-y-4">
-      <button className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-mint hover:text-goldHover" type="button" onClick={onBack}><ChevronLeft className="h-4 w-4" />Volver a pacientes</button>
+      <Link className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-mint hover:text-goldHover" to={patientPath(lead.contact_id)}><ChevronLeft className="h-4 w-4" />Volver al paciente</Link>
 
       <Card className="p-5 sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0">
-            <h1 className="text-2xl font-bold text-cream">{lead.name}</h1>
+            <h1 className="text-2xl font-bold text-cream">{lead.name} · {lead.treatment || 'Tratamiento por definir'}</h1>
             <p className="mt-1 text-base text-textMuted">{lead.phone_plus || lead.phone || 'Sin teléfono'}</p>
             <div className="mt-3 flex flex-wrap gap-2"><TemperatureBadge value={lead.classification} /><StatusBadge value={lead.status} />{effectiveAction ? <span className="rounded-full border border-mint/25 bg-mint/[0.07] px-2.5 py-1 text-xs font-bold text-mint">{PRIORITY_GROUP_LABEL[effectiveAction.priorityGroup]}</span> : null}</div>
           </div>
@@ -178,18 +180,17 @@ export function LeadDetail({ lead, opportunities = [], onSelectOpportunity, even
             const opportunityAction = getEffectiveNextAction(opportunity, { tasks, appointments, quotes });
             const selected = opportunity.id === lead.id;
             return (
-              <button
+              <Link
                 key={opportunity.id}
                 className={`rounded-lg border p-4 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mint ${selected ? 'border-mint/50 bg-mint/[0.08]' : 'border-slate-200 bg-soft hover:bg-elevated'}`}
-                type="button"
-                onClick={() => onSelectOpportunity?.(opportunity.id)}
-                aria-pressed={selected}
+                to={opportunityPath(opportunity.contact_id, opportunity.id)}
+                aria-current={selected ? 'page' : undefined}
               >
                 <span className="block font-bold text-cream">{opportunity.treatment || 'Tratamiento por definir'}</span>
                 <span className="mt-2 flex flex-wrap items-center gap-2"><StatusBadge value={opportunity.status} /><TemperatureBadge value={opportunity.classification} /></span>
                 <span className="mt-3 block text-sm text-textMuted">Score: {opportunity.score ?? 0}</span>
                 <span className="mt-1 block text-sm text-textSoft">{opportunityAction?.title || opportunity.next_action || 'Sin próxima acción'}</span>
-              </button>
+              </Link>
             );
           })}
         </div>

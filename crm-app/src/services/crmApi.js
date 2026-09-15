@@ -44,13 +44,13 @@ export async function getClinicWorkspace(clinicId) {
       .order('created_at', { ascending: false }),
     supabase
       .from('appointments')
-      .select('*, leads(id, name, phone, phone_plus, treatment, urgency, situation, evaluation_previous, status, whatsapp_link)')
+      .select('*, leads(id, contact_id, name, phone, phone_plus, treatment, urgency, situation, evaluation_previous, status, whatsapp_link)')
       .eq('clinic_id', clinicId)
       .order('appointment_date', { ascending: true })
       .order('appointment_time', { ascending: true }),
     supabase
       .from('tasks')
-      .select('*, leads(id, name, phone, phone_plus, treatment, urgency, situation, evaluation_previous, status, whatsapp_link)')
+      .select('*, leads(id, contact_id, name, phone, phone_plus, treatment, urgency, situation, evaluation_previous, status, whatsapp_link)')
       .eq('clinic_id', clinicId)
       .order('due_at', { ascending: true, nullsFirst: false }),
     supabase
