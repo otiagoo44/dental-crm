@@ -4,6 +4,7 @@ build/
 coverage/
 .git/
 graphify-out/
+.codex/skills/graphify/
 crm-app/node_modules/
 crm-app/dist/
 crm-app/package-lock.json
