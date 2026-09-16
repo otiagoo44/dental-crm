@@ -7,6 +7,7 @@ import { formatDate, formatDateTime, formatMoney, formatTime, normalizeText, tod
 import { buildCommercialTimeline } from '../lib/commercialInsights';
 import { displayConsultationReason, isArchivedLead, uniqueStrings } from '../lib/crmDomain';
 import { getEffectiveNextAction, PRIORITY_GROUP, PRIORITY_GROUP_LABEL } from '../lib/nextActions';
+import { opportunityActionLabel, opportunityPriorityLabel } from '../features/opportunities/opportunityPresentation';
 import { groupPatientOpportunities } from '../lib/patients';
 import { Info, Select } from '../components/crm/CrmPrimitives';
 import WhatsAppButton from '../components/crm/WhatsAppButton';
@@ -152,13 +153,14 @@ export function LeadDetail({ lead, opportunities = [], onSelectOpportunity, even
       <Card className="p-5 sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0">
-            <h1 className="text-2xl font-bold text-cream">{lead.name} · {lead.treatment || 'Tratamiento por definir'}</h1>
-            <p className="mt-1 text-base text-textMuted">{lead.phone_plus || lead.phone || 'Sin teléfono'}</p>
-            <div className="mt-3 flex flex-wrap gap-2"><TemperatureBadge value={lead.classification} /><StatusBadge value={lead.status} />{effectiveAction ? <span className="rounded-full border border-mint/25 bg-mint/[0.07] px-2.5 py-1 text-xs font-bold text-mint">{PRIORITY_GROUP_LABEL[effectiveAction.priorityGroup]}</span> : null}</div>
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-textFaint">Oportunidad</p>
+            <h1 className="mt-1 text-2xl font-bold text-cream">{lead.treatment || 'Tratamiento por definir'}</h1>
+            <p className="mt-2 text-base text-textMuted">Para <Link className="font-semibold text-mint hover:text-goldHover" to={patientPath(lead.contact_id)}>{lead.name}</Link> · {lead.phone_plus || lead.phone || 'Sin teléfono'}</p>
+            <div className="mt-3 flex flex-wrap gap-2"><StatusBadge value={lead.status} /><TemperatureBadge value={lead.classification} />{effectiveAction ? <span className="rounded-full border border-mint/25 bg-mint/[0.07] px-2.5 py-1 text-xs font-bold text-mint">{opportunityPriorityLabel(effectiveAction, PRIORITY_GROUP_LABEL)}</span> : null}</div>
           </div>
           <div className="flex flex-wrap gap-2">
             <WhatsAppButton lead={lead} task={actionTask} action={effectiveAction} templates={messageTemplates} clinicContext={clinicContext} onOpened={onWhatsAppOpened} label="WhatsApp" />
-            {effectiveAction ? <Button type="button" onClick={() => onRegisterOutcome({ lead, action: effectiveAction, task: actionTask })}>Registrar resultado</Button> : null}
+            {effectiveAction ? <Button type="button" onClick={() => onRegisterOutcome({ lead, action: effectiveAction, task: actionTask })}>{opportunityActionLabel(effectiveAction)}</Button> : null}
             <details className="relative">
               <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-lg border border-slate-200 bg-card px-3 text-sm font-semibold text-textSoft hover:bg-elevated"><Ellipsis className="h-5 w-5" />Más</summary>
               <div className="absolute right-0 z-20 mt-2 w-64 rounded-lg border border-slate-200 bg-card p-2 shadow-xl">
@@ -174,7 +176,18 @@ export function LeadDetail({ lead, opportunities = [], onSelectOpportunity, even
         </div>
       </Card>
 
-      <DetailSection title={`Oportunidades (${opportunities.length || 1})`} open>
+      <DetailSection title="Resumen" open>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Info label="Estado" value={lead.status} />
+          <Info label="Responsable" value={assignee?.full_name || assignee?.email || 'Sin asignar'} />
+          <Info label="Prioridad operativa" value={opportunityPriorityLabel(effectiveAction, PRIORITY_GROUP_LABEL)} />
+          <Info label="Score comercial" value={lead.score ?? 0} />
+        </div>
+        {effectiveAction ? <div className="mt-4 rounded-lg border border-mint/20 bg-mint/[0.05] p-4"><p className="text-sm font-semibold text-textMuted">Próxima acción</p><p className="mt-1 text-lg font-bold text-cream">{effectiveAction.title}</p><p className="mt-1 text-sm text-textMuted">{effectiveAction.dueAt ? formatDateTime(effectiveAction.dueAt) : 'Sin fecha'}</p></div> : <div className="mt-4 rounded-lg border border-slate-200 bg-soft p-4 text-sm text-textMuted">Esta oportunidad no tiene una acción comercial pendiente.</div>}
+        {canAdmin ? <ScoreExplanation lead={lead} /> : null}
+      </DetailSection>
+
+      <DetailSection title={`Otras oportunidades de ${lead.name} (${opportunities.length || 1})`}>
         <div className="grid gap-3 sm:grid-cols-2">
           {(opportunities.length ? opportunities : [lead]).map((opportunity) => {
             const opportunityAction = getEffectiveNextAction(opportunity, { tasks, appointments, quotes });
@@ -196,18 +209,8 @@ export function LeadDetail({ lead, opportunities = [], onSelectOpportunity, even
         </div>
       </DetailSection>
 
-      <DetailSection title="Resumen" open>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <Info label="Tratamiento" value={lead.treatment || 'Sin dato'} />
-          <Info label="Estado" value={lead.status} />
-          <Info label="Encargado" value={assignee?.full_name || assignee?.email || 'Sin asignar'} />
-        </div>
-        {effectiveAction ? <div className="mt-4 rounded-lg border border-mint/20 bg-mint/[0.05] p-4"><p className="text-sm font-semibold text-textMuted">Próxima acción</p><p className="mt-1 text-lg font-bold text-cream">{effectiveAction.title}</p><p className="mt-1 text-sm text-textMuted">{effectiveAction.dueAt ? formatDateTime(effectiveAction.dueAt) : 'Sin fecha'}</p></div> : null}
-        {canAdmin ? <ScoreExplanation lead={lead} /> : null}
-      </DetailSection>
-
-      <DetailSection title="Actividad" icon={History}>
-        {timeline.length ? <div className="space-y-3">{timeline.map((item) => <div key={item.id} className="rounded-lg border border-slate-200 bg-soft p-3"><p className="font-semibold text-cream">{item.title}</p><p className="mt-1 text-xs text-textMuted">{formatDateTime(item.at)} · {item.actor}</p>{item.description ? <p className="mt-2 text-sm text-textSoft">{item.description}</p> : null}</div>)}</div> : <EmptyState title="Sin actividad" text="Las acciones de este paciente aparecerán acá." />}
+      <DetailSection title="Actividad de esta oportunidad" icon={History}>
+        {timeline.length ? <div className="space-y-3">{timeline.map((item) => <div key={item.id} className="rounded-lg border border-slate-200 bg-soft p-3"><p className="font-semibold text-cream">{item.title}</p><p className="mt-1 text-xs text-textMuted">{formatDateTime(item.at)} · {item.actor}</p>{item.description ? <p className="mt-2 text-sm text-textSoft">{item.description}</p> : null}</div>)}</div> : <EmptyState title="Sin actividad" text="Las acciones de esta oportunidad aparecerán acá." />}
       </DetailSection>
 
       <DetailSection title={`Citas (${leadAppointments.length})`}>

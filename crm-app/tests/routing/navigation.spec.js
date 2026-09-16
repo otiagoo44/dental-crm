@@ -10,15 +10,16 @@ test('B–F: patient, opportunity, refresh and browser history', async ({ page, 
   await page.reload();
   await expect(page.getByRole('heading', { name: 'Oportunidades (2)', exact: true })).toBeVisible();
   await page.getByRole('link', { name: /Implantes/ }).click();
-  await expect(page.getByRole('heading', { name: 'Florencia Prueba · Implantes', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Implantes', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Registrar contacto', exact: true })).toBeVisible();
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Florencia Prueba · Implantes', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Implantes', exact: true })).toBeVisible();
   await page.goBack();
   await expect(page).toHaveURL(new RegExp(`${patientURL}$`));
   await expect(page.getByRole('heading', { name: 'Oportunidades (2)', exact: true })).toBeVisible();
   await page.goForward();
   await expect(page).toHaveURL(new RegExp(`${opportunityURL}$`));
-  await expect(page.getByRole('heading', { name: 'Florencia Prueba · Implantes', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Implantes', exact: true })).toBeVisible();
   // Exercise the anchor's native new-tab behavior, not a navigation callback.
   const link = page.getByRole('link', { name: 'Volver al paciente', exact: true });
   const popupPromise = context.waitForEvent('page');
@@ -31,10 +32,10 @@ test('G: a lead cannot be opened under another contact; absent IDs are internal 
   for (const path of [`/pacientes/${contactB}/oportunidades/${leadA}`, `/pacientes/${contactA}/oportunidades/missing`, '/pacientes/missing', '/unknown']) {
     await page.goto(path);
     await expect(page.getByRole('heading', { name: /404 ·/ })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Florencia Prueba · Implantes', exact: true })).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: 'Implantes', exact: true })).toHaveCount(0);
   }
   await page.goto(`/pacientes/${contactA}/oportunidades/${leadA2}`);
-  await expect(page.getByRole('heading', { name: 'Florencia Prueba · Ortodoncia', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ortodoncia', exact: true })).toBeVisible();
 });
 
 test('H: receptionist cannot render admin routes, including pasted URLs and refresh', async ({ page }) => {
@@ -54,7 +55,7 @@ test('deep links from Resumen, Pendientes and Agenda', async ({ page }) => {
     const target = path === '/agenda' ? `/pacientes/${contactB}/oportunidades/${leadB}` : opportunityURL;
     await page.locator(`main a[href="${target}"]`).first().click();
     await expect(page).toHaveURL(new RegExp(`${target}$`));
-    await expect(page.getByRole('heading', { name: path === '/agenda' ? 'Pedro Prueba · Carillas' : 'Florencia Prueba · Implantes', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: path === '/agenda' ? 'Carillas' : 'Implantes', exact: true })).toBeVisible();
     await page.goBack();
     await expect(page).toHaveURL(new RegExp(`${path}$`));
   }
@@ -77,7 +78,7 @@ test.describe('unauthenticated entry', () => {
     await page.goto(opportunityURL);
     await login(page);
     await expect(page).toHaveURL(new RegExp(`${opportunityURL}$`));
-    await expect(page.getByRole('heading', { name: 'Florencia Prueba · Implantes', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Implantes', exact: true })).toBeVisible();
   });
 });
 

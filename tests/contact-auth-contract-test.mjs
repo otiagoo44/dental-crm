@@ -39,7 +39,7 @@ const grouped = groupPatientOpportunities([
 assert.equal(grouped.length, 2);
 assert.equal(grouped.find((item) => item.id === 'contact-1').opportunities.length, 2);
 assert.match(leadsPage, /groupPatientOpportunities\(leads\)/);
-assert.match(leadsPage, /Oportunidades \(/);
+assert.match(leadsPage, /Otras oportunidades de/);
 assert.doesNotMatch(pendingPage, /groupPatientOpportunities/);
 
 assert.match(login, /resetPasswordForEmail\(email, \{ redirectTo \}\)/);
