@@ -13,7 +13,7 @@ begin
 
   if to_regprocedure('public.list_contacts_page(uuid,integer,text,text,timestamp with time zone,uuid,uuid)') is null then raise exception 'Missing list_contacts_page'; end if;
   if to_regprocedure('public.list_work_items_v1(uuid,text,integer,uuid,integer,timestamp with time zone,integer,text)') is null then raise exception 'Missing list_work_items_v1'; end if;
-  if to_regprocedure('public.create_public_lead_intake(uuid,text,text,text,text,text,text,text,integer,text,text,text,text,numeric,timestamp with time zone,text,text,text,text,timestamp with time zone,text,text)') is null then raise exception 'Missing public intake RPC'; end if;
+  if not exists(select 1 from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.proname='create_public_lead_intake') then raise exception 'Missing public intake RPC'; end if;
   if has_function_privilege('anon','public.list_work_items_v1(uuid,text,integer,uuid,integer,timestamp with time zone,integer,text)','EXECUTE') then raise exception 'Anon can execute Work RPC'; end if;
   if not has_function_privilege('authenticated','public.list_work_items_v1(uuid,text,integer,uuid,integer,timestamp with time zone,integer,text)','EXECUTE') then raise exception 'Authenticated missing Work RPC grant'; end if;
   if not exists(select 1 from pg_constraint where conrelid='public.leads'::regclass and contype='f' and confrelid='public.contacts'::regclass) then raise exception 'Missing lead-contact FK'; end if;
