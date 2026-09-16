@@ -1,0 +1,7 @@
+{
+  "environment": "staging aqdufiycayedsfldljjq",
+  "workV2": { "requests": 1, "rowsReturnedIncludingSentinel": 26, "rowsRendered": 25, "payloadBytes": 21024, "clientObservedDurationMs": 208.3 },
+  "legacy": { "requests": 9, "rows": 309, "payloadBytes": 320700, "note": "Shared legacy workspace baseline; Pending/Followups/Tasks consume the same full payload." },
+  "explainAnalyze": "NOT RUN: PostgREST plan media type disabled",
+  "scope": "One staging sample; excludes auth/profile/clinic bootstrap, HTTP headers and compression."
+}
