@@ -112,6 +112,15 @@ export const test = base.extend({
       }
       if (table === 'list_contact_timeline_v1') return respond([]);
       if (table === 'register_contact_interaction_v1') return respond(request.postDataJSON().p_opportunity_id);
+      if (table === 'search_dentflow_v1') {
+        const args = request.postDataJSON();
+        const needle = String(args.p_query || '').toLowerCase();
+        const results = [
+          { result_type:'contact',result_id:contactA,contact_id:contactA,opportunity_id:null,title:'Florencia Prueba',subtitle:'2 oportunidades',phone:'+595981111111',match_rank:1,updated_at:now.toISOString() },
+          { result_type:'opportunity',result_id:leadA,contact_id:contactA,opportunity_id:leadA,title:'Implantes',subtitle:'Florencia Prueba · Nuevo',phone:'+595981111111',match_rank:1,updated_at:now.toISOString() },
+        ].filter((result) => (result.result_type === 'contact' ? `${result.title} ${result.phone}` : result.title).toLowerCase().includes(needle));
+        return respond(results.slice(0, args.p_limit));
+      }
       if (table === 'list_work_items_v1') return respond([{
         work_key:'task:work-test',clinic_id:clinicId,contact_id:contactA,opportunity_id:leadA,
         work_type:'initial_contact',patient_name:'Florencia Prueba',patient_phone:'+595981000001',treatment:'Implantes',

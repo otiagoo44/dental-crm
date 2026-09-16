@@ -16,11 +16,14 @@ begin
   if to_regprocedure('public.get_contact_operating_summary_v1(uuid,uuid)') is null then raise exception 'Missing Contact 360 summary'; end if;
   if to_regprocedure('public.list_contact_timeline_v1(uuid,uuid,integer,timestamp with time zone,uuid)') is null then raise exception 'Missing Contact 360 timeline'; end if;
   if to_regprocedure('public.register_contact_interaction_v1(uuid,uuid,uuid,text,text,text,text,timestamp with time zone,uuid)') is null then raise exception 'Missing interaction command'; end if;
+  if to_regprocedure('public.search_dentflow_v1(uuid,text,integer)') is null then raise exception 'Missing global search'; end if;
   if not exists(select 1 from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.proname='create_public_lead_intake') then raise exception 'Missing public intake RPC'; end if;
   if has_function_privilege('anon','public.list_work_items_v1(uuid,text,integer,uuid,integer,timestamp with time zone,integer,text)','EXECUTE') then raise exception 'Anon can execute Work RPC'; end if;
   if not has_function_privilege('authenticated','public.list_work_items_v1(uuid,text,integer,uuid,integer,timestamp with time zone,integer,text)','EXECUTE') then raise exception 'Authenticated missing Work RPC grant'; end if;
   if has_function_privilege('anon','public.list_contact_timeline_v1(uuid,uuid,integer,timestamp with time zone,uuid)','EXECUTE') then raise exception 'Anon can execute contact timeline'; end if;
   if not has_function_privilege('authenticated','public.register_contact_interaction_v1(uuid,uuid,uuid,text,text,text,text,timestamp with time zone,uuid)','EXECUTE') then raise exception 'Authenticated missing interaction grant'; end if;
+  if has_function_privilege('anon','public.search_dentflow_v1(uuid,text,integer)','EXECUTE') then raise exception 'Anon can execute global search'; end if;
+  if not has_function_privilege('authenticated','public.search_dentflow_v1(uuid,text,integer)','EXECUTE') then raise exception 'Authenticated missing global search grant'; end if;
   if not exists(select 1 from pg_constraint where conrelid='public.leads'::regclass and contype='f' and confrelid='public.contacts'::regclass) then raise exception 'Missing lead-contact FK'; end if;
   if not exists(select 1 from pg_constraint where conrelid='public.tasks'::regclass and contype='f' and confrelid='public.leads'::regclass) then raise exception 'Missing task-lead FK'; end if;
   if not exists(select 1 from pg_constraint where conrelid='public.quotes'::regclass and contype='f' and confrelid='public.leads'::regclass) then raise exception 'Missing quote-lead FK'; end if;

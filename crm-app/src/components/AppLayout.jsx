@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { NAV_ITEMS } from '../lib/constants';
 import { Link } from 'react-router';
 import { viewPath } from '../routing/paths';
+import GlobalSearch from '../features/search/GlobalSearch';
 
 const icons = {
   dashboard: Gauge,
@@ -84,6 +85,9 @@ export default function AppLayout({ activeView, setActiveView, clinic, profile, 
       </aside>
 
       <div className="lg:pl-72">
+        <header className="sticky top-0 z-30 hidden border-b border-slate-200 bg-soft/95 px-8 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-xl lg:flex lg:justify-center">
+          <GlobalSearch clinicId={profile?.clinic_id} />
+        </header>
         <header className="sticky top-0 z-30 border-b border-slate-200 bg-soft/95 px-4 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.18)] backdrop-blur-xl md:px-8 lg:hidden">
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">
@@ -95,6 +99,7 @@ export default function AppLayout({ activeView, setActiveView, clinic, profile, 
               <LogOut className="h-4 w-4" />
             </button>
           </div>
+          <div className="mt-3"><GlobalSearch clinicId={profile?.clinic_id} compact /></div>
           <nav className="mobile-nav-scroll -mx-1 mt-3 flex snap-x snap-mandatory gap-1 overflow-x-auto overscroll-x-contain pb-1" aria-label="Navegación principal móvil">
             {visibleNavItems.map((item) => (
               <NavButton key={item.id} compact item={item} activeView={activeView} count={navCounts[item.id]} onSelect={setActiveView} />
