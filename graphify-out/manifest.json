@@ -6,9 +6,9 @@
     "semantic_hash": "5ebef3dd159986e465ab65e4014107ec"
   },
   "crm-app/package.json": {
-    "mtime": 1789600013.4810822,
-    "seen": 1789600634.0589714,
-    "ast_hash": "2077a75708336813121d8ff0e1510cf0",
+    "mtime": 1789601613.8801217,
+    "seen": 1789601916.395265,
+    "ast_hash": "d3ca1988ce191294e99ff643f099ec39",
     "semantic_hash": ""
   },
   "crm-app/playwright.config.js": {
@@ -336,10 +336,10 @@
     "semantic_hash": "32dbac930adbc0f1a0d042f6dd3bae85"
   },
   "crm-app/src/pages/LeadsPage.jsx": {
-    "mtime": 1789434153.6319823,
-    "seen": 1789487152.1780534,
-    "ast_hash": "4231d9bad2f3cb198f4139ad3780fcfd",
-    "semantic_hash": "4231d9bad2f3cb198f4139ad3780fcfd"
+    "mtime": 1789601613.870332,
+    "seen": 1789601916.3953924,
+    "ast_hash": "abfc5c465118264d053659b0373df616",
+    "semantic_hash": ""
   },
   "crm-app/src/pages/MetricsPage.jsx": {
     "mtime": 1787954642.772139,
@@ -414,9 +414,9 @@
     "semantic_hash": ""
   },
   "crm-app/tests/routing/navigation.spec.js": {
-    "mtime": 1789600371.5757954,
-    "seen": 1789600634.0592587,
-    "ast_hash": "f71fff23c75443da5c6cf794435cf19b",
+    "mtime": 1789601613.870332,
+    "seen": 1789601916.3954258,
+    "ast_hash": "381c42cd4e9474685ca911e156c1198b",
     "semantic_hash": ""
   },
   "crm-app/tests/routing/public-auth.spec.js": {
@@ -618,10 +618,10 @@
     "semantic_hash": "9c2fc4ec9816a341a8488ef38753d91e"
   },
   "tests/contact-auth-contract-test.mjs": {
-    "mtime": 1788638032.9305387,
-    "seen": 1789487152.178197,
-    "ast_hash": "2f0e931e2d04c27dde20cafdc0e9086f",
-    "semantic_hash": "2f0e931e2d04c27dde20cafdc0e9086f"
+    "mtime": 1789601729.9282026,
+    "seen": 1789601916.3955095,
+    "ast_hash": "ccbb621836cc6711f1eb4e608fb6b909",
+    "semantic_hash": ""
   },
   "tests/dedupe-fix-smoke.mjs": {
     "mtime": 1788212626.6063848,
@@ -1260,9 +1260,9 @@
     "semantic_hash": ""
   },
   "tests/contact-browser-staging.mjs": {
-    "mtime": 1789507494.817702,
-    "seen": 1789578758.4860024,
-    "ast_hash": "d9fedbfb69afb3ff002eb5c385e1f739",
+    "mtime": 1789601110.117527,
+    "seen": 1789601374.9825535,
+    "ast_hash": "50110ccdef6bdf62d2e9ed9062928729",
     "semantic_hash": ""
   },
   "tests/contact-query-rls.sql": {
@@ -1284,27 +1284,27 @@
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_ARCHITECTURE.md": {
-    "mtime": 1789578393.6541555,
-    "seen": 1789578758.4861636,
-    "ast_hash": "305f59b46536c9c1cf7bf5936e03848e",
+    "mtime": 1789601345.309168,
+    "seen": 1789601374.983295,
+    "ast_hash": "da1b06a7f69269cc8425e551fa268572",
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_MASTER_AUDIT.md": {
-    "mtime": 1789582316.1004035,
-    "seen": 1789582327.5264506,
-    "ast_hash": "9bf0791683f1cdd87a2a33d72dad0097",
+    "mtime": 1789601345.309168,
+    "seen": 1789601374.9833088,
+    "ast_hash": "67f899cc239ed0ab0aaaf7e4553a39c3",
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_MIGRATION_PLAN.md": {
-    "mtime": 1789578792.9988158,
-    "seen": 1789580562.8746045,
-    "ast_hash": "94fc8afe4bc87f04adb105281936ce64",
+    "mtime": 1789601345.309168,
+    "seen": 1789601374.983317,
+    "ast_hash": "df2e1e78a7113119456913c3393ec4f6",
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_STAGING_SMOKE.json": {
-    "mtime": 1789578611.2366097,
-    "seen": 1789578758.4859467,
-    "ast_hash": "8542690dec82d046343240ec677e5131",
+    "mtime": 1789601187.984372,
+    "seen": 1789601374.9823978,
+    "ast_hash": "17d3b7e7b9cfc574b521996802c0f8c8",
     "semantic_hash": ""
   },
   "supabase/migrations/20260916170139_allow_authenticated_index_normalizer.sql": {
@@ -1431,6 +1431,24 @@
     "mtime": 1789600013.4810822,
     "seen": 1789600634.0594397,
     "ast_hash": "5a69a81656bdf3e182b8c71bd9c98cc4",
+    "semantic_hash": ""
+  },
+  "tests/contact-interaction-staging.mjs": {
+    "mtime": 1789600932.1633327,
+    "seen": 1789601374.9825616,
+    "ast_hash": "cb939194df289daa83864dce6b42b23f",
+    "semantic_hash": ""
+  },
+  "crm-app/src/features/opportunities/opportunityPresentation.js": {
+    "mtime": 1789601613.8693688,
+    "seen": 1789601916.395339,
+    "ast_hash": "fe91a0129935912452fe00adf51e03ac",
+    "semantic_hash": ""
+  },
+  "tests/opportunity-record-contract-test.mjs": {
+    "mtime": 1789601613.870332,
+    "seen": 1789601916.3955474,
+    "ast_hash": "3145de2ca4a5d260235c207332fcd5b8",
     "semantic_hash": ""
   }
 }
