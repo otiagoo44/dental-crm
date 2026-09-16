@@ -48,6 +48,15 @@ try {
   await page.reload();
   await expect(page.getByRole('heading',{name:/Oportunidades \(/})).toBeVisible({timeout:20_000});
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
+  const opportunityHref=await page.locator(`main a[href^="${href}/oportunidades/"]`).first().getAttribute('href');
+  await page.locator(`main a[href="${opportunityHref}"]`).last().click();
+  await expect(page.getByText('Oportunidad',{exact:true})).toBeVisible({timeout:20_000});
+  await expect(page.locator('summary').filter({hasText:'Resumen'})).toBeVisible();
+  await expect(page.locator(`main a[href="${href}"]`).first()).toBeVisible();
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
+  await page.screenshot({path:join(artifacts,`opportunity-${width}.png`),fullPage:true,animations:'disabled'});
+  await page.goBack();
+  await expect(page.getByRole('heading',{name:/Oportunidades \(/})).toBeVisible({timeout:20_000});
   await page.getByRole('button',{name:'Actividad',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Actividad',exact:true})).toBeVisible();
   await expect(page.getByText('Cargando…',{exact:true})).toHaveCount(0,{timeout:15_000});
@@ -99,7 +108,7 @@ try {
    await expect(page.locator('main').getByRole('heading').first()).toBeVisible({timeout:30_000});
    await expect(page.getByRole('alert')).toHaveCount(0);
   }
-  report.results.push({width,readyMs,contacts:'PASS',contact360:'PASS',secondaryTabs:'PASS',history:'PASS',agenda:'PASS',pending:'PASS',keyboard:'PASS',overflow:false});
+  report.results.push({width,readyMs,contacts:'PASS',contact360:'PASS',opportunity:'PASS',secondaryTabs:'PASS',history:'PASS',agenda:'PASS',pending:'PASS',keyboard:'PASS',overflow:false});
   await context.close();
  }
  assert.deepEqual(report.errors,[]);

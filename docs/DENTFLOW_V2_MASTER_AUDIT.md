@@ -30,6 +30,7 @@ Date: 2026-09-15. Branch: feature/operational-maturity-v1. Base inspected: main.
 | DF-012 | MEDIUM | Migration history | Local 20260904201956 differs in version from staging 20260904203022 | Supabase migration list | No repair; temporary staging apply mapping used only after dry-run selected one new migration | OPEN; blocks automated upgrade test, does not block from-zero |
 | DF-013 | HIGH | Appointment workflow | Cancel attempted to persist `Cancelado` into constrained opportunity status | Staging workflow QA returned 23514 | Forward migration preserves commercial status while recording appointment cancellation and recovery task | PASS staging regression |
 | DF-014 | HIGH | Contact 360 | Contact history was split across opportunity sections and editable notes | `PatientPage`, `lead_events`, appointments/tasks/quotes | Operating summary plus immutable, paginated contact timeline and guided interaction command | PASS contracts + RLS + staging browser 375/768/1440 |
+| DF-015 | MEDIUM | Opportunity UX | Opportunity detail presented the patient and generic technical outcome action as its primary context | `LeadDetail`, routing browser tests | Treatment-first record, explicit Contact link, operating summary and canonical human action labels | PASS 57 Playwright + hosted CI + staging 375/768/1440 |
 
 DF-009 nuance: unreachable browser code did NOT prove missing contact timestamps. The existing RPC already updated last_contact_at/contact_attempts. The reproducible failure was repeating Contactado incremented attempts twice. The migration keeps SELECT FOR UPDATE, tenant/role checks, fixed search_path and the existing transaction. Explicit mark_lead_contacted still records real additional attempts. Notes remain a separate existing command; no claim that a combined note/status edit is one transaction.
 
@@ -46,6 +47,7 @@ DF-009 nuance: unreachable browser code did NOT prove missing contact timestamps
 - Final full suite/build/deployment/browser statuses: see migration plan and DENTFLOW_V2_STAGING_SMOKE.json.
 - Contact interaction staging contract: operating summary, stable timeline pagination, semantic retry idempotency and cross-tenant leak count 0 PASS. Synthetic fixture prefix: `QA INTERACTION`.
 - Contact 360 browser smoke: registering an immutable administrative note through the deployed UI PASS at 1440; responsive navigation and lazy Activity/More sections PASS at 375/768/1440.
+- Opportunity browser smoke: treatment-first heading, Contact link, operating summary, deep-link refresh/history and responsive layout PASS at 375/768/1440. Hosted CI and Database-from-zero runs 35163192886 / 35163192986 PASS.
 
 ## Performance
 See DENTFLOW_V2_PERFORMANCE.json for the captured dataset: legacy 9 requests, 309 rows, 320,700 JSON bytes; Contacts 1 request, 26 rows (25 rendered + sentinel), 12,552 bytes. Excludes common auth/profile/clinic bootstrap, HTTP headers and compression. This is an observed payload reduction on this staging dataset, not a universal latency claim.

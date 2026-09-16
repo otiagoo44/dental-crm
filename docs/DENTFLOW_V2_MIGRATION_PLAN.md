@@ -12,6 +12,7 @@
 6. Preserved legacy data loading and fallback elsewhere; getClinicWorkspace remains DEPRECATED INTERNAL.
 7. Migrated Work Center and validated it independently; legacy queue routes remain for parity/debug.
 8. Expanded Contact 360 into an operating record with a server-side summary, paginated activity projection and interaction command. No new source-of-truth table was introduced.
+9. Clarified Opportunity as a treatment operating record. Existing transactional workflows remain its command boundary; no migration was required.
 
 ## Release evidence
 Staging Supabase: aqdufiycayedsfldljjq. Vercel project: crm-odontologia-staging / prj_XQUi8CtCWRb9wMfE0Wdrbt4Cz3EC.
@@ -32,6 +33,8 @@ Deployment uses preview target with explicit staging URL/public key at build tim
 | Full migration-from-zero | PASS — run 35161627407 |
 | Contact interaction staging contract | PASS — summary, timeline pages, idempotency, cross-tenant 0 |
 | Contact 360 deployed browser | PASS — deployment `dpl_7b8gn7fD27UtgBg2WRrKfdcsFJP7`, 375/768/1440 |
+| Opportunity hosted gates | PASS — CI 35163192886; Database-from-zero 35163192986 |
+| Opportunity deployed browser | PASS — deployment `dpl_684pNyHV7dWDtXYxWsogNGLFBVza`, 375/768/1440 |
 
 ## Reproduce
 From crm-app: npm ci; npm test; npm run build.

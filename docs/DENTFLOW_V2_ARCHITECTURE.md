@@ -22,6 +22,9 @@ Timeline projects existing lead_events across the contact's opportunities. Exist
 Existing workflow RPCs remain the write boundary. DF-009 changes only repeated Contactado assignment to avoid incrementing contact_attempts twice. Row locking serializes updates. Direct explicit contact attempts retain their existing semantics.
 Future extraction candidates are opportunity/appointment/task/quote commands, only when it reduces coupling/test difficulty. The large controller is acknowledged, not disguised as completed architecture work.
 
+### Opportunity operating record
+Contact answers who the person is; Opportunity answers which treatment they want and what commercial step follows. The record heading is treatment-first, links back to the Contact and exposes status, responsible person, operational priority, score, next action, appointments, quotes and opportunity-only activity. UI action labels map canonical Work action types to human language while continuing to invoke the existing audited commands. This block does not add state transitions or database writes.
+
 ### Realtime
 useContactResource owns the current query key. Contacts/leads events invalidate the active page/contact; it re-reads authoritative rows rather than merging unordered payloads. Generation numbers and AbortController reject older responses. Duplicate events debounce 150 ms.
 A contact page ignores other contacts when payload identity is available. Related tabs listen to their source table while open. A new/reconnected subscription invalidates; focus/online/visible also reconcile; unhealthy subscriptions poll every 25s.
