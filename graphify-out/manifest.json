@@ -1290,9 +1290,9 @@
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_MASTER_AUDIT.md": {
-    "mtime": 1789581643.1169884,
-    "seen": 1789581667.085252,
-    "ast_hash": "928a7889886c714b1ebe5de734e7c778",
+    "mtime": 1789582067.9518883,
+    "seen": 1789582086.370946,
+    "ast_hash": "6b91c6ef664c62711b275135257ccbdb",
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_MIGRATION_PLAN.md": {
@@ -1362,9 +1362,9 @@
     "semantic_hash": ""
   },
   "tests/work-contract-test.mjs": {
-    "mtime": 1789580985.5329213,
-    "seen": 1789581173.7914867,
-    "ast_hash": "858dc5f4d4b4800587389bc42b0efcb1",
+    "mtime": 1789582003.0996904,
+    "seen": 1789582086.370844,
+    "ast_hash": "8bdd37f6bf4081ac5430fe3960474f07",
     "semantic_hash": ""
   },
   ".github/workflows/02-database.yml": {
@@ -1398,9 +1398,27 @@
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_WORK_CENTER.md": {
-    "mtime": 1789581612.8306947,
-    "seen": 1789581667.0852556,
-    "ast_hash": "15b5f4fb26c571cf671d5432d2fa97df",
+    "mtime": 1789582067.9531493,
+    "seen": 1789582086.3709493,
+    "ast_hash": "57278c0ac4087fd7d0c9a4bd619b5e22",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260916180630_preserve_lead_status_on_appointment_cancel.sql": {
+    "mtime": 1789582003.0976558,
+    "seen": 1789582086.370753,
+    "ast_hash": "59c6810f0a76f7864ec9369f0730722f",
+    "semantic_hash": ""
+  },
+  "tests/work-browser-staging.mjs": {
+    "mtime": 1789581753.70689,
+    "seen": 1789582086.3708417,
+    "ast_hash": "d24d5af451d570aaffc3394e1c8a693a",
+    "semantic_hash": ""
+  },
+  "tests/work-workflow-staging.mjs": {
+    "mtime": 1789582044.7532587,
+    "seen": 1789582086.3708477,
+    "ast_hash": "3fc061ad3c1af93efe235f2a5dd2753f",
     "semantic_hash": ""
   }
 }

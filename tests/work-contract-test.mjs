@@ -6,3 +6,6 @@ assert.match(sql,/security invoker/i);assert.match(sql,/limit p_limit\+1/i);asse
 assert.match(sql,/actor_role not in \('owner','admin'\)/i);assert.match(sql,/Invalid assignee/);assert.match(sql,/Invalid work cursor/);
 assert.match(sql,/order by f\.sg,coalesce\(f\.due_at/);assert.doesNotMatch(sql,/select\s+\*\s+from\s+public\./i);
 console.log('PASS WorkItem canonical projection, bounded query, views, role/input guards and deterministic keyset order');
+const cancelFix=await readFile(new URL('../supabase/migrations/20260916180630_preserve_lead_status_on_appointment_cancel.sql',import.meta.url),'utf8');
+assert.match(cancelFix,/normalized_outcome = 'Cancelado' then lead_record\.status/);
+console.log('PASS DF-013 appointment cancellation preserves the opportunity status');

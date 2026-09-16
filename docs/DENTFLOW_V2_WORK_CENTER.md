@@ -39,3 +39,5 @@ From-zero uses an isolated local Supabase in GitHub and applies every local migr
 
 ## Staging evidence
 Authenticated owner Team query: 26 returned rows including sentinel, 21,024 JSON bytes, 208.30 ms client-observed. Reception Team blocked; foreign clinic, assignee, cursor, limit and invalid view rejected; cross-tenant leaks 0. PostgREST EXPLAIN media type is disabled, so plan-level EXPLAIN is NOT RUN.
+
+Workflow dataset `QA WORKFLOW 1789582051202` passed new inquiry, first contact, no response, follow-up, schedule, confirm, cancel, recovery, quote follow-up, quote acceptance and manual-task completion. No-show projection is contract/SQL covered; the time guard correctly prevents marking a future appointment absent. DF-013 was found by this sequence and fixed forward-only by preserving opportunity status on appointment cancellation.
