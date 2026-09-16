@@ -6,9 +6,9 @@
     "semantic_hash": "5ebef3dd159986e465ab65e4014107ec"
   },
   "crm-app/package.json": {
-    "mtime": 1789506214.8269255,
-    "seen": 1789507218.9992988,
-    "ast_hash": "0cc16bb7a3659172836d7bcd785c0d21",
+    "mtime": 1789580928.0671313,
+    "seen": 1789581173.7911758,
+    "ast_hash": "3f3fe0aceea10b6c6da9f1055b511dc5",
     "semantic_hash": ""
   },
   "crm-app/playwright.config.js": {
@@ -210,9 +210,9 @@
     "semantic_hash": ""
   },
   "crm-app/src/hooks/useCrmController.js": {
-    "mtime": 1789506776.1853254,
-    "seen": 1789507218.9995162,
-    "ast_hash": "5a2271b748bb8a18a48512460d5cc157",
+    "mtime": 1789580893.6994145,
+    "seen": 1789581173.7912552,
+    "ast_hash": "4d9c7726ff2e0003761e08e3a52182a8",
     "semantic_hash": ""
   },
   "crm-app/src/hooks/useSupabaseSession.js": {
@@ -384,15 +384,15 @@
     "semantic_hash": "fe45691ac6931bf6b3e7864ebfeb9aef"
   },
   "crm-app/src/routing/CrmRoutes.jsx": {
-    "mtime": 1789506574.0982282,
-    "seen": 1789507218.9996955,
-    "ast_hash": "1919c2deaf25147d68b2dd47969f12d3",
+    "mtime": 1789580893.7048295,
+    "seen": 1789581173.7913108,
+    "ast_hash": "bd3b9fd82027a3a741579006205ab11c",
     "semantic_hash": ""
   },
   "crm-app/src/routing/paths.js": {
-    "mtime": 1789506574.0982282,
-    "seen": 1789507218.9996998,
-    "ast_hash": "0672a5b9049aeace8c2b84ea3eb06038",
+    "mtime": 1789580893.6994145,
+    "seen": 1789581173.7913125,
+    "ast_hash": "b860865a8d7a93ffa03e39861e487c01",
     "semantic_hash": ""
   },
   "crm-app/src/services/crmApi.js": {
@@ -408,9 +408,9 @@
     "semantic_hash": "8a4b5e35c2a57634f76d28071300c8b7"
   },
   "crm-app/tests/routing/fixtures.js": {
-    "mtime": 1789506776.1755586,
-    "seen": 1789507218.9997253,
-    "ast_hash": "6ef09c59d267c20422733bd5be10c4c9",
+    "mtime": 1789580928.0671313,
+    "seen": 1789581173.7913234,
+    "ast_hash": "f19211a790c1d43baf328696b34f22e2",
     "semantic_hash": ""
   },
   "crm-app/tests/routing/navigation.spec.js": {
@@ -1074,9 +1074,9 @@
     "semantic_hash": ""
   },
   ".github/workflows/ci.yml": {
-    "mtime": 1789434655.523011,
-    "seen": 1789490097.2023814,
-    "ast_hash": "8d7d59d2e852a620ea9a41bccb639b92",
+    "mtime": 1789580967.4875143,
+    "seen": 1789581173.7915633,
+    "ast_hash": "8c3765aba396111653ae259e32509735",
     "semantic_hash": ""
   },
   "AGENTS.md": {
@@ -1323,6 +1323,54 @@
     "mtime": 1789507386.8554533,
     "seen": 1789578758.4860659,
     "ast_hash": "657d5f19741700fabdc7b99c71a9099c",
+    "semantic_hash": ""
+  },
+  "crm-app/src/features/work/WorkPage.jsx": {
+    "mtime": 1789580871.6392293,
+    "seen": 1789581173.791246,
+    "ast_hash": "edce9103bab8281fe43f73b92b4c1fc7",
+    "semantic_hash": ""
+  },
+  "crm-app/src/features/work/useWorkResource.js": {
+    "mtime": 1789580871.638238,
+    "seen": 1789581173.7912478,
+    "ast_hash": "a2d2cff4a56d66294ed283db6fa6a2e9",
+    "semantic_hash": ""
+  },
+  "crm-app/src/features/work/workQueries.js": {
+    "mtime": 1789580871.6215343,
+    "seen": 1789581173.7912495,
+    "ast_hash": "947002908040182e8504d7c984f189b5",
+    "semantic_hash": ""
+  },
+  "crm-app/tests/routing/work.spec.js": {
+    "mtime": 1789580928.0671313,
+    "seen": 1789581173.791329,
+    "ast_hash": "8c209d982167f5cae06d506914d9198d",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260916174603_work_center_projection.sql": {
+    "mtime": 1789580940.133713,
+    "seen": 1789581173.7913983,
+    "ast_hash": "3f13407aeabf644a2e883f95fc35e28a",
+    "semantic_hash": ""
+  },
+  "tests/database-from-zero.sql": {
+    "mtime": 1789580967.4875143,
+    "seen": 1789581173.7914174,
+    "ast_hash": "d08a262ac8b0a1f154c94e7e511bfbae",
+    "semantic_hash": ""
+  },
+  "tests/work-contract-test.mjs": {
+    "mtime": 1789580985.5329213,
+    "seen": 1789581173.7914867,
+    "ast_hash": "858dc5f4d4b4800587389bc42b0efcb1",
+    "semantic_hash": ""
+  },
+  ".github/workflows/02-database.yml": {
+    "mtime": 1789580967.4875143,
+    "seen": 1789581173.7915618,
+    "ast_hash": "5654d6f502b75038370c7c73e2500675",
     "semantic_hash": ""
   }
 }

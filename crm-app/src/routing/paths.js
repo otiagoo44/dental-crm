@@ -1,5 +1,5 @@
 export const VIEW_PATHS = Object.freeze({
-  dashboard: '/resumen', leads: '/pacientes', pending: '/pendientes',
+  dashboard: '/resumen', leads: '/pacientes', pending: '/trabajo',
   agenda: '/agenda', metrics: '/analisis', settings: '/configuracion',
   followups: '/seguimientos', tasks: '/tareas',
   opportunities: '/oportunidades',

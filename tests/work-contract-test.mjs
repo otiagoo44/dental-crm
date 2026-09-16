@@ -1,0 +1,8 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+const sql=await readFile(new URL('../supabase/migrations/20260916174603_work_center_projection.sql',import.meta.url),'utf8');
+for(const type of ['initial_contact','followup','confirm_appointment','attendance','no_show_recovery','quote_followup','reactivation','manual_task','assign_owner']) assert.match(sql,new RegExp(`'${type}'`));
+assert.match(sql,/security invoker/i);assert.match(sql,/limit p_limit\+1/i);assert.match(sql,/p_limit < 1 or p_limit > 100/i);
+assert.match(sql,/actor_role not in \('owner','admin'\)/i);assert.match(sql,/Invalid assignee/);assert.match(sql,/Invalid work cursor/);
+assert.match(sql,/order by f\.sg,coalesce\(f\.due_at/);assert.doesNotMatch(sql,/select\s+\*\s+from\s+public\./i);
+console.log('PASS WorkItem canonical projection, bounded query, views, role/input guards and deterministic keyset order');

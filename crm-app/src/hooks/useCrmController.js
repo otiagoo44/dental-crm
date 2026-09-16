@@ -43,7 +43,7 @@ const APPOINTMENT_SAVE_TIMEOUT_MS = 15_000;
 // Existing workflows are kept intact here during the routing migration.
 export default function useCrmController({ session, authError }) {
   const location = useLocation();
-  const contactSlice = /^\/pacientes(?:\/[^/]+)?\/?$/.test(location.pathname);
+  const contactSlice = /^\/pacientes(?:\/[^/]+)?\/?$/.test(location.pathname) || location.pathname === '/trabajo';
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const {

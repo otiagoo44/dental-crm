@@ -13,6 +13,7 @@ const LeadDetail = lazy(() => import('../pages/LeadsPage').then((module) => ({ d
 const MetricsView = lazy(() => import('../pages/MetricsPage'));
 const SettingsView = lazy(() => import('../pages/SettingsPage'));
 const TasksView = lazy(() => import('../pages/TasksPage'));
+const WorkPage = lazy(() => import('../features/work/WorkPage'));
 
 export function AdminOnly({ canAdmin, children }) {
   return canAdmin ? children : <Navigate to="/resumen" replace />;
@@ -91,7 +92,7 @@ export default function CrmRoutes({ controller }) {
       <Route path="/login" element={<Navigate to="/resumen" replace />} />
       <Route path="/pacientes/:contactId" element={<PatientPage profile={profile} />} />
       <Route path="/pacientes" element={<PatientsPage profile={profile} onCreate={() => navigate('/oportunidades?new=1')} />} />
-      <Route path="/trabajo" element={<Navigate to="/pendientes" replace />} />
+      <Route path="/trabajo" element={<WorkPage profile={profile} canAdmin={canAdmin} onContact={markLeadContacted} onOutcome={openRegisterOutcome} onConfirm={confirmAppointmentById} onComplete={completeTask} />} />
       <Route path="/oportunidades/:opportunityId" element={<OpportunityRedirect leads={leads} />} />
       <Route path="/analitica" element={<Navigate to="/analisis" replace />} />
       <Route path="/resumen" element={

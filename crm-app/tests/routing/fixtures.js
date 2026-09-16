@@ -102,6 +102,13 @@ export const test = base.extend({
         if (args.p_filter === 'unassigned') contacts = [];
         return respond(contacts.slice(0, args.p_limit + 1));
       }
+      if (table === 'list_work_items_v1') return respond([{
+        work_key:'task:work-test',clinic_id:clinicId,contact_id:contactA,opportunity_id:leadA,
+        work_type:'initial_contact',patient_name:'Florencia Prueba',patient_phone:'+595981000001',treatment:'Implantes',
+        title:'Contactar nueva consulta',reason:'Consulta recibida recientemente',due_at:new Date(Date.now()-600000).toISOString(),
+        priority_group:'urgent',priority_rank:0,assigned_to:user.id,assigned_name:profile.full_name,
+        source_type:'task',source_id:'f5000000-0000-4000-8000-000000000001',status:'pendiente',available_actions:['contact'],updated_at:new Date().toISOString(),sort_group:0,
+      }]);
       if (table === 'leads') return respond(url.searchParams.has('contact_id') ? leads.filter((lead) => `eq.${lead.contact_id}` === url.searchParams.get('contact_id')) : leads);
       if (table === 'appointments') return respond([{
         id: 'appointment-test', clinic_id: clinicId, lead_id: leadB, leads: leads[2],
