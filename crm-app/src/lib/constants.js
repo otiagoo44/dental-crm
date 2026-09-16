@@ -18,14 +18,15 @@ export const LEAD_STATUSES = [
 export const CLASSIFICATIONS = ['Lead Caliente', 'Lead Medio', 'Lead Frío'];
 
 export const NAV_ITEMS = [
-  { id: 'dashboard', label: 'Inicio', adminLabel: 'Resumen', description: 'Lo que necesita atención ahora.' },
+  { id: 'dashboard', label: 'Inicio', description: 'Lo que necesita atención ahora.' },
   { id: 'leads', label: 'Pacientes', description: 'Buscá y gestioná oportunidades.' },
-  { id: 'pending', label: 'Pendientes', description: 'Lo que necesita atención, ordenado automáticamente.' },
+  { id: 'opportunities', label: 'Oportunidades', description: 'Intereses de tratamiento.', adminOnly: true },
+  { id: 'pending', label: 'Trabajo', description: 'Lo que necesita atención, ordenado automáticamente.' },
   { id: 'followups', label: 'Seguimientos', description: 'Acciones pendientes para no perder oportunidades.', hiddenFromMain: true },
   { id: 'agenda', label: 'Agenda', description: 'Turnos, disponibilidad y asistencia.' },
   { id: 'tasks', label: 'Tareas', description: 'Trabajo operativo asignado a la clínica.', hiddenFromMain: true },
-  { id: 'metrics', label: 'Análisis', description: 'Dónde se está frenando el proceso comercial.', adminOnly: true },
-  { id: 'settings', label: 'Configuración', description: 'Clínica, formulario público y accesos.', adminOnly: true },
+  { id: 'metrics', label: 'Analítica', description: 'Dónde se está frenando el proceso comercial.', adminOnly: true },
+  { id: 'settings', label: 'Configuración', description: 'Clínica, formulario público y accesos.', adminOnly: true, hiddenFromMain: true },
 ];
 
 export const TREATMENT_OPTIONS = [

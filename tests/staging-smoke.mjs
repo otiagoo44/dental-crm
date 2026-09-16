@@ -390,20 +390,27 @@ await check('Realtime delivers a new consultation without F5', async () => {
   let resolveEvent;
   let rejectEvent;
   const eventPromise = new Promise((resolve, reject) => { resolveEvent = resolve; rejectEvent = reject; });
-  const timeout = setTimeout(() => rejectEvent(new Error('Realtime event timeout')), 15_000);
+  let timeout;
   const channel = sessions.receptionA.supabase
     .channel(`qa-release-${startedAt}`)
-    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'leads', filter: `clinic_id=eq.${clinicA}` }, (event) => resolveEvent(event))
-    .subscribe();
-
-  await new Promise((resolve) => setTimeout(resolve, 1_000));
-  const created = await intake(body);
-  assert.equal(created.response.status, 200);
-  const event = await eventPromise;
-  clearTimeout(timeout);
-  await sessions.receptionA.supabase.removeChannel(channel);
-  assert.equal(event.new.id, created.data.lead_id);
-  process.stdout.write(`INFO realtime_latency_ms=${Date.now() - startedAt}\n`);
+    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'leads', filter: `clinic_id=eq.${clinicA}` }, (event) => resolveEvent(event));
+  try {
+    await new Promise((resolve, reject) => {
+      const timer = setTimeout(() => reject(new Error('Realtime subscription timeout')), 20_000);
+      channel.subscribe((status, error) => {
+        if (status === 'SUBSCRIBED') { clearTimeout(timer); resolve(); }
+        if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') { clearTimeout(timer); reject(error || new Error(`Realtime ${status}`)); }
+      });
+    });
+    timeout = setTimeout(() => rejectEvent(new Error('Realtime event timeout after subscription')), 15_000);
+    const [created, event] = await Promise.all([intake(body), eventPromise]);
+    assert.equal(created.response.status, 200);
+    assert.equal(event.new.id, created.data.lead_id);
+    process.stdout.write(`INFO realtime_latency_ms=${Date.now() - startedAt}\n`);
+  } finally {
+    clearTimeout(timeout);
+    await sessions.receptionA.supabase.removeChannel(channel);
+  }
 });
 
 await Promise.all(Object.values(sessions).map(async ({ supabase }) => {

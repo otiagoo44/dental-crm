@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-09-15T21:10:42.057Z",
+  "staging": true,
+  "notes": "UTF-8 JSON bytes, uncompressed; excludes common auth/clinic bootstrap and HTTP headers. Contacts includes one sentinel row. Legacy arrays use the existing workspace selections.",
+  "legacy": {
+    "requests": 9,
+    "rows": 309,
+    "bytes": 320700
+  },
+  "contacts": {
+    "requests": 1,
+    "rows": 26,
+    "renderedRows": 25,
+    "bytes": 12552
+  }
+}

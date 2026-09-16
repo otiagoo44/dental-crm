@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useMatch, useNavigate, useLocation } from 'react-router';
 import { opportunityPath, viewPath, viewForPath } from '../routing/paths';
-import { CONTACT_ATTEMPT_STATUSES } from '../lib/constants';
 import {
   addDaysAsuncion,
   fromDatetimeLocalAsuncion,
@@ -17,7 +16,6 @@ import {
   ROLE,
   ARCHIVED_STATUS,
   terminalStatuses,
-  statusContactDates,
   LEAD_STATUS,
   APPOINTMENT_STATUS,
   APPOINTMENT_ACTIVE_STATUSES,
@@ -44,6 +42,8 @@ const APPOINTMENT_SAVE_TIMEOUT_MS = 15_000;
 
 // Existing workflows are kept intact here during the routing migration.
 export default function useCrmController({ session, authError }) {
+  const location = useLocation();
+  const contactSlice = /^\/pacientes(?:\/[^/]+)?\/?$/.test(location.pathname);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const {
@@ -64,9 +64,8 @@ export default function useCrmController({ session, authError }) {
     refreshClinicData,
     loadLeadEvents,
     setPublicFormConfig,
-  } = useClinicWorkspace({ session, onError: setError });
+  } = useClinicWorkspace({ session, onError: setError, enabled: !contactSlice });
   const navigate = useNavigate();
-  const location = useLocation();
   const opportunityMatch = useMatch('/pacientes/:contactId/oportunidades/:leadId');
   const selectedLeadId = opportunityMatch?.params.leadId || null;
   const selectedContactId = opportunityMatch?.params.contactId || null;
@@ -88,6 +87,12 @@ export default function useCrmController({ session, authError }) {
   const [contactOutcomeSaving, setContactOutcomeSaving] = useState(false);
   const [quoteModal, setQuoteModal] = useState(null);
   const [quoteSaving, setQuoteSaving] = useState(false);
+
+  useEffect(() => {
+    if (bootLoading || location.pathname !== '/oportunidades' || new URLSearchParams(location.search).get('new') !== '1') return;
+    openCreateLeadModal();
+    navigate('/oportunidades', { replace: true });
+  }, [bootLoading, location.pathname, location.search]);
 
   useEffect(() => {
     if (authError) setError(authError);
@@ -123,6 +128,7 @@ export default function useCrmController({ session, authError }) {
   const canAdmin = normalizedRole === ROLE.admin;
   const activeLeads = useMemo(() => leads.filter((lead) => !isArchivedLead(lead)), [leads]);
   const navCounts = useMemo(() => {
+    if (contactSlice) return {};
     const today = todayIsoDate();
     const queue = buildNextActionQueue({ leads: activeLeads, tasks, appointments, quotes });
     const openTasks = tasks.filter((task) => !['hecho', 'cancelado'].includes(task.status));
@@ -132,7 +138,7 @@ export default function useCrmController({ session, authError }) {
       agenda: appointments.filter((appointment) => appointment.appointment_date === today && APPOINTMENT_ACTIVE_STATUSES.includes(appointment.status)).length,
       tasks: openTasks.length,
     };
-  }, [activeLeads, appointments, tasks, quotes]);
+  }, [contactSlice, activeLeads, appointments, tasks, quotes]);
   const clinicContext = useMemo(() => ({
     name: clinic?.name,
     whatsapp: clinic?.whatsapp,
@@ -211,13 +217,7 @@ export default function useCrmController({ session, authError }) {
       return;
     }
 
-    if (statusChanged && statusContactDates.includes(patch.status) && !leadPatch.last_contact_at) {
-      leadPatch.last_contact_at = new Date().toISOString();
-    }
-
-    if (statusChanged && CONTACT_ATTEMPT_STATUSES.includes(patch.status) && leadPatch.contact_attempts === undefined) {
-      leadPatch.contact_attempts = Number(before?.contact_attempts || 0) + 1;
-    }
+    // Status, contact timestamps, attempts, events and tasks are saved by the RPC above.
 
     const { error: updateError } = await supabase
       .from('leads')
@@ -231,41 +231,8 @@ export default function useCrmController({ session, authError }) {
       return;
     }
 
-    let eventErrorMessage = '';
-
-    if (statusChanged) {
-      const { error: eventError } = await supabase.from('lead_events').insert({
-        clinic_id: profile.clinic_id,
-        lead_id: leadId,
-        event_type: 'status_changed',
-        title: 'Estado actualizado',
-        description: `Estado cambiado a ${patch.status}`,
-        created_by: session.user.id,
-      });
-
-      if (eventError) {
-        console.error('Error creating lead event', eventError);
-        eventErrorMessage = 'El paciente se actualizó, pero no pudimos registrar el cambio en su historial. Intentá de nuevo.';
-      }
-    }
-
-    if (statusChanged) {
-      const { error: taskError } = await syncTasksForLeadStatus(
-        { ...before, ...leadPatch, id: leadId, clinic_id: profile.clinic_id },
-        leadPatch.status,
-      );
-
-      if (taskError) {
-        eventErrorMessage = eventErrorMessage || 'El paciente se actualizó, pero no pudimos sincronizar la próxima acción. Intentá de nuevo.';
-      }
-    }
-
     await refreshClinicData();
     await loadLeadEvents(leadId);
-    if (eventErrorMessage) {
-      setError(eventErrorMessage);
-      return;
-    }
     setNotice('Paciente actualizado.');
   }
 

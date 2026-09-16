@@ -1,7 +1,8 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Navigate, Route, Routes, useParams } from 'react-router';
+import { Navigate, Route, Routes, useParams, useNavigate } from 'react-router';
 import { PageSkeleton } from '../components/feedback/AppFeedback';
 import PatientPage from '../pages/PatientPage';
+import PatientsPage from '../pages/PatientsPage';
 import NotFoundPage from '../pages/NotFoundPage';
 const AgendaView = lazy(() => import('../pages/AgendaPage'));
 const Dashboard = lazy(() => import('../pages/DashboardPage'));
@@ -27,7 +28,14 @@ function OpportunityBoundary({ controller, children }) {
   return children;
 }
 
+function OpportunityRedirect({ leads }) {
+  const { opportunityId } = useParams();
+  const lead = leads.find((item) => item.id === opportunityId);
+  return lead ? <Navigate to={`/pacientes/${lead.contact_id}/oportunidades/${lead.id}`} replace /> : <NotFoundPage entity="Oportunidad" />;
+}
+
 export default function CrmRoutes({ controller }) {
+  const navigate = useNavigate();
   const {
     profile,
     clinic,
@@ -81,7 +89,11 @@ export default function CrmRoutes({ controller }) {
     <Routes>
       <Route path="/" element={<Navigate to="/resumen" replace />} />
       <Route path="/login" element={<Navigate to="/resumen" replace />} />
-      <Route path="/pacientes/:contactId" element={<PatientPage leads={leads} tasks={tasks} appointments={appointments} quotes={quotes} />} />
+      <Route path="/pacientes/:contactId" element={<PatientPage profile={profile} />} />
+      <Route path="/pacientes" element={<PatientsPage profile={profile} onCreate={() => navigate('/oportunidades?new=1')} />} />
+      <Route path="/trabajo" element={<Navigate to="/pendientes" replace />} />
+      <Route path="/oportunidades/:opportunityId" element={<OpportunityRedirect leads={leads} />} />
+      <Route path="/analitica" element={<Navigate to="/analisis" replace />} />
       <Route path="/resumen" element={
         <Dashboard
           leads={activeLeads}
@@ -139,7 +151,7 @@ export default function CrmRoutes({ controller }) {
           clinicContext={clinicContext}
         />
 } />
-      <Route path="/pacientes" element={
+      <Route path="/oportunidades" element={
         <LeadsView
           leads={leads}
           appointments={appointments}

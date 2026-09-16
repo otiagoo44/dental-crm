@@ -2,6 +2,7 @@ export const VIEW_PATHS = Object.freeze({
   dashboard: '/resumen', leads: '/pacientes', pending: '/pendientes',
   agenda: '/agenda', metrics: '/analisis', settings: '/configuracion',
   followups: '/seguimientos', tasks: '/tareas',
+  opportunities: '/oportunidades',
 });
 
 export const patientPath = (contactId) => `/pacientes/${encodeURIComponent(contactId)}`;

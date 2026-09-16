@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 import { opportunityPath } from '../routing/paths';
 import { useMemo, useState } from 'react';
 import { Ban, CalendarDays, CalendarPlus, Check, CheckCircle2, ChevronLeft, ChevronRight, Clock3, FileText, Loader2, RefreshCw, UserCheck } from 'lucide-react';
@@ -19,7 +19,14 @@ function appointmentAt(appointment) {
 }
 
 export default function AgendaView({ appointments, quotes = [], actionId, onOutcome, onReschedule, onOpenLead, onNavigate, onRegisterQuote, onRegisterOutcome, onWhatsAppOpened, messageTemplates, clinicContext }) {
-  const [selectedDate, setSelectedDate] = useState(todayIsoDate());
+  const [dateParams, setDateParams] = useSearchParams();
+  const requestedDate = dateParams.get('date');
+  const selectedDate = /^\d{4}-\d{2}-\d{2}$/.test(requestedDate || '') && Number.isFinite(Date.parse(requestedDate)) ? requestedDate : todayIsoDate();
+  const setSelectedDate = (date) => {
+    const next = new URLSearchParams(dateParams);
+    next.set('date', date);
+    setDateParams(next);
+  };
   const [calendarOffset, setCalendarOffset] = useState(0);
   const [mode, setMode] = useState('day');
   const [status, setStatus] = useState('');

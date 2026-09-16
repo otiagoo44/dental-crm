@@ -3,7 +3,7 @@ import { supabase } from '../lib/supabase';
 export function getUserProfile(userId) {
   return supabase
     .from('profiles')
-    .select('*')
+    .select('id,clinic_id,role,active,full_name,email')
     .eq('id', userId)
     .maybeSingle();
 }
@@ -35,6 +35,7 @@ export function getLeadEvents(clinicId, leadId) {
     .order('created_at', { ascending: false });
 }
 
+// LEGACY / DEPRECATED INTERNAL PATH. Retained for views not yet migrated.
 export async function getClinicWorkspace(clinicId) {
   const [leadsResult, appointmentsResult, tasksResult, quotesResult, eventsResult, profilesResult, settingsResult, pricesResult, templatesResult] = await Promise.all([
     supabase

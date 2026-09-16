@@ -7,6 +7,7 @@ import { viewPath } from '../routing/paths';
 const icons = {
   dashboard: Gauge,
   leads: Users,
+  opportunities: ListTodo,
   pending: ListTodo,
   followups: ListTodo,
   agenda: CalendarDays,
@@ -74,7 +75,8 @@ export default function AppLayout({ activeView, setActiveView, clinic, profile, 
           </div>
           <div className="mt-3 flex items-center justify-between border-t border-slate-200 pt-3">
             <span className="rounded-full border border-mint/25 bg-mint/10 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-textSoft">{isAdmin ? 'Owner / admin' : 'Recepción'}</span>
-            <button className="rounded-lg p-2 text-textMuted transition hover:bg-elevated hover:text-danger" type="button" onClick={onLogout} aria-label="Cerrar sesión">
+            {isAdmin ? <Link to="/configuracion" aria-label="Configuración" className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-textMuted"><Settings className="h-4 w-4" /></Link> : null}
+            <button className="min-h-11 min-w-11 rounded-lg p-2 text-textMuted transition hover:bg-elevated hover:text-danger" type="button" onClick={onLogout} aria-label="Cerrar sesión">
               <LogOut className="h-4 w-4" />
             </button>
           </div>
@@ -86,9 +88,10 @@ export default function AppLayout({ activeView, setActiveView, clinic, profile, 
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">
               <p className="truncate text-xs font-bold uppercase tracking-[0.16em] text-mint">Dental CRM · {clinic?.name || 'Sistema Dental'}</p>
-              <h1 className="truncate text-lg font-bold text-cream">{activeItem?.label || 'CRM Dental'}</h1>
+              <p className="truncate text-lg font-bold text-cream">{activeItem?.label || 'CRM Dental'}</p>
             </div>
-            <button className="rounded-xl border border-slate-200 bg-card p-2.5 text-textMuted transition hover:border-mint/30 hover:bg-elevated hover:text-cream" type="button" onClick={onLogout} aria-label="Cerrar sesión">
+            {isAdmin ? <Link to="/configuracion" aria-label="Configuración" className="ml-auto inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-textMuted"><Settings className="h-4 w-4" /></Link> : null}
+            <button className="min-h-11 min-w-11 rounded-xl border border-slate-200 bg-card p-2.5 text-textMuted transition hover:border-mint/30 hover:bg-elevated hover:text-cream" type="button" onClick={onLogout} aria-label="Cerrar sesión">
               <LogOut className="h-4 w-4" />
             </button>
           </div>

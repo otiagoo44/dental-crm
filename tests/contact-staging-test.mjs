@@ -1,0 +1,40 @@
+import assert from 'node:assert/strict';
+import { createRequire } from 'node:module';
+import { writeFile } from 'node:fs/promises';
+import { createContactQueries } from '../crm-app/src/services/contactQueries.js';
+const require = createRequire(new URL('../crm-app/package.json', import.meta.url));
+const { createClient } = require('@supabase/supabase-js');
+const url=process.env.QA_STAGING_SUPABASE_URL;
+assert.equal(new URL(url).hostname,'aqdufiycayedsfldljjq.supabase.co');
+const client=createClient(url,process.env.QA_STAGING_SUPABASE_ANON_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
+const {data:auth,error}=await client.auth.signInWithPassword({email:process.env.QA_RECEPTION_A_EMAIL,password:process.env.QA_RECEPTION_A_PASSWORD});
+assert.ifError(error);
+const {data:profile,error:profileError}=await client.from('profiles').select('clinic_id').eq('id',auth.user.id).single();
+assert.ifError(profileError);
+const queries=createContactQueries(client,profile.clinic_id);
+const page=await queries.listContacts();
+assert.ok(page.rows.length>0);
+const contact=page.rows[0];
+const record=await queries.getContact360(contact.id);
+assert.equal(record.contact.id,contact.id);
+for(const section of ['timeline','appointments','tasks','quotes','notes']) await queries.listRelated({contactId:contact.id,section});
+assert.equal((await createContactQueries(client,process.env.QA_OTHER_CLINIC_ID).listContacts()).rows.length,0);
+assert.equal((await createContactQueries(client,process.env.QA_OTHER_CLINIC_ID).listOpportunities({contactId:contact.id})).rows.length,0);
+assert.equal((await queries.listContacts({search:'%'})).rows.length,0);
+const {data:wirePage,error:wireError}=await client.rpc('list_contacts_page',{p_clinic_id:profile.clinic_id,p_limit:25});
+assert.ifError(wireError);
+const metrics={capturedAt:new Date().toISOString(),staging:true,notes:'UTF-8 JSON bytes, uncompressed; excludes common auth/clinic bootstrap and HTTP headers. Contacts includes one sentinel row. Legacy arrays use the existing workspace selections.',legacy:{requests:0,rows:0,bytes:0},contacts:{requests:1,rows:wirePage.length,renderedRows:page.rows.length,bytes:Buffer.byteLength(JSON.stringify(wirePage))}};
+// Exact legacy workspace selections, read with the same authenticated RLS role.
+const relatedLead='leads(id, contact_id, name, phone, phone_plus, treatment, urgency, situation, evaluation_previous, status, whatsapp_link)';
+const selections=[['leads','*'],['appointments',`*, ${relatedLead}`],['tasks',`*, ${relatedLead}`],['quotes','*'],['lead_events','id,clinic_id,lead_id,event_type,title,description,metadata,created_by,created_at'],['profiles','id,full_name,email,role,active'],['clinic_settings','*'],['treatment_prices','id,treatment,estimated_price'],['message_templates','id,clinic_id,template_key,name,treatment,situation,message,updated_at']];
+for(const [table,fields] of selections){
+ let request=client.from(table).select(fields).eq('clinic_id',profile.clinic_id);
+ if(table==='profiles') request=request.eq('active',true);
+ const {data,error}=await request;
+ assert.ifError(error);
+ metrics.legacy.requests++;metrics.legacy.rows+=data.length;metrics.legacy.bytes+=Buffer.byteLength(JSON.stringify(data));
+}
+await writeFile(new URL('../docs/DENTFLOW_V2_PERFORMANCE.json',import.meta.url),JSON.stringify(metrics,null,2)+'\n');
+console.log('PASS staging authenticated contact/list/related queries and cross-tenant RLS');
+console.log(JSON.stringify(metrics));
+await client.auth.signOut();

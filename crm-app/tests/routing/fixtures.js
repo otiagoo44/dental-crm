@@ -33,7 +33,8 @@ export const session = { access_token: accessToken, refresh_token: 'routing-test
 export const test = base.extend({
   role: ['receptionist', { option: true }],
   authenticated: [true, { option: true }],
-  backend: [async ({ context, role, authenticated }, use) => {
+  realtime: [false, { option: true }],
+  backend: [async ({ context, role, authenticated, realtime }, use) => {
     const calls = [];
     const errors = [];
     const profile = { id: userId, clinic_id: clinicId, role, active: true, full_name: 'Usuario Prueba', email: user.email };
@@ -46,7 +47,32 @@ export const test = base.extend({
       }
     }, session);
     context.on('page', (page) => page.on('pageerror', (error) => errors.push(error.message)));
-    await context.routeWebSocket(/supabase\.co/, (socket) => socket.close());
+    const subscriptions = [];
+    await context.routeWebSocket(/supabase\.co/, (socket) => {
+      if (!realtime) return socket.close();
+      socket.onMessage((raw) => {
+        const rawMessage = JSON.parse(String(raw));
+        const message = Array.isArray(rawMessage) ? { join_ref: rawMessage[0], ref: rawMessage[1], topic: rawMessage[2], event: rawMessage[3], payload: rawMessage[4] } : rawMessage;
+        const send = (event, payload) => socket.send(JSON.stringify([message.join_ref, message.ref, message.topic, event, payload]));
+        if (message.event === 'phx_join') {
+          const bindings = (message.payload.config.postgres_changes || []).map((binding, id) => ({ ...binding, id }));
+          subscriptions.push({ socket, topic: message.topic, joinRef: message.join_ref, bindings });
+          send('phx_reply', { status: 'ok', response: { postgres_changes: bindings } });
+        } else if (message.event === 'phx_leave' || message.event === 'heartbeat') {
+          if (message.event === 'phx_leave') subscriptions.splice(subscriptions.findIndex((s) => s.topic === message.topic), 1);
+          send('phx_reply', { status: 'ok', response: {} });
+        }
+      });
+    });
+    const emit = (table, record) => {
+      for (const {socket,topic,joinRef,bindings} of subscriptions) {
+        const ids = bindings.filter((b) => b.table === table && b.event === 'UPDATE').map((b) => b.id);
+        if (ids.length) socket.send(JSON.stringify([joinRef, null, topic, 'postgres_changes', { ids, data: {
+          schema: 'public', table, type: 'UPDATE', commit_timestamp: new Date().toISOString(), errors: null,
+          columns: Object.keys(record).map((name) => ({ name, type: 'text' })), record, old_record: {},
+        } }]));
+      }
+    };
     await context.route('**/*', async (route) => {
       const request = route.request();
       const url = new URL(request.url());
@@ -65,7 +91,18 @@ export const test = base.extend({
       const table = url.pathname.split('/').at(-1);
       if (table === 'profiles') return respond(url.searchParams.has('id') ? profile : [profile]);
       if (table === 'clinics') return respond({ id: clinicId, name: 'Clínica Routing QA', doctor_name: 'Dra. Prueba' });
-      if (table === 'leads') return respond(leads);
+      if (table === 'list_contacts_page') {
+        const args = request.postDataJSON();
+        let contacts = [contactA, contactB].map((id) => {
+          const related = leads.filter((lead) => lead.contact_id === id);
+          return { ...related[0], id, opportunity_count: related.length, active_opportunity_count: related.length, responsible_name: profile.full_name };
+        });
+        if (args.p_contact_id) contacts = contacts.filter((c) => c.id === args.p_contact_id);
+        if (args.p_search) contacts = contacts.filter((c) => `${c.name} ${c.phone}`.toLowerCase().includes(args.p_search.toLowerCase()));
+        if (args.p_filter === 'unassigned') contacts = [];
+        return respond(contacts.slice(0, args.p_limit + 1));
+      }
+      if (table === 'leads') return respond(url.searchParams.has('contact_id') ? leads.filter((lead) => `eq.${lead.contact_id}` === url.searchParams.get('contact_id')) : leads);
       if (table === 'appointments') return respond([{
         id: 'appointment-test', clinic_id: clinicId, lead_id: leadB, leads: leads[2],
         appointment_date: new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Asuncion' }).format(now),
@@ -76,7 +113,7 @@ export const test = base.extend({
       errors.push(`Unexpected mocked endpoint: ${url.pathname}`);
       return respond({ message: 'Unmocked endpoint' }, 500);
     });
-    await use({ calls, errors });
+    await use({ calls, errors, emit, subscriptions });
     expect(errors).toEqual([]);
   }, { auto: true }],
 });
@@ -89,6 +126,6 @@ export async function login(page) {
 }
 
 export async function expectWorkspace(page) {
-  await expect(page.locator('nav:visible').first()).toBeVisible();
+  await expect(page.locator('nav:visible').first()).toBeVisible({ timeout: 15_000 });
   await expect(page.getByText('Cargando clínica...', { exact: true })).toHaveCount(0);
 }

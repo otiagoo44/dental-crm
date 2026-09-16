@@ -10,7 +10,10 @@ import {
   getUserProfile,
 } from '../services/crmApi';
 
-export default function useClinicWorkspace({ session, onError }) {
+export default function useClinicWorkspace({ session, onError, enabled = true }) {
+  const enabledRef = useRef(enabled);
+  enabledRef.current = enabled;
+  const [legacyReady, setLegacyReady] = useState(false);
   const [bootLoading, setBootLoading] = useState(false);
   const [profile, setProfile] = useState(null);
   const [clinic, setClinic] = useState(null);
@@ -111,15 +114,6 @@ export default function useClinicWorkspace({ session, onError }) {
     activeClinicRef.current = profileData.clinic_id;
     setProfile({ ...profileData, raw_role: profileData.role, role: profileRole });
     setClinic(clinicData);
-    await refreshClinicData(profileData.clinic_id);
-    if (sessionGenerationRef.current !== generation) return;
-
-    if (profileRole === ROLE.admin) {
-      await loadPublicFormConfig(profileData.clinic_id);
-    } else {
-      setPublicFormConfig(null);
-    }
-
     setBootLoading(false);
   }
 
@@ -137,7 +131,8 @@ export default function useClinicWorkspace({ session, onError }) {
   }
 
   const refreshClinicData = useCallback(async (clinicId = profile?.clinic_id) => {
-    if (!clinicId) return false;
+    if (!clinicId || !enabledRef.current) return false;
+    const generation = sessionGenerationRef.current;
     if (refreshInFlightRef.current) {
       refreshQueuedRef.current = true;
       return false;
@@ -148,7 +143,7 @@ export default function useClinicWorkspace({ session, onError }) {
 
     try {
       const { data, error } = await getClinicWorkspace(clinicId);
-      if (activeClinicRef.current !== clinicId) return false;
+      if (activeClinicRef.current !== clinicId || generation !== sessionGenerationRef.current || !enabledRef.current) return false;
       if (error) {
         console.error('Error loading clinic data', error);
         onError('No pudimos actualizar la información. Intentá de nuevo.');
@@ -164,6 +159,7 @@ export default function useClinicWorkspace({ session, onError }) {
       setClinicSettings(data.settings);
       setTreatmentPrices(data.prices);
       setMessageTemplates(data.messageTemplates);
+      setLegacyReady(true);
       return true;
     } finally {
       refreshInFlightRef.current = false;
@@ -177,8 +173,15 @@ export default function useClinicWorkspace({ session, onError }) {
   }, [onError, profile?.clinic_id]);
 
   useEffect(() => {
+    setLegacyReady(false);
+    if (!enabled || !profile?.clinic_id) return;
+    void refreshClinicData();
+    if (profile.role === ROLE.admin) void loadPublicFormConfig(profile.clinic_id);
+  }, [enabled, profile?.clinic_id, refreshClinicData]);
+
+  useEffect(() => {
     const clinicId = profile?.clinic_id;
-    if (!clinicId) return undefined;
+    if (!clinicId || !enabled) return undefined;
     let realtimeHealthy = false;
     const canRefresh = () => document.visibilityState === 'visible' && navigator.onLine !== false;
 
@@ -231,7 +234,7 @@ export default function useClinicWorkspace({ session, onError }) {
       document.removeEventListener('visibilitychange', refreshVisible);
       supabase.removeChannel(channel);
     };
-  }, [profile?.clinic_id, refreshClinicData]);
+  }, [enabled, profile?.clinic_id, refreshClinicData]);
 
   const loadLeadEvents = useCallback(async (leadId) => {
     if (!profile?.clinic_id || !leadId) return false;
@@ -251,7 +254,7 @@ export default function useClinicWorkspace({ session, onError }) {
   }, [profile?.clinic_id, onError]);
 
   return {
-    bootLoading,
+    bootLoading: bootLoading || (enabled && !legacyReady),
     profile,
     clinic,
     leads,

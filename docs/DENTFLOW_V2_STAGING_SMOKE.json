@@ -1,0 +1,43 @@
+{
+  "deployment": "https://crm-odontologia-staging-42i8znepf-ortegatiago733-2656s-projects.vercel.app",
+  "results": [
+    {
+      "width": 375,
+      "readyMs": 4045,
+      "contacts": "PASS",
+      "contact360": "PASS",
+      "secondaryTabs": "PASS",
+      "history": "PASS",
+      "agenda": "PASS",
+      "pending": "PASS",
+      "keyboard": "PASS",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "readyMs": 2501,
+      "contacts": "PASS",
+      "contact360": "PASS",
+      "secondaryTabs": "PASS",
+      "history": "PASS",
+      "agenda": "PASS",
+      "pending": "PASS",
+      "keyboard": "PASS",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "readyMs": 1406,
+      "contacts": "PASS",
+      "contact360": "PASS",
+      "secondaryTabs": "PASS",
+      "history": "PASS",
+      "agenda": "PASS",
+      "pending": "PASS",
+      "keyboard": "PASS",
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "realtime": "PASS contact + opportunity update, no workspace fetch"
+}

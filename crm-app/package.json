@@ -12,7 +12,7 @@
     "test": "npm run test:contracts && npm run test:routing",
     "test:contracts": "npm run test:contacts-auth && npm run test:intake && npm run test:security && npm run test:realtime && npm run test:messages && npm run test:insights && npm run test:workflow && npm run test:appointment && npm run test:owner && npm run test:pricing && npm run test:clarity && npm run test:standalone",
     "test:routing": "playwright test",
-    "test:contacts-auth": "node ../tests/contact-auth-contract-test.mjs",
+    "test:contacts-auth": "node ../tests/contact-auth-contract-test.mjs && node ../tests/contact-query-test.mjs && node ../tests/status-change-regression-test.mjs",
     "test:intake": "node ../tests/edge-intake-contract-test.mjs",
     "test:security": "node ../tests/stored-xss-contract-test.mjs",
     "test:realtime": "node ../tests/realtime-workspace-contract-test.mjs",

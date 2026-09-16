@@ -21,9 +21,8 @@ test('B–F: patient, opportunity, refresh and browser history', async ({ page, 
   await expect(page.getByRole('heading', { name: 'Florencia Prueba · Implantes', exact: true })).toBeVisible();
   // Exercise the anchor's native new-tab behavior, not a navigation callback.
   const link = page.getByRole('link', { name: 'Volver al paciente', exact: true });
-  await link.evaluate((element) => element.setAttribute('target', '_blank'));
   const popupPromise = context.waitForEvent('page');
-  await link.click();
+  await link.click({ modifiers: ['ControlOrMeta'] });
   const popup = await popupPromise;
   await expect(popup.getByRole('heading', { name: 'Oportunidades (2)', exact: true })).toBeVisible();
 });
