@@ -10,7 +10,8 @@
    MCP assigned the first two versions. During a later MCP OAuth outage, the third migration was executed against the explicitly named staging project with Supabase CLI and that exact new version was marked applied. Local and remote history match. Old migrations remain untouched.
 5. Switched only Patients and Contact360 to the dedicated query/resource path.
 6. Preserved legacy data loading and fallback elsewhere; getClinicWorkspace remains DEPRECATED INTERNAL.
-7. Stop after staging release evidence. Do not automatically start Work Center.
+7. Migrated Work Center and validated it independently; legacy queue routes remain for parity/debug.
+8. Expanded Contact 360 into an operating record with a server-side summary, paginated activity projection and interaction command. No new source-of-truth table was introduced.
 
 ## Release evidence
 Staging Supabase: aqdufiycayedsfldljjq. Vercel project: crm-odontologia-staging / prj_XQUi8CtCWRb9wMfE0Wdrbt4Cz3EC.
@@ -24,11 +25,13 @@ Deployment uses preview target with explicit staging URL/public key at build tim
 | Authenticated staging queries / all lazy source tabs | PASS |
 | Existing staging HTTP/Auth/RLS/intake/Reatime smoke | PASS 14/14 |
 | Mocked contact pagination/race suites | PASS 9/9 |
-| Full final npm test | PASS — 51 Playwright tests |
+| Full final npm test | PASS — 57 Playwright tests |
 | Final build + diff review | PASS — production build and `git diff --check` |
 | Final deployment + real browser smoke | PASS — deployment `dpl_2QJubbYFscsApkN6gZ1kjqgeLuk1`, 375/768/1440 |
-| Hosted GitHub CI | NOT RUN |
-| Full migration-from-zero | NOT RUN |
+| Hosted GitHub CI | PASS — run 35161627418 |
+| Full migration-from-zero | PASS — run 35161627407 |
+| Contact interaction staging contract | PASS — summary, timeline pages, idempotency, cross-tenant 0 |
+| Contact 360 deployed browser | PASS — deployment `dpl_7b8gn7fD27UtgBg2WRrKfdcsFJP7`, 375/768/1440 |
 
 ## Reproduce
 From crm-app: npm ci; npm test; npm run build.
@@ -42,4 +45,4 @@ Reuse existing CI; first establish a deterministic local Supabase from-zero base
 
 ## Rollback
 Application rollback can restore the previous staging deployment while leaving additive query/index/publication changes in place. Revert functional DB behavior only with a new reviewed forward migration; never edit or delete applied migrations.
-Before Work Center: review this slice and residual risks; retain the legacy path until all its consumers migrate.
+Continue domain by domain. Retain each legacy path until its replacement has parity, hosted CI and staging browser evidence.

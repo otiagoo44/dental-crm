@@ -48,8 +48,13 @@ try {
   await page.reload();
   await expect(page.getByRole('heading',{name:/Oportunidades \(/})).toBeVisible({timeout:20_000});
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
-  for(const label of ['Timeline','Citas','Trabajo','Presupuestos','Notas']){
-   await page.getByRole('button',{name:label,exact:true}).click();
+  await page.getByRole('button',{name:'Actividad',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Actividad',exact:true})).toBeVisible();
+  await expect(page.getByText('Cargando…',{exact:true})).toHaveCount(0,{timeout:15_000});
+  for(const label of ['Citas','Trabajo','Presupuestos','Notas']){
+   const target=page.getByRole('button',{name:label,exact:true});
+   if(!await target.isVisible())await page.getByText('Más',{exact:true}).click();
+   await target.click();
    await expect(page.getByRole('heading',{name:label,exact:true})).toBeVisible();
    await expect(page.getByText('Cargando…',{exact:true})).toHaveCount(0,{timeout:15_000});
    await expect(page.getByRole('alert')).toHaveCount(0);
@@ -75,6 +80,16 @@ try {
    assert.ok(!requests.some((u)=>/\/(leads|appointments|tasks|quotes|lead_events)$/.test(u.pathname)));
    await restore();restore=null;
    report.realtime='PASS contact + opportunity update, no workspace fetch';
+   await page.locator(`main a[href="${href}"]`).click();
+   await expect(page.getByRole('heading',{name:/Oportunidades \(/})).toBeVisible({timeout:20_000});
+   await page.getByRole('button',{name:'Registrar interacción',exact:true}).click();
+   await page.getByLabel('Tipo').selectOption('note');
+   const interactionNote=`Nota browser QA ${Date.now()}`;
+   await page.getByLabel('Nota breve (opcional)').fill(interactionNote);
+   await page.getByRole('button',{name:'Guardar interacción',exact:true}).click();
+   await expect(page.getByRole('heading',{name:'Actividad',exact:true})).toBeVisible({timeout:15_000});
+   await expect(page.getByText(interactionNote,{exact:true})).toBeVisible({timeout:15_000});
+   report.interaction='PASS immutable administrative note through UI';
   }
   await page.goto(`${base}/pacientes`);
   await page.getByRole('button',{name:'Nueva consulta',exact:true}).click();

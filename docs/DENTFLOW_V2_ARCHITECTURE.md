@@ -13,6 +13,11 @@ getContact360 loads one contact and the first bounded opportunity page. Citas/Tr
 
 Timeline projects existing lead_events across the contact's opportunities. Existing workflows already emit appointment/quote/interactions there. Do not duplicate events or infer a clinical timeline. Legacy rows without events are available in their source tabs; a future unified projection needs stable source identity and deduplication.
 
+### Contact operating record
+`get_contact_operating_summary_v1` returns one tenant-scoped operating summary: responsible person, last interaction, next action, active opportunities and next appointment. `list_contact_timeline_v1` projects the immutable `lead_events` stream across every authorized opportunity for the Contact. It uses `(created_at, id)` keyset pagination, a default limit of 25 and explicit output fields. Related tabs remain lazy and bounded.
+
+`register_contact_interaction_v1` is a SECURITY INVOKER command. It validates channel/outcome combinations and contact/opportunity/assignee ownership, then delegates contact, outcome, follow-up and assignment changes to the existing transactional workflow RPCs. Administrative notes add only an immutable `administrative_note` event. The command accepts no clinical fields. Row locking in the delegated workflows and recent-event checks make immediate retries semantically idempotent.
+
 ### Commands
 Existing workflow RPCs remain the write boundary. DF-009 changes only repeated Contactado assignment to avoid incrementing contact_attempts twice. Row locking serializes updates. Direct explicit contact attempts retain their existing semantics.
 Future extraction candidates are opportunity/appointment/task/quote commands, only when it reduces coupling/test difficulty. The large controller is acknowledged, not disguised as completed architecture work.
@@ -20,7 +25,7 @@ Future extraction candidates are opportunity/appointment/task/quote commands, on
 ### Realtime
 useContactResource owns the current query key. Contacts/leads events invalidate the active page/contact; it re-reads authoritative rows rather than merging unordered payloads. Generation numbers and AbortController reject older responses. Duplicate events debounce 150 ms.
 A contact page ignores other contacts when payload identity is available. Related tabs listen to their source table while open. A new/reconnected subscription invalidates; focus/online/visible also reconcile; unhealthy subscriptions poll every 25s.
-lead_events is not in the current publication: timeline changes caused by lead workflows refresh through leads; focus/reconnect reloads standalone historical changes. No guarantee of instant standalone event inserts.
+`lead_events` is not in the current publication: timeline changes caused by lead workflows refresh through `leads`; successful interaction commands invalidate the Contact resource directly; focus/reconnect reloads standalone historical changes. There is no claim of instant delivery for an event inserted by another client without a corresponding published source-row change.
 No generic cache engine. No new Redis/queues. No global refresh on contact slice events.
 
 ### Legacy coexistence

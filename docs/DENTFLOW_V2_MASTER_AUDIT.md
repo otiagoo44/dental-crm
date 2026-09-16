@@ -29,6 +29,7 @@ Date: 2026-09-15. Branch: feature/operational-maturity-v1. Base inspected: main.
 | DF-011 | HIGH | Work data | Three client queues produced competing definitions of required work | PendingPage, FollowupsPage, TasksPage | `list_work_items_v1` projection with canonical types/views and bounded keyset query | PASS contracts + staging isolation |
 | DF-012 | MEDIUM | Migration history | Local 20260904201956 differs in version from staging 20260904203022 | Supabase migration list | No repair; temporary staging apply mapping used only after dry-run selected one new migration | OPEN; blocks automated upgrade test, does not block from-zero |
 | DF-013 | HIGH | Appointment workflow | Cancel attempted to persist `Cancelado` into constrained opportunity status | Staging workflow QA returned 23514 | Forward migration preserves commercial status while recording appointment cancellation and recovery task | PASS staging regression |
+| DF-014 | HIGH | Contact 360 | Contact history was split across opportunity sections and editable notes | `PatientPage`, `lead_events`, appointments/tasks/quotes | Operating summary plus immutable, paginated contact timeline and guided interaction command | PASS contracts + RLS + staging browser 375/768/1440 |
 
 DF-009 nuance: unreachable browser code did NOT prove missing contact timestamps. The existing RPC already updated last_contact_at/contact_attempts. The reproducible failure was repeating Contactado incremented attempts twice. The migration keeps SELECT FOR UPDATE, tenant/role checks, fixed search_path and the existing transaction. Explicit mark_lead_contacted still records real additional attempts. Notes remain a separate existing command; no claim that a combined note/status edit is one transaction.
 
@@ -43,6 +44,8 @@ DF-009 nuance: unreachable browser code did NOT prove missing contact timestamps
 - Moving an opportunity away from an open Contact360 record is covered even when Realtime's old row omits contact_id.
 - index-normalizer-permission-staging.mjs: authenticated same-clinic edit and trigger-driven Contact sync PASS; name restored.
 - Final full suite/build/deployment/browser statuses: see migration plan and DENTFLOW_V2_STAGING_SMOKE.json.
+- Contact interaction staging contract: operating summary, stable timeline pagination, semantic retry idempotency and cross-tenant leak count 0 PASS. Synthetic fixture prefix: `QA INTERACTION`.
+- Contact 360 browser smoke: registering an immutable administrative note through the deployed UI PASS at 1440; responsive navigation and lazy Activity/More sections PASS at 375/768/1440.
 
 ## Performance
 See DENTFLOW_V2_PERFORMANCE.json for the captured dataset: legacy 9 requests, 309 rows, 320,700 JSON bytes; Contacts 1 request, 26 rows (25 rendered + sentinel), 12,552 bytes. Excludes common auth/profile/clinic bootstrap, HTTP headers and compression. This is an observed payload reduction on this staging dataset, not a universal latency claim.
@@ -53,4 +56,5 @@ Authenticated EXPLAIN ANALYZE of list_contacts_page with profile lookup: 26 rows
 - Existing Supabase advisories: 16 authenticated SECURITY DEFINER workflow functions; save_lead_followup retains required guarded domain writes. New read function is INVOKER. Auth leaked-password protection is disabled. No auth settings changed.
 - Legacy analytics/opportunity detail/workspace still have unbounded fetches.
 - Contact summary responsibility is the owner of the earliest active opportunity, not a new patient-owner model.
+- Contact interactions reuse `lead_events`; the projection is administrative and intentionally excludes clinical-record content. Standalone notes are immutable events while `leads.notes` remains the editable opportunity summary.
 - Graphify used as discovery map, followed by source inspection and execution. Real Codex token savings not measured.
