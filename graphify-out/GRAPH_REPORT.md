@@ -1,54 +1,54 @@
 # Graph Report - dental-crm  (2026-09-16)
 
 ## Corpus Check
-- 231 files · ~121,980 words
+- 235 files · ~125,455 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: (none) 5, .example 1, .css 1)
 
 ## Summary
-- 1593 nodes · 2724 edges · 190 communities (97 shown, 65 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 37 edges (avg confidence: 0.85)
+- 1627 nodes · 2775 edges · 184 communities (91 shown, 64 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 40 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `af240b4a`
+- Built from commit: `5851175f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - analytics.js
-- QuoteModal.jsx
+- react
 - retention-insights-test.mjs
 - 20260515021456_create_dental_crm_schema.sql
 - staging-qa-setup.mjs
 - 20260821180858_rebuild_new_supabase_production_schema.sql
 - useCrmController
-- FollowupsPage.jsx
+- AgendaPage.jsx
 - 20260824162341_enforce_operational_integrity_and_quotes.sql
 - realtime-capacity.mjs
 - staging-workflow.mjs
 - operational-workflow-test.mjs
 - 20260612142000_edge_function_support_indexes.sql
-- LeadFormModal.jsx
+- normalizeAppointmentStatus
 - scripts
 - LeadsPage.jsx
 - intake-abuse-load.mjs
 - fixtures.js
 - multitenant-load.mjs
-- MetricsPage.jsx
+- formatters.js
 - visual-harness/main.jsx
 - 20260612140000_production_schema_hardening.sql
 - contactQueries.js
-- crmDomain.js
+- humanizeCrmError
 - index.ts
 - 20260612141000_rls_professional_policies.sql
 - data-volume-benchmark.sql
 - 20260904201956_contact_opportunity_model.sql
-- AgendaPage.jsx
-- normalizeText
+- CrmRoutes.jsx
+- crmDomain.js
 - 20260827162541_clarity_priority_upgrade.sql
 - 20260822213000_link_contact_tasks_and_whatsapp_templates.sql
-- workQueries.js
+- fromDatetimeLocalAsuncion
 - Dental CRM
 - lead-intake-test.ps1
 - package.json
@@ -57,7 +57,7 @@
 - 20260822230000_add_retention_insights.sql
 - vercel.json
 - appointment-modal-flow-test.mjs
-- SettingsPage.jsx
+- useClinicWorkspace.js
 - crm-app/vite.config.js
 - 20260828120000_harden_public_intake_rate_limit.sql
 - standalone-deployment-test.mjs
@@ -100,9 +100,9 @@
 - nextActions.js
 - Changelog
 - Writing Guidelines for Postgres References
-- useClinicWorkspace.js
+- constants.js
 - FIRST CLINIC PRODUCTION READINESS
-- humanizeCrmError
+- PublicFormSettings
 - @supabase/supabase-js
 - Decisions
 - Section Definitions
@@ -110,7 +110,6 @@
 - App.jsx
 - Arquitectura y seguridad auditadas
 - Despliegue seguro a staging
-- PatientPage.jsx
 - Capacidad y escalamiento
 - Manual Acceptance Test — CRM Dental
 - Rollback Plan
@@ -128,7 +127,7 @@
 - Backup y recuperación
 - n8n Asincronico
 - DentFlow V2 — Work Center
-- 20260915210052_contacts_query_slice.sql
+- public.get_contact_operating_summary_v1
 - public.save_lead_followup
 - lead-intake
 - advanced-full-text-search.md
@@ -167,54 +166,48 @@
 - public.list_work_items_v1
 - work-staging-test.mjs
 - buildAnalytics
-- supabase.js
-- CrmRoutes.jsx
-- AppointmentModal.jsx
-- PublicFormSettings
-- formatters.js
+- PatientPage.jsx
 - TreatmentPricesSettings
-- QuoteModal
 - work-browser-staging.mjs
 - work-workflow-staging.mjs
-- TaskFormModal
 - public.update_appointment_outcome
 
 ## God Nodes (most connected - your core abstractions)
-1. `useCrmController()` - 57 edges
-2. `humanizeCrmError()` - 48 edges
-3. `react` - 37 edges
-4. `lucide-react` - 27 edges
-5. `scripts` - 24 edges
-6. `fromDatetimeLocalAsuncion()` - 24 edges
-7. `formatDateTime` - 21 edges
+1. `humanizeCrmError()` - 47 edges
+2. `useCrmController()` - 44 edges
+3. `react` - 38 edges
+4. `lucide-react` - 29 edges
+5. `fromDatetimeLocalAsuncion()` - 25 edges
+6. `scripts` - 24 edges
+7. `formatDateTime` - 22 edges
 8. `todayIsoDate()` - 20 edges
-9. `Button()` - 19 edges
-10. `getEffectiveNextAction()` - 19 edges
+9. `getEffectiveNextAction()` - 19 edges
+10. `Button()` - 19 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `snapshot()` --calls--> `buildNextActionQueue()`  [EXTRACTED]
   tests/staging-workflow.mjs → crm-app/src/lib/nextActions.js
 - `ClinicWorkspace()` --calls--> `useCrmController()`  [EXTRACTED]
   crm-app/src/App.jsx → crm-app/src/hooks/useCrmController.js
-- `LeadMiniCard()` --calls--> `formatDateTime`  [EXTRACTED]
-  crm-app/src/components/crm/CrmPrimitives.jsx → crm-app/src/lib/formatters.js
-- `handleSubmit()` --calls--> `humanizeCrmError()`  [EXTRACTED]
-  crm-app/src/components/modals/AppointmentModal.jsx → crm-app/src/lib/errors.js
+- `Summary()` --calls--> `formatDateTime`  [EXTRACTED]
+  crm-app/src/pages/PatientPage.jsx → crm-app/src/lib/formatters.js
+- `handleSave()` --calls--> `humanizeCrmError()`  [EXTRACTED]
+  crm-app/src/pages/SettingsPage.jsx → crm-app/src/lib/errors.js
 - `handleSubmit()` --calls--> `humanizeCrmError()`  [EXTRACTED]
   crm-app/src/components/modals/LeadFormModal.jsx → crm-app/src/lib/errors.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (190 total, 65 thin omitted)
+## Communities (184 total, 64 thin omitted)
 
 ### Community 0 - "analytics.js"
 Cohesion: 0.16
 Nodes (28): appointmentMoment(), ATTENDED_EVENTS, beforeEnd(), BOOKING_EVENTS, buildBottleneck(), buildCohortStages(), buildFunnel(), buildLossRows() (+20 more)
 
-### Community 1 - "QuoteModal.jsx"
-Cohesion: 0.21
-Nodes (13): Field(), TextArea(), ModalActions(), ModalHeader(), ModalShell(), AppointmentModal, ArchiveLeadModal, ContactOutcomeModal (+5 more)
+### Community 1 - "react"
+Cohesion: 0.14
+Nodes (25): Field(), Select(), TextArea(), followupPresetValue(), getLeadFormDefaults(), LeadFormModal(), handleSubmit(), ModalActions() (+17 more)
 
 ### Community 2 - "retention-insights-test.mjs"
 Cohesion: 0.10
@@ -233,12 +226,12 @@ Cohesion: 0.06
 Nodes (35): app_private.current_clinic_id(), app_private.current_profile(), app_private.has_role(), app_private.is_clinic_member(), appointments_active_slot_unique_idx, appointments_lead_id_prod_idx, audit_logs_actor_id_idx, automation_jobs_lead_id_idx (+27 more)
 
 ### Community 6 - "useCrmController"
-Cohesion: 0.13
-Nodes (20): useCrmController(), confirmAppointmentById(), createLeadEvent(), createManualLead(), openAppointmentModal(), openLostLeadModal(), openQuoteModal(), openRescheduleModal() (+12 more)
+Cohesion: 0.11
+Nodes (24): useCrmController(), confirmAppointmentById(), createLeadEvent(), createManualLead(), markLeadContacted(), openAppointmentModal(), openLostLeadModal(), openQuoteModal() (+16 more)
 
-### Community 7 - "FollowupsPage.jsx"
-Cohesion: 0.20
-Nodes (13): WhatsAppButton(), Card(), EmptyState(), FilterPanel(), PriorityBadge(), styles, temperature, TemperatureBadge() (+5 more)
+### Community 7 - "AgendaPage.jsx"
+Cohesion: 0.12
+Nodes (21): Info(), WhatsAppButton(), Button(), variants, Card(), EmptyState(), FilterPanel(), PageHeader() (+13 more)
 
 ### Community 8 - "20260824162341_enforce_operational_integrity_and_quotes.sql"
 Cohesion: 0.10
@@ -249,8 +242,8 @@ Cohesion: 0.06
 Nodes (30): allowedHost, anonKey, apiUrl, authClient, authMode, clinicSlug, confirmation, { createClient } (+22 more)
 
 ### Community 10 - "staging-workflow.mjs"
-Cohesion: 0.08
-Nodes (28): admin, appointmentDate, client(), { createClient }, createPriorityLead(), env, futureQueue, hot (+20 more)
+Cohesion: 0.07
+Nodes (37): defaults(), QuoteModal(), submit(), updateTreatment(), findTreatmentPrice(), normalizeTreatmentKey(), quoteTreatmentOptions(), options (+29 more)
 
 ### Community 11 - "operational-workflow-test.mjs"
 Cohesion: 0.07
@@ -260,17 +253,17 @@ Nodes (26): baseLead, coldOverdueBeforeHotTomorrow, confirmationAction, duplicat
 Cohesion: 0.09
 Nodes (27): appointments_clinic_date_time_prod_idx, audit_logs_clinic_created_desc_idx, automation_jobs_clinic_status_idx, automation_jobs_status_retry_idx, campaigns_clinic_active_idx, clinic_public_forms_slug_token_active_idx, form_submission_logs_form_ip_created_desc_idx, form_submission_logs_form_phone_created_desc_idx (+19 more)
 
-### Community 13 - "LeadFormModal.jsx"
-Cohesion: 0.16
-Nodes (14): followupPresetValue(), getLeadFormDefaults(), LeadFormModal(), handleSubmit(), CONTACT_ATTEMPT_STATUSES, CONTACTED_STATUSES, EVALUATION_OPTIONS, LEAD_SOURCE_OPTIONS (+6 more)
+### Community 13 - "normalizeAppointmentStatus"
+Cohesion: 0.67
+Nodes (4): canTransitionAppointment(), normalizeAppointmentStatus(), appointmentAt(), AppointmentCard()
 
 ### Community 14 - "scripts"
 Cohesion: 0.08
 Nodes (24): scripts, build, build:production, build:staging, dev, preview, test, test:appointment (+16 more)
 
 ### Community 15 - "LeadsPage.jsx"
-Cohesion: 0.14
-Nodes (14): buildCommercialTimeline(), buildWeeklyReportText(), EVENT_COPY, LOST_REASONS, PRIORITY_FILTERS, CLASSIFICATIONS, LEAD_STATUSES, displayConsultationReason() (+6 more)
+Cohesion: 0.11
+Nodes (21): LeadMiniCard(), temperature, TemperatureBadge(), buildCommercialTimeline(), buildWeeklyReportText(), EVENT_COPY, getLeadPriority(), LOST_REASONS (+13 more)
 
 ### Community 16 - "intake-abuse-load.mjs"
 Cohesion: 0.09
@@ -284,25 +277,25 @@ Nodes (17): accessToken, baseLead, contactA, contactB, expectWorkspace(), leadA,
 Cohesion: 0.10
 Nodes (18): allowedHost, apiUrl, endpoint, endpointUrl, fixture(), isLocalHost, origin, perClinic (+10 more)
 
-### Community 19 - "MetricsPage.jsx"
-Cohesion: 0.10
-Nodes (19): Button(), variants, PageHeader(), TYPE_LABEL, formatDurationMinutes(), formatMoney(), PRIORITY_GROUP, greeting() (+11 more)
+### Community 19 - "formatters.js"
+Cohesion: 0.11
+Nodes (15): formatDurationMinutes(), APPOINTMENT_ACTIVE_STATUSES, formatMoney(), Dashboard(), greeting(), ReceptionHome(), AnalysisCards(), FunnelAnalysis() (+7 more)
 
 ### Community 20 - "visual-harness/main.jsx"
-Cohesion: 0.11
-Nodes (16): AppLayout(), icons, NAV_ITEMS, Dashboard(), appointments, common, hour, isOwner (+8 more)
+Cohesion: 0.13
+Nodes (23): AppointmentModal(), buildTimeSlots(), getAppointmentFormDefaults(), isToday(), startOfAsuncionDate(), uniqueStrings(), todayIsoDate(), toLocalIsoDate() (+15 more)
 
 ### Community 21 - "20260612140000_production_schema_hardening.sql"
 Cohesion: 0.25
 Nodes (17): clinic_public_forms_clinic_slug_unique_idx, clinic_public_forms_public_token_unique_idx, clinics_slug_unique_idx, public.appointments, public.audit_logs, public.automation_jobs, public.campaigns, public.clinic_public_forms (+9 more)
 
 ### Community 22 - "contactQueries.js"
-Cohesion: 0.15
-Nodes (23): checked(), CONTACT_FILTERS, CONTACT_PAGE_SIZE, createContactQueries(), getContact360(), listContacts(), listOpportunities(), listRelated() (+15 more)
+Cohesion: 0.11
+Nodes (33): checked(), CONTACT_FILTERS, CONTACT_PAGE_SIZE, createContactQueries(), getContact360(), listAssignees(), listContacts(), listOpportunities() (+25 more)
 
-### Community 23 - "crmDomain.js"
-Cohesion: 0.15
-Nodes (21): NavButton(), APPOINTMENT_ACTIVE_STATUSES, APPOINTMENT_OUTCOME_LEAD_STATUSES, APPOINTMENT_STATUS, ARCHIVED_STATUS, buildLeadFormPatch(), isArchivedLead(), isContactTask() (+13 more)
+### Community 23 - "humanizeCrmError"
+Cohesion: 0.21
+Nodes (9): Login(), handleSubmit(), handleSubmit(), ArchiveLeadModal(), handleSubmit(), TaskFormModal(), handleSubmit(), handleLogout() (+1 more)
 
 ### Community 24 - "index.ts"
 Cohesion: 0.15
@@ -320,13 +313,13 @@ Nodes (17): qa_appointments, qa_appointments_clinic_date_time_idx, qa_audit, qa_
 Cohesion: 0.16
 Nodes (15): app_private.sync_lead_contact, app_private.sync_lead_contact(), contacts_clinic_name_idx, leads_clinic_contact_created_idx, leads_clinic_open_contact_treatment_unique_idx, public.contacts, public.create_manual_lead(), public.create_public_lead_intake() (+7 more)
 
-### Community 28 - "AgendaPage.jsx"
-Cohesion: 0.16
-Nodes (11): ActiveFilterChips(), FilterSheet(), StatCard(), canTransitionAppointment(), PRIORITY_GROUP_LABEL, appointmentAt(), AppointmentCard(), EMPTY_FILTERS (+3 more)
+### Community 28 - "CrmRoutes.jsx"
+Cohesion: 0.09
+Nodes (18): formatActionMoment(), PendingActionCard(), ActiveFilterChips(), FilterSheet(), PRIORITY_GROUP_LABEL, actionLabel(), actionTypeOptions(), EMPTY_FILTERS (+10 more)
 
-### Community 29 - "normalizeText"
-Cohesion: 0.25
-Nodes (9): handleWhatsAppOpened(), followupCompliance(), normalizeLeadSource(), isOpenTask(), normalizeTaskStatus(), normalizeText(), actionLabel(), actionTypeOptions() (+1 more)
+### Community 29 - "crmDomain.js"
+Cohesion: 0.13
+Nodes (27): completeTask(), handleWhatsAppOpened(), addDaysIso(), APPOINTMENT_OUTCOME_LEAD_STATUSES, APPOINTMENT_STATUS, appointmentDueIso(), ARCHIVED_STATUS, buildLeadFormPatch() (+19 more)
 
 ### Community 30 - "20260827162541_clarity_priority_upgrade.sql"
 Cohesion: 0.14
@@ -336,9 +329,9 @@ Nodes (9): app_private.derive_lead_score_and_source, app_private.lead_score_conf
 Cohesion: 0.22
 Nodes (10): completed, message_templates_clinic_key_unique_idx, public.complete_task(), public.mark_lead_contacted(), public.record_contact_attempt(), public.record_whatsapp_opened(), public.save_lead_followup(), public.leads (+2 more)
 
-### Community 32 - "workQueries.js"
-Cohesion: 0.25
-Nodes (10): useWorkResource(), relativeTime(), WorkPage(), decodeWorkCursor(), encodeWorkCursor(), listWorkItems(), normalizeWorkView(), VIEW_KEYS (+2 more)
+### Community 32 - "fromDatetimeLocalAsuncion"
+Cohesion: 0.29
+Nodes (9): ContactOutcomeModal(), selectedFollowupAt(), submit(), InteractionModal(), submit(), addDaysAsuncion(), dateTimeParts(), fromDatetimeLocalAsuncion() (+1 more)
 
 ### Community 33 - "Dental CRM"
 Cohesion: 0.09
@@ -372,9 +365,9 @@ Nodes (7): buildCommand, framework, headers, installCommand, outputDirectory, re
 Cohesion: 0.29
 Nodes (6): abortSignalAt, appSource, clearTimeoutAt, closeModalAt, refreshAt, unlockModalAt
 
-### Community 41 - "SettingsPage.jsx"
-Cohesion: 0.20
-Nodes (8): Info(), LeadMiniCard(), Select(), StatusBadge(), statusStyles, roleLabel(), TeamSettings(), SettingsView
+### Community 41 - "useClinicWorkspace.js"
+Cohesion: 0.45
+Nodes (9): useClinicWorkspace(), bootstrapUser(), loadPublicFormConfig(), normalizeRole(), getClinic(), getClinicWorkspace(), getLeadEvents(), getPublicFormConfig() (+1 more)
 
 ### Community 42 - "crm-app/vite.config.js"
 Cohesion: 0.47
@@ -432,17 +425,17 @@ Nodes (15): [0.1.3](https://github.com/supabase/agent-skills/compare/v0.1.2...v0
 Cohesion: 0.12
 Nodes (15): 1. Concrete Transformation Patterns, 2. Error-First Structure, 3. Quantified Impact, 4. Self-Contained Examples, 5. Semantic Naming, Code Example Standards, Comments, Impact Level Guidelines (+7 more)
 
-### Community 108 - "useClinicWorkspace.js"
-Cohesion: 0.45
-Nodes (9): useClinicWorkspace(), bootstrapUser(), loadPublicFormConfig(), normalizeRole(), getClinic(), getClinicWorkspace(), getLeadEvents(), getPublicFormConfig() (+1 more)
+### Community 108 - "constants.js"
+Cohesion: 0.18
+Nodes (10): CLASSIFICATIONS, CONTACT_ATTEMPT_STATUSES, CONTACTED_STATUSES, EVALUATION_OPTIONS, LEAD_SOURCE_OPTIONS, LEAD_STATUSES, NEXT_ACTION_OPTIONS, SCHEDULED_STATUSES (+2 more)
 
 ### Community 109 - "FIRST CLINIC PRODUCTION READINESS"
 Cohesion: 0.13
 Nodes (14): Arquitectura, Capacity, Decisión, Estado, First clinic, FIRST CLINIC PRODUCTION READINESS, Landing onboarding, Load (+6 more)
 
-### Community 110 - "humanizeCrmError"
-Cohesion: 0.19
-Nodes (13): Login(), handleSubmit(), ArchiveLeadModal(), handleSubmit(), completeTask(), handleLogout(), markLeadContacted(), saveAppointmentSchedule() (+5 more)
+### Community 110 - "PublicFormSettings"
+Cohesion: 0.27
+Nodes (8): formatAllowedOrigins(), generatePublicToken(), publicFormFetchSnippet(), publicFormPayloadExample(), slugify(), getPublicFormDefaults(), PublicFormSettings(), handleSave()
 
 ### Community 111 - "@supabase/supabase-js"
 Cohesion: 0.22
@@ -461,8 +454,8 @@ Cohesion: 0.22
 Nodes (8): artifacts, bypass, {chromium,expect}, client, {createClient}, report, require, writer
 
 ### Community 115 - "App.jsx"
-Cohesion: 0.07
-Nodes (24): App(), AppBoundary(), AuthBoundary(), ClinicWorkspace(), PublicEmbedLeadForm, Banner(), FullScreenLoader(), PageSkeleton() (+16 more)
+Cohesion: 0.06
+Nodes (28): App(), AppBoundary(), AuthBoundary(), ClinicWorkspace(), PublicEmbedLeadForm, AppLayout(), icons, NavButton() (+20 more)
 
 ### Community 116 - "Arquitectura y seguridad auditadas"
 Cohesion: 0.20
@@ -471,10 +464,6 @@ Nodes (9): Archivos de verificación, Arquitectura y seguridad auditadas, CORS, 
 ### Community 117 - "Despliegue seguro a staging"
 Cohesion: 0.22
 Nodes (8): 1. Preparar y vincular staging, 2. Aplicar solamente las migraciones pendientes, 3. Verificar PostgreSQL, RPC, RLS y presupuestos, 4. Desplegar `lead-intake`, 5. Prueba de captación en staging, 6. Desplegar el frontend al final, Criterio de detención, Despliegue seguro a staging
-
-### Community 118 - "PatientPage.jsx"
-Cohesion: 0.19
-Nodes (17): formatActionMoment(), PendingActionCard(), PageControls(), QueryError(), useContactResource(), handleLeadSelect(), formatDateTime, Opportunity() (+9 more)
 
 ### Community 119 - "Capacidad y escalamiento"
 Cohesion: 0.25
@@ -544,6 +533,10 @@ Nodes (4): Errores Visibles, n8n Asincronico, Reglas, Tabla De Entrada
 Cohesion: 0.22
 Nodes (8): Canonical model, DentFlow V2 — Work Center, Dependency audit, Guided actions and Realtime, Legacy parity, Release safety and migration history, Staging evidence, System views and permissions
 
+### Community 136 - "public.get_contact_operating_summary_v1"
+Cohesion: 0.23
+Nodes (8): public.appointments, public.contacts, public.lead_events, public.leads, public.profiles, contacts_clinic_created_id_idx, public.get_contact_operating_summary_v1(), public.list_contact_timeline_v1()
+
 ### Community 137 - "public.save_lead_followup"
 Cohesion: 0.50
 Nodes (3): public.save_lead_followup(), public.leads, public.tasks
@@ -557,32 +550,12 @@ Cohesion: 0.29
 Nodes (7): args, {createClient}, login(), make(), payload, require, started
 
 ### Community 176 - "buildAnalytics"
-Cohesion: 0.22
-Nodes (9): buildAnalytics(), uniqueById(), buildOwnerSummary(), appointments, leads, now, quotes, summary (+1 more)
-
-### Community 177 - "supabase.js"
 Cohesion: 0.20
-Nodes (9): PasswordInput(), hasPublicConfig, publicConfig, publicConfigError, publicLeadWebhookUrl, supabaseAnonKey, supabaseUrl, hasSupabaseConfig (+1 more)
+Nodes (10): buildAnalytics(), normalizeLeadSource(), uniqueById(), buildOwnerSummary(), appointments, leads, now, quotes (+2 more)
 
-### Community 180 - "CrmRoutes.jsx"
-Cohesion: 0.20
-Nodes (7): NotFoundPage(), FollowupsView, LeadDetail, LeadsView, PendingView, WorkPage, react-router
-
-### Community 181 - "AppointmentModal.jsx"
-Cohesion: 0.33
-Nodes (12): AppointmentModal(), handleSubmit(), buildTimeSlots(), getAppointmentFormDefaults(), isToday(), startOfAsuncionDate(), uniqueStrings(), todayIsoDate() (+4 more)
-
-### Community 182 - "PublicFormSettings"
-Cohesion: 0.24
-Nodes (9): savePublicFormConfig(), formatAllowedOrigins(), generatePublicToken(), publicFormFetchSnippet(), publicFormPayloadExample(), slugify(), getPublicFormDefaults(), PublicFormSettings() (+1 more)
-
-### Community 183 - "formatters.js"
-Cohesion: 0.32
-Nodes (10): ContactOutcomeModal(), selectedFollowupAt(), submit(), addDaysIso(), appointmentDueIso(), addDaysAsuncion(), dateTimeParts(), fromDatetimeLocalAsuncion() (+2 more)
-
-### Community 185 - "QuoteModal"
-Cohesion: 0.31
-Nodes (9): defaults(), QuoteModal(), submit(), updateTreatment(), findTreatmentPrice(), normalizeTreatmentKey(), quoteTreatmentOptions(), options (+1 more)
+### Community 177 - "PatientPage.jsx"
+Cohesion: 0.06
+Nodes (38): PasswordInput(), PageControls(), QueryError(), useWorkResource(), relativeTime(), WorkPage(), decodeWorkCursor(), encodeWorkCursor() (+30 more)
 
 ### Community 186 - "work-browser-staging.mjs"
 Cohesion: 0.20
@@ -592,29 +565,25 @@ Nodes (6): @playwright/test, bypass, {chromium,expect}, {createClient}, report, 
 Cohesion: 0.22
 Nodes (9): c, call(), {createClient}, date, observedNoShow, require, stamp, tomorrow (+1 more)
 
-### Community 188 - "TaskFormModal"
-Cohesion: 0.50
-Nodes (3): getTaskFormDefaults(), TaskFormModal(), handleSubmit()
-
 ## Knowledge Gaps
-- **550 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+545 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 828 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **65 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **560 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+555 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 845 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **64 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `@supabase/supabase-js` connect `@supabase/supabase-js` to `package.json`, `staging-qa-setup.mjs`, `work-browser-staging.mjs`, `staging-workflow.mjs`, `work-staging-test.mjs`, `supabase.js`, `contact-browser-staging.mjs`, `contactQueries.js`, `dedupe-fix-smoke.mjs`, `work-workflow-staging.mjs`, `staging-smoke.mjs`?**
-  _High betweenness centrality (0.044) - this node is a cross-community bridge._
-- **Why does `react` connect `AgendaPage.jsx` to `QuoteModal.jsx`, `package.json`, `FollowupsPage.jsx`, `SettingsPage.jsx`, `useClinicWorkspace.js`, `LeadFormModal.jsx`, `LeadsPage.jsx`, `supabase.js`, `App.jsx`, `MetricsPage.jsx`, `AppointmentModal.jsx`, `PatientPage.jsx`, `crmDomain.js`, `CrmRoutes.jsx`, `visual-harness/main.jsx`?**
-  _High betweenness centrality (0.035) - this node is a cross-community bridge._
-- **Why does `useCrmController()` connect `useCrmController` to `nextActions.js`, `useClinicWorkspace.js`, `humanizeCrmError`, `App.jsx`, `AppointmentModal.jsx`, `PatientPage.jsx`, `crmDomain.js`, `PublicFormSettings`, `formatters.js`, `normalizeText`?**
+- **Why does `@supabase/supabase-js` connect `@supabase/supabase-js` to `package.json`, `staging-qa-setup.mjs`, `work-browser-staging.mjs`, `staging-workflow.mjs`, `work-staging-test.mjs`, `PatientPage.jsx`, `contact-browser-staging.mjs`, `contactQueries.js`, `dedupe-fix-smoke.mjs`, `work-workflow-staging.mjs`, `staging-smoke.mjs`?**
+  _High betweenness centrality (0.042) - this node is a cross-community bridge._
+- **Why does `react` connect `react` to `package.json`, `AgendaPage.jsx`, `useClinicWorkspace.js`, `LeadsPage.jsx`, `PatientPage.jsx`, `App.jsx`, `visual-harness/main.jsx`, `formatters.js`, `CrmRoutes.jsx`, `crmDomain.js`?**
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+- **Why does `humanizeCrmError()` connect `humanizeCrmError` to `fromDatetimeLocalAsuncion`, `react`, `retention-insights-test.mjs`, `useCrmController`, `AgendaPage.jsx`, `useClinicWorkspace.js`, `staging-workflow.mjs`, `PublicFormSettings`, `buildAnalytics`, `PatientPage.jsx`, `App.jsx`, `visual-harness/main.jsx`, `crmDomain.js`?**
   _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **Are the 28 inferred relationships involving `useCrmController()` (e.g. with `completeTask()` and `confirmAppointmentById()`) actually correct?**
   _`useCrmController()` has 28 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _550 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _560 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `react` be split into smaller, more focused modules?**
+  _Cohesion score 0.14487179487179488 - nodes in this community are weakly interconnected._
 - **Should `retention-insights-test.mjs` be split into smaller, more focused modules?**
   _Cohesion score 0.09885057471264368 - nodes in this community are weakly interconnected._
-- **Should `20260515021456_create_dental_crm_schema.sql` be split into smaller, more focused modules?**
-  _Cohesion score 0.0841813135985199 - nodes in this community are weakly interconnected._

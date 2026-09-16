@@ -6,9 +6,9 @@
     "semantic_hash": "5ebef3dd159986e465ab65e4014107ec"
   },
   "crm-app/package.json": {
-    "mtime": 1789580928.0671313,
-    "seen": 1789581173.7911758,
-    "ast_hash": "3f3fe0aceea10b6c6da9f1055b511dc5",
+    "mtime": 1789600013.4810822,
+    "seen": 1789600634.0589714,
+    "ast_hash": "2077a75708336813121d8ff0e1510cf0",
     "semantic_hash": ""
   },
   "crm-app/playwright.config.js": {
@@ -210,9 +210,9 @@
     "semantic_hash": ""
   },
   "crm-app/src/hooks/useCrmController.js": {
-    "mtime": 1789580893.6994145,
-    "seen": 1789581173.7912552,
-    "ast_hash": "4d9c7726ff2e0003761e08e3a52182a8",
+    "mtime": 1789599922.7884722,
+    "seen": 1789600634.0591223,
+    "ast_hash": "4c46e9f712f87178631a64655e56f3aa",
     "semantic_hash": ""
   },
   "crm-app/src/hooks/useSupabaseSession.js": {
@@ -360,9 +360,9 @@
     "semantic_hash": "bb43f6baf97fdea2b54fe7a8aecf9c8e"
   },
   "crm-app/src/pages/PatientPage.jsx": {
-    "mtime": 1789506968.4852028,
-    "seen": 1789507218.999666,
-    "ast_hash": "6b9d21997335e48b26ce64ee90d415cc",
+    "mtime": 1789599904.1007335,
+    "seen": 1789600634.0592134,
+    "ast_hash": "105b4e143cb0dd8251c35c858a03afa9",
     "semantic_hash": ""
   },
   "crm-app/src/pages/PendingPage.jsx": {
@@ -384,9 +384,9 @@
     "semantic_hash": "fe45691ac6931bf6b3e7864ebfeb9aef"
   },
   "crm-app/src/routing/CrmRoutes.jsx": {
-    "mtime": 1789580893.7048295,
-    "seen": 1789581173.7913108,
-    "ast_hash": "bd3b9fd82027a3a741579006205ab11c",
+    "mtime": 1789599922.7884722,
+    "seen": 1789600634.059232,
+    "ast_hash": "36595288e98fd9ee3681a5607433ed0d",
     "semantic_hash": ""
   },
   "crm-app/src/routing/paths.js": {
@@ -408,15 +408,15 @@
     "semantic_hash": "8a4b5e35c2a57634f76d28071300c8b7"
   },
   "crm-app/tests/routing/fixtures.js": {
-    "mtime": 1789580928.0671313,
-    "seen": 1789581173.7913234,
-    "ast_hash": "f19211a790c1d43baf328696b34f22e2",
+    "mtime": 1789600152.4282737,
+    "seen": 1789600634.0592554,
+    "ast_hash": "9fd8cd94957fc51220a860907724d3f7",
     "semantic_hash": ""
   },
   "crm-app/tests/routing/navigation.spec.js": {
-    "mtime": 1789495581.3509035,
-    "seen": 1789507218.9997296,
-    "ast_hash": "4753b644e0cd9a4176a09718a6e10c2b",
+    "mtime": 1789600371.5757954,
+    "seen": 1789600634.0592587,
+    "ast_hash": "f71fff23c75443da5c6cf794435cf19b",
     "semantic_hash": ""
   },
   "crm-app/tests/routing/public-auth.spec.js": {
@@ -1224,9 +1224,9 @@
     "semantic_hash": ""
   },
   "crm-app/src/services/contactQueries.js": {
-    "mtime": 1789506253.5224996,
-    "seen": 1789507218.999704,
-    "ast_hash": "b7fad49f429ee2781757860d524e3842",
+    "mtime": 1789599670.7050576,
+    "seen": 1789600634.059239,
+    "ast_hash": "b24abbc1e7c6a301cdf8a56fb4a83acc",
     "semantic_hash": ""
   },
   "crm-app/tests/routing/agenda-date.spec.js": {
@@ -1236,9 +1236,9 @@
     "semantic_hash": ""
   },
   "crm-app/tests/routing/contacts.spec.js": {
-    "mtime": 1789507553.511367,
-    "seen": 1789578758.485926,
-    "ast_hash": "b98c9b472276993b370457f5fc41581d",
+    "mtime": 1789600152.429261,
+    "seen": 1789600634.0592523,
+    "ast_hash": "a2dd7c8919b24e05e8aa3a481784f3b3",
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_PERFORMANCE.json": {
@@ -1272,9 +1272,9 @@
     "semantic_hash": ""
   },
   "tests/contact-query-test.mjs": {
-    "mtime": 1789506214.8165576,
-    "seen": 1789507218.9999714,
-    "ast_hash": "1d5bd7ff247895ba2c963e5df0d7419f",
+    "mtime": 1789600023.7884529,
+    "seen": 1789600634.059453,
+    "ast_hash": "d97573c6886b33038da8367f8301cc12",
     "semantic_hash": ""
   },
   "tests/contact-staging-test.mjs": {
@@ -1290,9 +1290,9 @@
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_MASTER_AUDIT.md": {
-    "mtime": 1789582067.9518883,
-    "seen": 1789582086.370946,
-    "ast_hash": "6b91c6ef664c62711b275135257ccbdb",
+    "mtime": 1789582316.1004035,
+    "seen": 1789582327.5264506,
+    "ast_hash": "9bf0791683f1cdd87a2a33d72dad0097",
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_MIGRATION_PLAN.md": {
@@ -1356,9 +1356,9 @@
     "semantic_hash": ""
   },
   "tests/database-from-zero.sql": {
-    "mtime": 1789581426.2713015,
-    "seen": 1789581443.693222,
-    "ast_hash": "1c3c6fe6ef74d3a443b8e4abe0215848",
+    "mtime": 1789600013.4810822,
+    "seen": 1789600634.059461,
+    "ast_hash": "8075a4ee8fc1fc4e3a1f48dc576b6445",
     "semantic_hash": ""
   },
   "tests/work-contract-test.mjs": {
@@ -1368,9 +1368,9 @@
     "semantic_hash": ""
   },
   ".github/workflows/02-database.yml": {
-    "mtime": 1789580967.4875143,
-    "seen": 1789581173.7915618,
-    "ast_hash": "5654d6f502b75038370c7c73e2500675",
+    "mtime": 1789600013.4810822,
+    "seen": 1789600634.059797,
+    "ast_hash": "16b50bc33ef41ed7576f7a98c4b6045c",
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_WORK_PERFORMANCE.json": {
@@ -1407,6 +1407,30 @@
     "mtime": 1789582044.7532587,
     "seen": 1789582086.3708477,
     "ast_hash": "3fc061ad3c1af93efe235f2a5dd2753f",
+    "semantic_hash": ""
+  },
+  "crm-app/src/features/contacts/InteractionModal.jsx": {
+    "mtime": 1789599729.2405982,
+    "seen": 1789600634.0590966,
+    "ast_hash": "f67f8a60a38f3328b55d4eae0bd2c822",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260916225713_contact_interaction_timeline.sql": {
+    "mtime": 1789600235.0826986,
+    "seen": 1789600634.059394,
+    "ast_hash": "84334b9938c18b2fd3041c11b5bdee37",
+    "semantic_hash": ""
+  },
+  "tests/contact-interaction-contract-test.mjs": {
+    "mtime": 1789600013.4810822,
+    "seen": 1789600634.059435,
+    "ast_hash": "fc6a685644234ab1f74a57880c0a4417",
+    "semantic_hash": ""
+  },
+  "tests/contact-interactions-rls.sql": {
+    "mtime": 1789600013.4810822,
+    "seen": 1789600634.0594397,
+    "ast_hash": "5a69a81656bdf3e182b8c71bd9c98cc4",
     "semantic_hash": ""
   }
 }
