@@ -27,7 +27,10 @@ assert.ok(!calls.some(([name,fields])=>name==='select' && fields.includes('*')))
 data=[]; calls.length=0;
 assert.equal(await query.getContact360(contact),null);
 assert.ok(!calls.some(([name])=>name==='from'), 'missing contact must not fetch opportunities');
-for (const section of ['timeline','appointments','tasks','quotes','notes']) {
+calls.length=0;
+await query.listRelated({contactId:contact,section:'timeline'});
+assert.ok(calls.some(([name,rpc,args])=>name==='rpc' && rpc==='list_contact_timeline_v1' && args.p_clinic_id===clinic && args.p_contact_id===contact));
+for (const section of ['appointments','tasks','quotes','notes']) {
   calls.length=0;
   await query.listRelated({contactId:contact,section});
   assert.ok(calls.some(([name,column,id])=>name==='eq' && column==='clinic_id' && id===clinic));

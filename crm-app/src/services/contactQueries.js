@@ -1,6 +1,8 @@
 // Query contracts are independent of React and accept an authenticated client.
 export const CONTACT_PAGE_SIZE = 25;
 export const CONTACT_FILTERS = ['all', 'active', 'unassigned'];
+export const INTERACTION_CHANNELS = ['whatsapp', 'call', 'email', 'in_person', 'note'];
+export const INTERACTION_OUTCOMES = ['sent', 'completed', 'responded', 'no_response', 'note'];
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export const validId = (value) => typeof value === 'string' && UUID.test(value);
 const OPPORTUNITY_FIELDS = 'id,clinic_id,contact_id,name,phone,phone_plus,treatment,status,is_archived,created_at,updated_at,last_contact_at,next_action,next_followup_at,assigned_to';
@@ -26,6 +28,11 @@ function resultPage(data, limit) {
   const rows = (data || []).slice(0, limit);
   const last = rows.at(-1);
   return { rows, nextCursor: data?.length > limit ? JSON.stringify({ created_at: last.created_at, id: last.id }) : null };
+}
+function timelinePage(data, limit) {
+  const rows = (data || []).slice(0, limit);
+  const last = rows.at(-1);
+  return { rows, nextCursor: data?.length > limit ? JSON.stringify({ created_at: last.occurred_at, id: last.id }) : null };
 }
 async function checked(request) {
   const { data, error } = await request;
@@ -57,15 +64,31 @@ export function createContactQueries(client, clinicId) {
   }
   async function getContact360(contactId, { signal } = {}) {
     if (!validId(contactId)) return null;
-    const contact = (await listContacts({ contactId, limit: 1, signal })).rows[0];
+    const summary = await checked(client.rpc('get_contact_operating_summary_v1', {
+      p_clinic_id: clinicId,
+      p_contact_id: contactId,
+    }).abortSignal(signal));
+    const contact = summary?.[0];
     if (!contact) return null;
     const opportunities = await listOpportunities({ contactId, signal });
     return { contact, opportunities };
   }
+  async function listTimeline({ contactId, cursor = null, limit = CONTACT_PAGE_SIZE, signal } = {}) {
+    if (!validId(contactId)) return { rows: [], nextCursor: null };
+    const after = decodeCursor(cursor);
+    const data = await checked(client.rpc('list_contact_timeline_v1', {
+      p_clinic_id: clinicId,
+      p_contact_id: contactId,
+      p_limit: limitValue(limit),
+      p_cursor_created_at: after?.created_at || null,
+      p_cursor_id: after?.id || null,
+    }).abortSignal(signal));
+    return timelinePage(data, limit);
+  }
   async function listRelated({ contactId, section, cursor = null, limit = CONTACT_PAGE_SIZE, signal }) {
     if (!validId(contactId)) return { rows: [], nextCursor: null };
+    if (section === 'timeline') return listTimeline({ contactId, cursor, limit, signal });
     const sections = {
-      timeline: ['lead_events', 'id,clinic_id,lead_id,title,description,event_type,created_at'],
       appointments: ['appointments', 'id,clinic_id,lead_id,appointment_date,appointment_time,status,doctor_assigned,treatment_scheduled,created_at'],
       tasks: ['tasks', 'id,clinic_id,lead_id,title,status,due_at,priority,assigned_to,created_at'],
       quotes: ['quotes', 'id,clinic_id,lead_id,treatment,amount,currency,status,issued_at,created_at'],
@@ -82,5 +105,33 @@ export function createContactQueries(client, clinicId) {
     return resultPage(await checked(query.order('created_at', { ascending: false }).order('id', { ascending: false })
       .limit(limitValue(limit) + 1).abortSignal(signal)), limit);
   }
-  return { listContacts, getContact360, listOpportunities, listRelated };
+  async function listAssignees({ signal } = {}) {
+    return checked(client.from('profiles')
+      .select('id,clinic_id,full_name,role')
+      .eq('clinic_id', clinicId)
+      .eq('active', true)
+      .in('role', ['owner', 'admin', 'receptionist'])
+      .order('full_name')
+      .limit(100)
+      .abortSignal(signal));
+  }
+  async function registerInteraction({ contactId, opportunityId, channel, outcome, note = '', nextAction = '', nextFollowupAt = null, assignedTo = null }) {
+    if (!validId(contactId) || !validId(opportunityId)
+      || !INTERACTION_CHANNELS.includes(channel) || !INTERACTION_OUTCOMES.includes(outcome)
+      || (assignedTo && !validId(assignedTo)) || String(note).length > 2000 || String(nextAction).length > 160) {
+      throw new Error('Datos de interacción inválidos.');
+    }
+    return checked(client.rpc('register_contact_interaction_v1', {
+      p_clinic_id: clinicId,
+      p_contact_id: contactId,
+      p_opportunity_id: opportunityId,
+      p_channel: channel,
+      p_outcome: outcome,
+      p_note: String(note).trim() || null,
+      p_next_action: String(nextAction).trim() || null,
+      p_next_followup_at: nextFollowupAt || null,
+      p_assigned_to: assignedTo || null,
+    }));
+  }
+  return { listContacts, getContact360, listOpportunities, listRelated, listTimeline, listAssignees, registerInteraction };
 }

@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Navigate, Route, Routes, useParams, useNavigate } from 'react-router';
+import { Navigate, Route, Routes, useParams, useNavigate, useLocation } from 'react-router';
 import { PageSkeleton } from '../components/feedback/AppFeedback';
 import PatientPage from '../pages/PatientPage';
 import PatientsPage from '../pages/PatientsPage';
@@ -21,10 +21,17 @@ export function AdminOnly({ canAdmin, children }) {
 
 function OpportunityBoundary({ controller, children }) {
   const { contactId, leadId } = useParams();
-  const { selectedLead, profile, loadLeadEvents } = controller;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { selectedLead, profile, loadLeadEvents, openAppointmentModal } = controller;
   useEffect(() => {
     if (selectedLead) void loadLeadEvents(leadId);
   }, [contactId, leadId, profile?.clinic_id, Boolean(selectedLead), loadLeadEvents]);
+  useEffect(() => {
+    if (!selectedLead || location.state?.action !== 'schedule') return;
+    openAppointmentModal(selectedLead);
+    navigate(location.pathname, { replace: true, state: null });
+  }, [selectedLead, location.state?.action, location.pathname, navigate, openAppointmentModal]);
   if (!selectedLead || selectedLead.contact_id !== contactId) return <NotFoundPage entity="Oportunidad" />;
   return children;
 }

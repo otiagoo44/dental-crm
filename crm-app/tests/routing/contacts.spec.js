@@ -15,11 +15,18 @@ test('Contacts search/filter lives in the URL and requests stay scoped; secondar
   await page.locator(`a[href="${patientURL}"]`).click();
   await expect(page.getByRole('heading',{name:'Oportunidades (2)'})).toBeVisible();
   expect(backend.calls.filter((c)=>/appointments|tasks|quotes|lead_events/.test(c.path))).toHaveLength(0);
-  await page.getByRole('button',{name:'Timeline',exact:true}).click();
+  await page.getByRole('button',{name:'Actividad',exact:true}).click();
   await expect(page.getByText('No hay registros en esta sección.')).toBeVisible();
-  const timeline=backend.calls.find((c)=>c.path.endsWith('/lead_events'));
-  expect(timeline.search).toContain('leads.contact_id=eq.');
-  expect(timeline.search).toContain('limit=26');
+  const timeline=backend.calls.find((c)=>c.path.endsWith('/rpc/list_contact_timeline_v1'));
+  expect(timeline.body.p_contact_id).toBe(contactA);
+  expect(timeline.body.p_limit).toBe(25);
+  await page.getByRole('button',{name:'Resumen',exact:true}).click();
+  await page.getByRole('button',{name:'Registrar interacción',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Registrar interacción',exact:true})).toBeVisible();
+  await page.getByLabel('Nota breve (opcional)').fill('Interacción routing QA');
+  await page.getByRole('button',{name:'Guardar interacción',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Actividad',exact:true})).toBeVisible();
+  expect(backend.calls.some((c)=>c.path.endsWith('/rpc/register_contact_interaction_v1'))).toBe(true);
 });
 
 test('Contacts pagination, stable ties, no duplicates and invalid cursors', async ({page}) => {
@@ -49,7 +56,7 @@ test.describe('Targeted realtime',()=>{
   test.use({realtime:true});
   test('opportunity moved away refreshes the old contact even without an old contact_id',async({page,backend})=>{
     let moved=false;
-    await page.route('**/rest/v1/rpc/list_contacts_page',async(route)=>route.fulfill({json:[{id:contactA,name:'Move QA',opportunity_count:moved?0:2,active_opportunity_count:moved?0:2}]}));
+    await page.route('**/rest/v1/rpc/get_contact_operating_summary_v1',async(route)=>route.fulfill({json:[{id:contactA,name:'Move QA',opportunity_count:moved?0:2,active_opportunity_count:moved?0:2}]}));
     await page.goto(patientURL);
     await expect(page.getByRole('heading',{name:'Oportunidades (2)',exact:true})).toBeVisible();
     await expect.poll(()=>backend.subscriptions.length).toBeGreaterThan(0);

@@ -90,8 +90,8 @@ export default function useCrmController({ session, authError }) {
 
   useEffect(() => {
     if (bootLoading || location.pathname !== '/oportunidades' || new URLSearchParams(location.search).get('new') !== '1') return;
-    openCreateLeadModal();
-    navigate('/oportunidades', { replace: true });
+    openCreateLeadModal(location.state?.contactPrefill || null);
+    navigate('/oportunidades', { replace: true, state: null });
   }, [bootLoading, location.pathname, location.search]);
 
   useEffect(() => {
@@ -380,9 +380,9 @@ export default function useCrmController({ session, authError }) {
     });
   }
 
-  function openCreateLeadModal() {
+  function openCreateLeadModal(prefill = null) {
     setError('');
-    setLeadModal({ mode: 'create', lead: null });
+    setLeadModal({ mode: 'create', lead: prefill });
   }
 
   function openEditLeadModal(lead) {

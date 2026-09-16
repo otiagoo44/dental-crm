@@ -9,7 +9,7 @@ test('B–F: patient, opportunity, refresh and browser history', async ({ page, 
   await expect(page.getByRole('heading', { name: 'Oportunidades (2)', exact: true })).toBeVisible();
   await page.reload();
   await expect(page.getByRole('heading', { name: 'Oportunidades (2)', exact: true })).toBeVisible();
-  await page.locator(`a[href="${opportunityURL}"]`).click();
+  await page.getByRole('link', { name: /Implantes/ }).click();
   await expect(page.getByRole('heading', { name: 'Florencia Prueba · Implantes', exact: true })).toBeVisible();
   await page.reload();
   await expect(page.getByRole('heading', { name: 'Florencia Prueba · Implantes', exact: true })).toBeVisible();

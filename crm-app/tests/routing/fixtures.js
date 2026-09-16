@@ -102,6 +102,16 @@ export const test = base.extend({
         if (args.p_filter === 'unassigned') contacts = [];
         return respond(contacts.slice(0, args.p_limit + 1));
       }
+      if (table === 'get_contact_operating_summary_v1') {
+        const args = request.postDataJSON();
+        const related = leads.filter((lead) => lead.contact_id === args.p_contact_id);
+        if (!related.length) return respond([]);
+        return respond([{ ...related[0], id: args.p_contact_id, opportunity_count: related.length, active_opportunity_count: related.length,
+          responsible_id: profile.id, responsible_name: profile.full_name, last_interaction_at: related[0].created_at,
+          last_interaction_title: 'Nueva consulta', next_appointment_at: null }]);
+      }
+      if (table === 'list_contact_timeline_v1') return respond([]);
+      if (table === 'register_contact_interaction_v1') return respond(request.postDataJSON().p_opportunity_id);
       if (table === 'list_work_items_v1') return respond([{
         work_key:'task:work-test',clinic_id:clinicId,contact_id:contactA,opportunity_id:leadA,
         work_type:'initial_contact',patient_name:'Florencia Prueba',patient_phone:'+595981000001',treatment:'Implantes',
