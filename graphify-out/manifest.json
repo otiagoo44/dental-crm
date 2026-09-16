@@ -810,10 +810,10 @@
     "semantic_hash": "499d959f7c5fd87c9defe3b4147d6b20"
   },
   "tests/status-change-regression.sql": {
-    "mtime": 1789486463.4672506,
-    "seen": 1789487152.178298,
-    "ast_hash": "970b9b0de9d26bf80991ddf107c3e3aa",
-    "semantic_hash": "970b9b0de9d26bf80991ddf107c3e3aa"
+    "mtime": 1789580564.828346,
+    "seen": 1789580571.2961488,
+    "ast_hash": "44db76d7448769c79b2abd09c0517934",
+    "semantic_hash": ""
   },
   "tests/stored-xss-contract-test.mjs": {
     "mtime": 1787956227.8091798,
@@ -1266,9 +1266,9 @@
     "semantic_hash": ""
   },
   "tests/contact-query-rls.sql": {
-    "mtime": 1789506039.0387304,
-    "seen": 1789507218.9999661,
-    "ast_hash": "c38546ab5fa6b9771a7635eda6a4f294",
+    "mtime": 1789580564.828346,
+    "seen": 1789580571.295948,
+    "ast_hash": "fb5e0011f17d68d6f7c83c1db1da0179",
     "semantic_hash": ""
   },
   "tests/contact-query-test.mjs": {
@@ -1296,9 +1296,9 @@
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_MIGRATION_PLAN.md": {
-    "mtime": 1789578393.6541555,
-    "seen": 1789578758.4861667,
-    "ast_hash": "cc396b969bba81165e5edda0df5138be",
+    "mtime": 1789578792.9988158,
+    "seen": 1789580562.8746045,
+    "ast_hash": "94fc8afe4bc87f04adb105281936ce64",
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_STAGING_SMOKE.json": {

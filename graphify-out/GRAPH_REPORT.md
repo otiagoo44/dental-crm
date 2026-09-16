@@ -1,7 +1,7 @@
 # Graph Report - dental-crm  (2026-09-16)
 
 ## Corpus Check
-- 218 files · ~118,074 words
+- 218 files · ~118,080 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: (none) 5, .example 1, .css 1)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8bfcae7e`
+- Built from commit: `f2e08c24`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -36,10 +36,10 @@
 - fixtures.js
 - multitenant-load.mjs
 - FollowupsPage.jsx
-- CrmRoutes.jsx
+- AgendaPage.jsx
 - 20260612140000_production_schema_hardening.sql
 - contactQueries.js
-- AgendaPage.jsx
+- CrmRoutes.jsx
 - index.ts
 - 20260612141000_rls_professional_policies.sql
 - data-volume-benchmark.sql
@@ -274,9 +274,9 @@ Nodes (18): allowedHost, apiUrl, endpoint, endpointUrl, fixture(), isLocalHost, 
 Cohesion: 0.10
 Nodes (29): formatActionMoment(), PendingActionCard(), WhatsAppButton(), Button(), variants, Card(), EmptyState(), FilterPanel() (+21 more)
 
-### Community 20 - "CrmRoutes.jsx"
-Cohesion: 0.16
-Nodes (9): NotFoundPage(), AgendaView, CrmRoutes(), Dashboard, FollowupsView, PendingView, SettingsView, TasksView (+1 more)
+### Community 20 - "AgendaPage.jsx"
+Cohesion: 0.18
+Nodes (15): AppointmentModal(), handleSubmit(), buildTimeSlots(), getAppointmentFormDefaults(), StatCard(), StatusBadge(), statusStyles, isToday() (+7 more)
 
 ### Community 21 - "20260612140000_production_schema_hardening.sql"
 Cohesion: 0.25
@@ -286,9 +286,9 @@ Nodes (17): clinic_public_forms_clinic_slug_unique_idx, clinic_public_forms_publ
 Cohesion: 0.15
 Nodes (23): checked(), CONTACT_FILTERS, CONTACT_PAGE_SIZE, createContactQueries(), getContact360(), listContacts(), listOpportunities(), listRelated() (+15 more)
 
-### Community 23 - "AgendaPage.jsx"
-Cohesion: 0.18
-Nodes (15): AppointmentModal(), handleSubmit(), buildTimeSlots(), getAppointmentFormDefaults(), StatCard(), StatusBadge(), statusStyles, isToday() (+7 more)
+### Community 23 - "CrmRoutes.jsx"
+Cohesion: 0.16
+Nodes (9): NotFoundPage(), AgendaView, CrmRoutes(), Dashboard, FollowupsView, PendingView, SettingsView, TasksView (+1 more)
 
 ### Community 24 - "index.ts"
 Cohesion: 0.15
@@ -540,7 +540,7 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `@supabase/supabase-js` connect `@supabase/supabase-js` to `Login.jsx`, `package.json`, `staging-qa-setup.mjs`, `staging-workflow.mjs`, `fixtures.js`, `contactQueries.js`, `dedupe-fix-smoke.mjs`, `staging-smoke.mjs`?**
   _High betweenness centrality (0.040) - this node is a cross-community bridge._
-- **Why does `react` connect `react` to `Login.jsx`, `formatters.js`, `SettingsPage.jsx`, `package.json`, `crmDomain.js`, `App.jsx`, `LeadFormModal.jsx`, `PatientPage.jsx`, `LeadsPage.jsx`, `GlobalErrorBoundary`, `FollowupsPage.jsx`, `CrmRoutes.jsx`, `AgendaPage.jsx`, `visual-harness/main.jsx`?**
+- **Why does `react` connect `react` to `Login.jsx`, `formatters.js`, `SettingsPage.jsx`, `package.json`, `crmDomain.js`, `App.jsx`, `LeadFormModal.jsx`, `PatientPage.jsx`, `LeadsPage.jsx`, `GlobalErrorBoundary`, `FollowupsPage.jsx`, `AgendaPage.jsx`, `CrmRoutes.jsx`, `visual-harness/main.jsx`?**
   _High betweenness centrality (0.029) - this node is a cross-community bridge._
 - **Why does `useCrmController()` connect `crmDomain.js` to `formatters.js`, `SettingsPage.jsx`, `App.jsx`, `AppLayout.jsx`, `PatientPage.jsx`, `commercialInsights.js`, `LeadsPage.jsx`, `AgendaPage.jsx`?**
   _High betweenness centrality (0.025) - this node is a cross-community bridge._
