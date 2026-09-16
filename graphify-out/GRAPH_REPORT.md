@@ -1,17 +1,17 @@
 # Graph Report - dental-crm  (2026-09-16)
 
 ## Corpus Check
-- 232 files · ~132,468 words
+- 231 files · ~121,980 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: (none) 5, .example 1, .css 1)
 
 ## Summary
-- 1594 nodes · 2724 edges · 191 communities (97 shown, 65 thin omitted)
+- 1593 nodes · 2724 edges · 190 communities (97 shown, 65 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 37 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a058e230`
+- Built from commit: `af240b4a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -57,7 +57,7 @@
 - 20260822230000_add_retention_insights.sql
 - vercel.json
 - appointment-modal-flow-test.mjs
-- PublicFormSettings
+- SettingsPage.jsx
 - crm-app/vite.config.js
 - 20260828120000_harden_public_intake_rate_limit.sql
 - standalone-deployment-test.mjs
@@ -168,15 +168,15 @@
 - work-staging-test.mjs
 - buildAnalytics
 - supabase.js
-- SettingsPage.jsx
-- AppointmentModal.jsx
-- formatters.js
 - CrmRoutes.jsx
+- AppointmentModal.jsx
+- PublicFormSettings
+- formatters.js
+- TreatmentPricesSettings
 - QuoteModal
 - work-browser-staging.mjs
 - work-workflow-staging.mjs
 - TaskFormModal
-- TreatmentPricesSettings
 - public.update_appointment_outcome
 
 ## God Nodes (most connected - your core abstractions)
@@ -206,7 +206,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (191 total, 65 thin omitted)
+## Communities (190 total, 65 thin omitted)
 
 ### Community 0 - "analytics.js"
 Cohesion: 0.16
@@ -372,9 +372,9 @@ Nodes (7): buildCommand, framework, headers, installCommand, outputDirectory, re
 Cohesion: 0.29
 Nodes (6): abortSignalAt, appSource, clearTimeoutAt, closeModalAt, refreshAt, unlockModalAt
 
-### Community 41 - "PublicFormSettings"
-Cohesion: 0.24
-Nodes (9): savePublicFormConfig(), formatAllowedOrigins(), generatePublicToken(), publicFormFetchSnippet(), publicFormPayloadExample(), slugify(), getPublicFormDefaults(), PublicFormSettings() (+1 more)
+### Community 41 - "SettingsPage.jsx"
+Cohesion: 0.20
+Nodes (8): Info(), LeadMiniCard(), Select(), StatusBadge(), statusStyles, roleLabel(), TeamSettings(), SettingsView
 
 ### Community 42 - "crm-app/vite.config.js"
 Cohesion: 0.47
@@ -564,21 +564,21 @@ Nodes (9): buildAnalytics(), uniqueById(), buildOwnerSummary(), appointments, le
 Cohesion: 0.20
 Nodes (9): PasswordInput(), hasPublicConfig, publicConfig, publicConfigError, publicLeadWebhookUrl, supabaseAnonKey, supabaseUrl, hasSupabaseConfig (+1 more)
 
-### Community 180 - "SettingsPage.jsx"
+### Community 180 - "CrmRoutes.jsx"
 Cohesion: 0.20
-Nodes (8): Info(), LeadMiniCard(), Select(), StatusBadge(), statusStyles, roleLabel(), TeamSettings(), SettingsView
+Nodes (7): NotFoundPage(), FollowupsView, LeadDetail, LeadsView, PendingView, WorkPage, react-router
 
 ### Community 181 - "AppointmentModal.jsx"
 Cohesion: 0.33
 Nodes (12): AppointmentModal(), handleSubmit(), buildTimeSlots(), getAppointmentFormDefaults(), isToday(), startOfAsuncionDate(), uniqueStrings(), todayIsoDate() (+4 more)
 
+### Community 182 - "PublicFormSettings"
+Cohesion: 0.24
+Nodes (9): savePublicFormConfig(), formatAllowedOrigins(), generatePublicToken(), publicFormFetchSnippet(), publicFormPayloadExample(), slugify(), getPublicFormDefaults(), PublicFormSettings() (+1 more)
+
 ### Community 183 - "formatters.js"
 Cohesion: 0.32
 Nodes (10): ContactOutcomeModal(), selectedFollowupAt(), submit(), addDaysIso(), appointmentDueIso(), addDaysAsuncion(), dateTimeParts(), fromDatetimeLocalAsuncion() (+2 more)
-
-### Community 184 - "CrmRoutes.jsx"
-Cohesion: 0.20
-Nodes (7): NotFoundPage(), FollowupsView, LeadDetail, LeadsView, PendingView, WorkPage, react-router
 
 ### Community 185 - "QuoteModal"
 Cohesion: 0.31
@@ -598,7 +598,7 @@ Nodes (3): getTaskFormDefaults(), TaskFormModal(), handleSubmit()
 
 ## Knowledge Gaps
 - **550 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+545 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 829 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 828 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **65 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
@@ -606,10 +606,10 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `@supabase/supabase-js` connect `@supabase/supabase-js` to `package.json`, `staging-qa-setup.mjs`, `work-browser-staging.mjs`, `staging-workflow.mjs`, `work-staging-test.mjs`, `supabase.js`, `contact-browser-staging.mjs`, `contactQueries.js`, `dedupe-fix-smoke.mjs`, `work-workflow-staging.mjs`, `staging-smoke.mjs`?**
   _High betweenness centrality (0.044) - this node is a cross-community bridge._
-- **Why does `react` connect `AgendaPage.jsx` to `QuoteModal.jsx`, `package.json`, `FollowupsPage.jsx`, `useClinicWorkspace.js`, `LeadFormModal.jsx`, `LeadsPage.jsx`, `supabase.js`, `App.jsx`, `MetricsPage.jsx`, `AppointmentModal.jsx`, `PatientPage.jsx`, `crmDomain.js`, `SettingsPage.jsx`, `visual-harness/main.jsx`, `CrmRoutes.jsx`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
-- **Why does `lucide-react` connect `FollowupsPage.jsx` to `QuoteModal.jsx`, `package.json`, `LeadFormModal.jsx`, `LeadsPage.jsx`, `supabase.js`, `App.jsx`, `visual-harness/main.jsx`, `AppointmentModal.jsx`, `MetricsPage.jsx`, `SettingsPage.jsx`, `AgendaPage.jsx`?**
-  _High betweenness centrality (0.018) - this node is a cross-community bridge._
+- **Why does `react` connect `AgendaPage.jsx` to `QuoteModal.jsx`, `package.json`, `FollowupsPage.jsx`, `SettingsPage.jsx`, `useClinicWorkspace.js`, `LeadFormModal.jsx`, `LeadsPage.jsx`, `supabase.js`, `App.jsx`, `MetricsPage.jsx`, `AppointmentModal.jsx`, `PatientPage.jsx`, `crmDomain.js`, `CrmRoutes.jsx`, `visual-harness/main.jsx`?**
+  _High betweenness centrality (0.035) - this node is a cross-community bridge._
+- **Why does `useCrmController()` connect `useCrmController` to `nextActions.js`, `useClinicWorkspace.js`, `humanizeCrmError`, `App.jsx`, `AppointmentModal.jsx`, `PatientPage.jsx`, `crmDomain.js`, `PublicFormSettings`, `formatters.js`, `normalizeText`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **Are the 28 inferred relationships involving `useCrmController()` (e.g. with `completeTask()` and `confirmAppointmentById()`) actually correct?**
   _`useCrmController()` has 28 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `private`, `version` to the rest of the system?**

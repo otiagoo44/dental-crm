@@ -1373,18 +1373,6 @@
     "ast_hash": "5654d6f502b75038370c7c73e2500675",
     "semantic_hash": ""
   },
-  ".tmp-migrations-data.sql": {
-    "mtime": 1789581211.664349,
-    "seen": 1789581443.6929817,
-    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
-    "semantic_hash": ""
-  },
-  ".tmp-joblog.txt": {
-    "mtime": 1789581416.8769033,
-    "seen": 1789581443.6933713,
-    "ast_hash": "c1a3dc33f094bde91963a1b7ee8da39f",
-    "semantic_hash": ""
-  },
   "docs/DENTFLOW_V2_WORK_PERFORMANCE.json": {
     "mtime": 1789581612.8316905,
     "seen": 1789581667.0850027,
