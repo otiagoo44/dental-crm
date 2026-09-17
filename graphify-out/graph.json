@@ -331,18 +331,6 @@
       "source_location": "L20"
     },
     {
-      "id": "crm_app_src_lib_ownermetrics_buildownersummary",
-      "label": "buildOwnerSummary()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "analytics.js",
-      "file_type": "code",
-      "norm_label": "buildownersummary()",
-      "source_file": "crm-app/src/lib/ownerMetrics.js",
-      "source_location": "L3"
-    },
-    {
       "id": "crm_app_src_pages_metricspage_metricsview",
       "label": "MetricsView()",
       "_callable": true,
@@ -403,18 +391,6 @@
       "source_location": "L91"
     },
     {
-      "id": "crm_app_src_components_modals_leadformmodal_formsection",
-      "label": "FormSection()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "react",
-      "file_type": "code",
-      "norm_label": "formsection()",
-      "source_file": "crm-app/src/components/modals/LeadFormModal.jsx",
-      "source_location": "L163"
-    },
-    {
       "id": "crm_app_src_components_modals_modalparts_modalactions",
       "label": "ModalActions()",
       "_callable": true,
@@ -437,18 +413,6 @@
       "norm_label": "modalheader()",
       "source_file": "crm-app/src/components/modals/ModalParts.jsx",
       "source_location": "L4"
-    },
-    {
-      "id": "crm_app_src_components_ui_button_button",
-      "label": "Button()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "react",
-      "file_type": "code",
-      "norm_label": "button()",
-      "source_file": "crm-app/src/components/ui/Button.jsx",
-      "source_location": "L11"
     },
     {
       "id": "crm_app_src_components_ui_modalshell_modalshell",
@@ -487,18 +451,6 @@
       "source_location": "L10"
     },
     {
-      "id": "crm_app_src_features_public_form_publicembedleadform_sendicon",
-      "label": "SendIcon()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "react",
-      "file_type": "code",
-      "norm_label": "sendicon()",
-      "source_file": "crm-app/src/features/public-form/PublicEmbedLeadForm.jsx",
-      "source_location": "L157"
-    },
-    {
       "id": "crm_app_src_lib_crmdomain_gettreatmentoptions",
       "label": "getTreatmentOptions()",
       "_callable": true,
@@ -509,18 +461,6 @@
       "norm_label": "gettreatmentoptions()",
       "source_file": "crm-app/src/lib/crmDomain.js",
       "source_location": "L159"
-    },
-    {
-      "id": "crm_app_src_components_modals_quotemodal_defaults",
-      "label": "defaults()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "staging-workflow.mjs",
-      "file_type": "code",
-      "norm_label": "defaults()",
-      "source_file": "crm-app/src/components/modals/QuoteModal.jsx",
-      "source_location": "L12"
     },
     {
       "id": "crm_app_src_components_modals_quotemodal_quotemodal",
@@ -679,6 +619,18 @@
       "source_location": "L64"
     },
     {
+      "id": "crm_app_src_lib_crmdomain_cantransitionappointment",
+      "label": "canTransitionAppointment()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 105,
+      "community_name": "nextActions.js",
+      "file_type": "code",
+      "norm_label": "cantransitionappointment()",
+      "source_file": "crm-app/src/lib/crmDomain.js",
+      "source_location": "L130"
+    },
+    {
       "id": "crm_app_src_lib_crmdomain_isterminalleadstatus",
       "label": "isTerminalLeadStatus()",
       "_callable": true,
@@ -737,18 +689,6 @@
       "norm_label": "appointmentdatetime()",
       "source_file": "crm-app/src/lib/nextActions.js",
       "source_location": "L45"
-    },
-    {
-      "id": "crm_app_src_lib_nextactions_buildnextactionqueue",
-      "label": "buildNextActionQueue()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 105,
-      "community_name": "nextActions.js",
-      "file_type": "code",
-      "norm_label": "buildnextactionqueue()",
-      "source_file": "crm-app/src/lib/nextActions.js",
-      "source_location": "L273"
     },
     {
       "id": "crm_app_src_lib_nextactions_choosecandidate",
@@ -847,136 +787,16 @@
       "source_location": "L58"
     },
     {
-      "id": "crm_app_src_components_applayout_navbutton",
-      "label": "NavButton()",
+      "id": "crm_app_src_pages_agendapage_appointmentcard",
+      "label": "AppointmentCard()",
       "_callable": true,
       "_origin": "ast",
-      "community": 108,
-      "community_name": "AppLayout.jsx",
+      "community": 105,
+      "community_name": "nextActions.js",
       "file_type": "code",
-      "norm_label": "navbutton()",
-      "source_file": "crm-app/src/components/AppLayout.jsx",
-      "source_location": "L20"
-    },
-    {
-      "id": "crm_app_src_features_search_globalsearch_globalsearch",
-      "label": "GlobalSearch()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 108,
-      "community_name": "AppLayout.jsx",
-      "file_type": "code",
-      "norm_label": "globalsearch()",
-      "source_file": "crm-app/src/features/search/GlobalSearch.jsx",
-      "source_location": "L8"
-    },
-    {
-      "id": "crm_app_src_routing_paths_patientpath",
-      "label": "patientPath()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 108,
-      "community_name": "AppLayout.jsx",
-      "file_type": "code",
-      "norm_label": "patientpath()",
-      "source_file": "crm-app/src/routing/paths.js",
-      "source_location": "L8"
-    },
-    {
-      "id": "crm_app_src_routing_paths_viewpath",
-      "label": "viewPath()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 108,
-      "community_name": "AppLayout.jsx",
-      "file_type": "code",
-      "norm_label": "viewpath()",
-      "source_file": "crm-app/src/routing/paths.js",
-      "source_location": "L10"
-    },
-    {
-      "id": "crm_app_src_services_globalsearch_checked",
-      "label": "checked()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 108,
-      "community_name": "AppLayout.jsx",
-      "file_type": "code",
-      "norm_label": "checked()",
-      "source_file": "crm-app/src/services/globalSearch.js",
-      "source_location": "L5"
-    },
-    {
-      "id": "crm_app_src_services_globalsearch_createglobalsearch",
-      "label": "createGlobalSearch()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 108,
-      "community_name": "AppLayout.jsx",
-      "file_type": "code",
-      "norm_label": "createglobalsearch()",
-      "source_file": "crm-app/src/services/globalSearch.js",
-      "source_location": "L11"
-    },
-    {
-      "id": "crm_app_src_components_modals_appointmentmodal_appointmentmodal",
-      "label": "AppointmentModal()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
-      "file_type": "code",
-      "norm_label": "appointmentmodal()",
-      "source_file": "crm-app/src/components/modals/AppointmentModal.jsx",
-      "source_location": "L44"
-    },
-    {
-      "id": "crm_app_src_components_modals_appointmentmodal_appointmentmodal_handlesubmit",
-      "label": "handleSubmit()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
-      "file_type": "code",
-      "norm_label": "handlesubmit()",
-      "source_file": "crm-app/src/components/modals/AppointmentModal.jsx",
-      "source_location": "L81"
-    },
-    {
-      "id": "crm_app_src_components_modals_appointmentmodal_appointmentmodal_updatefield",
-      "label": "updateField()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
-      "file_type": "code",
-      "norm_label": "updatefield()",
-      "source_file": "crm-app/src/components/modals/AppointmentModal.jsx",
-      "source_location": "L77"
-    },
-    {
-      "id": "crm_app_src_components_modals_appointmentmodal_buildtimeslots",
-      "label": "buildTimeSlots()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
-      "file_type": "code",
-      "norm_label": "buildtimeslots()",
-      "source_file": "crm-app/src/components/modals/AppointmentModal.jsx",
-      "source_location": "L22"
-    },
-    {
-      "id": "crm_app_src_components_modals_appointmentmodal_getappointmentformdefaults",
-      "label": "getAppointmentFormDefaults()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
-      "file_type": "code",
-      "norm_label": "getappointmentformdefaults()",
-      "source_file": "crm-app/src/components/modals/AppointmentModal.jsx",
-      "source_location": "L12"
+      "norm_label": "appointmentcard()",
+      "source_file": "crm-app/src/pages/AgendaPage.jsx",
+      "source_location": "L132"
     },
     {
       "id": "crm_app_src_components_modals_contactoutcomemodal_contactoutcomemodal",
@@ -984,7 +804,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "contactoutcomemodal()",
       "source_file": "crm-app/src/components/modals/ContactOutcomeModal.jsx",
@@ -996,7 +816,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "selectedfollowupat()",
       "source_file": "crm-app/src/components/modals/ContactOutcomeModal.jsx",
@@ -1008,7 +828,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "submit()",
       "source_file": "crm-app/src/components/modals/ContactOutcomeModal.jsx",
@@ -1020,11 +840,71 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "followuppresetvalue()",
       "source_file": "crm-app/src/components/modals/LeadFormModal.jsx",
       "source_location": "L33"
+    },
+    {
+      "id": "crm_app_src_components_modals_leadformmodal_formsection",
+      "label": "FormSection()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "formsection()",
+      "source_file": "crm-app/src/components/modals/LeadFormModal.jsx",
+      "source_location": "L163"
+    },
+    {
+      "id": "crm_app_src_components_modals_leadformmodal_getleadformdefaults",
+      "label": "getLeadFormDefaults()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "getleadformdefaults()",
+      "source_file": "crm-app/src/components/modals/LeadFormModal.jsx",
+      "source_location": "L12"
+    },
+    {
+      "id": "crm_app_src_components_modals_leadformmodal_leadformmodal",
+      "label": "LeadFormModal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "leadformmodal()",
+      "source_file": "crm-app/src/components/modals/LeadFormModal.jsx",
+      "source_location": "L41"
+    },
+    {
+      "id": "crm_app_src_components_modals_leadformmodal_leadformmodal_updatefield",
+      "label": "updateField()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "updatefield()",
+      "source_file": "crm-app/src/components/modals/LeadFormModal.jsx",
+      "source_location": "L53"
+    },
+    {
+      "id": "crm_app_src_components_modals_quotemodal_defaults",
+      "label": "defaults()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "defaults()",
+      "source_file": "crm-app/src/components/modals/QuoteModal.jsx",
+      "source_location": "L12"
     },
     {
       "id": "crm_app_src_components_modals_taskformmodal_gettaskformdefaults",
@@ -1032,23 +912,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "gettaskformdefaults()",
       "source_file": "crm-app/src/components/modals/TaskFormModal.jsx",
       "source_location": "L8"
-    },
-    {
-      "id": "crm_app_src_components_ui_statcard_statcard",
-      "label": "StatCard()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
-      "file_type": "code",
-      "norm_label": "statcard()",
-      "source_file": "crm-app/src/components/ui/StatCard.jsx",
-      "source_location": "L3"
     },
     {
       "id": "crm_app_src_features_contacts_interactionmodal_interactionmodal",
@@ -1056,7 +924,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "interactionmodal()",
       "source_file": "crm-app/src/features/contacts/InteractionModal.jsx",
@@ -1068,7 +936,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "changechannel()",
       "source_file": "crm-app/src/features/contacts/InteractionModal.jsx",
@@ -1080,7 +948,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "submit()",
       "source_file": "crm-app/src/features/contacts/InteractionModal.jsx",
@@ -1092,47 +960,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "update()",
       "source_file": "crm-app/src/features/contacts/InteractionModal.jsx",
       "source_location": "L39"
     },
     {
-      "id": "crm_app_src_lib_commercialinsights_istoday",
-      "label": "isToday()",
+      "id": "crm_app_src_lib_crmdomain_addhoursiso",
+      "label": "addHoursIso()",
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
-      "norm_label": "istoday()",
-      "source_file": "crm-app/src/lib/commercialInsights.js",
-      "source_location": "L116"
-    },
-    {
-      "id": "crm_app_src_lib_crmdomain_cantransitionappointment",
-      "label": "canTransitionAppointment()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
-      "file_type": "code",
-      "norm_label": "cantransitionappointment()",
+      "norm_label": "addhoursiso()",
       "source_file": "crm-app/src/lib/crmDomain.js",
-      "source_location": "L130"
-    },
-    {
-      "id": "crm_app_src_lib_crmdomain_startofasunciondate",
-      "label": "startOfAsuncionDate()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
-      "file_type": "code",
-      "norm_label": "startofasunciondate()",
-      "source_file": "crm-app/src/lib/crmDomain.js",
-      "source_location": "L177"
+      "source_location": "L191"
     },
     {
       "id": "crm_app_src_lib_formatters_adddaysasuncion",
@@ -1140,7 +984,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "adddaysasuncion()",
       "source_file": "crm-app/src/lib/formatters.js",
@@ -1152,7 +996,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "datetimeparts()",
       "source_file": "crm-app/src/lib/formatters.js",
@@ -1164,7 +1008,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "formatdate()",
       "source_file": "crm-app/src/lib/formatters.js",
@@ -1176,7 +1020,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "formatdatetimeasuncion()",
       "source_file": "crm-app/src/lib/formatters.js",
@@ -1188,7 +1032,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "fromdatetimelocalasuncion()",
       "source_file": "crm-app/src/lib/formatters.js",
@@ -1200,35 +1044,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "todatetimelocalasuncion()",
       "source_file": "crm-app/src/lib/formatters.js",
       "source_location": "L94"
-    },
-    {
-      "id": "crm_app_src_lib_formatters_todayisodate",
-      "label": "todayIsoDate()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
-      "file_type": "code",
-      "norm_label": "todayisodate()",
-      "source_file": "crm-app/src/lib/formatters.js",
-      "source_location": "L84"
-    },
-    {
-      "id": "crm_app_src_lib_formatters_tolocalisodate",
-      "label": "toLocalIsoDate()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
-      "file_type": "code",
-      "norm_label": "tolocalisodate()",
-      "source_file": "crm-app/src/lib/formatters.js",
-      "source_location": "L88"
     },
     {
       "id": "crm_app_src_lib_formatters_walltimetoutciso",
@@ -1236,47 +1056,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "walltimetoutciso()",
       "source_file": "crm-app/src/lib/formatters.js",
       "source_location": "L31"
-    },
-    {
-      "id": "crm_app_src_pages_agendapage_agendaactionbutton",
-      "label": "AgendaActionButton()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
-      "file_type": "code",
-      "norm_label": "agendaactionbutton()",
-      "source_file": "crm-app/src/pages/AgendaPage.jsx",
-      "source_location": "L174"
-    },
-    {
-      "id": "crm_app_src_pages_agendapage_agendafilter",
-      "label": "AgendaFilter()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
-      "file_type": "code",
-      "norm_label": "agendafilter()",
-      "source_file": "crm-app/src/pages/AgendaPage.jsx",
-      "source_location": "L119"
-    },
-    {
-      "id": "crm_app_src_pages_agendapage_agendaview",
-      "label": "AgendaView()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
-      "file_type": "code",
-      "norm_label": "agendaview()",
-      "source_file": "crm-app/src/pages/AgendaPage.jsx",
-      "source_location": "L21"
     },
     {
       "id": "crm_app_src_pages_agendapage_appointmentat",
@@ -1284,71 +1068,35 @@
       "_callable": true,
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "appointmentat()",
       "source_file": "crm-app/src/pages/AgendaPage.jsx",
       "source_location": "L17"
     },
     {
-      "id": "crm_app_src_pages_agendapage_appointmentcard",
-      "label": "AppointmentCard()",
+      "id": "tests_global_search_staging_client",
+      "label": "client()",
       "_callable": true,
       "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community": 111,
+      "community_name": "@supabase/supabase-js",
       "file_type": "code",
-      "norm_label": "appointmentcard()",
-      "source_file": "crm-app/src/pages/AgendaPage.jsx",
-      "source_location": "L132"
+      "norm_label": "client()",
+      "source_file": "tests/global-search-staging.mjs",
+      "source_location": "L9"
     },
     {
-      "id": "crm_app_src_pages_followupspage_followupsview",
-      "label": "FollowupsView()",
+      "id": "tests_global_search_staging_signin",
+      "label": "signIn()",
       "_callable": true,
       "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community": 111,
+      "community_name": "@supabase/supabase-js",
       "file_type": "code",
-      "norm_label": "followupsview()",
-      "source_file": "crm-app/src/pages/FollowupsPage.jsx",
-      "source_location": "L17"
-    },
-    {
-      "id": "crm_app_src_components_auth_passwordinput_passwordinput",
-      "label": "PasswordInput()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "passwordinput()",
-      "source_file": "crm-app/src/components/auth/PasswordInput.jsx",
-      "source_location": "L4"
-    },
-    {
-      "id": "crm_app_src_lib_publicconfig_leadintakeurlfromsupabase",
-      "label": "leadIntakeUrlFromSupabase()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "leadintakeurlfromsupabase()",
-      "source_file": "crm-app/src/lib/publicConfig.js",
-      "source_location": "L6"
-    },
-    {
-      "id": "crm_app_src_lib_publicconfig_validatepublicconfig",
-      "label": "validatePublicConfig()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "validatepublicconfig()",
-      "source_file": "crm-app/src/lib/publicConfig.js",
-      "source_location": "L16"
+      "norm_label": "signin()",
+      "source_file": "tests/global-search-staging.mjs",
+      "source_location": "L10"
     },
     {
       "id": "tests_contact_interaction_staging_login",
@@ -1519,6 +1267,54 @@
       "source_location": "L17"
     },
     {
+      "id": "crm_app_src_features_public_form_publicembedleadform_publicembedleadform",
+      "label": "PublicEmbedLeadForm()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 115,
+      "community_name": "App.jsx",
+      "file_type": "code",
+      "norm_label": "publicembedleadform()",
+      "source_file": "crm-app/src/features/public-form/PublicEmbedLeadForm.jsx",
+      "source_location": "L7"
+    },
+    {
+      "id": "crm_app_src_features_public_form_publicembedleadform_publicembedleadform_handlesubmit",
+      "label": "handleSubmit()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 115,
+      "community_name": "App.jsx",
+      "file_type": "code",
+      "norm_label": "handlesubmit()",
+      "source_file": "crm-app/src/features/public-form/PublicEmbedLeadForm.jsx",
+      "source_location": "L28"
+    },
+    {
+      "id": "crm_app_src_features_public_form_publicembedleadform_publicembedleadform_updatefield",
+      "label": "updateField()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 115,
+      "community_name": "App.jsx",
+      "file_type": "code",
+      "norm_label": "updatefield()",
+      "source_file": "crm-app/src/features/public-form/PublicEmbedLeadForm.jsx",
+      "source_location": "L24"
+    },
+    {
+      "id": "crm_app_src_features_public_form_publicembedleadform_sendicon",
+      "label": "SendIcon()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 115,
+      "community_name": "App.jsx",
+      "file_type": "code",
+      "norm_label": "sendicon()",
+      "source_file": "crm-app/src/features/public-form/PublicEmbedLeadForm.jsx",
+      "source_location": "L157"
+    },
+    {
       "id": "crm_app_src_hooks_usesupabasesession_usesupabasesession",
       "label": "useSupabaseSession()",
       "_callable": true,
@@ -1529,6 +1325,18 @@
       "norm_label": "usesupabasesession()",
       "source_file": "crm-app/src/hooks/useSupabaseSession.js",
       "source_location": "L6"
+    },
+    {
+      "id": "crm_app_src_lib_attribution_captureurlattribution",
+      "label": "captureUrlAttribution()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 115,
+      "community_name": "App.jsx",
+      "file_type": "code",
+      "norm_label": "captureurlattribution()",
+      "source_file": "crm-app/src/lib/attribution.js",
+      "source_location": "L3"
     },
     {
       "id": "crm_app_src_lib_authrecovery_readpasswordrecoveryredirect",
@@ -1555,16 +1363,16 @@
       "source_location": "L404"
     },
     {
-      "id": "crm_app_src_lib_patients_grouppatientopportunities",
-      "label": "groupPatientOpportunities()",
+      "id": "crm_app_src_routing_crmroutes_crmroutes",
+      "label": "CrmRoutes()",
       "_callable": true,
       "_origin": "ast",
       "community": 115,
       "community_name": "App.jsx",
       "file_type": "code",
-      "norm_label": "grouppatientopportunities()",
-      "source_file": "crm-app/src/lib/patients.js",
-      "source_location": "L1"
+      "norm_label": "crmroutes()",
+      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
+      "source_location": "L45"
     },
     {
       "id": "tests_contact_auth_contract_test_read",
@@ -1603,64 +1411,16 @@
       "source_location": "L16"
     },
     {
-      "id": "crm_app_src_components_applayout_applayout",
-      "label": "AppLayout()",
+      "id": "crm_app_src_pages_dashboardpage_dashboard",
+      "label": "Dashboard()",
       "_callable": true,
       "_origin": "ast",
       "community": 13,
       "community_name": "visual-harness/main.jsx",
       "file_type": "code",
-      "norm_label": "applayout()",
-      "source_file": "crm-app/src/components/AppLayout.jsx",
-      "source_location": "L41"
-    },
-    {
-      "id": "crm_app_src_components_modals_leadformmodal_getleadformdefaults",
-      "label": "getLeadFormDefaults()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "visual-harness/main.jsx",
-      "file_type": "code",
-      "norm_label": "getleadformdefaults()",
-      "source_file": "crm-app/src/components/modals/LeadFormModal.jsx",
-      "source_location": "L12"
-    },
-    {
-      "id": "crm_app_src_components_modals_leadformmodal_leadformmodal",
-      "label": "LeadFormModal()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "visual-harness/main.jsx",
-      "file_type": "code",
-      "norm_label": "leadformmodal()",
-      "source_file": "crm-app/src/components/modals/LeadFormModal.jsx",
-      "source_location": "L41"
-    },
-    {
-      "id": "crm_app_src_components_modals_leadformmodal_leadformmodal_updatefield",
-      "label": "updateField()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "visual-harness/main.jsx",
-      "file_type": "code",
-      "norm_label": "updatefield()",
-      "source_file": "crm-app/src/components/modals/LeadFormModal.jsx",
-      "source_location": "L53"
-    },
-    {
-      "id": "crm_app_src_lib_crmdomain_addhoursiso",
-      "label": "addHoursIso()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "visual-harness/main.jsx",
-      "file_type": "code",
-      "norm_label": "addhoursiso()",
-      "source_file": "crm-app/src/lib/crmDomain.js",
-      "source_location": "L191"
+      "norm_label": "dashboard()",
+      "source_file": "crm-app/src/pages/DashboardPage.jsx",
+      "source_location": "L13"
     },
     {
       "id": "crm_app_visual_harness_main_modalscenario",
@@ -1723,18 +1483,6 @@
       "source_location": "L72"
     },
     {
-      "id": "crm_app_src_lib_commercialinsights_getreportperiodlabel",
-      "label": "getReportPeriodLabel()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "LeadsPage.jsx",
-      "file_type": "code",
-      "norm_label": "getreportperiodlabel()",
-      "source_file": "crm-app/src/lib/commercialInsights.js",
-      "source_location": "L111"
-    },
-    {
       "id": "crm_app_src_lib_crmdomain_displayconsultationreason",
       "label": "displayConsultationReason()",
       "_callable": true,
@@ -1747,30 +1495,6 @@
       "source_location": "L151"
     },
     {
-      "id": "crm_app_src_lib_crmdomain_isarchivedlead",
-      "label": "isArchivedLead()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "LeadsPage.jsx",
-      "file_type": "code",
-      "norm_label": "isarchivedlead()",
-      "source_file": "crm-app/src/lib/crmDomain.js",
-      "source_location": "L147"
-    },
-    {
-      "id": "crm_app_src_lib_crmdomain_uniquestrings",
-      "label": "uniqueStrings()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "LeadsPage.jsx",
-      "file_type": "code",
-      "norm_label": "uniquestrings()",
-      "source_file": "crm-app/src/lib/crmDomain.js",
-      "source_location": "L155"
-    },
-    {
       "id": "crm_app_src_lib_formatters_formattime",
       "label": "formatTime()",
       "_callable": true,
@@ -1781,6 +1505,18 @@
       "norm_label": "formattime()",
       "source_file": "crm-app/src/lib/formatters.js",
       "source_location": "L79"
+    },
+    {
+      "id": "crm_app_src_lib_patients_grouppatientopportunities",
+      "label": "groupPatientOpportunities()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "LeadsPage.jsx",
+      "file_type": "code",
+      "norm_label": "grouppatientopportunities()",
+      "source_file": "crm-app/src/lib/patients.js",
+      "source_location": "L1"
     },
     {
       "id": "crm_app_src_pages_leadspage_buildfilterchips",
@@ -1817,18 +1553,6 @@
       "norm_label": "leaddetail()",
       "source_file": "crm-app/src/pages/LeadsPage.jsx",
       "source_location": "L138"
-    },
-    {
-      "id": "crm_app_src_pages_leadspage_leadsview",
-      "label": "LeadsView()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "LeadsPage.jsx",
-      "file_type": "code",
-      "norm_label": "leadsview()",
-      "source_file": "crm-app/src/pages/LeadsPage.jsx",
-      "source_location": "L26"
     },
     {
       "id": "crm_app_src_pages_leadspage_menuaction",
@@ -2011,6 +1735,54 @@
       "source_location": "L102"
     },
     {
+      "id": "crm_app_src_components_applayout_applayout",
+      "label": "AppLayout()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "applayout()",
+      "source_file": "crm-app/src/components/AppLayout.jsx",
+      "source_location": "L41"
+    },
+    {
+      "id": "crm_app_src_components_applayout_navbutton",
+      "label": "NavButton()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "navbutton()",
+      "source_file": "crm-app/src/components/AppLayout.jsx",
+      "source_location": "L20"
+    },
+    {
+      "id": "crm_app_src_components_auth_passwordinput_passwordinput",
+      "label": "PasswordInput()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "passwordinput()",
+      "source_file": "crm-app/src/components/auth/PasswordInput.jsx",
+      "source_location": "L4"
+    },
+    {
+      "id": "crm_app_src_components_crm_crmprimitives_leadminicard",
+      "label": "LeadMiniCard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "leadminicard()",
+      "source_file": "crm-app/src/components/crm/CrmPrimitives.jsx",
+      "source_location": "L4"
+    },
+    {
       "id": "crm_app_src_components_patients_querystate_pagecontrols",
       "label": "PageControls()",
       "_callable": true,
@@ -2035,6 +1807,102 @@
       "source_location": "L2"
     },
     {
+      "id": "crm_app_src_features_search_globalsearch_globalsearch",
+      "label": "GlobalSearch()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "globalsearch()",
+      "source_file": "crm-app/src/features/search/GlobalSearch.jsx",
+      "source_location": "L8"
+    },
+    {
+      "id": "crm_app_src_features_work_useworkresource_useworkresource",
+      "label": "useWorkResource()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "useworkresource()",
+      "source_file": "crm-app/src/features/work/useWorkResource.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "crm_app_src_features_work_workpage_relativetime",
+      "label": "relativeTime()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "relativetime()",
+      "source_file": "crm-app/src/features/work/WorkPage.jsx",
+      "source_location": "L11"
+    },
+    {
+      "id": "crm_app_src_features_work_workpage_workpage",
+      "label": "WorkPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "workpage()",
+      "source_file": "crm-app/src/features/work/WorkPage.jsx",
+      "source_location": "L20"
+    },
+    {
+      "id": "crm_app_src_features_work_workqueries_decodeworkcursor",
+      "label": "decodeWorkCursor()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "decodeworkcursor()",
+      "source_file": "crm-app/src/features/work/workQueries.js",
+      "source_location": "L22"
+    },
+    {
+      "id": "crm_app_src_features_work_workqueries_encodeworkcursor",
+      "label": "encodeWorkCursor()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "encodeworkcursor()",
+      "source_file": "crm-app/src/features/work/workQueries.js",
+      "source_location": "L17"
+    },
+    {
+      "id": "crm_app_src_features_work_workqueries_listworkitems",
+      "label": "listWorkItems()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "listworkitems()",
+      "source_file": "crm-app/src/features/work/workQueries.js",
+      "source_location": "L31"
+    },
+    {
+      "id": "crm_app_src_features_work_workqueries_normalizeworkview",
+      "label": "normalizeWorkView()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "normalizeworkview()",
+      "source_file": "crm-app/src/features/work/workQueries.js",
+      "source_location": "L12"
+    },
+    {
       "id": "crm_app_src_hooks_usecontactresource_usecontactresource",
       "label": "useContactResource()",
       "_callable": true,
@@ -2047,16 +1915,40 @@
       "source_location": "L6"
     },
     {
-      "id": "crm_app_src_pages_notfoundpage_notfoundpage",
-      "label": "NotFoundPage()",
+      "id": "crm_app_src_hooks_usecrmcontroller_usecrmcontroller_handleleadselect",
+      "label": "handleLeadSelect()",
       "_callable": true,
       "_origin": "ast",
       "community": 177,
       "community_name": "PatientPage.jsx",
       "file_type": "code",
-      "norm_label": "notfoundpage()",
-      "source_file": "crm-app/src/pages/NotFoundPage.jsx",
-      "source_location": "L3"
+      "norm_label": "handleleadselect()",
+      "source_file": "crm-app/src/hooks/useCrmController.js",
+      "source_location": "L149"
+    },
+    {
+      "id": "crm_app_src_lib_publicconfig_leadintakeurlfromsupabase",
+      "label": "leadIntakeUrlFromSupabase()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "leadintakeurlfromsupabase()",
+      "source_file": "crm-app/src/lib/publicConfig.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "crm_app_src_lib_publicconfig_validatepublicconfig",
+      "label": "validatePublicConfig()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "validatepublicconfig()",
+      "source_file": "crm-app/src/lib/publicConfig.js",
+      "source_location": "L16"
     },
     {
       "id": "crm_app_src_pages_patientpage_opportunity",
@@ -2179,6 +2071,18 @@
       "source_location": "L11"
     },
     {
+      "id": "crm_app_src_pages_taskspage_tasksview",
+      "label": "TasksView()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "tasksview()",
+      "source_file": "crm-app/src/pages/TasksPage.jsx",
+      "source_location": "L13"
+    },
+    {
       "id": "crm_app_src_routing_paths_opportunitypath",
       "label": "opportunityPath()",
       "_callable": true,
@@ -2189,6 +2093,42 @@
       "norm_label": "opportunitypath()",
       "source_file": "crm-app/src/routing/paths.js",
       "source_location": "L9"
+    },
+    {
+      "id": "crm_app_src_routing_paths_patientpath",
+      "label": "patientPath()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "patientpath()",
+      "source_file": "crm-app/src/routing/paths.js",
+      "source_location": "L8"
+    },
+    {
+      "id": "crm_app_src_routing_paths_viewforpath",
+      "label": "viewForPath()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "viewforpath()",
+      "source_file": "crm-app/src/routing/paths.js",
+      "source_location": "L11"
+    },
+    {
+      "id": "crm_app_src_routing_paths_viewpath",
+      "label": "viewPath()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "viewpath()",
+      "source_file": "crm-app/src/routing/paths.js",
+      "source_location": "L10"
     },
     {
       "id": "tests_load_multitenant_load_fetchcreatedleads",
@@ -2263,6 +2203,30 @@
       "source_location": "L46"
     },
     {
+      "id": "crm_app_src_components_crm_pendingactioncard_formatactionmoment",
+      "label": "formatActionMoment()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 180,
+      "community_name": "PendingPage.jsx",
+      "file_type": "code",
+      "norm_label": "formatactionmoment()",
+      "source_file": "crm-app/src/components/crm/PendingActionCard.jsx",
+      "source_location": "L55"
+    },
+    {
+      "id": "crm_app_src_components_crm_pendingactioncard_pendingactioncard",
+      "label": "PendingActionCard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 180,
+      "community_name": "PendingPage.jsx",
+      "file_type": "code",
+      "norm_label": "pendingactioncard()",
+      "source_file": "crm-app/src/components/crm/PendingActionCard.jsx",
+      "source_location": "L10"
+    },
+    {
       "id": "crm_app_src_components_ui_filtersheet_activefilterchips",
       "label": "ActiveFilterChips()",
       "_callable": true,
@@ -2311,72 +2275,24 @@
       "source_location": "L11"
     },
     {
-      "id": "crm_app_src_hooks_usecrmcontroller_usecrmcontroller_handlewhatsappopened",
-      "label": "handleWhatsAppOpened()",
+      "id": "crm_app_src_components_ui_temperaturebadge_temperaturebadge",
+      "label": "TemperatureBadge()",
       "_callable": true,
       "_origin": "ast",
-      "community": 181,
-      "community_name": "normalizeText",
+      "community": 180,
+      "community_name": "PendingPage.jsx",
       "file_type": "code",
-      "norm_label": "handlewhatsappopened()",
-      "source_file": "crm-app/src/hooks/useCrmController.js",
-      "source_location": "L1017"
-    },
-    {
-      "id": "crm_app_src_lib_crmdomain_iscontacttask",
-      "label": "isContactTask()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 181,
-      "community_name": "normalizeText",
-      "file_type": "code",
-      "norm_label": "iscontacttask()",
-      "source_file": "crm-app/src/lib/crmDomain.js",
-      "source_location": "L170"
-    },
-    {
-      "id": "crm_app_src_lib_crmdomain_isopentask",
-      "label": "isOpenTask()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 181,
-      "community_name": "normalizeText",
-      "file_type": "code",
-      "norm_label": "isopentask()",
-      "source_file": "crm-app/src/lib/crmDomain.js",
-      "source_location": "L166"
-    },
-    {
-      "id": "crm_app_src_lib_crmdomain_normalizetaskstatus",
-      "label": "normalizeTaskStatus()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 181,
-      "community_name": "normalizeText",
-      "file_type": "code",
-      "norm_label": "normalizetaskstatus()",
-      "source_file": "crm-app/src/lib/crmDomain.js",
-      "source_location": "L117"
-    },
-    {
-      "id": "crm_app_src_lib_formatters_normalizetext",
-      "label": "normalizeText()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 181,
-      "community_name": "normalizeText",
-      "file_type": "code",
-      "norm_label": "normalizetext()",
-      "source_file": "crm-app/src/lib/formatters.js",
-      "source_location": "L121"
+      "norm_label": "temperaturebadge()",
+      "source_file": "crm-app/src/components/ui/TemperatureBadge.jsx",
+      "source_location": "L9"
     },
     {
       "id": "crm_app_src_pages_pendingpage_actionlabel",
       "label": "actionLabel()",
       "_callable": true,
       "_origin": "ast",
-      "community": 181,
-      "community_name": "normalizeText",
+      "community": 180,
+      "community_name": "PendingPage.jsx",
       "file_type": "code",
       "norm_label": "actionlabel()",
       "source_file": "crm-app/src/pages/PendingPage.jsx",
@@ -2387,8 +2303,8 @@
       "label": "actionTypeOptions()",
       "_callable": true,
       "_origin": "ast",
-      "community": 181,
-      "community_name": "normalizeText",
+      "community": 180,
+      "community_name": "PendingPage.jsx",
       "file_type": "code",
       "norm_label": "actiontypeoptions()",
       "source_file": "crm-app/src/pages/PendingPage.jsx",
@@ -2399,8 +2315,8 @@
       "label": "PendingPage()",
       "_callable": true,
       "_origin": "ast",
-      "community": 181,
-      "community_name": "normalizeText",
+      "community": 180,
+      "community_name": "PendingPage.jsx",
       "file_type": "code",
       "norm_label": "pendingpage()",
       "source_file": "crm-app/src/pages/PendingPage.jsx",
@@ -2455,30 +2371,6 @@
       "source_location": "L3"
     },
     {
-      "id": "crm_app_src_components_ui_emptystate_emptystate",
-      "label": "EmptyState()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "emptystate()",
-      "source_file": "crm-app/src/components/ui/EmptyState.jsx",
-      "source_location": "L3"
-    },
-    {
-      "id": "crm_app_src_components_ui_pageheader_pageheader",
-      "label": "PageHeader()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "pageheader()",
-      "source_file": "crm-app/src/components/ui/PageHeader.jsx",
-      "source_location": "L1"
-    },
-    {
       "id": "crm_app_src_lib_analytics_formatdurationminutes",
       "label": "formatDurationMinutes()",
       "_callable": true,
@@ -2489,78 +2381,6 @@
       "norm_label": "formatdurationminutes()",
       "source_file": "crm-app/src/lib/analytics.js",
       "source_location": "L355"
-    },
-    {
-      "id": "crm_app_src_lib_commercialinsights_buildweeklyreporttext",
-      "label": "buildWeeklyReportText()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "buildweeklyreporttext()",
-      "source_file": "crm-app/src/lib/commercialInsights.js",
-      "source_location": "L104"
-    },
-    {
-      "id": "crm_app_src_lib_formatters_formatmoney",
-      "label": "formatMoney()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "formatmoney()",
-      "source_file": "crm-app/src/lib/formatters.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_pages_dashboardpage_dashboard",
-      "label": "Dashboard()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "dashboard()",
-      "source_file": "crm-app/src/pages/DashboardPage.jsx",
-      "source_location": "L13"
-    },
-    {
-      "id": "crm_app_src_pages_dashboardpage_greeting",
-      "label": "greeting()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "greeting()",
-      "source_file": "crm-app/src/pages/DashboardPage.jsx",
-      "source_location": "L101"
-    },
-    {
-      "id": "crm_app_src_pages_dashboardpage_receptionhome",
-      "label": "ReceptionHome()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "receptionhome()",
-      "source_file": "crm-app/src/pages/DashboardPage.jsx",
-      "source_location": "L18"
-    },
-    {
-      "id": "crm_app_src_pages_dashboardpage_summarysignal",
-      "label": "SummarySignal()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "summarysignal()",
-      "source_file": "crm-app/src/pages/DashboardPage.jsx",
-      "source_location": "L87"
     },
     {
       "id": "crm_app_src_pages_metricspage_analysiscards",
@@ -2695,40 +2515,16 @@
       "source_location": "L141"
     },
     {
-      "id": "crm_app_src_pages_ownersummarypage_moneysignal",
-      "label": "MoneySignal()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "moneysignal()",
-      "source_file": "crm-app/src/pages/OwnerSummaryPage.jsx",
-      "source_location": "L73"
-    },
-    {
-      "id": "crm_app_src_pages_ownersummarypage_ownersummarypage",
-      "label": "OwnerSummaryPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "ownersummarypage()",
-      "source_file": "crm-app/src/pages/OwnerSummaryPage.jsx",
-      "source_location": "L9"
-    },
-    {
-      "id": "crm_app_src_lib_commercialinsights_getriskalerts",
-      "label": "getRiskAlerts()",
+      "id": "crm_app_src_components_crm_whatsappbutton_whatsappbutton",
+      "label": "WhatsAppButton()",
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
-      "norm_label": "getriskalerts()",
-      "source_file": "crm-app/src/lib/commercialInsights.js",
-      "source_location": "L35"
+      "norm_label": "whatsappbutton()",
+      "source_file": "crm-app/src/components/crm/WhatsAppButton.jsx",
+      "source_location": "L4"
     },
     {
       "id": "crm_app_src_lib_messages_buildleadmessage",
@@ -2736,7 +2532,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "buildleadmessage()",
       "source_file": "crm-app/src/lib/messages.js",
@@ -2748,7 +2544,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "buildmessagefromtemplate()",
       "source_file": "crm-app/src/lib/messages.js",
@@ -2760,7 +2556,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "buildwhatsappmessage()",
       "source_file": "crm-app/src/lib/messages.js",
@@ -2772,7 +2568,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "buildwhatsappurl()",
       "source_file": "crm-app/src/lib/messages.js",
@@ -2784,7 +2580,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "getwhatsapptemplate()",
       "source_file": "crm-app/src/lib/messages.js",
@@ -2796,7 +2592,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "normalizewhatsappphone()",
       "source_file": "crm-app/src/lib/messages.js",
@@ -2808,7 +2604,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "selectwhatsapptemplatekey()",
       "source_file": "crm-app/src/lib/messages.js",
@@ -2820,7 +2616,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "buildtemplatedraft()",
       "source_file": "crm-app/src/pages/SettingsPage.jsx",
@@ -2832,7 +2628,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "whatsapptemplatessettings()",
       "source_file": "crm-app/src/pages/SettingsPage.jsx",
@@ -2844,7 +2640,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "copypreview()",
       "source_file": "crm-app/src/pages/SettingsPage.jsx",
@@ -2856,7 +2652,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "handlesave()",
       "source_file": "crm-app/src/pages/SettingsPage.jsx",
@@ -2868,11 +2664,83 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "previewmessage()",
       "source_file": "crm-app/src/pages/SettingsPage.jsx",
       "source_location": "L179"
+    },
+    {
+      "id": "crm_app_src_lib_commercialinsights_buildweeklyreporttext",
+      "label": "buildWeeklyReportText()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 20,
+      "community_name": "commercialInsights.js",
+      "file_type": "code",
+      "norm_label": "buildweeklyreporttext()",
+      "source_file": "crm-app/src/lib/commercialInsights.js",
+      "source_location": "L104"
+    },
+    {
+      "id": "crm_app_src_lib_commercialinsights_getleadpriority",
+      "label": "getLeadPriority()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 20,
+      "community_name": "commercialInsights.js",
+      "file_type": "code",
+      "norm_label": "getleadpriority()",
+      "source_file": "crm-app/src/lib/commercialInsights.js",
+      "source_location": "L26"
+    },
+    {
+      "id": "crm_app_src_lib_commercialinsights_getreportperiodlabel",
+      "label": "getReportPeriodLabel()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 20,
+      "community_name": "commercialInsights.js",
+      "file_type": "code",
+      "norm_label": "getreportperiodlabel()",
+      "source_file": "crm-app/src/lib/commercialInsights.js",
+      "source_location": "L111"
+    },
+    {
+      "id": "crm_app_src_lib_commercialinsights_getriskalerts",
+      "label": "getRiskAlerts()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 20,
+      "community_name": "commercialInsights.js",
+      "file_type": "code",
+      "norm_label": "getriskalerts()",
+      "source_file": "crm-app/src/lib/commercialInsights.js",
+      "source_location": "L35"
+    },
+    {
+      "id": "crm_app_src_lib_crmdomain_isarchivedlead",
+      "label": "isArchivedLead()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 20,
+      "community_name": "commercialInsights.js",
+      "file_type": "code",
+      "norm_label": "isarchivedlead()",
+      "source_file": "crm-app/src/lib/crmDomain.js",
+      "source_location": "L147"
+    },
+    {
+      "id": "crm_app_src_lib_nextactions_buildnextactionqueue",
+      "label": "buildNextActionQueue()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 20,
+      "community_name": "commercialInsights.js",
+      "file_type": "code",
+      "norm_label": "buildnextactionqueue()",
+      "source_file": "crm-app/src/lib/nextActions.js",
+      "source_location": "L273"
     },
     {
       "id": "crm_app_src_services_contactqueries_checked",
@@ -3055,6 +2923,30 @@
       "source_location": "L7"
     },
     {
+      "id": "crm_app_src_services_globalsearch_checked",
+      "label": "checked()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "checked()",
+      "source_file": "crm-app/src/services/globalSearch.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "crm_app_src_services_globalsearch_createglobalsearch",
+      "label": "createGlobalSearch()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "createglobalsearch()",
+      "source_file": "crm-app/src/services/globalSearch.js",
+      "source_location": "L11"
+    },
+    {
       "id": "supabase_functions_lead_intake_index_corsheaders",
       "label": "corsHeaders()",
       "_callable": true,
@@ -3223,6 +3115,18 @@
       "source_location": "L22"
     },
     {
+      "id": "crm_app_src_pages_notfoundpage_notfoundpage",
+      "label": "NotFoundPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "SettingsPage.jsx",
+      "file_type": "code",
+      "norm_label": "notfoundpage()",
+      "source_file": "crm-app/src/pages/NotFoundPage.jsx",
+      "source_location": "L3"
+    },
+    {
       "id": "crm_app_src_pages_settingspage_rolelabel",
       "label": "roleLabel()",
       "_callable": true,
@@ -3295,18 +3199,6 @@
       "source_location": "L18"
     },
     {
-      "id": "crm_app_src_routing_crmroutes_crmroutes",
-      "label": "CrmRoutes()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 28,
-      "community_name": "SettingsPage.jsx",
-      "file_type": "code",
-      "norm_label": "crmroutes()",
-      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
-      "source_location": "L45"
-    },
-    {
       "id": "crm_app_src_routing_crmroutes_opportunityboundary",
       "label": "OpportunityBoundary()",
       "_callable": true,
@@ -3331,16 +3223,16 @@
       "source_location": "L39"
     },
     {
-      "id": "crm_app_src_hooks_usecrmcontroller_usecrmcontroller_synctasksforleadstatus",
-      "label": "syncTasksForLeadStatus()",
+      "id": "crm_app_src_hooks_usecrmcontroller_usecrmcontroller_handlewhatsappopened",
+      "label": "handleWhatsAppOpened()",
       "_callable": true,
       "_origin": "ast",
       "community": 29,
       "community_name": "crmDomain.js",
       "file_type": "code",
-      "norm_label": "synctasksforleadstatus()",
+      "norm_label": "handlewhatsappopened()",
       "source_file": "crm-app/src/hooks/useCrmController.js",
-      "source_location": "L269"
+      "source_location": "L1017"
     },
     {
       "id": "crm_app_src_lib_crmdomain_adddaysiso",
@@ -3377,6 +3269,42 @@
       "norm_label": "buildleadformpatch()",
       "source_file": "crm-app/src/lib/crmDomain.js",
       "source_location": "L380"
+    },
+    {
+      "id": "crm_app_src_lib_crmdomain_iscontacttask",
+      "label": "isContactTask()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "crmDomain.js",
+      "file_type": "code",
+      "norm_label": "iscontacttask()",
+      "source_file": "crm-app/src/lib/crmDomain.js",
+      "source_location": "L170"
+    },
+    {
+      "id": "crm_app_src_lib_crmdomain_isopentask",
+      "label": "isOpenTask()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "crmDomain.js",
+      "file_type": "code",
+      "norm_label": "isopentask()",
+      "source_file": "crm-app/src/lib/crmDomain.js",
+      "source_location": "L166"
+    },
+    {
+      "id": "crm_app_src_lib_crmdomain_normalizetaskstatus",
+      "label": "normalizeTaskStatus()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "crmDomain.js",
+      "file_type": "code",
+      "norm_label": "normalizetaskstatus()",
+      "source_file": "crm-app/src/lib/crmDomain.js",
+      "source_location": "L117"
     },
     {
       "id": "crm_app_src_lib_crmdomain_nowiso",
@@ -3437,6 +3365,18 @@
       "norm_label": "taskconfigforleadstatus()",
       "source_file": "crm-app/src/lib/crmDomain.js",
       "source_location": "L284"
+    },
+    {
+      "id": "crm_app_src_lib_formatters_normalizetext",
+      "label": "normalizeText()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "crmDomain.js",
+      "file_type": "code",
+      "norm_label": "normalizetext()",
+      "source_file": "crm-app/src/lib/formatters.js",
+      "source_location": "L121"
     },
     {
       "id": "crm_app_src_lib_crmdomain_formatallowedorigins",
@@ -3607,88 +3547,172 @@
       "source_location": "L87"
     },
     {
-      "id": "crm_app_src_features_work_useworkresource_useworkresource",
-      "label": "useWorkResource()",
+      "id": "crm_app_src_components_modals_appointmentmodal_appointmentmodal",
+      "label": "AppointmentModal()",
       "_callable": true,
       "_origin": "ast",
       "community": 41,
-      "community_name": "WorkPage.jsx",
+      "community_name": "todayIsoDate",
       "file_type": "code",
-      "norm_label": "useworkresource()",
-      "source_file": "crm-app/src/features/work/useWorkResource.js",
-      "source_location": "L5"
+      "norm_label": "appointmentmodal()",
+      "source_file": "crm-app/src/components/modals/AppointmentModal.jsx",
+      "source_location": "L44"
     },
     {
-      "id": "crm_app_src_features_work_workpage_relativetime",
-      "label": "relativeTime()",
+      "id": "crm_app_src_components_modals_appointmentmodal_appointmentmodal_handlesubmit",
+      "label": "handleSubmit()",
       "_callable": true,
       "_origin": "ast",
       "community": 41,
-      "community_name": "WorkPage.jsx",
+      "community_name": "todayIsoDate",
       "file_type": "code",
-      "norm_label": "relativetime()",
-      "source_file": "crm-app/src/features/work/WorkPage.jsx",
-      "source_location": "L11"
+      "norm_label": "handlesubmit()",
+      "source_file": "crm-app/src/components/modals/AppointmentModal.jsx",
+      "source_location": "L81"
     },
     {
-      "id": "crm_app_src_features_work_workpage_workpage",
-      "label": "WorkPage()",
+      "id": "crm_app_src_components_modals_appointmentmodal_appointmentmodal_updatefield",
+      "label": "updateField()",
       "_callable": true,
       "_origin": "ast",
       "community": 41,
-      "community_name": "WorkPage.jsx",
+      "community_name": "todayIsoDate",
       "file_type": "code",
-      "norm_label": "workpage()",
-      "source_file": "crm-app/src/features/work/WorkPage.jsx",
-      "source_location": "L20"
+      "norm_label": "updatefield()",
+      "source_file": "crm-app/src/components/modals/AppointmentModal.jsx",
+      "source_location": "L77"
     },
     {
-      "id": "crm_app_src_features_work_workqueries_decodeworkcursor",
-      "label": "decodeWorkCursor()",
+      "id": "crm_app_src_components_modals_appointmentmodal_buildtimeslots",
+      "label": "buildTimeSlots()",
       "_callable": true,
       "_origin": "ast",
       "community": 41,
-      "community_name": "WorkPage.jsx",
+      "community_name": "todayIsoDate",
       "file_type": "code",
-      "norm_label": "decodeworkcursor()",
-      "source_file": "crm-app/src/features/work/workQueries.js",
+      "norm_label": "buildtimeslots()",
+      "source_file": "crm-app/src/components/modals/AppointmentModal.jsx",
       "source_location": "L22"
     },
     {
-      "id": "crm_app_src_features_work_workqueries_encodeworkcursor",
-      "label": "encodeWorkCursor()",
+      "id": "crm_app_src_components_modals_appointmentmodal_getappointmentformdefaults",
+      "label": "getAppointmentFormDefaults()",
       "_callable": true,
       "_origin": "ast",
       "community": 41,
-      "community_name": "WorkPage.jsx",
+      "community_name": "todayIsoDate",
       "file_type": "code",
-      "norm_label": "encodeworkcursor()",
-      "source_file": "crm-app/src/features/work/workQueries.js",
+      "norm_label": "getappointmentformdefaults()",
+      "source_file": "crm-app/src/components/modals/AppointmentModal.jsx",
+      "source_location": "L12"
+    },
+    {
+      "id": "crm_app_src_lib_commercialinsights_istoday",
+      "label": "isToday()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "todayIsoDate",
+      "file_type": "code",
+      "norm_label": "istoday()",
+      "source_file": "crm-app/src/lib/commercialInsights.js",
+      "source_location": "L116"
+    },
+    {
+      "id": "crm_app_src_lib_crmdomain_daysbetween",
+      "label": "daysBetween()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "todayIsoDate",
+      "file_type": "code",
+      "norm_label": "daysbetween()",
+      "source_file": "crm-app/src/lib/crmDomain.js",
+      "source_location": "L183"
+    },
+    {
+      "id": "crm_app_src_lib_crmdomain_startofasunciondate",
+      "label": "startOfAsuncionDate()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "todayIsoDate",
+      "file_type": "code",
+      "norm_label": "startofasunciondate()",
+      "source_file": "crm-app/src/lib/crmDomain.js",
+      "source_location": "L177"
+    },
+    {
+      "id": "crm_app_src_lib_crmdomain_uniquestrings",
+      "label": "uniqueStrings()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "todayIsoDate",
+      "file_type": "code",
+      "norm_label": "uniquestrings()",
+      "source_file": "crm-app/src/lib/crmDomain.js",
+      "source_location": "L155"
+    },
+    {
+      "id": "crm_app_src_lib_formatters_todayisodate",
+      "label": "todayIsoDate()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "todayIsoDate",
+      "file_type": "code",
+      "norm_label": "todayisodate()",
+      "source_file": "crm-app/src/lib/formatters.js",
+      "source_location": "L84"
+    },
+    {
+      "id": "crm_app_src_lib_formatters_tolocalisodate",
+      "label": "toLocalIsoDate()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "todayIsoDate",
+      "file_type": "code",
+      "norm_label": "tolocalisodate()",
+      "source_file": "crm-app/src/lib/formatters.js",
+      "source_location": "L88"
+    },
+    {
+      "id": "crm_app_src_pages_agendapage_agendaview",
+      "label": "AgendaView()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "todayIsoDate",
+      "file_type": "code",
+      "norm_label": "agendaview()",
+      "source_file": "crm-app/src/pages/AgendaPage.jsx",
+      "source_location": "L21"
+    },
+    {
+      "id": "crm_app_src_pages_followupspage_followupsview",
+      "label": "FollowupsView()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "todayIsoDate",
+      "file_type": "code",
+      "norm_label": "followupsview()",
+      "source_file": "crm-app/src/pages/FollowupsPage.jsx",
       "source_location": "L17"
     },
     {
-      "id": "crm_app_src_features_work_workqueries_listworkitems",
-      "label": "listWorkItems()",
+      "id": "crm_app_src_pages_leadspage_leadsview",
+      "label": "LeadsView()",
       "_callable": true,
       "_origin": "ast",
       "community": 41,
-      "community_name": "WorkPage.jsx",
+      "community_name": "todayIsoDate",
       "file_type": "code",
-      "norm_label": "listworkitems()",
-      "source_file": "crm-app/src/features/work/workQueries.js",
-      "source_location": "L31"
-    },
-    {
-      "id": "crm_app_src_features_work_workqueries_normalizeworkview",
-      "label": "normalizeWorkView()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "WorkPage.jsx",
-      "file_type": "code",
-      "norm_label": "normalizeworkview()",
-      "source_file": "crm-app/src/features/work/workQueries.js",
-      "source_location": "L12"
+      "norm_label": "leadsview()",
+      "source_file": "crm-app/src/pages/LeadsPage.jsx",
+      "source_location": "L26"
     },
     {
       "id": "crm_app_vite_config_configresolved",
@@ -3883,42 +3907,6 @@
       "source_location": "L29"
     },
     {
-      "id": "crm_app_src_features_public_form_publicembedleadform_publicembedleadform",
-      "label": "PublicEmbedLeadForm()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "humanizeCrmError",
-      "file_type": "code",
-      "norm_label": "publicembedleadform()",
-      "source_file": "crm-app/src/features/public-form/PublicEmbedLeadForm.jsx",
-      "source_location": "L7"
-    },
-    {
-      "id": "crm_app_src_features_public_form_publicembedleadform_publicembedleadform_handlesubmit",
-      "label": "handleSubmit()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "humanizeCrmError",
-      "file_type": "code",
-      "norm_label": "handlesubmit()",
-      "source_file": "crm-app/src/features/public-form/PublicEmbedLeadForm.jsx",
-      "source_location": "L28"
-    },
-    {
-      "id": "crm_app_src_features_public_form_publicembedleadform_publicembedleadform_updatefield",
-      "label": "updateField()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "humanizeCrmError",
-      "file_type": "code",
-      "norm_label": "updatefield()",
-      "source_file": "crm-app/src/features/public-form/PublicEmbedLeadForm.jsx",
-      "source_location": "L24"
-    },
-    {
       "id": "crm_app_src_hooks_useclinicworkspace_useclinicworkspace",
       "label": "useClinicWorkspace()",
       "_callable": true,
@@ -4013,18 +4001,6 @@
       "norm_label": "createmanuallead()",
       "source_file": "crm-app/src/hooks/useCrmController.js",
       "source_location": "L422"
-    },
-    {
-      "id": "crm_app_src_hooks_usecrmcontroller_usecrmcontroller_handleleadselect",
-      "label": "handleLeadSelect()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "humanizeCrmError",
-      "file_type": "code",
-      "norm_label": "handleleadselect()",
-      "source_file": "crm-app/src/hooks/useCrmController.js",
-      "source_location": "L149"
     },
     {
       "id": "crm_app_src_hooks_usecrmcontroller_usecrmcontroller_handlelogout",
@@ -4327,6 +4303,18 @@
       "source_location": "L1049"
     },
     {
+      "id": "crm_app_src_hooks_usecrmcontroller_usecrmcontroller_synctasksforleadstatus",
+      "label": "syncTasksForLeadStatus()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "humanizeCrmError",
+      "file_type": "code",
+      "norm_label": "synctasksforleadstatus()",
+      "source_file": "crm-app/src/hooks/useCrmController.js",
+      "source_location": "L269"
+    },
+    {
       "id": "crm_app_src_hooks_usecrmcontroller_usecrmcontroller_updateappointmentoutcome",
       "label": "updateAppointmentOutcome()",
       "_callable": true,
@@ -4349,18 +4337,6 @@
       "norm_label": "updatelead()",
       "source_file": "crm-app/src/hooks/useCrmController.js",
       "source_location": "L154"
-    },
-    {
-      "id": "crm_app_src_lib_attribution_captureurlattribution",
-      "label": "captureUrlAttribution()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "humanizeCrmError",
-      "file_type": "code",
-      "norm_label": "captureurlattribution()",
-      "source_file": "crm-app/src/lib/attribution.js",
-      "source_location": "L3"
     },
     {
       "id": "crm_app_src_lib_crmdomain_cleanoptionaltext",
@@ -4409,18 +4385,6 @@
       "norm_label": "tomorrowfollowupasuncion()",
       "source_file": "crm-app/src/lib/formatters.js",
       "source_location": "L104"
-    },
-    {
-      "id": "crm_app_src_routing_paths_viewforpath",
-      "label": "viewForPath()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "humanizeCrmError",
-      "file_type": "code",
-      "norm_label": "viewforpath()",
-      "source_file": "crm-app/src/routing/paths.js",
-      "source_location": "L11"
     },
     {
       "id": "crm_app_src_services_crmapi_getclinic",
@@ -4483,52 +4447,16 @@
       "source_location": "L3"
     },
     {
-      "id": "crm_app_src_components_crm_crmprimitives_leadminicard",
-      "label": "LeadMiniCard()",
+      "id": "crm_app_src_components_ui_button_button",
+      "label": "Button()",
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
-      "norm_label": "leadminicard()",
-      "source_file": "crm-app/src/components/crm/CrmPrimitives.jsx",
-      "source_location": "L4"
-    },
-    {
-      "id": "crm_app_src_components_crm_pendingactioncard_formatactionmoment",
-      "label": "formatActionMoment()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "FollowupsPage.jsx",
-      "file_type": "code",
-      "norm_label": "formatactionmoment()",
-      "source_file": "crm-app/src/components/crm/PendingActionCard.jsx",
-      "source_location": "L55"
-    },
-    {
-      "id": "crm_app_src_components_crm_pendingactioncard_pendingactioncard",
-      "label": "PendingActionCard()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "FollowupsPage.jsx",
-      "file_type": "code",
-      "norm_label": "pendingactioncard()",
-      "source_file": "crm-app/src/components/crm/PendingActionCard.jsx",
-      "source_location": "L10"
-    },
-    {
-      "id": "crm_app_src_components_crm_whatsappbutton_whatsappbutton",
-      "label": "WhatsAppButton()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "FollowupsPage.jsx",
-      "file_type": "code",
-      "norm_label": "whatsappbutton()",
-      "source_file": "crm-app/src/components/crm/WhatsAppButton.jsx",
-      "source_location": "L4"
+      "norm_label": "button()",
+      "source_file": "crm-app/src/components/ui/Button.jsx",
+      "source_location": "L11"
     },
     {
       "id": "crm_app_src_components_ui_card_card",
@@ -4536,11 +4464,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
       "norm_label": "card()",
       "source_file": "crm-app/src/components/ui/Card.jsx",
       "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_components_ui_emptystate_emptystate",
+      "label": "EmptyState()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "emptystate()",
+      "source_file": "crm-app/src/components/ui/EmptyState.jsx",
+      "source_location": "L3"
     },
     {
       "id": "crm_app_src_components_ui_filterpanel_filterpanel",
@@ -4548,11 +4488,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
       "norm_label": "filterpanel()",
       "source_file": "crm-app/src/components/ui/FilterPanel.jsx",
       "source_location": "L5"
+    },
+    {
+      "id": "crm_app_src_components_ui_pageheader_pageheader",
+      "label": "PageHeader()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "pageheader()",
+      "source_file": "crm-app/src/components/ui/PageHeader.jsx",
+      "source_location": "L1"
     },
     {
       "id": "crm_app_src_components_ui_prioritybadge_prioritybadge",
@@ -4560,11 +4512,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
       "norm_label": "prioritybadge()",
       "source_file": "crm-app/src/components/ui/PriorityBadge.jsx",
       "source_location": "L8"
+    },
+    {
+      "id": "crm_app_src_components_ui_statcard_statcard",
+      "label": "StatCard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "statcard()",
+      "source_file": "crm-app/src/components/ui/StatCard.jsx",
+      "source_location": "L3"
     },
     {
       "id": "crm_app_src_components_ui_statusbadge_statusbadge",
@@ -4572,59 +4536,119 @@
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
       "norm_label": "statusbadge()",
       "source_file": "crm-app/src/components/ui/StatusBadge.jsx",
       "source_location": "L33"
     },
     {
-      "id": "crm_app_src_components_ui_temperaturebadge_temperaturebadge",
-      "label": "TemperatureBadge()",
+      "id": "crm_app_src_lib_formatters_formatmoney",
+      "label": "formatMoney()",
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
-      "norm_label": "temperaturebadge()",
-      "source_file": "crm-app/src/components/ui/TemperatureBadge.jsx",
+      "norm_label": "formatmoney()",
+      "source_file": "crm-app/src/lib/formatters.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_lib_ownermetrics_buildownersummary",
+      "label": "buildOwnerSummary()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "buildownersummary()",
+      "source_file": "crm-app/src/lib/ownerMetrics.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "crm_app_src_pages_agendapage_agendaactionbutton",
+      "label": "AgendaActionButton()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "agendaactionbutton()",
+      "source_file": "crm-app/src/pages/AgendaPage.jsx",
+      "source_location": "L174"
+    },
+    {
+      "id": "crm_app_src_pages_agendapage_agendafilter",
+      "label": "AgendaFilter()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "agendafilter()",
+      "source_file": "crm-app/src/pages/AgendaPage.jsx",
+      "source_location": "L119"
+    },
+    {
+      "id": "crm_app_src_pages_dashboardpage_greeting",
+      "label": "greeting()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "greeting()",
+      "source_file": "crm-app/src/pages/DashboardPage.jsx",
+      "source_location": "L101"
+    },
+    {
+      "id": "crm_app_src_pages_dashboardpage_receptionhome",
+      "label": "ReceptionHome()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "receptionhome()",
+      "source_file": "crm-app/src/pages/DashboardPage.jsx",
+      "source_location": "L18"
+    },
+    {
+      "id": "crm_app_src_pages_dashboardpage_summarysignal",
+      "label": "SummarySignal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "summarysignal()",
+      "source_file": "crm-app/src/pages/DashboardPage.jsx",
+      "source_location": "L87"
+    },
+    {
+      "id": "crm_app_src_pages_ownersummarypage_moneysignal",
+      "label": "MoneySignal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "moneysignal()",
+      "source_file": "crm-app/src/pages/OwnerSummaryPage.jsx",
+      "source_location": "L73"
+    },
+    {
+      "id": "crm_app_src_pages_ownersummarypage_ownersummarypage",
+      "label": "OwnerSummaryPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "ownersummarypage()",
+      "source_file": "crm-app/src/pages/OwnerSummaryPage.jsx",
       "source_location": "L9"
-    },
-    {
-      "id": "crm_app_src_lib_commercialinsights_getleadpriority",
-      "label": "getLeadPriority()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "FollowupsPage.jsx",
-      "file_type": "code",
-      "norm_label": "getleadpriority()",
-      "source_file": "crm-app/src/lib/commercialInsights.js",
-      "source_location": "L26"
-    },
-    {
-      "id": "crm_app_src_lib_crmdomain_daysbetween",
-      "label": "daysBetween()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "FollowupsPage.jsx",
-      "file_type": "code",
-      "norm_label": "daysbetween()",
-      "source_file": "crm-app/src/lib/crmDomain.js",
-      "source_location": "L183"
-    },
-    {
-      "id": "crm_app_src_pages_taskspage_tasksview",
-      "label": "TasksView()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "FollowupsPage.jsx",
-      "file_type": "code",
-      "norm_label": "tasksview()",
-      "source_file": "crm-app/src/pages/TasksPage.jsx",
-      "source_location": "L13"
     },
     {
       "id": "tests_security_realtime_capacity_percentile",
@@ -4859,92 +4883,15 @@
       "source_location": "L10"
     },
     {
-      "id": "crm_app_src_lib_ownermetrics",
-      "label": "ownerMetrics.js",
+      "id": "crm_app_src_lib_nextactions_priority_group",
+      "label": "PRIORITY_GROUP",
       "_origin": "ast",
       "community": 0,
       "community_name": "analytics.js",
       "file_type": "code",
-      "norm_label": "ownermetrics.js",
-      "source_file": "crm-app/src/lib/ownerMetrics.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_owner_metrics_test",
-      "label": "owner-metrics-test.mjs",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "analytics.js",
-      "file_type": "code",
-      "norm_label": "owner-metrics-test.mjs",
-      "source_file": "tests/owner-metrics-test.mjs",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_owner_metrics_test_appointments",
-      "label": "appointments",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "analytics.js",
-      "file_type": "code",
-      "norm_label": "appointments",
-      "source_file": "tests/owner-metrics-test.mjs",
-      "source_location": "L18"
-    },
-    {
-      "id": "tests_owner_metrics_test_leads",
-      "label": "leads",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "analytics.js",
-      "file_type": "code",
-      "norm_label": "leads",
-      "source_file": "tests/owner-metrics-test.mjs",
-      "source_location": "L6"
-    },
-    {
-      "id": "tests_owner_metrics_test_now",
-      "label": "now",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "analytics.js",
-      "file_type": "code",
-      "norm_label": "now",
-      "source_file": "tests/owner-metrics-test.mjs",
-      "source_location": "L5"
-    },
-    {
-      "id": "tests_owner_metrics_test_quotes",
-      "label": "quotes",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "analytics.js",
-      "file_type": "code",
-      "norm_label": "quotes",
-      "source_file": "tests/owner-metrics-test.mjs",
-      "source_location": "L28"
-    },
-    {
-      "id": "tests_owner_metrics_test_summary",
-      "label": "summary",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "analytics.js",
-      "file_type": "code",
-      "norm_label": "summary",
-      "source_file": "tests/owner-metrics-test.mjs",
-      "source_location": "L45"
-    },
-    {
-      "id": "tests_owner_metrics_test_workspaceevents",
-      "label": "workspaceEvents",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "analytics.js",
-      "file_type": "code",
-      "norm_label": "workspaceevents",
-      "source_file": "tests/owner-metrics-test.mjs",
-      "source_location": "L38"
+      "norm_label": "priority_group",
+      "source_file": "crm-app/src/lib/nextActions.js",
+      "source_location": "L10"
     },
     {
       "id": "crm_app_src_components_crm_crmprimitives",
@@ -4991,17 +4938,6 @@
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_components_modals_leadformmodal",
-      "label": "LeadFormModal.jsx",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "react",
-      "file_type": "code",
-      "norm_label": "leadformmodal.jsx",
-      "source_file": "crm-app/src/components/modals/LeadFormModal.jsx",
-      "source_location": "L1"
-    },
-    {
       "id": "crm_app_src_components_modals_modalparts",
       "label": "ModalParts.jsx",
       "_origin": "ast",
@@ -5032,39 +4968,6 @@
       "file_type": "code",
       "norm_label": "taskformmodal.jsx",
       "source_file": "crm-app/src/components/modals/TaskFormModal.jsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_components_ui_button",
-      "label": "Button.jsx",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "react",
-      "file_type": "code",
-      "norm_label": "button.jsx",
-      "source_file": "crm-app/src/components/ui/Button.jsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_components_ui_button_variants",
-      "label": "variants",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "react",
-      "file_type": "code",
-      "norm_label": "variants",
-      "source_file": "crm-app/src/components/ui/Button.jsx",
-      "source_location": "L4"
-    },
-    {
-      "id": "crm_app_src_components_ui_filtersheet",
-      "label": "FilterSheet.jsx",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "react",
-      "file_type": "code",
-      "norm_label": "filtersheet.jsx",
-      "source_file": "crm-app/src/components/ui/FilterSheet.jsx",
       "source_location": "L1"
     },
     {
@@ -5189,17 +5092,6 @@
       "source_location": "L16"
     },
     {
-      "id": "crm_app_src_features_public_form_publicembedleadform",
-      "label": "PublicEmbedLeadForm.jsx",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "react",
-      "file_type": "code",
-      "norm_label": "publicembedleadform.jsx",
-      "source_file": "crm-app/src/features/public-form/PublicEmbedLeadForm.jsx",
-      "source_location": "L1"
-    },
-    {
       "id": "crm_app_src_lib_constants_treatment_options",
       "label": "TREATMENT_OPTIONS",
       "_origin": "ast",
@@ -5211,6 +5103,17 @@
       "source_location": "L32"
     },
     {
+      "id": "crm_app_src_lib_crmdomain_appointment_active_statuses",
+      "label": "APPOINTMENT_ACTIVE_STATUSES",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "react",
+      "file_type": "code",
+      "norm_label": "appointment_active_statuses",
+      "source_file": "crm-app/src/lib/crmDomain.js",
+      "source_location": "L39"
+    },
+    {
       "id": "crm_app_src_lib_errors",
       "label": "errors.js",
       "_origin": "ast",
@@ -5220,17 +5123,6 @@
       "norm_label": "errors.js",
       "source_file": "crm-app/src/lib/errors.js",
       "source_location": "L1"
-    },
-    {
-      "id": "ref_lucide_react",
-      "label": "lucide-react",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "react",
-      "file_type": "concept",
-      "norm_label": "lucide-react",
-      "source_file": "crm-app/package.json",
-      "source_location": "L34"
     },
     {
       "id": "ref_react",
@@ -5811,6 +5703,17 @@
       "source_location": "L19"
     },
     {
+      "id": "crm_app_src_lib_nextactions_priority_group_label",
+      "label": "PRIORITY_GROUP_LABEL",
+      "_origin": "ast",
+      "community": 105,
+      "community_name": "nextActions.js",
+      "file_type": "code",
+      "norm_label": "priority_group_label",
+      "source_file": "crm-app/src/lib/nextActions.js",
+      "source_location": "L12"
+    },
+    {
       "id": "crm_app_src_lib_nextactions_task_criticality",
       "label": "TASK_CRITICALITY",
       "_origin": "ast",
@@ -6206,125 +6109,103 @@
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_components_applayout",
-      "label": "AppLayout.jsx",
+      "id": "tests_contact_browser_staging",
+      "label": "contact-browser-staging.mjs",
       "_origin": "ast",
       "community": 108,
-      "community_name": "AppLayout.jsx",
+      "community_name": "contact-browser-staging.mjs",
       "file_type": "code",
-      "norm_label": "applayout.jsx",
-      "source_file": "crm-app/src/components/AppLayout.jsx",
+      "norm_label": "contact-browser-staging.mjs",
+      "source_file": "tests/contact-browser-staging.mjs",
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_components_applayout_icons",
-      "label": "icons",
+      "id": "tests_contact_browser_staging_artifacts",
+      "label": "artifacts",
       "_origin": "ast",
       "community": 108,
-      "community_name": "AppLayout.jsx",
+      "community_name": "contact-browser-staging.mjs",
       "file_type": "code",
-      "norm_label": "icons",
-      "source_file": "crm-app/src/components/AppLayout.jsx",
-      "source_location": "L8"
+      "norm_label": "artifacts",
+      "source_file": "tests/contact-browser-staging.mjs",
+      "source_location": "L22"
     },
     {
-      "id": "crm_app_src_features_search_globalsearch",
-      "label": "GlobalSearch.jsx",
+      "id": "tests_contact_browser_staging_bypass",
+      "label": "bypass",
       "_origin": "ast",
       "community": 108,
-      "community_name": "AppLayout.jsx",
+      "community_name": "contact-browser-staging.mjs",
       "file_type": "code",
-      "norm_label": "globalsearch.jsx",
-      "source_file": "crm-app/src/features/search/GlobalSearch.jsx",
-      "source_location": "L1"
+      "norm_label": "bypass",
+      "source_file": "tests/contact-browser-staging.mjs",
+      "source_location": "L18"
     },
     {
-      "id": "crm_app_src_routing_paths",
-      "label": "paths.js",
+      "id": "tests_contact_browser_staging_chromium_expect",
+      "label": "{chromium,expect}",
       "_origin": "ast",
       "community": 108,
-      "community_name": "AppLayout.jsx",
+      "community_name": "contact-browser-staging.mjs",
       "file_type": "code",
-      "norm_label": "paths.js",
-      "source_file": "crm-app/src/routing/paths.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_routing_paths_view_paths",
-      "label": "VIEW_PATHS",
-      "_origin": "ast",
-      "community": 108,
-      "community_name": "AppLayout.jsx",
-      "file_type": "code",
-      "norm_label": "view_paths",
-      "source_file": "crm-app/src/routing/paths.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_services_globalsearch",
-      "label": "globalSearch.js",
-      "_origin": "ast",
-      "community": 108,
-      "community_name": "AppLayout.jsx",
-      "file_type": "code",
-      "norm_label": "globalsearch.js",
-      "source_file": "crm-app/src/services/globalSearch.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_services_globalsearch_global_search_limit",
-      "label": "GLOBAL_SEARCH_LIMIT",
-      "_origin": "ast",
-      "community": 108,
-      "community_name": "AppLayout.jsx",
-      "file_type": "code",
-      "norm_label": "global_search_limit",
-      "source_file": "crm-app/src/services/globalSearch.js",
-      "source_location": "L3"
-    },
-    {
-      "id": "tests_global_search_contract_test",
-      "label": "global-search-contract-test.mjs",
-      "_origin": "ast",
-      "community": 108,
-      "community_name": "AppLayout.jsx",
-      "file_type": "code",
-      "norm_label": "global-search-contract-test.mjs",
-      "source_file": "tests/global-search-contract-test.mjs",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_global_search_contract_test_calls",
-      "label": "calls",
-      "_origin": "ast",
-      "community": 108,
-      "community_name": "AppLayout.jsx",
-      "file_type": "code",
-      "norm_label": "calls",
-      "source_file": "tests/global-search-contract-test.mjs",
-      "source_location": "L6"
-    },
-    {
-      "id": "tests_global_search_contract_test_client",
-      "label": "client",
-      "_origin": "ast",
-      "community": 108,
-      "community_name": "AppLayout.jsx",
-      "file_type": "code",
-      "norm_label": "client",
-      "source_file": "tests/global-search-contract-test.mjs",
+      "norm_label": "{chromium,expect}",
+      "source_file": "tests/contact-browser-staging.mjs",
       "source_location": "L7"
     },
     {
-      "id": "tests_global_search_contract_test_search",
-      "label": "search",
+      "id": "tests_contact_browser_staging_client",
+      "label": "client",
       "_origin": "ast",
       "community": 108,
-      "community_name": "AppLayout.jsx",
+      "community_name": "contact-browser-staging.mjs",
       "file_type": "code",
-      "norm_label": "search",
-      "source_file": "tests/global-search-contract-test.mjs",
-      "source_location": "L15"
+      "norm_label": "client",
+      "source_file": "tests/contact-browser-staging.mjs",
+      "source_location": "L13"
+    },
+    {
+      "id": "tests_contact_browser_staging_createclient",
+      "label": "{createClient}",
+      "_origin": "ast",
+      "community": 108,
+      "community_name": "contact-browser-staging.mjs",
+      "file_type": "code",
+      "norm_label": "{createclient}",
+      "source_file": "tests/contact-browser-staging.mjs",
+      "source_location": "L8"
+    },
+    {
+      "id": "tests_contact_browser_staging_report",
+      "label": "report",
+      "_origin": "ast",
+      "community": 108,
+      "community_name": "contact-browser-staging.mjs",
+      "file_type": "code",
+      "norm_label": "report",
+      "source_file": "tests/contact-browser-staging.mjs",
+      "source_location": "L23"
+    },
+    {
+      "id": "tests_contact_browser_staging_require",
+      "label": "require",
+      "_origin": "ast",
+      "community": 108,
+      "community_name": "contact-browser-staging.mjs",
+      "file_type": "code",
+      "norm_label": "require",
+      "source_file": "tests/contact-browser-staging.mjs",
+      "source_location": "L6"
+    },
+    {
+      "id": "tests_contact_browser_staging_writer",
+      "label": "writer",
+      "_origin": "ast",
+      "community": 108,
+      "community_name": "contact-browser-staging.mjs",
+      "file_type": "code",
+      "norm_label": "writer",
+      "source_file": "tests/contact-browser-staging.mjs",
+      "source_location": "L14"
     },
     {
       "id": "docs_first_clinic_production_readiness",
@@ -6507,180 +6388,180 @@
       "source_location": "L67"
     },
     {
-      "id": "crm_app_src_components_ui_statcard",
-      "label": "StatCard.jsx",
+      "id": "crm_app_src_components_modals_leadformmodal",
+      "label": "LeadFormModal.jsx",
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
-      "norm_label": "statcard.jsx",
-      "source_file": "crm-app/src/components/ui/StatCard.jsx",
+      "norm_label": "leadformmodal.jsx",
+      "source_file": "crm-app/src/components/modals/LeadFormModal.jsx",
       "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_lib_constants",
+      "label": "constants.js",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "constants.js",
+      "source_file": "crm-app/src/lib/constants.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_lib_constants_classifications",
+      "label": "CLASSIFICATIONS",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "classifications",
+      "source_file": "crm-app/src/lib/constants.js",
+      "source_location": "L18"
+    },
+    {
+      "id": "crm_app_src_lib_constants_contact_attempt_statuses",
+      "label": "CONTACT_ATTEMPT_STATUSES",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "contact_attempt_statuses",
+      "source_file": "crm-app/src/lib/constants.js",
+      "source_location": "L80"
+    },
+    {
+      "id": "crm_app_src_lib_constants_contacted_statuses",
+      "label": "CONTACTED_STATUSES",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "contacted_statuses",
+      "source_file": "crm-app/src/lib/constants.js",
+      "source_location": "L70"
+    },
+    {
+      "id": "crm_app_src_lib_constants_evaluation_options",
+      "label": "EVALUATION_OPTIONS",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "evaluation_options",
+      "source_file": "crm-app/src/lib/constants.js",
+      "source_location": "L58"
+    },
+    {
+      "id": "crm_app_src_lib_constants_lead_source_options",
+      "label": "LEAD_SOURCE_OPTIONS",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "lead_source_options",
+      "source_file": "crm-app/src/lib/constants.js",
+      "source_location": "L45"
+    },
+    {
+      "id": "crm_app_src_lib_constants_lead_statuses",
+      "label": "LEAD_STATUSES",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "lead_statuses",
+      "source_file": "crm-app/src/lib/constants.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_lib_constants_next_action_options",
+      "label": "NEXT_ACTION_OPTIONS",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "next_action_options",
+      "source_file": "crm-app/src/lib/constants.js",
+      "source_location": "L68"
+    },
+    {
+      "id": "crm_app_src_lib_constants_scheduled_statuses",
+      "label": "SCHEDULED_STATUSES",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "scheduled_statuses",
+      "source_file": "crm-app/src/lib/constants.js",
+      "source_location": "L82"
+    },
+    {
+      "id": "crm_app_src_lib_constants_situation_options",
+      "label": "SITUATION_OPTIONS",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "situation_options",
+      "source_file": "crm-app/src/lib/constants.js",
+      "source_location": "L59"
+    },
+    {
+      "id": "crm_app_src_lib_constants_urgency_options",
+      "label": "URGENCY_OPTIONS",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "formatters.js",
+      "file_type": "code",
+      "norm_label": "urgency_options",
+      "source_file": "crm-app/src/lib/constants.js",
+      "source_location": "L57"
     },
     {
       "id": "crm_app_src_lib_formatters",
       "label": "formatters.js",
       "_origin": "ast",
       "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community_name": "formatters.js",
       "file_type": "code",
       "norm_label": "formatters.js",
       "source_file": "crm-app/src/lib/formatters.js",
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_pages_agendapage",
-      "label": "AgendaPage.jsx",
+      "id": "tests_global_search_staging",
+      "label": "global-search-staging.mjs",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "AgendaPage.jsx",
+      "community": 111,
+      "community_name": "@supabase/supabase-js",
       "file_type": "code",
-      "norm_label": "agendapage.jsx",
-      "source_file": "crm-app/src/pages/AgendaPage.jsx",
+      "norm_label": "global-search-staging.mjs",
+      "source_file": "tests/global-search-staging.mjs",
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_components_auth_passwordinput",
-      "label": "PasswordInput.jsx",
+      "id": "tests_global_search_staging_createclient",
+      "label": "{ createClient }",
       "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
+      "community": 111,
+      "community_name": "@supabase/supabase-js",
       "file_type": "code",
-      "norm_label": "passwordinput.jsx",
-      "source_file": "crm-app/src/components/auth/PasswordInput.jsx",
-      "source_location": "L1"
+      "norm_label": "{ createclient }",
+      "source_file": "tests/global-search-staging.mjs",
+      "source_location": "L5"
     },
     {
-      "id": "crm_app_src_components_login",
-      "label": "Login.jsx",
+      "id": "tests_global_search_staging_require",
+      "label": "require",
       "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
+      "community": 111,
+      "community_name": "@supabase/supabase-js",
       "file_type": "code",
-      "norm_label": "login.jsx",
-      "source_file": "crm-app/src/components/Login.jsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_hooks_usecontactresource",
-      "label": "useContactResource.js",
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "usecontactresource.js",
-      "source_file": "crm-app/src/hooks/useContactResource.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_lib_publicconfig",
-      "label": "publicConfig.js",
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "publicconfig.js",
-      "source_file": "crm-app/src/lib/publicConfig.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_lib_publicconfig_haspublicconfig",
-      "label": "hasPublicConfig",
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "haspublicconfig",
-      "source_file": "crm-app/src/lib/publicConfig.js",
-      "source_location": "L42"
-    },
-    {
-      "id": "crm_app_src_lib_publicconfig_publicconfig",
-      "label": "publicConfig",
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "publicconfig",
-      "source_file": "crm-app/src/lib/publicConfig.js",
-      "source_location": "L43"
-    },
-    {
-      "id": "crm_app_src_lib_publicconfig_publicconfigerror",
-      "label": "publicConfigError",
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "publicconfigerror",
-      "source_file": "crm-app/src/lib/publicConfig.js",
-      "source_location": "L41"
-    },
-    {
-      "id": "crm_app_src_lib_publicconfig_publicleadwebhookurl",
-      "label": "publicLeadWebhookUrl",
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "publicleadwebhookurl",
-      "source_file": "crm-app/src/lib/publicConfig.js",
-      "source_location": "L14"
-    },
-    {
-      "id": "crm_app_src_lib_publicconfig_supabaseanonkey",
-      "label": "supabaseAnonKey",
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "supabaseanonkey",
-      "source_file": "crm-app/src/lib/publicConfig.js",
+      "norm_label": "require",
+      "source_file": "tests/global-search-staging.mjs",
       "source_location": "L4"
-    },
-    {
-      "id": "crm_app_src_lib_publicconfig_supabaseurl",
-      "label": "supabaseUrl",
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "supabaseurl",
-      "source_file": "crm-app/src/lib/publicConfig.js",
-      "source_location": "L3"
-    },
-    {
-      "id": "crm_app_src_lib_supabase",
-      "label": "supabase.js",
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "supabase.js",
-      "source_file": "crm-app/src/lib/supabase.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_lib_supabase_hassupabaseconfig",
-      "label": "hasSupabaseConfig",
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "hassupabaseconfig",
-      "source_file": "crm-app/src/lib/supabase.js",
-      "source_location": "L4"
-    },
-    {
-      "id": "crm_app_src_lib_supabase_supabase",
-      "label": "supabase",
-      "_origin": "ast",
-      "community": 110,
-      "community_name": "supabase.js",
-      "file_type": "code",
-      "norm_label": "supabase",
-      "source_file": "crm-app/src/lib/supabase.js",
-      "source_location": "L6"
     },
     {
       "id": "tests_index_normalizer_permission_staging",
@@ -6839,7 +6720,7 @@
       "node_kind": "heading",
       "norm_label": "deferred contracts",
       "source_file": "docs/DENTFLOW_V2_ARCHITECTURE.md",
-      "source_location": "L53"
+      "source_location": "L56"
     },
     {
       "id": "docs_dentflow_v2_architecture_dentflow_v2_contact_data_slice",
@@ -6854,6 +6735,18 @@
       "source_location": "L1"
     },
     {
+      "id": "docs_dentflow_v2_architecture_global_search",
+      "label": "Global search",
+      "_origin": "ast",
+      "community": 112,
+      "community_name": "Decisions",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "global search",
+      "source_file": "docs/DENTFLOW_V2_ARCHITECTURE.md",
+      "source_location": "L44"
+    },
+    {
       "id": "docs_dentflow_v2_architecture_incremental_types",
       "label": "Incremental types",
       "_origin": "ast",
@@ -6863,7 +6756,7 @@
       "node_kind": "heading",
       "norm_label": "incremental types",
       "source_file": "docs/DENTFLOW_V2_ARCHITECTURE.md",
-      "source_location": "L44"
+      "source_location": "L47"
     },
     {
       "id": "docs_dentflow_v2_architecture_legacy_coexistence",
@@ -6911,7 +6804,7 @@
       "node_kind": "heading",
       "norm_label": "read-only reference evidence",
       "source_file": "docs/DENTFLOW_V2_ARCHITECTURE.md",
-      "source_location": "L47"
+      "source_location": "L50"
     },
     {
       "id": "docs_dentflow_v2_architecture_realtime",
@@ -7157,6 +7050,17 @@
       "source_location": "L1"
     },
     {
+      "id": "crm_app_src_features_public_form_publicembedleadform",
+      "label": "PublicEmbedLeadForm.jsx",
+      "_origin": "ast",
+      "community": 115,
+      "community_name": "App.jsx",
+      "file_type": "code",
+      "norm_label": "publicembedleadform.jsx",
+      "source_file": "crm-app/src/features/public-form/PublicEmbedLeadForm.jsx",
+      "source_location": "L1"
+    },
+    {
       "id": "crm_app_src_hooks_usesupabasesession",
       "label": "useSupabaseSession.js",
       "_origin": "ast",
@@ -7165,6 +7069,28 @@
       "file_type": "code",
       "norm_label": "usesupabasesession.js",
       "source_file": "crm-app/src/hooks/useSupabaseSession.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_lib_attribution",
+      "label": "attribution.js",
+      "_origin": "ast",
+      "community": 115,
+      "community_name": "App.jsx",
+      "file_type": "code",
+      "norm_label": "attribution.js",
+      "source_file": "crm-app/src/lib/attribution.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_lib_attribution_utm_fields",
+      "label": "UTM_FIELDS",
+      "_origin": "ast",
+      "community": 115,
+      "community_name": "App.jsx",
+      "file_type": "code",
+      "norm_label": "utm_fields",
+      "source_file": "crm-app/src/lib/attribution.js",
       "source_location": "L1"
     },
     {
@@ -7201,15 +7127,15 @@
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_lib_patients",
-      "label": "patients.js",
+      "id": "crm_app_src_lib_crmdomain_public_lead_webhook_url",
+      "label": "PUBLIC_LEAD_WEBHOOK_URL",
       "_origin": "ast",
       "community": 115,
       "community_name": "App.jsx",
       "file_type": "code",
-      "norm_label": "patients.js",
-      "source_file": "crm-app/src/lib/patients.js",
-      "source_location": "L1"
+      "norm_label": "public_lead_webhook_url",
+      "source_file": "crm-app/src/lib/crmDomain.js",
+      "source_location": "L75"
     },
     {
       "id": "crm_app_src_main",
@@ -7221,6 +7147,28 @@
       "norm_label": "src/main.jsx",
       "source_file": "crm-app/src/main.jsx",
       "source_location": "L1"
+    },
+    {
+      "id": "tests_clarity_domain_contract_test",
+      "label": "clarity-domain-contract-test.mjs",
+      "_origin": "ast",
+      "community": 115,
+      "community_name": "App.jsx",
+      "file_type": "code",
+      "norm_label": "clarity-domain-contract-test.mjs",
+      "source_file": "tests/clarity-domain-contract-test.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_clarity_domain_contract_test_attribution",
+      "label": "attribution",
+      "_origin": "ast",
+      "community": 115,
+      "community_name": "App.jsx",
+      "file_type": "code",
+      "norm_label": "attribution",
+      "source_file": "tests/clarity-domain-contract-test.mjs",
+      "source_location": "L30"
     },
     {
       "id": "tests_contact_auth_contract_test",
@@ -7254,17 +7202,6 @@
       "norm_label": "root",
       "source_file": "tests/contact-auth-contract-test.mjs",
       "source_location": "L11"
-    },
-    {
-      "id": "ref_react_dom",
-      "label": "react-dom",
-      "_origin": "ast",
-      "community": 115,
-      "community_name": "App.jsx",
-      "file_type": "concept",
-      "norm_label": "react-dom",
-      "source_file": "crm-app/package.json",
-      "source_location": "L37"
     },
     {
       "id": "docs_security_architecture_audit",
@@ -8190,7 +8127,7 @@
       "node_kind": "heading",
       "norm_label": "executed evidence",
       "source_file": "docs/DENTFLOW_V2_MASTER_AUDIT.md",
-      "source_location": "L37"
+      "source_location": "L38"
     },
     {
       "id": "docs_dentflow_v2_master_audit_findings",
@@ -8214,7 +8151,7 @@
       "node_kind": "heading",
       "norm_label": "performance",
       "source_file": "docs/DENTFLOW_V2_MASTER_AUDIT.md",
-      "source_location": "L52"
+      "source_location": "L54"
     },
     {
       "id": "docs_dentflow_v2_master_audit_reconciliation",
@@ -8238,7 +8175,7 @@
       "node_kind": "heading",
       "norm_label": "residual risks",
       "source_file": "docs/DENTFLOW_V2_MASTER_AUDIT.md",
-      "source_location": "L56"
+      "source_location": "L58"
     },
     {
       "id": "docs_dentflow_v2_migration_plan",
@@ -8286,7 +8223,7 @@
       "node_kind": "heading",
       "norm_label": "migration ci next step",
       "source_file": "docs/DENTFLOW_V2_MIGRATION_PLAN.md",
-      "source_location": "L46"
+      "source_location": "L49"
     },
     {
       "id": "docs_dentflow_v2_migration_plan_release_evidence",
@@ -8298,7 +8235,7 @@
       "node_kind": "heading",
       "norm_label": "release evidence",
       "source_file": "docs/DENTFLOW_V2_MIGRATION_PLAN.md",
-      "source_location": "L17"
+      "source_location": "L18"
     },
     {
       "id": "docs_dentflow_v2_migration_plan_reproduce",
@@ -8310,7 +8247,7 @@
       "node_kind": "heading",
       "norm_label": "reproduce",
       "source_file": "docs/DENTFLOW_V2_MIGRATION_PLAN.md",
-      "source_location": "L39"
+      "source_location": "L42"
     },
     {
       "id": "docs_dentflow_v2_migration_plan_rollback",
@@ -8322,7 +8259,7 @@
       "node_kind": "heading",
       "norm_label": "rollback",
       "source_file": "docs/DENTFLOW_V2_MIGRATION_PLAN.md",
-      "source_location": "L49"
+      "source_location": "L52"
     },
     {
       "id": "docs_landing_integration",
@@ -10118,59 +10055,15 @@
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_lib_commercialinsights",
-      "label": "commercialInsights.js",
+      "id": "crm_app_src_lib_patients",
+      "label": "patients.js",
       "_origin": "ast",
       "community": 15,
       "community_name": "LeadsPage.jsx",
       "file_type": "code",
-      "norm_label": "commercialinsights.js",
-      "source_file": "crm-app/src/lib/commercialInsights.js",
+      "norm_label": "patients.js",
+      "source_file": "crm-app/src/lib/patients.js",
       "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_lib_commercialinsights_event_copy",
-      "label": "EVENT_COPY",
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "LeadsPage.jsx",
-      "file_type": "code",
-      "norm_label": "event_copy",
-      "source_file": "crm-app/src/lib/commercialInsights.js",
-      "source_location": "L48"
-    },
-    {
-      "id": "crm_app_src_lib_commercialinsights_lost_reasons",
-      "label": "LOST_REASONS",
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "LeadsPage.jsx",
-      "file_type": "code",
-      "norm_label": "lost_reasons",
-      "source_file": "crm-app/src/lib/commercialInsights.js",
-      "source_location": "L12"
-    },
-    {
-      "id": "crm_app_src_lib_commercialinsights_priority_filters",
-      "label": "PRIORITY_FILTERS",
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "LeadsPage.jsx",
-      "file_type": "code",
-      "norm_label": "priority_filters",
-      "source_file": "crm-app/src/lib/commercialInsights.js",
-      "source_location": "L5"
-    },
-    {
-      "id": "crm_app_src_lib_nextactions_priority_group",
-      "label": "PRIORITY_GROUP",
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "LeadsPage.jsx",
-      "file_type": "code",
-      "norm_label": "priority_group",
-      "source_file": "crm-app/src/lib/nextActions.js",
-      "source_location": "L10"
     },
     {
       "id": "crm_app_src_pages_leadspage",
@@ -10193,6 +10086,28 @@
       "norm_label": "empty_filters",
       "source_file": "crm-app/src/pages/LeadsPage.jsx",
       "source_location": "L22"
+    },
+    {
+      "id": "crm_app_src_routing_crmroutes_leaddetail",
+      "label": "LeadDetail",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "LeadsPage.jsx",
+      "file_type": "code",
+      "norm_label": "leaddetail",
+      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
+      "source_location": "L12"
+    },
+    {
+      "id": "crm_app_src_routing_crmroutes_leadsview",
+      "label": "LeadsView",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "LeadsPage.jsx",
+      "file_type": "code",
+      "norm_label": "leadsview",
+      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
+      "source_location": "L11"
     },
     {
       "id": "tests_opportunity_record_contract_test",
@@ -11026,17 +10941,6 @@
       "source_location": "L8"
     },
     {
-      "id": "crm_app_playwright_config",
-      "label": "playwright.config.js",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "fixtures.js",
-      "file_type": "code",
-      "norm_label": "playwright.config.js",
-      "source_file": "crm-app/playwright.config.js",
-      "source_location": "L1"
-    },
-    {
       "id": "crm_app_tests_routing_agenda_date_spec",
       "label": "agenda-date.spec.js",
       "_origin": "ast",
@@ -11277,116 +11181,6 @@
       "norm_label": "work.spec.js",
       "source_file": "crm-app/tests/routing/work.spec.js",
       "source_location": "L1"
-    },
-    {
-      "id": "tests_contact_browser_staging",
-      "label": "contact-browser-staging.mjs",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "fixtures.js",
-      "file_type": "code",
-      "norm_label": "contact-browser-staging.mjs",
-      "source_file": "tests/contact-browser-staging.mjs",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_contact_browser_staging_artifacts",
-      "label": "artifacts",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "fixtures.js",
-      "file_type": "code",
-      "norm_label": "artifacts",
-      "source_file": "tests/contact-browser-staging.mjs",
-      "source_location": "L22"
-    },
-    {
-      "id": "tests_contact_browser_staging_bypass",
-      "label": "bypass",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "fixtures.js",
-      "file_type": "code",
-      "norm_label": "bypass",
-      "source_file": "tests/contact-browser-staging.mjs",
-      "source_location": "L18"
-    },
-    {
-      "id": "tests_contact_browser_staging_chromium_expect",
-      "label": "{chromium,expect}",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "fixtures.js",
-      "file_type": "code",
-      "norm_label": "{chromium,expect}",
-      "source_file": "tests/contact-browser-staging.mjs",
-      "source_location": "L7"
-    },
-    {
-      "id": "tests_contact_browser_staging_client",
-      "label": "client",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "fixtures.js",
-      "file_type": "code",
-      "norm_label": "client",
-      "source_file": "tests/contact-browser-staging.mjs",
-      "source_location": "L13"
-    },
-    {
-      "id": "tests_contact_browser_staging_createclient",
-      "label": "{createClient}",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "fixtures.js",
-      "file_type": "code",
-      "norm_label": "{createclient}",
-      "source_file": "tests/contact-browser-staging.mjs",
-      "source_location": "L8"
-    },
-    {
-      "id": "tests_contact_browser_staging_report",
-      "label": "report",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "fixtures.js",
-      "file_type": "code",
-      "norm_label": "report",
-      "source_file": "tests/contact-browser-staging.mjs",
-      "source_location": "L23"
-    },
-    {
-      "id": "tests_contact_browser_staging_require",
-      "label": "require",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "fixtures.js",
-      "file_type": "code",
-      "norm_label": "require",
-      "source_file": "tests/contact-browser-staging.mjs",
-      "source_location": "L6"
-    },
-    {
-      "id": "tests_contact_browser_staging_writer",
-      "label": "writer",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "fixtures.js",
-      "file_type": "code",
-      "norm_label": "writer",
-      "source_file": "tests/contact-browser-staging.mjs",
-      "source_location": "L14"
-    },
-    {
-      "id": "ref_playwright_test",
-      "label": "@playwright/test",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "fixtures.js",
-      "file_type": "concept",
-      "norm_label": "@playwright/test",
-      "source_file": "crm-app/package.json",
-      "source_location": "L42"
     },
     {
       "id": "agents_skills_supabase_postgres_best_practices_references_template",
@@ -11652,6 +11446,50 @@
       "source_location": "L14"
     },
     {
+      "id": "crm_app_src_components_applayout",
+      "label": "AppLayout.jsx",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "applayout.jsx",
+      "source_file": "crm-app/src/components/AppLayout.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_components_applayout_icons",
+      "label": "icons",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "icons",
+      "source_file": "crm-app/src/components/AppLayout.jsx",
+      "source_location": "L8"
+    },
+    {
+      "id": "crm_app_src_components_auth_passwordinput",
+      "label": "PasswordInput.jsx",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "passwordinput.jsx",
+      "source_file": "crm-app/src/components/auth/PasswordInput.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_components_login",
+      "label": "Login.jsx",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "login.jsx",
+      "source_file": "crm-app/src/components/Login.jsx",
+      "source_location": "L1"
+    },
+    {
       "id": "crm_app_src_components_patients_querystate",
       "label": "QueryState.jsx",
       "_origin": "ast",
@@ -11663,15 +11501,213 @@
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_pages_notfoundpage",
-      "label": "NotFoundPage.jsx",
+      "id": "crm_app_src_features_search_globalsearch",
+      "label": "GlobalSearch.jsx",
       "_origin": "ast",
       "community": 177,
       "community_name": "PatientPage.jsx",
       "file_type": "code",
-      "norm_label": "notfoundpage.jsx",
-      "source_file": "crm-app/src/pages/NotFoundPage.jsx",
+      "norm_label": "globalsearch.jsx",
+      "source_file": "crm-app/src/features/search/GlobalSearch.jsx",
       "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_features_work_useworkresource",
+      "label": "useWorkResource.js",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "useworkresource.js",
+      "source_file": "crm-app/src/features/work/useWorkResource.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_features_work_workqueries",
+      "label": "workQueries.js",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "workqueries.js",
+      "source_file": "crm-app/src/features/work/workQueries.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_features_work_workqueries_view_keys",
+      "label": "VIEW_KEYS",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "view_keys",
+      "source_file": "crm-app/src/features/work/workQueries.js",
+      "source_location": "L10"
+    },
+    {
+      "id": "crm_app_src_features_work_workqueries_work_page_size",
+      "label": "WORK_PAGE_SIZE",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "work_page_size",
+      "source_file": "crm-app/src/features/work/workQueries.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_features_work_workqueries_work_views",
+      "label": "WORK_VIEWS",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "work_views",
+      "source_file": "crm-app/src/features/work/workQueries.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "crm_app_src_hooks_usecontactresource",
+      "label": "useContactResource.js",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "usecontactresource.js",
+      "source_file": "crm-app/src/hooks/useContactResource.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_lib_constants_nav_items",
+      "label": "NAV_ITEMS",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "nav_items",
+      "source_file": "crm-app/src/lib/constants.js",
+      "source_location": "L20"
+    },
+    {
+      "id": "crm_app_src_lib_formatters_formatdatetime",
+      "label": "formatDateTime",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "formatdatetime",
+      "source_file": "crm-app/src/lib/formatters.js",
+      "source_location": "L68"
+    },
+    {
+      "id": "crm_app_src_lib_publicconfig",
+      "label": "publicConfig.js",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "publicconfig.js",
+      "source_file": "crm-app/src/lib/publicConfig.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_lib_publicconfig_haspublicconfig",
+      "label": "hasPublicConfig",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "haspublicconfig",
+      "source_file": "crm-app/src/lib/publicConfig.js",
+      "source_location": "L42"
+    },
+    {
+      "id": "crm_app_src_lib_publicconfig_publicconfig",
+      "label": "publicConfig",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "publicconfig",
+      "source_file": "crm-app/src/lib/publicConfig.js",
+      "source_location": "L43"
+    },
+    {
+      "id": "crm_app_src_lib_publicconfig_publicconfigerror",
+      "label": "publicConfigError",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "publicconfigerror",
+      "source_file": "crm-app/src/lib/publicConfig.js",
+      "source_location": "L41"
+    },
+    {
+      "id": "crm_app_src_lib_publicconfig_publicleadwebhookurl",
+      "label": "publicLeadWebhookUrl",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "publicleadwebhookurl",
+      "source_file": "crm-app/src/lib/publicConfig.js",
+      "source_location": "L14"
+    },
+    {
+      "id": "crm_app_src_lib_publicconfig_supabaseanonkey",
+      "label": "supabaseAnonKey",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "supabaseanonkey",
+      "source_file": "crm-app/src/lib/publicConfig.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "crm_app_src_lib_publicconfig_supabaseurl",
+      "label": "supabaseUrl",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "supabaseurl",
+      "source_file": "crm-app/src/lib/publicConfig.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "crm_app_src_lib_supabase",
+      "label": "supabase.js",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "supabase.js",
+      "source_file": "crm-app/src/lib/supabase.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_lib_supabase_hassupabaseconfig",
+      "label": "hasSupabaseConfig",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "hassupabaseconfig",
+      "source_file": "crm-app/src/lib/supabase.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "crm_app_src_lib_supabase_supabase",
+      "label": "supabase",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "supabase",
+      "source_file": "crm-app/src/lib/supabase.js",
+      "source_location": "L6"
     },
     {
       "id": "crm_app_src_pages_patientpage",
@@ -11740,15 +11776,26 @@
       "source_location": "L1"
     },
     {
-      "id": "ref_react_router",
-      "label": "react-router",
+      "id": "crm_app_src_routing_paths",
+      "label": "paths.js",
       "_origin": "ast",
       "community": 177,
       "community_name": "PatientPage.jsx",
-      "file_type": "concept",
-      "norm_label": "react-router",
-      "source_file": "crm-app/package.json",
-      "source_location": "L38"
+      "file_type": "code",
+      "norm_label": "paths.js",
+      "source_file": "crm-app/src/routing/paths.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_routing_paths_view_paths",
+      "label": "VIEW_PATHS",
+      "_origin": "ast",
+      "community": 177,
+      "community_name": "PatientPage.jsx",
+      "file_type": "code",
+      "norm_label": "view_paths",
+      "source_file": "crm-app/src/routing/paths.js",
+      "source_location": "L1"
     },
     {
       "id": "tests_database_from_zero",
@@ -11938,15 +11985,48 @@
       "source_location": "L9"
     },
     {
-      "id": "crm_app_src_lib_nextactions_priority_group_label",
-      "label": "PRIORITY_GROUP_LABEL",
+      "id": "crm_app_src_components_crm_pendingactioncard",
+      "label": "PendingActionCard.jsx",
       "_origin": "ast",
       "community": 180,
       "community_name": "PendingPage.jsx",
       "file_type": "code",
-      "norm_label": "priority_group_label",
-      "source_file": "crm-app/src/lib/nextActions.js",
-      "source_location": "L12"
+      "norm_label": "pendingactioncard.jsx",
+      "source_file": "crm-app/src/components/crm/PendingActionCard.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_components_ui_filtersheet",
+      "label": "FilterSheet.jsx",
+      "_origin": "ast",
+      "community": 180,
+      "community_name": "PendingPage.jsx",
+      "file_type": "code",
+      "norm_label": "filtersheet.jsx",
+      "source_file": "crm-app/src/components/ui/FilterSheet.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_components_ui_temperaturebadge",
+      "label": "TemperatureBadge.jsx",
+      "_origin": "ast",
+      "community": 180,
+      "community_name": "PendingPage.jsx",
+      "file_type": "code",
+      "norm_label": "temperaturebadge.jsx",
+      "source_file": "crm-app/src/components/ui/TemperatureBadge.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_components_ui_temperaturebadge_temperature",
+      "label": "temperature",
+      "_origin": "ast",
+      "community": 180,
+      "community_name": "PendingPage.jsx",
+      "file_type": "code",
+      "norm_label": "temperature",
+      "source_file": "crm-app/src/components/ui/TemperatureBadge.jsx",
+      "source_location": "L3"
     },
     {
       "id": "crm_app_src_pages_pendingpage",
@@ -11982,149 +12062,6 @@
       "source_location": "L12"
     },
     {
-      "id": "crm_app_src_routing_crmroutes_pendingview",
-      "label": "PendingView",
-      "_origin": "ast",
-      "community": 180,
-      "community_name": "PendingPage.jsx",
-      "file_type": "code",
-      "norm_label": "pendingview",
-      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
-      "source_location": "L10"
-    },
-    {
-      "id": "tests_contact_staging_test",
-      "label": "contact-staging-test.mjs",
-      "_origin": "ast",
-      "community": 182,
-      "community_name": "contact-staging-test.mjs",
-      "file_type": "code",
-      "norm_label": "contact-staging-test.mjs",
-      "source_file": "tests/contact-staging-test.mjs",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_contact_staging_test_client",
-      "label": "client",
-      "_origin": "ast",
-      "community": 182,
-      "community_name": "contact-staging-test.mjs",
-      "file_type": "code",
-      "norm_label": "client",
-      "source_file": "tests/contact-staging-test.mjs",
-      "source_location": "L9"
-    },
-    {
-      "id": "tests_contact_staging_test_createclient",
-      "label": "{ createClient }",
-      "_origin": "ast",
-      "community": 182,
-      "community_name": "contact-staging-test.mjs",
-      "file_type": "code",
-      "norm_label": "{ createclient }",
-      "source_file": "tests/contact-staging-test.mjs",
-      "source_location": "L6"
-    },
-    {
-      "id": "tests_contact_staging_test_metrics",
-      "label": "metrics",
-      "_origin": "ast",
-      "community": 182,
-      "community_name": "contact-staging-test.mjs",
-      "file_type": "code",
-      "norm_label": "metrics",
-      "source_file": "tests/contact-staging-test.mjs",
-      "source_location": "L26"
-    },
-    {
-      "id": "tests_contact_staging_test_queries",
-      "label": "queries",
-      "_origin": "ast",
-      "community": 182,
-      "community_name": "contact-staging-test.mjs",
-      "file_type": "code",
-      "norm_label": "queries",
-      "source_file": "tests/contact-staging-test.mjs",
-      "source_location": "L14"
-    },
-    {
-      "id": "tests_contact_staging_test_require",
-      "label": "require",
-      "_origin": "ast",
-      "community": 182,
-      "community_name": "contact-staging-test.mjs",
-      "file_type": "code",
-      "norm_label": "require",
-      "source_file": "tests/contact-staging-test.mjs",
-      "source_location": "L5"
-    },
-    {
-      "id": "tests_contact_staging_test_selections",
-      "label": "selections",
-      "_origin": "ast",
-      "community": 182,
-      "community_name": "contact-staging-test.mjs",
-      "file_type": "code",
-      "norm_label": "selections",
-      "source_file": "tests/contact-staging-test.mjs",
-      "source_location": "L29"
-    },
-    {
-      "id": "tests_contact_interaction_contract_test",
-      "label": "contact-interaction-contract-test.mjs",
-      "_origin": "ast",
-      "community": 183,
-      "community_name": "contact-interaction-contract-test.mjs",
-      "file_type": "code",
-      "norm_label": "contact-interaction-contract-test.mjs",
-      "source_file": "tests/contact-interaction-contract-test.mjs",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_contact_interaction_contract_test_calls",
-      "label": "calls",
-      "_origin": "ast",
-      "community": 183,
-      "community_name": "contact-interaction-contract-test.mjs",
-      "file_type": "code",
-      "norm_label": "calls",
-      "source_file": "tests/contact-interaction-contract-test.mjs",
-      "source_location": "L21"
-    },
-    {
-      "id": "tests_contact_interaction_contract_test_chain",
-      "label": "chain",
-      "_origin": "ast",
-      "community": 183,
-      "community_name": "contact-interaction-contract-test.mjs",
-      "file_type": "code",
-      "norm_label": "chain",
-      "source_file": "tests/contact-interaction-contract-test.mjs",
-      "source_location": "L23"
-    },
-    {
-      "id": "tests_contact_interaction_contract_test_data",
-      "label": "data",
-      "_origin": "ast",
-      "community": 183,
-      "community_name": "contact-interaction-contract-test.mjs",
-      "file_type": "code",
-      "norm_label": "data",
-      "source_file": "tests/contact-interaction-contract-test.mjs",
-      "source_location": "L22"
-    },
-    {
-      "id": "tests_contact_interaction_contract_test_queries",
-      "label": "queries",
-      "_origin": "ast",
-      "community": 183,
-      "community_name": "contact-interaction-contract-test.mjs",
-      "file_type": "code",
-      "norm_label": "queries",
-      "source_file": "tests/contact-interaction-contract-test.mjs",
-      "source_location": "L26"
-    },
-    {
       "id": "supabase_migrations_20260917002000_global_tenant_search",
       "label": "20260917002000_global_tenant_search.sql",
       "_origin": "ast",
@@ -12156,6 +12093,17 @@
       "norm_label": "global-search-rls.sql",
       "source_file": "tests/global-search-rls.sql",
       "source_location": null
+    },
+    {
+      "id": "crm_app_playwright_config",
+      "label": "playwright.config.js",
+      "_origin": "ast",
+      "community": 186,
+      "community_name": "work-browser-staging.mjs",
+      "file_type": "code",
+      "norm_label": "playwright.config.js",
+      "source_file": "crm-app/playwright.config.js",
+      "source_location": "L1"
     },
     {
       "id": "tests_work_browser_staging",
@@ -12222,6 +12170,17 @@
       "norm_label": "require",
       "source_file": "tests/work-browser-staging.mjs",
       "source_location": "L2"
+    },
+    {
+      "id": "ref_playwright_test",
+      "label": "@playwright/test",
+      "_origin": "ast",
+      "community": 186,
+      "community_name": "work-browser-staging.mjs",
+      "file_type": "concept",
+      "norm_label": "@playwright/test",
+      "source_file": "crm-app/package.json",
+      "source_location": "L42"
     },
     {
       "id": "tests_work_workflow_staging",
@@ -12312,50 +12271,6 @@
       "source_location": "L2"
     },
     {
-      "id": "crm_app_src_components_ui_emptystate",
-      "label": "EmptyState.jsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "emptystate.jsx",
-      "source_file": "crm-app/src/components/ui/EmptyState.jsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_components_ui_pageheader",
-      "label": "PageHeader.jsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "pageheader.jsx",
-      "source_file": "crm-app/src/components/ui/PageHeader.jsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_lib_crmdomain_appointment_active_statuses",
-      "label": "APPOINTMENT_ACTIVE_STATUSES",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "appointment_active_statuses",
-      "source_file": "crm-app/src/lib/crmDomain.js",
-      "source_location": "L39"
-    },
-    {
-      "id": "crm_app_src_pages_dashboardpage",
-      "label": "DashboardPage.jsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "dashboardpage.jsx",
-      "source_file": "crm-app/src/pages/DashboardPage.jsx",
-      "source_location": "L1"
-    },
-    {
       "id": "crm_app_src_pages_metricspage",
       "label": "MetricsPage.jsx",
       "_origin": "ast",
@@ -12376,28 +12291,6 @@
       "norm_label": "tabs",
       "source_file": "crm-app/src/pages/MetricsPage.jsx",
       "source_location": "L10"
-    },
-    {
-      "id": "crm_app_src_pages_ownersummarypage",
-      "label": "OwnerSummaryPage.jsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "ownersummarypage.jsx",
-      "source_file": "crm-app/src/pages/OwnerSummaryPage.jsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_routing_crmroutes_dashboard",
-      "label": "Dashboard",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "MetricsPage.jsx",
-      "file_type": "code",
-      "norm_label": "dashboard",
-      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
-      "source_location": "L8"
     },
     {
       "id": "supabase_migrations_20260916180630_preserve_lead_status_on_appointment_cancel",
@@ -12433,11 +12326,22 @@
       "source_location": ""
     },
     {
+      "id": "crm_app_src_components_crm_whatsappbutton",
+      "label": "WhatsAppButton.jsx",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "messages.js",
+      "file_type": "code",
+      "norm_label": "whatsappbutton.jsx",
+      "source_file": "crm-app/src/components/crm/WhatsAppButton.jsx",
+      "source_location": "L1"
+    },
+    {
       "id": "crm_app_src_lib_messages",
       "label": "messages.js",
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "messages.js",
       "source_file": "crm-app/src/lib/messages.js",
@@ -12448,7 +12352,7 @@
       "label": "WHATSAPP_TEMPLATE_DEFINITIONS",
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "whatsapp_template_definitions",
       "source_file": "crm-app/src/lib/messages.js",
@@ -12459,117 +12363,18 @@
       "label": "WHATSAPP_VARIABLES",
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "whatsapp_variables",
       "source_file": "crm-app/src/lib/messages.js",
       "source_location": "L109"
     },
     {
-      "id": "tests_retention_insights_test",
-      "label": "retention-insights-test.mjs",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "retention-insights-test.mjs",
-      "file_type": "code",
-      "norm_label": "retention-insights-test.mjs",
-      "source_file": "tests/retention-insights-test.mjs",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_retention_insights_test_alerts",
-      "label": "alerts",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "retention-insights-test.mjs",
-      "file_type": "code",
-      "norm_label": "alerts",
-      "source_file": "tests/retention-insights-test.mjs",
-      "source_location": "L14"
-    },
-    {
-      "id": "tests_retention_insights_test_controlled",
-      "label": "controlled",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "retention-insights-test.mjs",
-      "file_type": "code",
-      "norm_label": "controlled",
-      "source_file": "tests/retention-insights-test.mjs",
-      "source_location": "L11"
-    },
-    {
-      "id": "tests_retention_insights_test_hotlead",
-      "label": "hotLead",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "retention-insights-test.mjs",
-      "file_type": "code",
-      "norm_label": "hotlead",
-      "source_file": "tests/retention-insights-test.mjs",
-      "source_location": "L6"
-    },
-    {
-      "id": "tests_retention_insights_test_now",
-      "label": "now",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "retention-insights-test.mjs",
-      "file_type": "code",
-      "norm_label": "now",
-      "source_file": "tests/retention-insights-test.mjs",
-      "source_location": "L5"
-    },
-    {
-      "id": "tests_retention_insights_test_rendered",
-      "label": "rendered",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "retention-insights-test.mjs",
-      "file_type": "code",
-      "norm_label": "rendered",
-      "source_file": "tests/retention-insights-test.mjs",
-      "source_location": "L17"
-    },
-    {
-      "id": "tests_retention_insights_test_report",
-      "label": "report",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "retention-insights-test.mjs",
-      "file_type": "code",
-      "norm_label": "report",
-      "source_file": "tests/retention-insights-test.mjs",
-      "source_location": "L39"
-    },
-    {
-      "id": "tests_retention_insights_test_timeline",
-      "label": "timeline",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "retention-insights-test.mjs",
-      "file_type": "code",
-      "norm_label": "timeline",
-      "source_file": "tests/retention-insights-test.mjs",
-      "source_location": "L28"
-    },
-    {
-      "id": "tests_retention_insights_test_urgent",
-      "label": "urgent",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "retention-insights-test.mjs",
-      "file_type": "code",
-      "norm_label": "urgent",
-      "source_file": "tests/retention-insights-test.mjs",
-      "source_location": "L7"
-    },
-    {
       "id": "tests_whatsapp_message_test",
       "label": "whatsapp-message-test.mjs",
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "whatsapp-message-test.mjs",
       "source_file": "tests/whatsapp-message-test.mjs",
@@ -12580,7 +12385,7 @@
       "label": "fallback",
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "fallback",
       "source_file": "tests/whatsapp-message-test.mjs",
@@ -12591,7 +12396,7 @@
       "label": "lead",
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "lead",
       "source_file": "tests/whatsapp-message-test.mjs",
@@ -12602,7 +12407,7 @@
       "label": "message",
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "message",
       "source_file": "tests/whatsapp-message-test.mjs",
@@ -12613,121 +12418,154 @@
       "label": "url",
       "_origin": "ast",
       "community": 2,
-      "community_name": "retention-insights-test.mjs",
+      "community_name": "messages.js",
       "file_type": "code",
       "norm_label": "url",
       "source_file": "tests/whatsapp-message-test.mjs",
       "source_location": "L33"
     },
     {
-      "id": "crm_app_src_lib_constants",
-      "label": "constants.js",
+      "id": "crm_app_src_lib_commercialinsights",
+      "label": "commercialInsights.js",
       "_origin": "ast",
       "community": 20,
-      "community_name": "constants.js",
+      "community_name": "commercialInsights.js",
       "file_type": "code",
-      "norm_label": "constants.js",
-      "source_file": "crm-app/src/lib/constants.js",
+      "norm_label": "commercialinsights.js",
+      "source_file": "crm-app/src/lib/commercialInsights.js",
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_lib_constants_contact_attempt_statuses",
-      "label": "CONTACT_ATTEMPT_STATUSES",
+      "id": "crm_app_src_lib_commercialinsights_event_copy",
+      "label": "EVENT_COPY",
       "_origin": "ast",
       "community": 20,
-      "community_name": "constants.js",
+      "community_name": "commercialInsights.js",
       "file_type": "code",
-      "norm_label": "contact_attempt_statuses",
-      "source_file": "crm-app/src/lib/constants.js",
-      "source_location": "L80"
+      "norm_label": "event_copy",
+      "source_file": "crm-app/src/lib/commercialInsights.js",
+      "source_location": "L48"
     },
     {
-      "id": "crm_app_src_lib_constants_contacted_statuses",
-      "label": "CONTACTED_STATUSES",
+      "id": "crm_app_src_lib_commercialinsights_lost_reasons",
+      "label": "LOST_REASONS",
       "_origin": "ast",
       "community": 20,
-      "community_name": "constants.js",
+      "community_name": "commercialInsights.js",
       "file_type": "code",
-      "norm_label": "contacted_statuses",
-      "source_file": "crm-app/src/lib/constants.js",
-      "source_location": "L70"
+      "norm_label": "lost_reasons",
+      "source_file": "crm-app/src/lib/commercialInsights.js",
+      "source_location": "L12"
     },
     {
-      "id": "crm_app_src_lib_constants_evaluation_options",
-      "label": "EVALUATION_OPTIONS",
+      "id": "crm_app_src_lib_commercialinsights_priority_filters",
+      "label": "PRIORITY_FILTERS",
       "_origin": "ast",
       "community": 20,
-      "community_name": "constants.js",
+      "community_name": "commercialInsights.js",
       "file_type": "code",
-      "norm_label": "evaluation_options",
-      "source_file": "crm-app/src/lib/constants.js",
-      "source_location": "L58"
+      "norm_label": "priority_filters",
+      "source_file": "crm-app/src/lib/commercialInsights.js",
+      "source_location": "L5"
     },
     {
-      "id": "crm_app_src_lib_constants_lead_source_options",
-      "label": "LEAD_SOURCE_OPTIONS",
+      "id": "tests_retention_insights_test",
+      "label": "retention-insights-test.mjs",
       "_origin": "ast",
       "community": 20,
-      "community_name": "constants.js",
+      "community_name": "commercialInsights.js",
       "file_type": "code",
-      "norm_label": "lead_source_options",
-      "source_file": "crm-app/src/lib/constants.js",
-      "source_location": "L45"
+      "norm_label": "retention-insights-test.mjs",
+      "source_file": "tests/retention-insights-test.mjs",
+      "source_location": "L1"
     },
     {
-      "id": "crm_app_src_lib_constants_nav_items",
-      "label": "NAV_ITEMS",
+      "id": "tests_retention_insights_test_alerts",
+      "label": "alerts",
       "_origin": "ast",
       "community": 20,
-      "community_name": "constants.js",
+      "community_name": "commercialInsights.js",
       "file_type": "code",
-      "norm_label": "nav_items",
-      "source_file": "crm-app/src/lib/constants.js",
-      "source_location": "L20"
+      "norm_label": "alerts",
+      "source_file": "tests/retention-insights-test.mjs",
+      "source_location": "L14"
     },
     {
-      "id": "crm_app_src_lib_constants_next_action_options",
-      "label": "NEXT_ACTION_OPTIONS",
+      "id": "tests_retention_insights_test_controlled",
+      "label": "controlled",
       "_origin": "ast",
       "community": 20,
-      "community_name": "constants.js",
+      "community_name": "commercialInsights.js",
       "file_type": "code",
-      "norm_label": "next_action_options",
-      "source_file": "crm-app/src/lib/constants.js",
-      "source_location": "L68"
+      "norm_label": "controlled",
+      "source_file": "tests/retention-insights-test.mjs",
+      "source_location": "L11"
     },
     {
-      "id": "crm_app_src_lib_constants_scheduled_statuses",
-      "label": "SCHEDULED_STATUSES",
+      "id": "tests_retention_insights_test_hotlead",
+      "label": "hotLead",
       "_origin": "ast",
       "community": 20,
-      "community_name": "constants.js",
+      "community_name": "commercialInsights.js",
       "file_type": "code",
-      "norm_label": "scheduled_statuses",
-      "source_file": "crm-app/src/lib/constants.js",
-      "source_location": "L82"
+      "norm_label": "hotlead",
+      "source_file": "tests/retention-insights-test.mjs",
+      "source_location": "L6"
     },
     {
-      "id": "crm_app_src_lib_constants_situation_options",
-      "label": "SITUATION_OPTIONS",
+      "id": "tests_retention_insights_test_now",
+      "label": "now",
       "_origin": "ast",
       "community": 20,
-      "community_name": "constants.js",
+      "community_name": "commercialInsights.js",
       "file_type": "code",
-      "norm_label": "situation_options",
-      "source_file": "crm-app/src/lib/constants.js",
-      "source_location": "L59"
+      "norm_label": "now",
+      "source_file": "tests/retention-insights-test.mjs",
+      "source_location": "L5"
     },
     {
-      "id": "crm_app_src_lib_constants_urgency_options",
-      "label": "URGENCY_OPTIONS",
+      "id": "tests_retention_insights_test_rendered",
+      "label": "rendered",
       "_origin": "ast",
       "community": 20,
-      "community_name": "constants.js",
+      "community_name": "commercialInsights.js",
       "file_type": "code",
-      "norm_label": "urgency_options",
-      "source_file": "crm-app/src/lib/constants.js",
-      "source_location": "L57"
+      "norm_label": "rendered",
+      "source_file": "tests/retention-insights-test.mjs",
+      "source_location": "L17"
+    },
+    {
+      "id": "tests_retention_insights_test_report",
+      "label": "report",
+      "_origin": "ast",
+      "community": 20,
+      "community_name": "commercialInsights.js",
+      "file_type": "code",
+      "norm_label": "report",
+      "source_file": "tests/retention-insights-test.mjs",
+      "source_location": "L39"
+    },
+    {
+      "id": "tests_retention_insights_test_timeline",
+      "label": "timeline",
+      "_origin": "ast",
+      "community": 20,
+      "community_name": "commercialInsights.js",
+      "file_type": "code",
+      "norm_label": "timeline",
+      "source_file": "tests/retention-insights-test.mjs",
+      "source_location": "L28"
+    },
+    {
+      "id": "tests_retention_insights_test_urgent",
+      "label": "urgent",
+      "_origin": "ast",
+      "community": 20,
+      "community_name": "commercialInsights.js",
+      "file_type": "code",
+      "norm_label": "urgent",
+      "source_file": "tests/retention-insights-test.mjs",
+      "source_location": "L7"
     },
     {
       "id": "supabase_migrations_20260612140000_production_schema_hardening",
@@ -12994,6 +12832,83 @@
       "source_location": "L5"
     },
     {
+      "id": "crm_app_src_services_globalsearch",
+      "label": "globalSearch.js",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "globalsearch.js",
+      "source_file": "crm-app/src/services/globalSearch.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_services_globalsearch_global_search_limit",
+      "label": "GLOBAL_SEARCH_LIMIT",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "global_search_limit",
+      "source_file": "crm-app/src/services/globalSearch.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "tests_contact_interaction_contract_test",
+      "label": "contact-interaction-contract-test.mjs",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "contact-interaction-contract-test.mjs",
+      "source_file": "tests/contact-interaction-contract-test.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_contact_interaction_contract_test_calls",
+      "label": "calls",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "calls",
+      "source_file": "tests/contact-interaction-contract-test.mjs",
+      "source_location": "L21"
+    },
+    {
+      "id": "tests_contact_interaction_contract_test_chain",
+      "label": "chain",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "chain",
+      "source_file": "tests/contact-interaction-contract-test.mjs",
+      "source_location": "L23"
+    },
+    {
+      "id": "tests_contact_interaction_contract_test_data",
+      "label": "data",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "data",
+      "source_file": "tests/contact-interaction-contract-test.mjs",
+      "source_location": "L22"
+    },
+    {
+      "id": "tests_contact_interaction_contract_test_queries",
+      "label": "queries",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "queries",
+      "source_file": "tests/contact-interaction-contract-test.mjs",
+      "source_location": "L26"
+    },
+    {
       "id": "tests_contact_query_test",
       "label": "contact-query-test.mjs",
       "_origin": "ast",
@@ -13047,6 +12962,127 @@
       "norm_label": "query",
       "source_file": "tests/contact-query-test.mjs",
       "source_location": "L9"
+    },
+    {
+      "id": "tests_contact_staging_test",
+      "label": "contact-staging-test.mjs",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "contact-staging-test.mjs",
+      "source_file": "tests/contact-staging-test.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_contact_staging_test_client",
+      "label": "client",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "client",
+      "source_file": "tests/contact-staging-test.mjs",
+      "source_location": "L9"
+    },
+    {
+      "id": "tests_contact_staging_test_createclient",
+      "label": "{ createClient }",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "{ createclient }",
+      "source_file": "tests/contact-staging-test.mjs",
+      "source_location": "L6"
+    },
+    {
+      "id": "tests_contact_staging_test_metrics",
+      "label": "metrics",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "metrics",
+      "source_file": "tests/contact-staging-test.mjs",
+      "source_location": "L26"
+    },
+    {
+      "id": "tests_contact_staging_test_queries",
+      "label": "queries",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "queries",
+      "source_file": "tests/contact-staging-test.mjs",
+      "source_location": "L14"
+    },
+    {
+      "id": "tests_contact_staging_test_require",
+      "label": "require",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "require",
+      "source_file": "tests/contact-staging-test.mjs",
+      "source_location": "L5"
+    },
+    {
+      "id": "tests_contact_staging_test_selections",
+      "label": "selections",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "selections",
+      "source_file": "tests/contact-staging-test.mjs",
+      "source_location": "L29"
+    },
+    {
+      "id": "tests_global_search_contract_test",
+      "label": "global-search-contract-test.mjs",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "global-search-contract-test.mjs",
+      "source_file": "tests/global-search-contract-test.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_global_search_contract_test_calls",
+      "label": "calls",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "calls",
+      "source_file": "tests/global-search-contract-test.mjs",
+      "source_location": "L6"
+    },
+    {
+      "id": "tests_global_search_contract_test_client",
+      "label": "client",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "client",
+      "source_file": "tests/global-search-contract-test.mjs",
+      "source_location": "L7"
+    },
+    {
+      "id": "tests_global_search_contract_test_search",
+      "label": "search",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "contactQueries.js",
+      "file_type": "code",
+      "norm_label": "search",
+      "source_file": "tests/global-search-contract-test.mjs",
+      "source_location": "L15"
     },
     {
       "id": "tests_operational_workflow_test",
@@ -13962,6 +13998,17 @@
       "source_location": "L160"
     },
     {
+      "id": "crm_app_src_pages_notfoundpage",
+      "label": "NotFoundPage.jsx",
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "SettingsPage.jsx",
+      "file_type": "code",
+      "norm_label": "notfoundpage.jsx",
+      "source_file": "crm-app/src/pages/NotFoundPage.jsx",
+      "source_location": "L1"
+    },
+    {
       "id": "crm_app_src_pages_settingspage",
       "label": "SettingsPage.jsx",
       "_origin": "ast",
@@ -13995,6 +14042,17 @@
       "source_location": "L7"
     },
     {
+      "id": "crm_app_src_routing_crmroutes_dashboard",
+      "label": "Dashboard",
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "SettingsPage.jsx",
+      "file_type": "code",
+      "norm_label": "dashboard",
+      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
+      "source_location": "L8"
+    },
+    {
       "id": "crm_app_src_routing_crmroutes_followupsview",
       "label": "FollowupsView",
       "_origin": "ast",
@@ -14004,28 +14062,6 @@
       "norm_label": "followupsview",
       "source_file": "crm-app/src/routing/CrmRoutes.jsx",
       "source_location": "L9"
-    },
-    {
-      "id": "crm_app_src_routing_crmroutes_leaddetail",
-      "label": "LeadDetail",
-      "_origin": "ast",
-      "community": 28,
-      "community_name": "SettingsPage.jsx",
-      "file_type": "code",
-      "norm_label": "leaddetail",
-      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
-      "source_location": "L12"
-    },
-    {
-      "id": "crm_app_src_routing_crmroutes_leadsview",
-      "label": "LeadsView",
-      "_origin": "ast",
-      "community": 28,
-      "community_name": "SettingsPage.jsx",
-      "file_type": "code",
-      "norm_label": "leadsview",
-      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
-      "source_location": "L11"
     },
     {
       "id": "crm_app_src_routing_crmroutes_metricsview",
@@ -14039,6 +14075,17 @@
       "source_location": "L13"
     },
     {
+      "id": "crm_app_src_routing_crmroutes_pendingview",
+      "label": "PendingView",
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "SettingsPage.jsx",
+      "file_type": "code",
+      "norm_label": "pendingview",
+      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
+      "source_location": "L10"
+    },
+    {
       "id": "crm_app_src_routing_crmroutes_settingsview",
       "label": "SettingsView",
       "_origin": "ast",
@@ -14048,6 +14095,39 @@
       "norm_label": "settingsview",
       "source_file": "crm-app/src/routing/CrmRoutes.jsx",
       "source_location": "L14"
+    },
+    {
+      "id": "crm_app_src_routing_crmroutes_tasksview",
+      "label": "TasksView",
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "SettingsPage.jsx",
+      "file_type": "code",
+      "norm_label": "tasksview",
+      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
+      "source_location": "L15"
+    },
+    {
+      "id": "crm_app_src_routing_crmroutes_workpage",
+      "label": "WorkPage",
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "SettingsPage.jsx",
+      "file_type": "code",
+      "norm_label": "workpage",
+      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
+      "source_location": "L16"
+    },
+    {
+      "id": "ref_react_router",
+      "label": "react-router",
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "SettingsPage.jsx",
+      "file_type": "concept",
+      "norm_label": "react-router",
+      "source_file": "crm-app/package.json",
+      "source_location": "L38"
     },
     {
       "id": "crm_app_src_hooks_usecrmcontroller",
@@ -14158,17 +14238,6 @@
       "norm_label": "normalizedleadstatuses",
       "source_file": "crm-app/src/lib/crmDomain.js",
       "source_location": "L86"
-    },
-    {
-      "id": "crm_app_src_lib_crmdomain_public_lead_webhook_url",
-      "label": "PUBLIC_LEAD_WEBHOOK_URL",
-      "_origin": "ast",
-      "community": 29,
-      "community_name": "crmDomain.js",
-      "file_type": "code",
-      "norm_label": "public_lead_webhook_url",
-      "source_file": "crm-app/src/lib/crmDomain.js",
-      "source_location": "L75"
     },
     {
       "id": "crm_app_src_lib_crmdomain_role",
@@ -15525,6 +15594,17 @@
       "source_location": "L44"
     },
     {
+      "id": "ref_react_dom",
+      "label": "react-dom",
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "package.json",
+      "file_type": "concept",
+      "norm_label": "react-dom",
+      "source_file": "crm-app/package.json",
+      "source_location": "L37"
+    },
+    {
       "id": "ref_tailwindcss",
       "label": "tailwindcss",
       "_origin": "ast",
@@ -16150,94 +16230,6 @@
       "norm_label": "unlockmodalat",
       "source_file": "tests/appointment-modal-flow-test.mjs",
       "source_location": "L9"
-    },
-    {
-      "id": "crm_app_src_features_work_useworkresource",
-      "label": "useWorkResource.js",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "WorkPage.jsx",
-      "file_type": "code",
-      "norm_label": "useworkresource.js",
-      "source_file": "crm-app/src/features/work/useWorkResource.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_features_work_workpage",
-      "label": "WorkPage.jsx",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "WorkPage.jsx",
-      "file_type": "code",
-      "norm_label": "workpage.jsx",
-      "source_file": "crm-app/src/features/work/WorkPage.jsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_features_work_workpage_type_label",
-      "label": "TYPE_LABEL",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "WorkPage.jsx",
-      "file_type": "code",
-      "norm_label": "type_label",
-      "source_file": "crm-app/src/features/work/WorkPage.jsx",
-      "source_location": "L9"
-    },
-    {
-      "id": "crm_app_src_features_work_workqueries",
-      "label": "workQueries.js",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "WorkPage.jsx",
-      "file_type": "code",
-      "norm_label": "workqueries.js",
-      "source_file": "crm-app/src/features/work/workQueries.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_features_work_workqueries_view_keys",
-      "label": "VIEW_KEYS",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "WorkPage.jsx",
-      "file_type": "code",
-      "norm_label": "view_keys",
-      "source_file": "crm-app/src/features/work/workQueries.js",
-      "source_location": "L10"
-    },
-    {
-      "id": "crm_app_src_features_work_workqueries_work_page_size",
-      "label": "WORK_PAGE_SIZE",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "WorkPage.jsx",
-      "file_type": "code",
-      "norm_label": "work_page_size",
-      "source_file": "crm-app/src/features/work/workQueries.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_features_work_workqueries_work_views",
-      "label": "WORK_VIEWS",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "WorkPage.jsx",
-      "file_type": "code",
-      "norm_label": "work_views",
-      "source_file": "crm-app/src/features/work/workQueries.js",
-      "source_location": "L3"
-    },
-    {
-      "id": "crm_app_src_routing_crmroutes_workpage",
-      "label": "WorkPage",
-      "_origin": "ast",
-      "community": 41,
-      "community_name": "WorkPage.jsx",
-      "file_type": "code",
-      "norm_label": "workpage",
-      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
-      "source_location": "L16"
     },
     {
       "id": "crm_app_visual_harness_vite_config",
@@ -17406,28 +17398,6 @@
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_lib_attribution",
-      "label": "attribution.js",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "humanizeCrmError",
-      "file_type": "code",
-      "norm_label": "attribution.js",
-      "source_file": "crm-app/src/lib/attribution.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "crm_app_src_lib_attribution_utm_fields",
-      "label": "UTM_FIELDS",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "humanizeCrmError",
-      "file_type": "code",
-      "norm_label": "utm_fields",
-      "source_file": "crm-app/src/lib/attribution.js",
-      "source_location": "L1"
-    },
-    {
       "id": "crm_app_src_services_crmapi",
       "label": "crmApi.js",
       "_origin": "ast",
@@ -17439,26 +17409,81 @@
       "source_location": "L1"
     },
     {
-      "id": "tests_clarity_domain_contract_test",
-      "label": "clarity-domain-contract-test.mjs",
+      "id": "tests_owner_metrics_test",
+      "label": "owner-metrics-test.mjs",
       "_origin": "ast",
       "community": 6,
       "community_name": "humanizeCrmError",
       "file_type": "code",
-      "norm_label": "clarity-domain-contract-test.mjs",
-      "source_file": "tests/clarity-domain-contract-test.mjs",
+      "norm_label": "owner-metrics-test.mjs",
+      "source_file": "tests/owner-metrics-test.mjs",
       "source_location": "L1"
     },
     {
-      "id": "tests_clarity_domain_contract_test_attribution",
-      "label": "attribution",
+      "id": "tests_owner_metrics_test_appointments",
+      "label": "appointments",
       "_origin": "ast",
       "community": 6,
       "community_name": "humanizeCrmError",
       "file_type": "code",
-      "norm_label": "attribution",
-      "source_file": "tests/clarity-domain-contract-test.mjs",
-      "source_location": "L30"
+      "norm_label": "appointments",
+      "source_file": "tests/owner-metrics-test.mjs",
+      "source_location": "L18"
+    },
+    {
+      "id": "tests_owner_metrics_test_leads",
+      "label": "leads",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "humanizeCrmError",
+      "file_type": "code",
+      "norm_label": "leads",
+      "source_file": "tests/owner-metrics-test.mjs",
+      "source_location": "L6"
+    },
+    {
+      "id": "tests_owner_metrics_test_now",
+      "label": "now",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "humanizeCrmError",
+      "file_type": "code",
+      "norm_label": "now",
+      "source_file": "tests/owner-metrics-test.mjs",
+      "source_location": "L5"
+    },
+    {
+      "id": "tests_owner_metrics_test_quotes",
+      "label": "quotes",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "humanizeCrmError",
+      "file_type": "code",
+      "norm_label": "quotes",
+      "source_file": "tests/owner-metrics-test.mjs",
+      "source_location": "L28"
+    },
+    {
+      "id": "tests_owner_metrics_test_summary",
+      "label": "summary",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "humanizeCrmError",
+      "file_type": "code",
+      "norm_label": "summary",
+      "source_file": "tests/owner-metrics-test.mjs",
+      "source_location": "L45"
+    },
+    {
+      "id": "tests_owner_metrics_test_workspaceevents",
+      "label": "workspaceEvents",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "humanizeCrmError",
+      "file_type": "code",
+      "norm_label": "workspaceevents",
+      "source_file": "tests/owner-metrics-test.mjs",
+      "source_location": "L38"
     },
     {
       "id": "tests_operational_integrity",
@@ -17626,36 +17651,47 @@
       "source_location": ""
     },
     {
-      "id": "crm_app_src_components_crm_pendingactioncard",
-      "label": "PendingActionCard.jsx",
+      "id": "crm_app_src_components_ui_button",
+      "label": "Button.jsx",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
-      "norm_label": "pendingactioncard.jsx",
-      "source_file": "crm-app/src/components/crm/PendingActionCard.jsx",
+      "norm_label": "button.jsx",
+      "source_file": "crm-app/src/components/ui/Button.jsx",
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_components_crm_whatsappbutton",
-      "label": "WhatsAppButton.jsx",
+      "id": "crm_app_src_components_ui_button_variants",
+      "label": "variants",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
-      "norm_label": "whatsappbutton.jsx",
-      "source_file": "crm-app/src/components/crm/WhatsAppButton.jsx",
-      "source_location": "L1"
+      "norm_label": "variants",
+      "source_file": "crm-app/src/components/ui/Button.jsx",
+      "source_location": "L4"
     },
     {
       "id": "crm_app_src_components_ui_card",
       "label": "Card.jsx",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
       "norm_label": "card.jsx",
       "source_file": "crm-app/src/components/ui/Card.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_components_ui_emptystate",
+      "label": "EmptyState.jsx",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "emptystate.jsx",
+      "source_file": "crm-app/src/components/ui/EmptyState.jsx",
       "source_location": "L1"
     },
     {
@@ -17663,10 +17699,21 @@
       "label": "FilterPanel.jsx",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
       "norm_label": "filterpanel.jsx",
       "source_file": "crm-app/src/components/ui/FilterPanel.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_components_ui_pageheader",
+      "label": "PageHeader.jsx",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "pageheader.jsx",
+      "source_file": "crm-app/src/components/ui/PageHeader.jsx",
       "source_location": "L1"
     },
     {
@@ -17674,7 +17721,7 @@
       "label": "PriorityBadge.jsx",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
       "norm_label": "prioritybadge.jsx",
       "source_file": "crm-app/src/components/ui/PriorityBadge.jsx",
@@ -17685,10 +17732,21 @@
       "label": "styles",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
       "norm_label": "styles",
       "source_file": "crm-app/src/components/ui/PriorityBadge.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_components_ui_statcard",
+      "label": "StatCard.jsx",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "statcard.jsx",
+      "source_file": "crm-app/src/components/ui/StatCard.jsx",
       "source_location": "L1"
     },
     {
@@ -17696,7 +17754,7 @@
       "label": "StatusBadge.jsx",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
       "norm_label": "statusbadge.jsx",
       "source_file": "crm-app/src/components/ui/StatusBadge.jsx",
@@ -17707,76 +17765,87 @@
       "label": "statusStyles",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
       "norm_label": "statusstyles",
       "source_file": "crm-app/src/components/ui/StatusBadge.jsx",
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_components_ui_temperaturebadge",
-      "label": "TemperatureBadge.jsx",
+      "id": "crm_app_src_features_work_workpage",
+      "label": "WorkPage.jsx",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
-      "norm_label": "temperaturebadge.jsx",
-      "source_file": "crm-app/src/components/ui/TemperatureBadge.jsx",
+      "norm_label": "workpage.jsx",
+      "source_file": "crm-app/src/features/work/WorkPage.jsx",
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_components_ui_temperaturebadge_temperature",
-      "label": "temperature",
+      "id": "crm_app_src_features_work_workpage_type_label",
+      "label": "TYPE_LABEL",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
-      "norm_label": "temperature",
-      "source_file": "crm-app/src/components/ui/TemperatureBadge.jsx",
-      "source_location": "L3"
+      "norm_label": "type_label",
+      "source_file": "crm-app/src/features/work/WorkPage.jsx",
+      "source_location": "L9"
     },
     {
-      "id": "crm_app_src_lib_constants_classifications",
-      "label": "CLASSIFICATIONS",
+      "id": "crm_app_src_lib_ownermetrics",
+      "label": "ownerMetrics.js",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
-      "norm_label": "classifications",
-      "source_file": "crm-app/src/lib/constants.js",
-      "source_location": "L18"
-    },
-    {
-      "id": "crm_app_src_lib_constants_lead_statuses",
-      "label": "LEAD_STATUSES",
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "FollowupsPage.jsx",
-      "file_type": "code",
-      "norm_label": "lead_statuses",
-      "source_file": "crm-app/src/lib/constants.js",
+      "norm_label": "ownermetrics.js",
+      "source_file": "crm-app/src/lib/ownerMetrics.js",
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_lib_formatters_formatdatetime",
-      "label": "formatDateTime",
+      "id": "crm_app_src_pages_agendapage",
+      "label": "AgendaPage.jsx",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
-      "norm_label": "formatdatetime",
-      "source_file": "crm-app/src/lib/formatters.js",
-      "source_location": "L68"
+      "norm_label": "agendapage.jsx",
+      "source_file": "crm-app/src/pages/AgendaPage.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_pages_dashboardpage",
+      "label": "DashboardPage.jsx",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "dashboardpage.jsx",
+      "source_file": "crm-app/src/pages/DashboardPage.jsx",
+      "source_location": "L1"
     },
     {
       "id": "crm_app_src_pages_followupspage",
       "label": "FollowupsPage.jsx",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
       "norm_label": "followupspage.jsx",
       "source_file": "crm-app/src/pages/FollowupsPage.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "crm_app_src_pages_ownersummarypage",
+      "label": "OwnerSummaryPage.jsx",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "AgendaPage.jsx",
+      "file_type": "code",
+      "norm_label": "ownersummarypage.jsx",
+      "source_file": "crm-app/src/pages/OwnerSummaryPage.jsx",
       "source_location": "L1"
     },
     {
@@ -17784,22 +17853,22 @@
       "label": "TasksPage.jsx",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
+      "community_name": "AgendaPage.jsx",
       "file_type": "code",
       "norm_label": "taskspage.jsx",
       "source_file": "crm-app/src/pages/TasksPage.jsx",
       "source_location": "L1"
     },
     {
-      "id": "crm_app_src_routing_crmroutes_tasksview",
-      "label": "TasksView",
+      "id": "ref_lucide_react",
+      "label": "lucide-react",
       "_origin": "ast",
       "community": 7,
-      "community_name": "FollowupsPage.jsx",
-      "file_type": "code",
-      "norm_label": "tasksview",
-      "source_file": "crm-app/src/routing/CrmRoutes.jsx",
-      "source_location": "L15"
+      "community_name": "AgendaPage.jsx",
+      "file_type": "concept",
+      "norm_label": "lucide-react",
+      "source_file": "crm-app/package.json",
+      "source_location": "L34"
     },
     {
       "id": "supabase_migrations_20260612141000_rls_professional_policies_sql_public_campaigns",
@@ -24111,6 +24180,18 @@
       "context": "call",
       "source_file": "tests/contact-interaction-staging.mjs",
       "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_global_search_staging_signin",
+      "target": "tests_global_search_staging_client",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tests/global-search-staging.mjs",
+      "source_location": "L11",
       "weight": 1.0
     },
     {
@@ -34331,6 +34412,18 @@
       "weight": 1.0
     },
     {
+      "source": "tests_global_search_staging",
+      "target": "ref_supabase_supabase_js",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/global-search-staging.mjs",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
       "source": "tests_index_normalizer_permission_staging",
       "target": "ref_supabase_supabase_js",
       "relation": "imports_from",
@@ -41084,13 +41177,24 @@
     },
     {
       "source": "docs_dentflow_v2_architecture_decisions",
-      "target": "docs_dentflow_v2_architecture_incremental_types",
+      "target": "docs_dentflow_v2_architecture_global_search",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/DENTFLOW_V2_ARCHITECTURE.md",
       "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_dentflow_v2_architecture_decisions",
+      "target": "docs_dentflow_v2_architecture_incremental_types",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DENTFLOW_V2_ARCHITECTURE.md",
+      "source_location": "L47",
       "weight": 1.0
     },
     {
@@ -41123,7 +41227,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/DENTFLOW_V2_ARCHITECTURE.md",
-      "source_location": "L47",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -41134,7 +41238,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/DENTFLOW_V2_ARCHITECTURE.md",
-      "source_location": "L53",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -41167,7 +41271,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/DENTFLOW_V2_MASTER_AUDIT.md",
-      "source_location": "L37",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -41189,7 +41293,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/DENTFLOW_V2_MASTER_AUDIT.md",
-      "source_location": "L52",
+      "source_location": "L54",
       "weight": 1.0
     },
     {
@@ -41200,7 +41304,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/DENTFLOW_V2_MASTER_AUDIT.md",
-      "source_location": "L56",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -41222,7 +41326,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/DENTFLOW_V2_MIGRATION_PLAN.md",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -41244,7 +41348,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/DENTFLOW_V2_MIGRATION_PLAN.md",
-      "source_location": "L39",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -41255,7 +41359,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/DENTFLOW_V2_MIGRATION_PLAN.md",
-      "source_location": "L46",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -41266,7 +41370,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/DENTFLOW_V2_MIGRATION_PLAN.md",
-      "source_location": "L49",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -45293,6 +45397,50 @@
       "confidence_score": 1.0,
       "source_file": "tests/global-search-contract-test.mjs",
       "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_global_search_staging",
+      "target": "tests_global_search_staging_signin",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/global-search-staging.mjs",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_global_search_staging",
+      "target": "tests_global_search_staging_require",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/global-search-staging.mjs",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_global_search_staging",
+      "target": "tests_global_search_staging_createclient",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/global-search-staging.mjs",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_global_search_staging",
+      "target": "tests_global_search_staging_client",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/global-search-staging.mjs",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -51509,5 +51657,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "37046c973fb30ebb31c7b638a64d77410756c1bb"
+  "built_at_commit": "aad93115c528eb2d803d7c2aac36c9ffa4d2e37e"
 }

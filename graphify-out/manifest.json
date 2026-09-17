@@ -1260,9 +1260,9 @@
     "semantic_hash": ""
   },
   "tests/contact-browser-staging.mjs": {
-    "mtime": 1789602003.4360607,
-    "seen": 1789602138.131493,
-    "ast_hash": "14b57ddb488399eeb35333ee7c1c5181",
+    "mtime": 1789603973.0437455,
+    "seen": 1789604150.5409462,
+    "ast_hash": "f38a4c5249330f58f1f364c735c509bc",
     "semantic_hash": ""
   },
   "tests/contact-query-rls.sql": {
@@ -1284,27 +1284,27 @@
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_ARCHITECTURE.md": {
-    "mtime": 1789602116.9509623,
-    "seen": 1789602138.1320794,
-    "ast_hash": "15baec9d41c1915bdb4d1e5d29cf964a",
+    "mtime": 1789604114.747387,
+    "seen": 1789604150.5416553,
+    "ast_hash": "be575b359b8f7f6958c3e7ec53d3e838",
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_MASTER_AUDIT.md": {
-    "mtime": 1789602116.9509623,
-    "seen": 1789602138.1320837,
-    "ast_hash": "8ae5592cb4837818f0cc69bf4286f203",
+    "mtime": 1789604114.747387,
+    "seen": 1789604150.5416586,
+    "ast_hash": "89d44bdd1c2174a4a53f82fbd2677ec5",
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_MIGRATION_PLAN.md": {
-    "mtime": 1789602116.9509623,
-    "seen": 1789602138.1320875,
-    "ast_hash": "8b4b7c661905eb0b312a49805d79c560",
+    "mtime": 1789604114.747387,
+    "seen": 1789604150.5416617,
+    "ast_hash": "28ed19fb3185cb2f55742225646a8251",
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_STAGING_SMOKE.json": {
-    "mtime": 1789602093.0354075,
-    "seen": 1789602138.1312888,
-    "ast_hash": "b2b8c72736269505ea08921296f7f860",
+    "mtime": 1789604093.5329437,
+    "seen": 1789604150.540382,
+    "ast_hash": "e84b21d9ee185dcf4e6ec509bd5230ed",
     "semantic_hash": ""
   },
   "supabase/migrations/20260916170139_allow_authenticated_index_normalizer.sql": {
@@ -1485,6 +1485,12 @@
     "mtime": 1789602435.67821,
     "seen": 1789602782.5586877,
     "ast_hash": "02cded3bd6a1bdb7ee671d55b40b67ef",
+    "semantic_hash": ""
+  },
+  "tests/global-search-staging.mjs": {
+    "mtime": 1789603806.4483726,
+    "seen": 1789604150.541012,
+    "ast_hash": "9b975489dc3a9be46806086254772dad",
     "semantic_hash": ""
   }
 }
