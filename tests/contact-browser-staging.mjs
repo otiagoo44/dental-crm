@@ -41,10 +41,15 @@ try {
   await page.getByLabel('Buscar pacientes').focus();await page.keyboard.press('Tab');
   await expect(page.getByRole('button',{name:'Buscar',exact:true})).toBeFocused();
   const href=await page.locator('main a[href^="/pacientes/"]').first().getAttribute('href');
+  const globalSearch=page.getByRole('combobox',{name:'Búsqueda global'});
+  await globalSearch.fill('Implantes QA Interaction');
+  await expect(page.getByRole('option',{name:/Implantes QA Interaction/})).toBeVisible({timeout:15_000});
+  await page.getByRole('option',{name:/Implantes QA Interaction/}).click();
+  await expect(page.getByText('Oportunidad',{exact:true})).toBeVisible({timeout:20_000});
+  await page.goto(`${base}${href}`);
+  await expect(page.getByRole('heading',{name:/Oportunidades \(/})).toBeVisible({timeout:20_000});
   await page.screenshot({path:join(artifacts,`patients-${width}.png`),fullPage:true,animations:'disabled'});
   await page.screenshot({path:join(artifacts,`patients-viewport-${width}.png`),animations:'disabled'});
-  await page.locator(`main a[href="${href}"]`).click();
-  await expect(page.getByRole('heading',{name:/Oportunidades \(/})).toBeVisible({timeout:20_000});
   await page.reload();
   await expect(page.getByRole('heading',{name:/Oportunidades \(/})).toBeVisible({timeout:20_000});
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
@@ -108,7 +113,7 @@ try {
    await expect(page.locator('main').getByRole('heading').first()).toBeVisible({timeout:30_000});
    await expect(page.getByRole('alert')).toHaveCount(0);
   }
-  report.results.push({width,readyMs,contacts:'PASS',contact360:'PASS',opportunity:'PASS',secondaryTabs:'PASS',history:'PASS',agenda:'PASS',pending:'PASS',keyboard:'PASS',overflow:false});
+  report.results.push({width,readyMs,contacts:'PASS',contact360:'PASS',opportunity:'PASS',search:'PASS',secondaryTabs:'PASS',history:'PASS',agenda:'PASS',pending:'PASS',keyboard:'PASS',overflow:false});
   await context.close();
  }
  assert.deepEqual(report.errors,[]);

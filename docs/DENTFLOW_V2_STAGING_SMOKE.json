@@ -1,12 +1,13 @@
 {
-  "deployment": "https://crm-odontologia-staging-300kcpi66-ortegatiago733-2656s-projects.vercel.app",
+  "deployment": "https://crm-odontologia-staging-2w4jo9i3p-ortegatiago733-2656s-projects.vercel.app",
   "results": [
     {
       "width": 375,
-      "readyMs": 1914,
+      "readyMs": 2557,
       "contacts": "PASS",
       "contact360": "PASS",
       "opportunity": "PASS",
+      "search": "PASS",
       "secondaryTabs": "PASS",
       "history": "PASS",
       "agenda": "PASS",
@@ -16,10 +17,11 @@
     },
     {
       "width": 768,
-      "readyMs": 3023,
+      "readyMs": 1876,
       "contacts": "PASS",
       "contact360": "PASS",
       "opportunity": "PASS",
+      "search": "PASS",
       "secondaryTabs": "PASS",
       "history": "PASS",
       "agenda": "PASS",
@@ -29,10 +31,11 @@
     },
     {
       "width": 1440,
-      "readyMs": 1905,
+      "readyMs": 2032,
       "contacts": "PASS",
       "contact360": "PASS",
       "opportunity": "PASS",
+      "search": "PASS",
       "secondaryTabs": "PASS",
       "history": "PASS",
       "agenda": "PASS",

@@ -41,6 +41,9 @@ Existing nested opportunity URLs remain canonical for the legacy detail. /oportu
 Reception navigation: Inicio, Pacientes, Trabajo, Agenda. Owner additionally sees Oportunidades and Analítica. Configuration moves to gear links. New patient interfaces use semantic headings, labels, buttons, visible focus, minimum 44px controls and responsive structured rows.
 No global search engine added; patient search is scoped and URL-driven.
 
+### Global search
+`search_dentflow_v1` is a bounded, tenant-derived `SECURITY INVOKER` read with an allowlisted limit of 1–20 and query length of 2–80. It returns explicit typed rows (`contact` or `opportunity`) with stable rank/timestamp/id ordering. Contact name/phone searches return one Contact result with its opportunity count; treatment searches return Opportunity results. Notes and clinical fields are excluded. The React shell debounces 220ms, cancels stale requests, supports Ctrl/Cmd+K, Escape and arrow/Enter navigation, and builds only authorized Contact or Opportunity deep links.
+
 ### Incremental types
 No app-wide TypeScript migration. Query parameter validation and executable contracts are introduced now. Next type boundary: query result/parameter declarations and critical command/RPC responses. Keep JS consumers compatible.
 
