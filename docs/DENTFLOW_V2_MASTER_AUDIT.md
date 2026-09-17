@@ -62,4 +62,4 @@ Authenticated EXPLAIN ANALYZE of list_contacts_page with profile lookup: 26 rows
 - Contact summary responsibility is the owner of the earliest active opportunity, not a new patient-owner model.
 - Contact interactions reuse `lead_events`; the projection is administrative and intentionally excludes clinical-record content. Standalone notes are immutable events while `leads.notes` remains the editable opportunity summary.
 - Search intentionally uses substring predicates over current tenant-scoped Contact name/phone and Opportunity treatment. Existing indexes were reviewed; no trigram index was added before an authenticated representative EXPLAIN demonstrates the need.
-- Graphify used as discovery map, followed by source inspection and execution. Real Codex token savings not measured.
+- Graphify used as discovery map, followed by source inspection and execution. Its local benchmark reports 83,100 corpus words, 1,662 nodes and 2,830 edges; estimated average query cost is ~6,812 tokens versus ~110,800 naive tokens (16.3x theoretical reduction). This is a Graphify benchmark, not a measurement of actual Codex token usage or latency.
