@@ -1,0 +1,890 @@
+{
+  "crm-app/package.json": {
+    "mtime": 1789842937.799161,
+    "seen": 1789842975.729599,
+    "ast_hash": "c68b9963c7e4c250a64db21a5fb38311",
+    "semantic_hash": ""
+  },
+  "crm-app/postcss.config.js": {
+    "mtime": 1787954642.7082443,
+    "seen": 1789842975.7296102,
+    "ast_hash": "33fad9c02cb0ec6d6030369ef6347d57",
+    "semantic_hash": ""
+  },
+  "crm-app/src/App.jsx": {
+    "mtime": 1789842937.820264,
+    "seen": 1789842975.7296154,
+    "ast_hash": "d676f1ec871fcd45861eccde185b3a5e",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/AppLayout.jsx": {
+    "mtime": 1789842937.82226,
+    "seen": 1789842975.7296193,
+    "ast_hash": "c8ea2334e924168d5e5bfa7eaf74fc90",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/Login.jsx": {
+    "mtime": 1789842937.9082334,
+    "seen": 1789842975.7296236,
+    "ast_hash": "dc24599fc59cfe8dd1b16bd53acc7221",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/auth/PasswordInput.jsx": {
+    "mtime": 1788564345.561049,
+    "seen": 1789842975.7296274,
+    "ast_hash": "46cc0be32c4c3cefd7a9c9beb14fae26",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/crm/CrmPrimitives.jsx": {
+    "mtime": 1787955201.0974033,
+    "seen": 1789842975.729632,
+    "ast_hash": "65a6a4b33fa09afab3851a6c825f576f",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/crm/PendingActionCard.jsx": {
+    "mtime": 1789842937.9112265,
+    "seen": 1789842975.729636,
+    "ast_hash": "f0096260d6a2c9d02dcfa4200c9ba78d",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/crm/WhatsAppButton.jsx": {
+    "mtime": 1787954642.7193122,
+    "seen": 1789842975.7296398,
+    "ast_hash": "6b616d4fe3e0df690c29a2698342df9e",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/feedback/AppFeedback.jsx": {
+    "mtime": 1787954642.7213106,
+    "seen": 1789842975.7296436,
+    "ast_hash": "6a2ec41f5c36876c8fc73b65d70f295a",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/feedback/GlobalErrorBoundary.jsx": {
+    "mtime": 1787954642.7223063,
+    "seen": 1789842975.7296476,
+    "ast_hash": "c1bffa2dd51a781d339565feceece9c9",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/modals/AppointmentModal.jsx": {
+    "mtime": 1787954642.724116,
+    "seen": 1789842975.729652,
+    "ast_hash": "7db6f7525fb579fc4f6658a63744b634",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/modals/ArchiveLeadModal.jsx": {
+    "mtime": 1787954642.725116,
+    "seen": 1789842975.729656,
+    "ast_hash": "01b7adffc0882e6bf0f1ee2e4d0f5dda",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/modals/ContactOutcomeModal.jsx": {
+    "mtime": 1787954642.7261312,
+    "seen": 1789842975.7296665,
+    "ast_hash": "b4aa018fcb476806ec1d02a6a0e8f749",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/modals/LeadFormModal.jsx": {
+    "mtime": 1787954642.7304,
+    "seen": 1789842975.7296708,
+    "ast_hash": "41ac3f7df1d27dd5b5bdfb0bbb147dfb",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/modals/ModalParts.jsx": {
+    "mtime": 1787954642.7304,
+    "seen": 1789842975.7296746,
+    "ast_hash": "ce2f9653c81fc393ee15247122f5151c",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/modals/QuoteModal.jsx": {
+    "mtime": 1787954642.7314076,
+    "seen": 1789842975.7296786,
+    "ast_hash": "805509425bf2c441a3f71aac60442822",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/modals/TaskFormModal.jsx": {
+    "mtime": 1787954642.7330892,
+    "seen": 1789842975.7296824,
+    "ast_hash": "6045352e931f853c9738708b9dfe3067",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/ui/Button.jsx": {
+    "mtime": 1787954642.7340991,
+    "seen": 1789842975.7296865,
+    "ast_hash": "915a1053a039195d3bb9ea0d534af208",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/ui/Card.jsx": {
+    "mtime": 1787954642.7350857,
+    "seen": 1789842975.7296906,
+    "ast_hash": "1baaf73a42b942dc1b0c68ed0fa78e0d",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/ui/EmptyState.jsx": {
+    "mtime": 1787954642.736083,
+    "seen": 1789842975.7296946,
+    "ast_hash": "d4ccafffe7f9fc192e2dae27085a5635",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/ui/FilterPanel.jsx": {
+    "mtime": 1787954642.7380784,
+    "seen": 1789842975.729699,
+    "ast_hash": "b5cea261f7fb1d05c46e1c69218e6376",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/ui/FilterSheet.jsx": {
+    "mtime": 1787954642.7390761,
+    "seen": 1789842975.7297034,
+    "ast_hash": "ff1bb3abf025fad8017a1fc761081aae",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/ui/ModalShell.jsx": {
+    "mtime": 1787954642.7390761,
+    "seen": 1789842975.7297077,
+    "ast_hash": "c9ecef8505e69963109702dd010dfd25",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/ui/PageHeader.jsx": {
+    "mtime": 1787954642.7400742,
+    "seen": 1789842975.7297115,
+    "ast_hash": "316f5346a38910d2ff879a89c9f42840",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/ui/PriorityBadge.jsx": {
+    "mtime": 1787954642.7411377,
+    "seen": 1789842975.7297158,
+    "ast_hash": "c0e931d96301add21301ff4e136da31a",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/ui/StatCard.jsx": {
+    "mtime": 1787954642.743065,
+    "seen": 1789842975.7297235,
+    "ast_hash": "769f9ef38c4d60aa5850d697427963fb",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/ui/StatusBadge.jsx": {
+    "mtime": 1787954642.7445097,
+    "seen": 1789842975.7297273,
+    "ast_hash": "ec53d4d0246554fa21a36b6f06d82cf2",
+    "semantic_hash": ""
+  },
+  "crm-app/src/components/ui/TemperatureBadge.jsx": {
+    "mtime": 1787954642.7454271,
+    "seen": 1789842975.729731,
+    "ast_hash": "7e8d505eb175c4bfb58463e3ed8a8e19",
+    "semantic_hash": ""
+  },
+  "crm-app/src/config/publicEnvironments.js": {
+    "mtime": 1787954642.746426,
+    "seen": 1789842975.7297351,
+    "ast_hash": "aeb2386aee7e0224acab769c5456634e",
+    "semantic_hash": ""
+  },
+  "crm-app/src/features/public-form/PublicEmbedLeadForm.jsx": {
+    "mtime": 1787955835.862703,
+    "seen": 1789842975.7297387,
+    "ast_hash": "e73dadb12057e5adff1f185ce66982a0",
+    "semantic_hash": ""
+  },
+  "crm-app/src/hooks/useClinicWorkspace.js": {
+    "mtime": 1789842937.9237049,
+    "seen": 1789842975.7297425,
+    "ast_hash": "84c1d57abdbd6ede0295bb81517b0654",
+    "semantic_hash": ""
+  },
+  "crm-app/src/hooks/useSupabaseSession.js": {
+    "mtime": 1788638032.9189522,
+    "seen": 1789842975.7297463,
+    "ast_hash": "90b1943dd5094c110002907e9604482d",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/analytics.js": {
+    "mtime": 1787954642.7553902,
+    "seen": 1789842975.7297502,
+    "ast_hash": "11d7b29d5107d4226cdb8f7905d22a23",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/attribution.js": {
+    "mtime": 1787954642.7563956,
+    "seen": 1789842975.7297544,
+    "ast_hash": "73b81aa7277563008cf8474c29097770",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/authRecovery.js": {
+    "mtime": 1788638032.9099844,
+    "seen": 1789842975.7297585,
+    "ast_hash": "83a235366ee14a578824fe47efa183d5",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/commercialInsights.js": {
+    "mtime": 1787954642.7582662,
+    "seen": 1789842975.7297623,
+    "ast_hash": "5eaed1d145652bd310fc1fb46b0570ef",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/constants.js": {
+    "mtime": 1789842937.9286923,
+    "seen": 1789842975.7297661,
+    "ast_hash": "5fb0fedf2ade2c7af8cdf926520b8891",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/crmDomain.js": {
+    "mtime": 1787956130.2142746,
+    "seen": 1789842975.7297702,
+    "ast_hash": "c963bcde023449cfc512772e498c1259",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/errors.js": {
+    "mtime": 1787954642.7600548,
+    "seen": 1789842975.729774,
+    "ast_hash": "eec121a41066bca1806779c4bb9c95b0",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/formatters.js": {
+    "mtime": 1787954642.761057,
+    "seen": 1789842975.7297778,
+    "ast_hash": "761796e6806a878cfc5a0e42b84bdc19",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/messages.js": {
+    "mtime": 1787954642.762054,
+    "seen": 1789842975.7297823,
+    "ast_hash": "a0eecdf0fdcccfc315058c89451f887b",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/nextActions.js": {
+    "mtime": 1787954642.7630506,
+    "seen": 1789842975.7297864,
+    "ast_hash": "0f900d4d6db6587f87e10fb2067e1a64",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/ownerMetrics.js": {
+    "mtime": 1787954642.7641027,
+    "seen": 1789842975.7297933,
+    "ast_hash": "d508ec06fa823fead495abbdecdafe0a",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/patients.js": {
+    "mtime": 1788564345.561049,
+    "seen": 1789842975.7297974,
+    "ast_hash": "5bb1e482814f0205b09a2cdb6a4ea042",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/publicConfig.js": {
+    "mtime": 1787954642.7641027,
+    "seen": 1789842975.729801,
+    "ast_hash": "8473c7722b5b6d6740efef52bac3511d",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/quoteDefaults.js": {
+    "mtime": 1787954642.7651038,
+    "seen": 1789842975.7298048,
+    "ast_hash": "d7a9cd0a8cd085691bc533251fcec34b",
+    "semantic_hash": ""
+  },
+  "crm-app/src/lib/supabase.js": {
+    "mtime": 1787954642.7661045,
+    "seen": 1789842975.7298083,
+    "ast_hash": "996d25d8a4b9f8ea56155796c5939d0c",
+    "semantic_hash": ""
+  },
+  "crm-app/src/main.jsx": {
+    "mtime": 1787954642.7661045,
+    "seen": 1789842975.7298121,
+    "ast_hash": "969476e19531c3933811d3d9b2722290",
+    "semantic_hash": ""
+  },
+  "crm-app/src/pages/AgendaPage.jsx": {
+    "mtime": 1789842937.9306858,
+    "seen": 1789842975.729816,
+    "ast_hash": "d190c3197804e9ba8ee4b297f4ec8f81",
+    "semantic_hash": ""
+  },
+  "crm-app/src/pages/DashboardPage.jsx": {
+    "mtime": 1787954642.7693968,
+    "seen": 1789842975.72982,
+    "ast_hash": "f77fb8c4409342142db086451155c420",
+    "semantic_hash": ""
+  },
+  "crm-app/src/pages/FollowupsPage.jsx": {
+    "mtime": 1787954642.7701414,
+    "seen": 1789842975.7298238,
+    "ast_hash": "32dbac930adbc0f1a0d042f6dd3bae85",
+    "semantic_hash": ""
+  },
+  "crm-app/src/pages/LeadsPage.jsx": {
+    "mtime": 1789842937.9492126,
+    "seen": 1789842975.7298276,
+    "ast_hash": "e9f78db111b82bb922a5a470f21f0521",
+    "semantic_hash": ""
+  },
+  "crm-app/src/pages/MetricsPage.jsx": {
+    "mtime": 1787954642.772139,
+    "seen": 1789842975.7298315,
+    "ast_hash": "4ae23e03f45c5e7b8719ca084c255eab",
+    "semantic_hash": ""
+  },
+  "crm-app/src/pages/OwnerSummaryPage.jsx": {
+    "mtime": 1787954642.772139,
+    "seen": 1789842975.729835,
+    "ast_hash": "bb43f6baf97fdea2b54fe7a8aecf9c8e",
+    "semantic_hash": ""
+  },
+  "crm-app/src/pages/PendingPage.jsx": {
+    "mtime": 1787954642.773137,
+    "seen": 1789842975.7298386,
+    "ast_hash": "9436eb158a0bd0c4a3c256b59fa2a13e",
+    "semantic_hash": ""
+  },
+  "crm-app/src/pages/SettingsPage.jsx": {
+    "mtime": 1787956130.212279,
+    "seen": 1789842975.7298424,
+    "ast_hash": "50f44060aa874eb62299ec3c0421717f",
+    "semantic_hash": ""
+  },
+  "crm-app/src/pages/TasksPage.jsx": {
+    "mtime": 1787954642.7741349,
+    "seen": 1789842975.7298465,
+    "ast_hash": "fe45691ac6931bf6b3e7864ebfeb9aef",
+    "semantic_hash": ""
+  },
+  "crm-app/src/services/crmApi.js": {
+    "mtime": 1789842937.951206,
+    "seen": 1789842975.7298503,
+    "ast_hash": "9ba1ba717a8cf1a00431bc2c1249f86d",
+    "semantic_hash": ""
+  },
+  "crm-app/tailwind.config.js": {
+    "mtime": 1787954642.7770493,
+    "seen": 1789842975.729854,
+    "ast_hash": "8a4b5e35c2a57634f76d28071300c8b7",
+    "semantic_hash": ""
+  },
+  "crm-app/test-results/.last-run.json": {
+    "mtime": 1789602741.2485917,
+    "seen": 1789842975.7298584,
+    "ast_hash": "f196824657d8858bc7fa44eecbba38b1",
+    "semantic_hash": ""
+  },
+  "crm-app/vercel.json": {
+    "mtime": 1787955201.1003966,
+    "seen": 1789842975.7298622,
+    "ast_hash": "2d8f8cc0e631825ea1e49b54884d7601",
+    "semantic_hash": ""
+  },
+  "crm-app/visual-harness/main.jsx": {
+    "mtime": 1789842937.9571896,
+    "seen": 1789842975.729866,
+    "ast_hash": "efa02c8acab45fa3e83fbb6b17a747f5",
+    "semantic_hash": ""
+  },
+  "crm-app/visual-harness/postcss.config.js": {
+    "mtime": 1787954642.7821803,
+    "seen": 1789842975.72987,
+    "ast_hash": "33fad9c02cb0ec6d6030369ef6347d57",
+    "semantic_hash": ""
+  },
+  "crm-app/visual-harness/tailwind.config.js": {
+    "mtime": 1787954642.7831473,
+    "seen": 1789842975.7298741,
+    "ast_hash": "9998527b14bbc3d18c9d047ff305aa81",
+    "semantic_hash": ""
+  },
+  "crm-app/visual-harness/vite.config.js": {
+    "mtime": 1787954642.7831473,
+    "seen": 1789842975.7298777,
+    "ast_hash": "16db3415854d67c2367aed539387d29c",
+    "semantic_hash": ""
+  },
+  "crm-app/vite.config.js": {
+    "mtime": 1787954642.7841563,
+    "seen": 1789842975.7298818,
+    "ast_hash": "0c5f9c9fa23642cfade10ec85da92e85",
+    "semantic_hash": ""
+  },
+  "supabase/functions/lead-intake/index.ts": {
+    "mtime": 1787956130.2162685,
+    "seen": 1789842975.7298856,
+    "ast_hash": "d85970e57fa41460f2f1f5223916ef88",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260515021456_create_dental_crm_schema.sql": {
+    "mtime": 1787954642.796518,
+    "seen": 1789842975.7298894,
+    "ast_hash": "cdcae9396c6f602aade2cf478ebc8344",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260612140000_production_schema_hardening.sql": {
+    "mtime": 1787954642.7981453,
+    "seen": 1789842975.7298934,
+    "ast_hash": "a10dd1dc30e3a4674402ed4f2f86ccea",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260612141000_rls_professional_policies.sql": {
+    "mtime": 1787954642.7988615,
+    "seen": 1789842975.7298973,
+    "ast_hash": "4bf6cb581fe71c03d1d6c49e094fc237",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260612142000_edge_function_support_indexes.sql": {
+    "mtime": 1787954642.8000135,
+    "seen": 1789842975.7299008,
+    "ast_hash": "e9700f706a6e0e30941943ec42d49395",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260821180858_rebuild_new_supabase_production_schema.sql": {
+    "mtime": 1787954642.8010159,
+    "seen": 1789842975.729905,
+    "ast_hash": "fada19481d22be547e57b40b6723987e",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260821185315_fix_service_role_task_triggers.sql": {
+    "mtime": 1787954642.8030097,
+    "seen": 1789842975.7299087,
+    "ast_hash": "e510d30ba6806854210f7dc860983602",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260821205931_create_manual_lead_rpc.sql": {
+    "mtime": 1787954642.8040104,
+    "seen": 1789842975.7299128,
+    "ast_hash": "92fffb480f8e57532264a194f043a1ba",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260821212046_harden_legacy_function_permissions.sql": {
+    "mtime": 1787954642.805015,
+    "seen": 1789842975.7299168,
+    "ast_hash": "d20bf58d37f58a903bdff092a86bc695",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260822120000_secure_followup_workflow.sql": {
+    "mtime": 1787954642.8063297,
+    "seen": 1789842975.7299209,
+    "ast_hash": "36a87482e45c3b663704ebb932766986",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260822213000_link_contact_tasks_and_whatsapp_templates.sql": {
+    "mtime": 1787954642.807528,
+    "seen": 1789842975.729925,
+    "ast_hash": "16d457b02b42ba253c88f0c258d680ad",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260822230000_add_retention_insights.sql": {
+    "mtime": 1787954642.807528,
+    "seen": 1789842975.729929,
+    "ast_hash": "7ffeec6f5ba0e17ec31598e164d3d216",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260822231500_harden_lost_lead_cross_clinic.sql": {
+    "mtime": 1787954642.8085277,
+    "seen": 1789842975.7299328,
+    "ast_hash": "c39e3498f6f9bcc4e4bc5721c7c615d3",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260822232000_enforce_archive_admin_role.sql": {
+    "mtime": 1787954642.8095253,
+    "seen": 1789842975.7299368,
+    "ast_hash": "38bc73cb944b42382e7b5f77783a102e",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260822232500_allow_server_intake_loss_trigger.sql": {
+    "mtime": 1787954642.8095253,
+    "seen": 1789842975.7299411,
+    "ast_hash": "d88af6075a9e54babcd5f067ce8132f4",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260824162341_enforce_operational_integrity_and_quotes.sql": {
+    "mtime": 1787954642.8115203,
+    "seen": 1789842975.7299454,
+    "ast_hash": "5b4625e3d17833147d53ed5ccf792cb6",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260827162541_clarity_priority_upgrade.sql": {
+    "mtime": 1787954642.8115203,
+    "seen": 1789842975.7299497,
+    "ast_hash": "a15152b4cd9d4519a2895fd60498df02",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260828120000_harden_public_intake_rate_limit.sql": {
+    "mtime": 1787955201.0884383,
+    "seen": 1789842975.7299538,
+    "ast_hash": "13b6cfa17d4527596900c3c98f8c1742",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260831190000_split_open_opportunities_by_treatment.sql": {
+    "mtime": 1788211978.9119596,
+    "seen": 1789842975.7299576,
+    "ast_hash": "ea439eaeb6677d07c2f83f9e3b5ec62f",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260831190500_preserve_open_phone_index_name.sql": {
+    "mtime": 1788212729.266708,
+    "seen": 1789842975.7299645,
+    "ast_hash": "a13abf3dd315097a8c6c30d2370d3fd7",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260904201956_contact_opportunity_model.sql": {
+    "mtime": 1788553800.5176518,
+    "seen": 1789842975.7299685,
+    "ast_hash": "789ae69d0042ec58cee2148f2350facf",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260917013000_saved_views_lite.sql": {
+    "mtime": 1789604589.0344667,
+    "seen": 1789842975.7299728,
+    "ast_hash": "7b3eff209b425fbe600c15d085ee2a20",
+    "semantic_hash": ""
+  },
+  "tests/appointment-modal-flow-test.mjs": {
+    "mtime": 1789842937.9748878,
+    "seen": 1789842975.7299767,
+    "ast_hash": "8bc31af87a73e8472095f3c54f65f980",
+    "semantic_hash": ""
+  },
+  "tests/capacity/storage-estimate.sql": {
+    "mtime": 1787955696.1351893,
+    "seen": 1789842975.7299807,
+    "ast_hash": "4101edbfdf2fea63fd03682bda7ec30d",
+    "semantic_hash": ""
+  },
+  "tests/clarity-domain-contract-test.mjs": {
+    "mtime": 1789842937.978876,
+    "seen": 1789842975.7299848,
+    "ast_hash": "604503f9c2c28a29129761c6addfa7b5",
+    "semantic_hash": ""
+  },
+  "tests/clarity-scoring.sql": {
+    "mtime": 1787954642.8147626,
+    "seen": 1789842975.7299888,
+    "ast_hash": "9c2fc4ec9816a341a8488ef38753d91e",
+    "semantic_hash": ""
+  },
+  "tests/contact-auth-contract-test.mjs": {
+    "mtime": 1789842937.995628,
+    "seen": 1789842975.7299929,
+    "ast_hash": "112e623ae382d10fe891b67ba607c639",
+    "semantic_hash": ""
+  },
+  "tests/dedupe-fix-smoke.mjs": {
+    "mtime": 1788212626.6063848,
+    "seen": 1789842975.7299972,
+    "ast_hash": "ccdf356ed611abad87055ee93bfaf860",
+    "semantic_hash": ""
+  },
+  "tests/edge-intake-contract-test.mjs": {
+    "mtime": 1787955324.43919,
+    "seen": 1789842975.730001,
+    "ast_hash": "8a4a1f3ba2d20b5860125fcda8a8fbcb",
+    "semantic_hash": ""
+  },
+  "tests/lead-intake-test.ps1": {
+    "mtime": 1787956171.3107882,
+    "seen": 1789842975.730005,
+    "ast_hash": "aeb5669b980f91ebad449508bf58a936",
+    "semantic_hash": ""
+  },
+  "tests/load-30-leads.ps1": {
+    "mtime": 1787954642.8175914,
+    "seen": 1789842975.730009,
+    "ast_hash": "1f82de88ff7b857a9fff9c6f1aa33bff",
+    "semantic_hash": ""
+  },
+  "tests/load/data-volume-benchmark.sql": {
+    "mtime": 1787955696.1331944,
+    "seen": 1789842975.7300134,
+    "ast_hash": "dfd5ab87e7f20e7cbd34ab0fdff45168",
+    "semantic_hash": ""
+  },
+  "tests/load/multitenant-load.mjs": {
+    "mtime": 1788007851.8912156,
+    "seen": 1789842975.7300172,
+    "ast_hash": "59a05fd675e87b5636196247b8fb5eda",
+    "semantic_hash": ""
+  },
+  "tests/load/setup-load-fixtures.sql": {
+    "mtime": 1787955533.349357,
+    "seen": 1789842975.7300215,
+    "ast_hash": "dbf05e3413b5beba53ba841c837696f7",
+    "semantic_hash": ""
+  },
+  "tests/operational-integrity.sql": {
+    "mtime": 1787954642.8185906,
+    "seen": 1789842975.7300253,
+    "ast_hash": "7ef0bd3998e827c26552dc39a11467c4",
+    "semantic_hash": ""
+  },
+  "tests/operational-workflow-test.mjs": {
+    "mtime": 1787954642.8185906,
+    "seen": 1789842975.7300293,
+    "ast_hash": "f35720526cab2867f8a5820d41731e85",
+    "semantic_hash": ""
+  },
+  "tests/operational-workflows-e2e.sql": {
+    "mtime": 1787954642.8205025,
+    "seen": 1789842975.7300332,
+    "ast_hash": "35009a4510656ebe23669b463fe12269",
+    "semantic_hash": ""
+  },
+  "tests/owner-metrics-test.mjs": {
+    "mtime": 1787954642.8210118,
+    "seen": 1789842975.730037,
+    "ast_hash": "cb5b75fcddb9a1bf6203dd48b74e056a",
+    "semantic_hash": ""
+  },
+  "tests/postgres-migration-smoke.mjs": {
+    "mtime": 1787954642.821536,
+    "seen": 1789842975.730041,
+    "ast_hash": "c52fe9978308d8b926f750da12559454",
+    "semantic_hash": ""
+  },
+  "tests/production-public-smoke.mjs": {
+    "mtime": 1787954642.8225803,
+    "seen": 1789842975.730045,
+    "ast_hash": "3bae6519b045ee34b9a2cd118b7bcdc6",
+    "semantic_hash": ""
+  },
+  "tests/quote-pricing-test.mjs": {
+    "mtime": 1787954642.8231153,
+    "seen": 1789842975.7300494,
+    "ast_hash": "06d19621cc518dc04d166233b6dd87e7",
+    "semantic_hash": ""
+  },
+  "tests/realtime-workspace-contract-test.mjs": {
+    "mtime": 1788009282.196064,
+    "seen": 1789842975.7300534,
+    "ast_hash": "f4a4b0d5ecac6d592bbd88bc38ddec97",
+    "semantic_hash": ""
+  },
+  "tests/retention-insights-test.mjs": {
+    "mtime": 1787954642.8241527,
+    "seen": 1789842975.7300577,
+    "ast_hash": "c813e34fd8a2196cb7d36d6971739c5c",
+    "semantic_hash": ""
+  },
+  "tests/retention-insights.sql": {
+    "mtime": 1787954642.824704,
+    "seen": 1789842975.7300618,
+    "ast_hash": "7e5a3d973d8881fcb643eaac8590adc1",
+    "semantic_hash": ""
+  },
+  "tests/rls-real-users.sql": {
+    "mtime": 1787954642.8257656,
+    "seen": 1789842975.7300658,
+    "ast_hash": "0ddb45a7b3c95a8eb20c016902d2690b",
+    "semantic_hash": ""
+  },
+  "tests/rls-rpc-transactional.sql": {
+    "mtime": 1788009565.2780871,
+    "seen": 1789842975.73007,
+    "ast_hash": "4b6c53c53f0de01aaa1cb11e8aa20ccd",
+    "semantic_hash": ""
+  },
+  "tests/security/cross-tenant-final.sql": {
+    "mtime": 1788009626.4128854,
+    "seen": 1789842975.730074,
+    "ast_hash": "583cf460e15076b7a72a31ec19e19440",
+    "semantic_hash": ""
+  },
+  "tests/security/intake-abuse-load.mjs": {
+    "mtime": 1788007915.1306515,
+    "seen": 1789842975.7300777,
+    "ast_hash": "c92d540e195f0be380bd1afaa89c94b5",
+    "semantic_hash": ""
+  },
+  "tests/security/integrity-health-check.sql": {
+    "mtime": 1787955696.1361866,
+    "seen": 1789842975.7300818,
+    "ast_hash": "9a02116ccb977c2c78efc6b3fdf00867",
+    "semantic_hash": ""
+  },
+  "tests/security/realtime-capacity.mjs": {
+    "mtime": 1788009336.0112343,
+    "seen": 1789842975.730099,
+    "ast_hash": "7d4dc6fa80a520993da4f64d822b2933",
+    "semantic_hash": ""
+  },
+  "tests/sql-verification.sql": {
+    "mtime": 1788009476.7178152,
+    "seen": 1789842975.7301028,
+    "ast_hash": "cc951400bde69fe54a7998a5f0ecc9fa",
+    "semantic_hash": ""
+  },
+  "tests/staging-form-config.sql": {
+    "mtime": 1787954642.8278863,
+    "seen": 1789842975.7301066,
+    "ast_hash": "e63682371fc1cf2bab8e2cd2e61307e8",
+    "semantic_hash": ""
+  },
+  "tests/staging-http-linked-smoke.mjs": {
+    "mtime": 1787954642.8284092,
+    "seen": 1789842975.7301106,
+    "ast_hash": "1ec44ce7830a2d8b333e897588a5beb5",
+    "semantic_hash": ""
+  },
+  "tests/staging-qa-setup.mjs": {
+    "mtime": 1788009476.7178152,
+    "seen": 1789842975.7301147,
+    "ast_hash": "5d53d84e1f7655bdcd2ea4841d7e02d5",
+    "semantic_hash": ""
+  },
+  "tests/staging-smoke.mjs": {
+    "mtime": 1789842938.0105884,
+    "seen": 1789842975.730119,
+    "ast_hash": "546907fa004d38a85fe208e5868f12de",
+    "semantic_hash": ""
+  },
+  "tests/staging-workflow.mjs": {
+    "mtime": 1788008811.1158066,
+    "seen": 1789842975.7301228,
+    "ast_hash": "6933ab0b4a6b568f1713ac810dfb6633",
+    "semantic_hash": ""
+  },
+  "tests/standalone-deployment-test.mjs": {
+    "mtime": 1787956209.9881766,
+    "seen": 1789842975.7301266,
+    "ast_hash": "ff194bf016bcbff6e4e964346e548c96",
+    "semantic_hash": ""
+  },
+  "tests/stored-xss-contract-test.mjs": {
+    "mtime": 1787956227.8091798,
+    "seen": 1789842975.7301307,
+    "ast_hash": "6cd59cdb2e72177a8b5ae2b189bfb115",
+    "semantic_hash": ""
+  },
+  "tests/visual-responsive-smoke.mjs": {
+    "mtime": 1787954642.8304942,
+    "seen": 1789842975.7301347,
+    "ast_hash": "ad57c98f423ac1d1b970f804d9a5cea6",
+    "semantic_hash": ""
+  },
+  "tests/whatsapp-message-test.mjs": {
+    "mtime": 1787954642.8315217,
+    "seen": 1789842975.7301385,
+    "ast_hash": "afe70923c448516f13ac0522033bc03c",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1789842937.7798967,
+    "seen": 1789842975.7301428,
+    "ast_hash": "c0daa08b1eb0ee7cb3f5334a1b06dc53",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1787956195.5198836,
+    "seen": 1789842975.730147,
+    "ast_hash": "9c5157a0090864a568546614788e4997",
+    "semantic_hash": ""
+  },
+  "crm-app/README.md": {
+    "mtime": 1787954642.7040677,
+    "seen": 1789842975.7301507,
+    "ast_hash": "11b461049714f61631f833bc2d534ce1",
+    "semantic_hash": ""
+  },
+  "crm-app/index.html": {
+    "mtime": 1787954642.7050757,
+    "seen": 1789842975.7301545,
+    "ast_hash": "32279ae24dd8247bc5e87523dc0816ff",
+    "semantic_hash": ""
+  },
+  "crm-app/visual-harness/index.html": {
+    "mtime": 1787954642.779174,
+    "seen": 1789842975.7301586,
+    "ast_hash": "b8364d72ad27e3e059aa33bc14e7a6f8",
+    "semantic_hash": ""
+  },
+  "docs/BACKUP_AND_RECOVERY.md": {
+    "mtime": 1787955980.18421,
+    "seen": 1789842975.7301626,
+    "ast_hash": "79b7ccf35f974a67f66390cd4ff92fe0",
+    "semantic_hash": ""
+  },
+  "docs/CAPABILITY_RECOVERY_AUDIT.md": {
+    "mtime": 1787954642.78578,
+    "seen": 1789842975.7301664,
+    "ast_hash": "2d94242bc79b35a6a5501886f5ad78ed",
+    "semantic_hash": ""
+  },
+  "docs/CAPACITY_AND_SCALING.md": {
+    "mtime": 1787955980.1832128,
+    "seen": 1789842975.7301707,
+    "ast_hash": "b94a5f9906e9a70c8e31d8b1e5c0604d",
+    "semantic_hash": ""
+  },
+  "docs/FIRST_CLIENT_MONITORING.md": {
+    "mtime": 1787956653.8003676,
+    "seen": 1789842975.7301748,
+    "ast_hash": "2da7b0beeccd7a377121709e7bb8c05b",
+    "semantic_hash": ""
+  },
+  "docs/FIRST_CLINIC_ONBOARDING.md": {
+    "mtime": 1788009720.7827704,
+    "seen": 1789842975.7301788,
+    "ast_hash": "42ae748eecf9ebc39105d443ff33ca4d",
+    "semantic_hash": ""
+  },
+  "docs/FIRST_CLINIC_PRODUCTION_READINESS.md": {
+    "mtime": 1787956815.8000042,
+    "seen": 1789842975.7301826,
+    "ast_hash": "189d1f62e149c1b47549055e9c258033",
+    "semantic_hash": ""
+  },
+  "docs/LANDING_INTEGRATION.md": {
+    "mtime": 1788009720.783764,
+    "seen": 1789842975.7301865,
+    "ast_hash": "8fdaf02a03e1875127095aeebb8a24aa",
+    "semantic_hash": ""
+  },
+  "docs/MANUAL_ACCEPTANCE_TEST.md": {
+    "mtime": 1787954642.786781,
+    "seen": 1789842975.7301905,
+    "ast_hash": "b802a04d7fa01f0d5257342bad27c7d8",
+    "semantic_hash": ""
+  },
+  "docs/PRODUCTION_RELEASE_CHECKLIST.md": {
+    "mtime": 1787954642.7877786,
+    "seen": 1789842975.7301943,
+    "ast_hash": "816b2a4176fc7bc76ce3c1fc2c20ee75",
+    "semantic_hash": ""
+  },
+  "docs/QA_STAGING_DEPLOY.md": {
+    "mtime": 1787956467.5877259,
+    "seen": 1789842975.7301986,
+    "ast_hash": "e8bb5fb69d3474ec81e02ee4f675c6fb",
+    "semantic_hash": ""
+  },
+  "docs/ROLLBACK_PLAN.md": {
+    "mtime": 1787954642.7887826,
+    "seen": 1789842975.7302024,
+    "ast_hash": "8628bcb78357ddfeb44ebd94f88142c0",
+    "semantic_hash": ""
+  },
+  "docs/SECURITY_ARCHITECTURE_AUDIT.md": {
+    "mtime": 1787955980.1822176,
+    "seen": 1789842975.7302063,
+    "ast_hash": "53742c1637618d73ba85ddfbb86401e9",
+    "semantic_hash": ""
+  },
+  "docs/n8n-asincronico.md": {
+    "mtime": 1787954642.7897727,
+    "seen": 1789842975.7302103,
+    "ast_hash": "3e30c433da5f5a3a9caf5144f470d880",
+    "semantic_hash": ""
+  },
+  "supabase/README.md": {
+    "mtime": 1787956195.5218792,
+    "seen": 1789842975.7302144,
+    "ast_hash": "3258b4c3e4e4f05854fb74524304c157",
+    "semantic_hash": ""
+  },
+  "supabase/functions/lead-intake/README.md": {
+    "mtime": 1787956195.524873,
+    "seen": 1789842975.7302184,
+    "ast_hash": "f86ff011282320e37f2c3a4215e9607a",
+    "semantic_hash": ""
+  },
+  "tests/load/README.md": {
+    "mtime": 1787956246.2646706,
+    "seen": 1789842975.7302282,
+    "ast_hash": "5a17d1729417345dd7d5482ef8dce984",
+    "semantic_hash": ""
+  }
+}

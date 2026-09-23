@@ -1,0 +1,1 @@
+{"nodes": [{"id": "$graphify-root$_supabase_migrations_20260821212046_harden_legacy_function_permissions_sql", "label": "20260821212046_harden_legacy_function_permissions.sql", "file_type": "code", "source_file": "supabase/migrations/20260821212046_harden_legacy_function_permissions.sql", "source_location": null}], "edges": []}

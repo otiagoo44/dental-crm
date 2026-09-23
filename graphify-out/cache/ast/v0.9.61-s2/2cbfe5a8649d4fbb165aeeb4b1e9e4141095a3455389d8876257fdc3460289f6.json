@@ -1,0 +1,1 @@
+{"nodes": [{"id": "$graphify-root$_supabase_migrations_20260831190500_preserve_open_phone_index_name_sql", "label": "20260831190500_preserve_open_phone_index_name.sql", "file_type": "code", "source_file": "supabase/migrations/20260831190500_preserve_open_phone_index_name.sql", "source_location": null}], "edges": []}
