@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [main, feature/operational-maturity-v1]
+    branches: [main, feature/operational-maturity-v1, feature/dentflow-v2-maturity-2]
   workflow_dispatch:
 
 permissions:

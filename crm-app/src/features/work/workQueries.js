@@ -33,7 +33,7 @@ export async function listWorkItems(client, clinicId, { view = 'my-work', limit 
   if (!Number.isInteger(limit) || limit < 1 || limit > 100) throw new Error('Límite de trabajo inválido.');
   const decoded = decodeWorkCursor(cursor);
   const { data, error } = await client.rpc('list_work_items_v1', {
-    p_clinic_id: clinicId, p_view: normalizeWorkView(view).replaceAll('-', '_'), p_limit: limit,
+    p_clinic_id: clinicId, p_view: normalizeWorkView(view, true).replaceAll('-', '_'), p_limit: limit,
     p_assigned_to: assignedTo || null, p_cursor_group: decoded?.group ?? null, p_cursor_due_at: decoded?.dueAt ?? null,
     p_cursor_priority: decoded?.priority ?? null, p_cursor_key: decoded?.key ?? null,
   }).abortSignal(signal);

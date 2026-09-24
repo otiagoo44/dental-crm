@@ -5,6 +5,7 @@ import EmptyState from '../../components/ui/EmptyState';
 import PageHeader from '../../components/ui/PageHeader';
 import useWorkResource from './useWorkResource';
 import { normalizeWorkView, WORK_VIEWS } from './workQueries';
+import SavedViews from '../savedViews/SavedViews';
 
 const TYPE_LABEL = { initial_contact:'Nueva consulta',followup:'Seguimiento',confirm_appointment:'Confirmar cita',attendance:'Registrar asistencia',no_show_recovery:'Recuperar inasistencia',quote_followup:'Presupuesto pendiente',reactivation:'Reactivación',manual_task:'Tarea manual',assign_owner:'Sin responsable' };
 
@@ -21,7 +22,8 @@ export default function WorkPage({ profile, canAdmin, onContact, onOutcome, onCo
   const [params, setParams] = useSearchParams();
   const view = normalizeWorkView(params.get('view') || 'my-work', canAdmin);
   const cursor = params.get('cursor');
-  const query = useMemo(() => ({ view, cursor }), [view, cursor]);
+  const assignedTo = params.get('assignedTo');
+  const query = useMemo(() => ({ view, cursor, assignedTo }), [view, cursor, assignedTo]);
   const { data, loading, error } = useWorkResource({ clinicId: profile?.clinic_id, query });
   const visibleViews = WORK_VIEWS.filter(([key]) => key !== 'team' || canAdmin);
   const action = async (item) => {
@@ -36,6 +38,7 @@ export default function WorkPage({ profile, canAdmin, onContact, onOutcome, onCo
     <nav className="flex gap-2 overflow-x-auto pb-2" aria-label="Vistas de trabajo">
       {visibleViews.map(([key,label]) => <button key={key} type="button" className={`min-h-11 shrink-0 rounded-lg border px-3 text-sm font-semibold ${view===key?'border-mint bg-mint/10 text-cream':'border-slate-200 text-textMuted'}`} aria-pressed={view===key} onClick={() => setParams(key==='my-work'?{}:{view:key})}>{label}</button>)}
     </nav>
+    <SavedViews entity="work" profile={profile} />
     {error ? <p role="alert" className="rounded-lg border border-danger/30 p-4 text-danger">{error}</p> : null}
     {loading && !data ? <p role="status" className="p-4 text-textMuted">Cargando trabajo…</p> : null}
     {data?.items?.length ? <div className="overflow-hidden rounded-xl border border-slate-200 bg-card">
@@ -49,6 +52,6 @@ export default function WorkPage({ profile, canAdmin, onContact, onOutcome, onCo
         <Button type="button" onClick={() => action(item)}>{item.work_type==='initial_contact'?'Contactar':item.work_type==='confirm_appointment'?'Confirmar':item.work_type==='manual_task'?'Completar':'Registrar'}</Button>
       </article>)}
     </div> : !loading ? <EmptyState title="Todo al día" text="No hay pacientes que requieran atención en esta vista." /> : null}
-    {data?.nextCursor ? <Button variant="secondary" type="button" onClick={() => setParams({ view, cursor:data.nextCursor })}>Siguiente página</Button> : null}
+    {data?.nextCursor ? <Button variant="secondary" type="button" onClick={() => { const next = new URLSearchParams(params); next.set('cursor',data.nextCursor); setParams(next); }}>Siguiente página</Button> : null}
   </section>;
 }

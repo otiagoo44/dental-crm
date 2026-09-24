@@ -161,6 +161,7 @@ export default function CrmRoutes({ controller }) {
 } />
       <Route path="/oportunidades" element={
         <LeadsView
+          profile={profile}
           leads={leads}
           appointments={appointments}
           tasks={tasks}

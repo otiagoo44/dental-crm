@@ -7,6 +7,7 @@ import useContactResource from '../hooks/useContactResource';
 import { patientPath } from '../routing/paths';
 import Button from '../components/ui/Button';
 import { QueryError, PageControls } from '../components/patients/QueryState';
+import SavedViews from '../features/savedViews/SavedViews';
 
 export default function PatientsPage({ profile, onCreate }) {
   const [params, setParams] = useSearchParams();
@@ -31,6 +32,7 @@ export default function PatientsPage({ profile, onCreate }) {
         <option value="all">Todos</option><option value="active">Con oportunidades activas</option><option value="unassigned">Sin responsable</option>
       </select></label>
     </form>
+    <SavedViews entity="patients" profile={profile} />
     {result.error ? <QueryError error={result.error} retry={result.refresh} /> : null}
     {result.loading ? <p role="status">Cargando pacientes…</p> : null}
     <div className="overflow-hidden rounded-2xl border border-slate-200 bg-card" aria-busy={result.loading}>

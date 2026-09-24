@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [feature/operational-maturity-v1]
+    branches: [feature/operational-maturity-v1, feature/dentflow-v2-maturity-2]
   workflow_dispatch:
 
 permissions:
@@ -29,3 +29,7 @@ jobs:
           psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/database-from-zero.sql
           psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/contact-interactions-rls.sql
           psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/global-search-rls.sql
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/saved-views-rls.sql
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/operational-integrity.sql
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/operational-workflows-e2e.sql
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/clarity-scoring.sql

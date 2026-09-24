@@ -1,4 +1,6 @@
-import { Link } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
+import SavedViews from '../features/savedViews/SavedViews';
+import { EMPTY_OPPORTUNITY_FILTERS, parseOpportunityParams, opportunityParams } from '../features/savedViews/viewState';
 import { patientPath, opportunityPath } from '../routing/paths';
 import { useMemo, useState } from 'react';
 import { Archive, BellPlus, CalendarPlus, ChevronLeft, CircleX, Copy, Edit3, Ellipsis, FilePlus, History, Search } from 'lucide-react';
@@ -19,13 +21,14 @@ import PageHeader from '../components/ui/PageHeader';
 import StatusBadge from '../components/ui/StatusBadge';
 import TemperatureBadge from '../components/ui/TemperatureBadge';
 
-const EMPTY_FILTERS = {
-  status: '', treatment: '', classification: '', priority: '', assigned: '', source: '', date: '', showArchived: false, sort: 'recent',
-};
+const EMPTY_FILTERS = EMPTY_OPPORTUNITY_FILTERS;
 
-export default function LeadsView({ leads, tasks, appointments, quotes = [], canAdmin, onCreateLead, onOpenLead, profiles = [] }) {
-  const [query, setQuery] = useState('');
-  const [filters, setFilters] = useState(EMPTY_FILTERS);
+export default function LeadsView({ leads, tasks, appointments, quotes = [], canAdmin, onCreateLead, onOpenLead, profiles = [], profile }) {
+  const [params, setParams] = useSearchParams();
+  const query = params.get('q') || '';
+  const filters = useMemo(() => parseOpportunityParams(params), [params]);
+  const setQuery = (value) => setParams(opportunityParams(filters, value), { replace: true });
+  const setFilters = (value) => setParams(opportunityParams(typeof value === 'function' ? value(filters) : value, query));
   const [draft, setDraft] = useState(EMPTY_FILTERS);
   const treatmentOptions = useMemo(() => uniqueStrings(leads.map((lead) => lead.treatment)).sort(), [leads]);
   const sourceOptions = useMemo(() => uniqueStrings(leads.map((lead) => lead.source_normalized || lead.source)).sort(), [leads]);
@@ -88,6 +91,7 @@ export default function LeadsView({ leads, tasks, appointments, quotes = [], can
           </div>
         </FilterSheet>
       </div>
+      <SavedViews entity="opportunities" profile={profile} />
       <div className="flex flex-wrap items-center justify-between gap-3">
         <ActiveFilterChips items={chips} />
         <p className="text-sm font-semibold text-textMuted">{rows.length} resultados</p>

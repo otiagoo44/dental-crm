@@ -20,6 +20,7 @@ const bootstrapSql = `
   create role authenticator nologin;
 
   create schema auth;
+  grant usage on schema auth to anon, authenticated, service_role;
   create table auth.users (
     id uuid primary key,
     email text,
@@ -74,18 +75,18 @@ for (const migrationName of migrationNames) {
     process.stdout.write(`PASS migration ${migrationName}\n`);
   } catch (error) {
     process.stderr.write(`FAIL migration ${migrationName}\n${error.message}\n`);
-    throw error;
+    throw new Error(`${error.code}: ${error.message}; position=${error.position}; internal=${error.internalQuery || ''}`);
   }
 }
 
-for (const testName of ['operational-integrity.sql', 'operational-workflows-e2e.sql', 'clarity-scoring.sql']) {
-  const sql = await readFile(path.join(projectRoot, 'tests', testName), 'utf8');
+for (const testName of process.argv.slice(2).length ? process.argv.slice(2) : ['operational-integrity.sql', 'operational-workflows-e2e.sql', 'clarity-scoring.sql']) {
+  const sql = (await readFile(path.join(projectRoot, 'tests', testName), 'utf8')).replace(/^\\set .*$/gm, '');
   try {
     await database.exec(sql);
     process.stdout.write(`PASS SQL contract ${testName}\n`);
   } catch (error) {
     process.stderr.write(`FAIL SQL contract ${testName}\n${error.message}\n`);
-    throw error;
+    throw new Error(`${error.code}: ${error.message}; context=${error.where || ''}`);
   }
 }
 

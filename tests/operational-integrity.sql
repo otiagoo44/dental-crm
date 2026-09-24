@@ -181,7 +181,8 @@ insert into public.leads (
   (
     'f4000000-0000-0000-0000-000000000014',
     'f1000000-0000-0000-0000-000000000001',
-    'Paciente con encargado inactivo QA', '0981000014', '+595981000014', 'Consulta general',
+    -- Reintake is scoped by treatment in V2; match qa_public_intake below.
+    'Paciente con encargado inactivo QA', '0981000014', '+595981000014', 'Implante dental',
     'Nuevo', 'f2000000-0000-0000-0000-000000000005',
     'Responder nueva consulta', now(), true, now(), 'QA', null
   );
@@ -418,8 +419,8 @@ begin
     raise exception 'La asignación determinística no priorizó recepción o fallback owner';
   end if;
 
-  if (select assigned_to from public.leads where phone_plus = '+595981000014')
-       <> 'f2000000-0000-0000-0000-000000000001' then
+  if (select assigned_to from public.leads where id = 'f4000000-0000-0000-0000-000000000014')
+       is distinct from 'f2000000-0000-0000-0000-000000000001'::uuid then
     raise exception 'El reenvío abierto no reparó un encargado inactivo';
   end if;
 
@@ -642,6 +643,27 @@ begin
 end;
 $test$;
 
+-- Cancellation changes the appointment, preserves the commercial opportunity,
+-- and a retry must not duplicate recovery tasks/events.
+reset role;
+insert into public.leads(id,clinic_id,name,phone,phone_plus,treatment,status,assigned_to,next_action,next_followup_at)
+values('f4000000-0000-0000-0000-000000000088','f1000000-0000-0000-0000-000000000001','Cancellation QA','0981000088','+595981000088','Limpieza','Consulta Agendada','f2000000-0000-0000-0000-000000000001','Confirmar cita',now()+interval '2 days');
+insert into public.appointments(id,clinic_id,lead_id,appointment_date,appointment_time,status)
+values('f5000000-0000-0000-0000-000000000088','f1000000-0000-0000-0000-000000000001','f4000000-0000-0000-0000-000000000088',current_date+2,'10:00','Agendado');
+select set_config('request.jwt.claim.sub','f2000000-0000-0000-0000-000000000001',true);
+select set_config('request.jwt.claim.role','authenticated',true);
+set local role authenticated;
+select public.update_appointment_outcome('f5000000-0000-0000-0000-000000000088','Cancelado');
+select public.update_appointment_outcome('f5000000-0000-0000-0000-000000000088','Cancelado');
+do $$ begin
+  if (select status from public.appointments where id='f5000000-0000-0000-0000-000000000088') is distinct from 'Cancelado'
+     or (select status from public.leads where id='f4000000-0000-0000-0000-000000000088') is distinct from 'Consulta Agendada'
+     or (select count(*) from public.lead_events where lead_id='f4000000-0000-0000-0000-000000000088' and event_type='appointment_cancelled')<>1
+     or (select count(*) from public.tasks where lead_id='f4000000-0000-0000-0000-000000000088' and type='cancelled_recovery' and status='pendiente')<>1 then
+    raise exception 'Cancellation or retry changed commercial status or duplicated work';
+  end if;
+end $$;
+reset role;
 rollback;
 
 select 'PASS' as result, 'operational_integrity_and_quotes' as test;

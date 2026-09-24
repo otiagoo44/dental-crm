@@ -111,6 +111,7 @@ export const test = base.extend({
           last_interaction_title: 'Nueva consulta', next_appointment_at: null }]);
       }
       if (table === 'list_contact_timeline_v1') return respond([]);
+      if (table === 'list_saved_views_v1') return respond([]);
       if (table === 'register_contact_interaction_v1') return respond(request.postDataJSON().p_opportunity_id);
       if (table === 'search_dentflow_v1') {
         const args = request.postDataJSON();
