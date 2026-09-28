@@ -786,9 +786,9 @@
     "semantic_hash": "5d53d84e1f7655bdcd2ea4841d7e02d5"
   },
   "tests/staging-smoke.mjs": {
-    "mtime": 1790205669.459681,
-    "seen": 1790208642.4761508,
-    "ast_hash": "80ffaea951f8129dcfcb1df30f51616e",
+    "mtime": 1790600356.237584,
+    "seen": 1790600406.5996056,
+    "ast_hash": "75634b7d89ac2e4d30f55d4716b07fc0",
     "semantic_hash": ""
   },
   "tests/staging-workflow.mjs": {
@@ -1542,9 +1542,9 @@
     "semantic_hash": ""
   },
   "docs/DENTFLOW_V2_MATURITY_2.md": {
-    "mtime": 1790210248.3352041,
-    "seen": 1790210262.6822612,
-    "ast_hash": "44c14f43482a0a1ac30140ea685c1f02",
+    "mtime": 1790598694.6123013,
+    "seen": 1790598708.0358496,
+    "ast_hash": "de2efd43bb6457a9bd216e8b634f9444",
     "semantic_hash": ""
   },
   "supabase/migrations/20260924001122_fix_appointment_outcome_encoding.sql": {
@@ -1557,6 +1557,24 @@
     "mtime": 1790209845.2478366,
     "seen": 1790209889.8198638,
     "ast_hash": "76b79787a0d4c43c25da0eba0eedd4d2",
+    "semantic_hash": ""
+  },
+  "tests/reception-activity-staging.mjs": {
+    "mtime": 1790598605.5376675,
+    "seen": 1790598708.0356781,
+    "ast_hash": "3c92ab5e5b8489dfd9d62d615f8e81c9",
+    "semantic_hash": ""
+  },
+  "tests/saved-views-staging.mjs": {
+    "mtime": 1790598503.1379194,
+    "seen": 1790598708.035694,
+    "ast_hash": "6949c8fa0c7285c6c5b49ab6e65f040e",
+    "semantic_hash": ""
+  },
+  "docs/DENTFLOW_V2_GATE_A_20260928.md": {
+    "mtime": 1790600463.4136794,
+    "seen": 1790600474.798329,
+    "ast_hash": "6d4bb7f73fd1f05d70324b1d25d9b0ed",
     "semantic_hash": ""
   }
 }
