@@ -32,9 +32,12 @@ if (missing.length) {
 }
 
 const config = Object.fromEntries(requiredNames.map((name) => [name, String(process.env[name]).trim()]));
+const realtimeOnly = process.env.QA_REALTIME_ONLY === '1';
+assert.ok(!(realtimeOnly && process.env.QA_RLS_ONLY === '1'), 'Choose only one focused smoke mode');
 const projectUrl = new URL(config.QA_STAGING_SUPABASE_URL);
 const edgeUrl = new URL(config.QA_STAGING_EDGE_URL);
 const projectRef = projectUrl.hostname.match(/^([a-z0-9]+)\.supabase\.co$/i)?.[1];
+assert.equal(projectUrl.origin, 'https://aqdufiycayedsfldljjq.supabase.co', 'This smoke may target only the authorized Staging project');
 assert.equal(projectRef, config.QA_STAGING_PROJECT_REF, 'QA staging URL does not match QA_STAGING_PROJECT_REF');
 assert.equal(edgeUrl.origin, projectUrl.origin, 'Edge Function and Supabase URL target different projects');
 assert.equal(edgeUrl.pathname, '/functions/v1/lead-intake');
@@ -44,6 +47,7 @@ let passed = 0;
 let failed = 0;
 
 async function check(name, operation) {
+  if (realtimeOnly && name !== 'authenticate four real QA users' && name !== 'Realtime delivers a new consultation without F5') return;
   try {
     await operation();
     passed += 1;
@@ -247,7 +251,7 @@ if (process.env.QA_RLS_ONLY === '1') {
   await Promise.all(Object.values(sessions).map(async ({ supabase }) => {
     await supabase.removeAllChannels();
     supabase.realtime.disconnect();
-    await supabase.auth.signOut();
+    await supabase.auth.signOut({ scope: 'local' });
   }));
   if (!failed) process.stdout.write('INFO cross_tenant_leaks=0\n');
   process.stdout.write(`RESULT ${passed} passed, ${failed} failed\n`);
@@ -393,7 +397,9 @@ await check('Realtime delivers a new consultation without F5', async () => {
   let timeout;
   const channel = sessions.receptionA.supabase
     .channel(`qa-release-${startedAt}`)
-    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'leads', filter: `clinic_id=eq.${clinicA}` }, (event) => resolveEvent(event));
+    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'leads', filter: `clinic_id=eq.${clinicA}` }, (event) => {
+      if (event.new.name === body.nombre) resolveEvent(event);
+    });
   try {
     await new Promise((resolve, reject) => {
       const timer = setTimeout(() => reject(new Error('Realtime subscription timeout')), 20_000);
@@ -403,8 +409,14 @@ await check('Realtime delivers a new consultation without F5', async () => {
       });
     });
     timeout = setTimeout(() => rejectEvent(new Error('Realtime event timeout after subscription')), 15_000);
-    const [created, event] = await Promise.all([intake(body), eventPromise]);
-    assert.equal(created.response.status, 200);
+    const [created, event] = await Promise.all([
+      intake(body).then((result) => {
+        assert.equal(result.response.status, 200, `Realtime fixture intake HTTP ${result.response.status}`);
+        assert.ok(result.data?.lead_id, 'Realtime fixture intake returned no opportunity');
+        return result;
+      }),
+      eventPromise,
+    ]);
     assert.equal(event.new.id, created.data.lead_id);
     process.stdout.write(`INFO realtime_latency_ms=${Date.now() - startedAt}\n`);
   } finally {
@@ -416,8 +428,9 @@ await check('Realtime delivers a new consultation without F5', async () => {
 await Promise.all(Object.values(sessions).map(async ({ supabase }) => {
   await supabase.removeAllChannels();
   supabase.realtime.disconnect();
-  await supabase.auth.signOut();
+  await supabase.auth.signOut({ scope: 'local' });
 }));
-if (!failed) process.stdout.write('INFO cross_tenant_leaks=0\n');
+if (!failed && !realtimeOnly) process.stdout.write('INFO cross_tenant_leaks=0\n');
+if (realtimeOnly) process.stdout.write('INFO smoke_scope=realtime-only; cross-tenant checks not run\n');
 process.stdout.write(`RESULT ${passed} passed, ${failed} failed\n`);
 if (failed) process.exit(1);
