@@ -1,0 +1,56 @@
+name: Isolated upgrade
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [feature/dentflow-v2-maturity-2]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.67.1
+      - name: Reconstruct pinned previous-release database
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASELINE=bb894bd5a9a1a1360133094843063b7109c645c3
+          UPGRADE_DIR="$RUNNER_TEMP/dentflow-isolated-upgrade"
+          mkdir -p "$UPGRADE_DIR/supabase/migrations"
+          cp supabase/config.toml "$UPGRADE_DIR/supabase/config.toml"
+          git ls-tree --name-only "$BASELINE" supabase/migrations/ > "$RUNNER_TEMP/baseline-migrations.txt"
+          test "$(wc -l < "$RUNNER_TEMP/baseline-migrations.txt")" -eq 19
+          while IFS= read -r migration; do
+            git show "$BASELINE:$migration" > "$UPGRADE_DIR/$migration"
+            cmp "$migration" "$UPGRADE_DIR/$migration"
+          done < "$RUNNER_TEMP/baseline-migrations.txt"
+          cd "$UPGRADE_DIR"
+          supabase start -x studio,imgproxy,inbucket,storage-api,edge-runtime,logflare,vector,supavisor
+          supabase db reset --local --no-seed
+          DB_URL=$(supabase status -o env | sed -n 's/^DB_URL="\(.*\)"/\1/p')
+          test -n "$DB_URL"
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f "$GITHUB_WORKSPACE/tests/upgrade-baseline-fixtures.sql"
+      - name: Apply forward migrations with fixtures preserved
+        shell: bash
+        run: |
+          set -euo pipefail
+          UPGRADE_DIR="$RUNNER_TEMP/dentflow-isolated-upgrade"
+          cp supabase/migrations/*.sql "$UPGRADE_DIR/supabase/migrations/"
+          cd "$UPGRADE_DIR"
+          supabase migration up --local
+          DB_URL=$(supabase status -o env | sed -n 's/^DB_URL="\(.*\)"/\1/p')
+          test -n "$DB_URL"
+          for test in upgrade-verify database-from-zero contact-interactions-rls activity-content-permissions global-search-rls saved-views-rls operational-integrity operational-workflows-e2e clarity-scoring; do
+            psql "$DB_URL" -v ON_ERROR_STOP=1 -f "$GITHUB_WORKSPACE/tests/$test.sql"
+          done

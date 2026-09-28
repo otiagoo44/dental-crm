@@ -65,7 +65,14 @@ const migrationNames = (await readdir(migrationsDir))
   .filter((name) => name.endsWith('.sql'))
   .sort();
 
+const upgrade = process.argv.includes('--upgrade');
+const testNames = process.argv.slice(2).filter((name) => name !== '--upgrade');
+
 for (const migrationName of migrationNames) {
+  if (upgrade && migrationName === '20260904201956_contact_opportunity_model.sql') {
+    await database.exec((await readFile(path.join(projectRoot, 'tests/upgrade-baseline-fixtures.sql'), 'utf8')).replace(/^\\set .*$/gm, ''));
+    process.stdout.write('PASS previous-release baseline fixtures\n');
+  }
   const sql = (await readFile(path.join(migrationsDir, migrationName), 'utf8'))
     // PGlite exposes gen_random_uuid() from PostgreSQL core but does not package
     // Supabase's pgcrypto extension control file. Supabase itself does.
@@ -79,7 +86,7 @@ for (const migrationName of migrationNames) {
   }
 }
 
-for (const testName of process.argv.slice(2).length ? process.argv.slice(2) : ['operational-integrity.sql', 'operational-workflows-e2e.sql', 'clarity-scoring.sql']) {
+for (const testName of [...(upgrade ? ['upgrade-verify.sql'] : []), ...(testNames.length ? testNames : ['operational-integrity.sql', 'operational-workflows-e2e.sql', 'clarity-scoring.sql'])]) {
   const sql = (await readFile(path.join(projectRoot, 'tests', testName), 'utf8')).replace(/^\\set .*$/gm, '');
   try {
     await database.exec(sql);
