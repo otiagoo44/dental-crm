@@ -27,6 +27,11 @@ Saved view → existing URL parameters → existing query layer. Cursor and one-
 
 ## Evidence in progress
 
+**2026-09-28 correction:** Gate A remains open. The prior owner-only browser
+evidence is insufficient for sign-off. See [current Gate A evidence](DENTFLOW_V2_GATE_A_20260928.md)
+for independently reverified push CI, actual Reception HTTP checks and the
+remaining browser, same-clinic Reception isolation and Activity content blockers.
+
 - Red: SQL runtime suite failed on missing create RPC before implementation.
 - Green: all local migrations plus `saved-views-rls.sql` passed on isolated PGlite PostgreSQL. Includes private/admin privacy, team roles, tenant isolation, inactive users, direct-write constraints, invalid entity/filter/sorts/JSON, duplicate name, update/delete and private quota.
 - Red: URL contract test failed on absent implementation; green after implementation.
