@@ -86,18 +86,22 @@ try {
   }
 
   const team = await create(owner, 'work', 'team');
-  assert.ok((await list(reception, 'work')).some((v) => v.id === team.id));
+  for (const actor of [reception, ...(secondReception ? [secondReception] : [])]) {
+    assert.ok((await list(actor, 'work')).some((v) => v.id === team.id));
+  }
   assert.ok(!(await list(other, 'work')).some((v) => v.id === team.id));
-  for (const actor of [reception, other]) {
+  for (const actor of [reception, ...(secondReception ? [secondReception] : []), other]) {
     await denied(actor, 'update_saved_view_v1', updateArgs(team, 'Forbidden'), '42501');
     await denied(actor, 'delete_saved_view_v1', { p_id: team.id }, '42501');
   }
   await denied(reception, 'create_saved_view_v1', { p_entity: 'work', p_name: `${stamp} forbidden`, p_visibility: 'team', p_filters: {}, p_sorts: [] }, '42501');
   const changed = { ...updateArgs(team, `${stamp} updated`), p_filters: { view: 'followups' } };
   await rpc(owner, 'update_saved_view_v1', changed);
-  const received = (await list(reception, 'work')).find((v) => v.id === team.id);
-  assert.equal(received?.name, changed.p_name);
-  assert.deepEqual(received.filters, changed.p_filters);
+  for (const actor of [reception, ...(secondReception ? [secondReception] : [])]) {
+    const received = (await list(actor, 'work')).find((v) => v.id === team.id);
+    assert.equal(received?.name, changed.p_name);
+    assert.deepEqual(received.filters, changed.p_filters);
+  }
   pass('team: owner create/update observed by Reception; Reception and foreign clinic mutations denied');
 
   const args = { p_entity: 'work', p_name: `${stamp} invalid`, p_visibility: 'private', p_filters: {}, p_sorts: [] };

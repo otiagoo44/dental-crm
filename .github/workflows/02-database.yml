@@ -28,6 +28,7 @@ jobs:
           DB_URL=$(supabase status -o env | sed -n 's/^DB_URL="\(.*\)"/\1/p')
           psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/database-from-zero.sql
           psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/contact-interactions-rls.sql
+          psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/activity-content-permissions.sql
           psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/global-search-rls.sql
           psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/saved-views-rls.sql
           psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/operational-integrity.sql
